@@ -1,68 +1,502 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vaultara Capital</title>
-  <link rel="stylesheet" href="style.css" />
+  <meta name="description" content="Vaultara Capital — Business formation, business funding, and business credit guidance." />
+
+  <style>
+    :root{
+      /* Vaultara palette (Blue + Light Gray) */
+      --vc-blue: #1557FF;       /* strong royal blue */
+      --vc-blue-2: #0F46D8;     /* pressed/active */
+      --vc-gray: #D7DCE6;       /* light gray text */
+      --vc-gray-2: #C7CCD6;     /* secondary gray */
+      --vc-btn: #D7DCE6;        /* button base */
+      --vc-text-dark: #0B1020;  /* for blue button text if needed */
+      --vc-card: rgba(255,255,255,0.10);
+      --vc-stroke: rgba(215,220,230,0.35);
+      --radius: 22px;
+    }
+
+    *{ box-sizing:border-box; }
+    html, body{ height:100%; }
+    body{
+      margin:0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      background: var(--vc-blue); /* FULL BLUE */
+      color: var(--vc-gray);
+      -webkit-text-size-adjust: 100%;
+    }
+
+    a{ color: var(--vc-gray); text-decoration: underline; }
+    a:active{ opacity: .9; }
+
+    .wrap{
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 18px 14px 34px;
+    }
+
+    .card{
+      border: 2px solid var(--vc-stroke);
+      background: var(--vc-card);
+      border-radius: var(--radius);
+      padding: 18px;
+      box-shadow: 0 10px 30px rgba(0,0,0,.15);
+    }
+
+    .topbar{
+      display:flex;
+      gap:12px;
+      align-items:center;
+      margin-bottom: 14px;
+    }
+
+    .logo{
+      width: 54px;
+      height: 54px;
+      border-radius: 16px;
+      border: 2px solid var(--vc-stroke);
+      background: rgba(215,220,230,0.12);
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      font-weight: 800;
+      letter-spacing: .5px;
+      color: var(--vc-gray);
+      user-select:none;
+    }
+
+    .brand h1{
+      margin:0;
+      font-size: 22px;
+      letter-spacing: .6px;
+      text-transform: uppercase;
+      color: var(--vc-gray); /* light gray title */
+    }
+    .brand p{
+      margin:6px 0 0;
+      font-size: 13px;
+      color: var(--vc-gray-2);
+      line-height: 1.35;
+    }
+
+    .links{
+      margin-top: 10px;
+      display:flex;
+      gap:12px;
+      flex-wrap:wrap;
+      font-size: 13px;
+    }
+    .linkpill{
+      border: 1px solid var(--vc-stroke);
+      background: rgba(255,255,255,0.08);
+      padding: 8px 10px;
+      border-radius: 999px;
+      text-decoration:none;
+    }
+
+    .section-title{
+      margin: 14px 0 8px;
+      font-size: 16px;
+      letter-spacing: .4px;
+      text-transform: uppercase;
+      color: var(--vc-gray);
+    }
+
+    .desc{
+      margin: 0 0 12px;
+      color: var(--vc-gray-2);
+      line-height: 1.5;
+      font-size: 14px;
+    }
+
+    .btn{
+      width: 100%;
+      border: 0;
+      border-radius: 18px;
+      padding: 14px 14px;
+      background: var(--vc-btn);      /* light gray */
+      color: var(--vc-blue);          /* blue text */
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: .2px;
+      cursor: pointer;
+      box-shadow: 0 8px 18px rgba(0,0,0,.18);
+      transition: transform .05s ease, background .15s ease, color .15s ease;
+    }
+    .btn:active{
+      transform: scale(0.99);
+      background: var(--vc-blue-2);  /* becomes blue */
+      color: #fff;                   /* text becomes white */
+    }
+    .btn.secondary{
+      background: rgba(215,220,230,0.18);
+      color: var(--vc-gray);
+      border: 1px solid var(--vc-stroke);
+      box-shadow: none;
+      font-weight: 700;
+    }
+    .btn.secondary:active{
+      background: rgba(215,220,230,0.25);
+      color: var(--vc-gray);
+    }
+
+    .stack{ display:flex; flex-direction:column; gap:12px; }
+
+    .panel{
+      border-radius: 18px;
+      border: 1px solid var(--vc-stroke);
+      background: rgba(255,255,255,0.07);
+      padding: 14px;
+    }
+
+    .field{
+      display:flex;
+      flex-direction:column;
+      gap: 6px;
+      margin: 10px 0;
+    }
+    label{
+      font-weight: 700;
+      font-size: 13px;
+      color: var(--vc-gray);
+    }
+    input, select, textarea{
+      width: 100%;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(215,220,230,0.45);
+      background: rgba(255,255,255,0.12);
+      color: var(--vc-gray);
+      outline: none;
+      font-size: 14px;
+    }
+    input::placeholder, textarea::placeholder{
+      color: rgba(215,220,230,0.65);
+    }
+    textarea{ min-height: 90px; resize: vertical; }
+
+    .row{
+      display:flex;
+      gap:10px;
+    }
+    .row > .field{ flex:1; }
+
+    .actions{
+      display:flex;
+      gap:10px;
+      margin-top: 12px;
+    }
+    .actions .btn{ flex: 1; }
+
+    .hidden{ display:none !important; }
+
+    .foot{
+      margin-top: 14px;
+      padding-top: 14px;
+      border-top: 1px solid var(--vc-stroke);
+      text-align:center;
+      color: var(--vc-gray-2);
+      font-size: 13px;
+      line-height: 1.45;
+    }
+
+    .note{
+      margin-top: 10px;
+      font-size: 12.5px;
+      color: rgba(215,220,230,0.80);
+      line-height: 1.45;
+    }
+  </style>
 </head>
+
 <body>
-  <div class="container">
-
-    <div class="card header">
-      <div class="logoBox">VC</div>
-      <div class="brand">
-        <h1>VAULTARA CAPITAL</h1>
-        <p class="subline">
-          Business Funding • Business Credit • Business Formation
-        </p>
-      </div>
-    </div>
-
-    <div class="card services">
-      <div class="sectionTitle">What Vaultara Capital Does</div>
-      <p class="p">
-        Vaultara Capital helps entrepreneurs start strong and grow faster.
-        We guide you through business formation and help you prepare for funding and credit steps
-        with a clear, organized intake process.
-      </p>
-      <p class="p">
-        Choose a service below. Fill out the form and you’ll see a thank-you page after submission.
-        Our team will follow up by email.
-      </p>
-
-      <div class="hr"></div>
-
-      <div class="sectionTitle">Choose a Service</div>
-      <div class="serviceGrid">
-        <a class="btn" href="business-funding.html">
-          Business Funding
-          <small>Request funding + business financial details</small>
-        </a>
-
-        <a class="btn" href="business-credit.html">
-          Business Credit
-          <small>Build/strengthen your business credit profile</small>
-        </a>
-
-        <a class="btn" href="business-formation.html">
-          Business Formation
-          <small>LLC setup + EIN/domain guidance + next steps</small>
-        </a>
+  <div class="wrap">
+    <div class="card">
+      <div class="topbar">
+        <!-- If you want your real logo, replace this div with an <img src="logo.png"> -->
+        <div class="logo">VC</div>
+        <div class="brand">
+          <h1>Vaultara Capital</h1>
+          <p>Business Funding • Business Credit • Business Formation</p>
+        </div>
       </div>
 
+      <div class="links">
+        <!-- Put your TitanCore landing URL here -->
+        <a class="linkpill" href="https://titancoreholdings.netlify.app" target="_blank" rel="noopener">Back to TitanCore</a>
+
+        <!-- Your main contact email -->
+        <a class="linkpill" href="mailto:contact@vaultaracapital.com">contact@vaultaracapital.com</a>
+      </div>
+
+      <h2 class="section-title">What Vaultara Capital Does</h2>
+      <p class="desc">
+        Vaultara Capital helps entrepreneurs start and grow strong, fundable businesses.
+        We guide you through <b>business formation</b>, help you prepare for <b>funding</b>, and support
+        <b>business credit building</b> with a clear step-by-step process.
+      </p>
       <p class="note">
         Note: Vaultara Capital is not a law firm. For legal/tax advice, consult a licensed professional.
       </p>
-    </div>
 
-    <div class="card footer">
-      <div><strong>TitanCore Main (800):</strong> <a href="tel:+18008279016">(800) 827-9016</a></div>
-      <div><strong>Email:</strong> <a href="mailto:contact@vaultaracapital.com">contact@vaultaracapital.com</a></div>
-      <div class="hr"></div>
-      <div>© Vaultara Capital. All rights reserved.</div>
-    </div>
+      <h2 class="section-title">Choose a Service</h2>
+      <p class="desc">Pick what you need. You’ll submit your info and see a confirmation right away.</p>
 
+      <div id="serviceMenu" class="stack">
+        <button class="btn" data-open="fundingForm">Business Funding</button>
+        <button class="btn" data-open="creditForm">Business Credit</button>
+        <button class="btn" data-open="formationForm">Business Formation</button>
+      </div>
+
+      <!-- ===== FUNDING FORM PANEL ===== -->
+      <div id="fundingForm" class="panel hidden">
+        <h2 class="section-title">Funding Intake</h2>
+        <p class="desc">Tell us what you’re looking for so we can guide you to the right funding path.</p>
+
+        <!-- Netlify form -->
+        <form name="vaultara-funding" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="vaultara-funding" />
+
+          <div class="field">
+            <label>Full Name (Required)</label>
+            <input name="full_name" required placeholder="Your full name" />
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Email (Required)</label>
+              <input type="email" name="email" required placeholder="name@domain.com" />
+            </div>
+            <div class="field">
+              <label>Phone (Required)</label>
+              <input name="phone" required placeholder="(000) 000-0000" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>State (Required)</label>
+            <input name="state" required placeholder="Example: Florida" />
+          </div>
+
+          <div class="field">
+            <label>Funding Amount Target</label>
+            <input name="funding_amount" placeholder="Example: $25,000" />
+          </div>
+
+          <div class="field">
+            <label>Tell us your situation</label>
+            <textarea name="funding_notes" placeholder="Example: business type, time in business, revenue, what funding is for"></textarea>
+          </div>
+
+          <div class="actions">
+            <button class="btn" type="submit">Submit Funding Intake</button>
+            <button class="btn secondary" type="button" data-back>Cancel</button>
+          </div>
+        </form>
+
+        <div class="panel hidden" data-thanks>
+          <h2 class="section-title">Thank You</h2>
+          <p class="desc">
+            We received your submission. Vaultara Capital will contact you by email as soon as possible.
+          </p>
+          <button class="btn" type="button" data-return>Back to Services</button>
+        </div>
+      </div>
+
+      <!-- ===== CREDIT FORM PANEL ===== -->
+      <div id="creditForm" class="panel hidden">
+        <h2 class="section-title">Credit Intake</h2>
+        <p class="desc">We’ll review your credit goal and help you plan the next steps.</p>
+
+        <form name="vaultara-credit" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="vaultara-credit" />
+
+          <div class="field">
+            <label>Full Name (Required)</label>
+            <input name="full_name" required placeholder="Your full name" />
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Email (Required)</label>
+              <input type="email" name="email" required placeholder="name@domain.com" />
+            </div>
+            <div class="field">
+              <label>Phone (Required)</label>
+              <input name="phone" required placeholder="(000) 000-0000" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>Do you have a business bank account?</label>
+            <select name="has_bank">
+              <option value="">Select</option>
+              <option>Yes</option>
+              <option>No</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>What credit goal do you have?</label>
+            <textarea name="credit_goal" placeholder="Example: build business credit + vendor accounts + qualify for funding"></textarea>
+          </div>
+
+          <div class="actions">
+            <button class="btn" type="submit">Submit Credit Intake</button>
+            <button class="btn secondary" type="button" data-back>Cancel</button>
+          </div>
+        </form>
+
+        <div class="panel hidden" data-thanks>
+          <h2 class="section-title">Thank You</h2>
+          <p class="desc">
+            We received your submission. Vaultara Capital will contact you by email as soon as possible.
+          </p>
+          <button class="btn" type="button" data-return>Back to Services</button>
+        </div>
+      </div>
+
+      <!-- ===== FORMATION FORM PANEL ===== -->
+      <div id="formationForm" class="panel hidden">
+        <h2 class="section-title">Business Formation Intake</h2>
+        <p class="desc">
+          This is a guided “done-with-you” setup: we help you step-by-step (by email) with formation basics,
+          EIN/domain guidance, and next steps.
+        </p>
+
+        <form name="vaultara-formation" method="POST" data-netlify="true">
+          <input type="hidden" name="form-name" value="vaultara-formation" />
+
+          <div class="field">
+            <label>Full Name (Required)</label>
+            <input name="full_name" required placeholder="Your full name" />
+          </div>
+
+          <div class="row">
+            <div class="field">
+              <label>Email (Required)</label>
+              <input type="email" name="email" required placeholder="name@domain.com" />
+            </div>
+            <div class="field">
+              <label>Phone (Required)</label>
+              <input name="phone" required placeholder="(000) 000-0000" />
+            </div>
+          </div>
+
+          <div class="field">
+            <label>State where you want to register the business (Required)</label>
+            <input name="state" required placeholder="Example: Florida" />
+          </div>
+
+          <div class="field">
+            <label>Business Name (if you have one)</label>
+            <input name="business_name" placeholder="Example: ABC Logistics LLC" />
+          </div>
+
+          <div class="field">
+            <label>What are you trying to accomplish?</label>
+            <textarea name="formation_goal" placeholder="Example: form LLC + get EIN + domain + business email"></textarea>
+          </div>
+
+          <div class="actions">
+            <button class="btn" type="submit">Submit Formation Intake</button>
+            <button class="btn secondary" type="button" data-back>Cancel</button>
+          </div>
+        </form>
+
+        <div class="panel hidden" data-thanks>
+          <h2 class="section-title">Thank You</h2>
+          <p class="desc">
+            We received your submission. Vaultara Capital will contact you by email as soon as possible.
+          </p>
+          <button class="btn" type="button" data-return>Back to Services</button>
+        </div>
+      </div>
+
+      <div class="foot">
+        <div><b>TitanCore Main (800):</b> (800) 827-9016</div>
+        <div><b>Email:</b> <a href="mailto:contact@vaultaracapital.com">contact@vaultaracapital.com</a></div>
+        <div style="margin-top:8px;">© Vaultara Capital. All rights reserved.</div>
+      </div>
+    </div>
   </div>
+
+  <script>
+    // Basic navigation between menu and forms + clean Thank You behavior
+    const menu = document.getElementById('serviceMenu');
+    const panels = ['fundingForm','creditForm','formationForm'].map(id => document.getElementById(id));
+
+    function showMenu(){
+      panels.forEach(p => p.classList.add('hidden'));
+      menu.classList.remove('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function showPanel(panelId){
+      menu.classList.add('hidden');
+      panels.forEach(p => p.classList.add('hidden'));
+      const panel = document.getElementById(panelId);
+      panel.classList.remove('hidden');
+
+      // reset forms + thank you inside this panel
+      const form = panel.querySelector('form');
+      const thanks = panel.querySelector('[data-thanks]');
+      if(form) form.classList.remove('hidden');
+      if(thanks) thanks.classList.add('hidden');
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    document.querySelectorAll('[data-open]').forEach(btn=>{
+      btn.addEventListener('click', ()=> showPanel(btn.getAttribute('data-open')));
+    });
+
+    document.querySelectorAll('[data-back]').forEach(btn=>{
+      btn.addEventListener('click', showMenu);
+    });
+
+    document.querySelectorAll('[data-return]').forEach(btn=>{
+      btn.addEventListener('click', showMenu);
+    });
+
+    // Netlify form submit without a separate thank-you page.
+    // It posts the form, then swaps the form area with the Thank You panel.
+    function encode(data) {
+      return Object.keys(data)
+        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .join("&");
+    }
+
+    document.querySelectorAll('form[data-netlify="true"]').forEach(form=>{
+      form.addEventListener('submit', (e)=>{
+        e.preventDefault();
+
+        const panel = form.closest('.panel');
+        const thanks = panel.querySelector('[data-thanks]');
+        const formData = new FormData(form);
+        const dataObj = {};
+        formData.forEach((v,k)=> dataObj[k]=v);
+
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: encode(dataObj),
+        })
+        .then(()=>{
+          form.classList.add('hidden');
+          if(thanks) thanks.classList.remove('hidden');
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        })
+        .catch(()=>{
+          alert("Submission failed. Please try again.");
+        });
+      });
+    });
+  </script>
 </body>
 </html>
