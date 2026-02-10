@@ -3,624 +3,601 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Vaultara Capital — Business Funding • Business Credit • Business Formation</title>
-  <meta name="description" content="Vaultara Capital intake portal for business funding, business credit, and business formation." />
+  <title>Vaultara Capital — Funding • Business Credit • Business Formation</title>
+  <meta name="description" content="Vaultara Capital intake for Business Funding, Business Credit, and Business Formation." />
 
   <style>
     :root{
-      --blue:#1E5BE0;
-      --blue2:#0F46C8;
-      --gray:#D9D9D9;
-      --gray2:#BFC3C9;
-      --light:#F7F7F7;
-      --text:#121212;
-      --brand:#C7C7C7; /* light gray for Vaultara Capital title */
-      --card:#ffffff;
-      --border:rgba(0,0,0,.10);
+      --blue:#0b4fb3;         /* Vaultara blue */
+      --blue2:#0a3f93;
+      --silver:#d6d9de;       /* light gray / silver */
+      --silver2:#c6cbd3;
+      --text:#1a1a1a;
+      --white:#ffffff;
+      --shadow: rgba(10,25,60,.18);
+      --border: rgba(10,79,179,.25);
     }
-
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family: Arial, Helvetica, sans-serif;
-      background:#fff;
-      color:var(--text);
+      background: var(--white);
+      color: var(--text);
     }
-
     .wrap{
-      max-width: 720px;
+      max-width: 640px;
       margin: 0 auto;
-      padding: 18px 14px 36px;
+      padding: 22px 14px 44px;
     }
 
-    .card{
-      background: var(--card);
-      border: 1px solid var(--border);
-      border-radius: 18px;
+    /* Blue main board (your “second background”) */
+    .board{
+      background: linear-gradient(180deg, var(--blue) 0%, var(--blue2) 100%);
+      border-radius: 26px;
+      padding: 18px 16px 18px;
+      box-shadow: 0 14px 42px var(--shadow);
+      position: relative;
       overflow: hidden;
-      box-shadow: 0 10px 30px rgba(0,0,0,.06);
+    }
+    .board:before{
+      content:"";
+      position:absolute;
+      inset:10px;
+      border-radius: 18px;
+      border: 1px solid rgba(214,217,222,.35);
+      pointer-events:none;
     }
 
-    /* Top banner (blue) */
-    .banner{
-      background: linear-gradient(180deg, var(--blue), var(--blue2));
-      padding: 16px 14px;
-    }
-
-    .bannerRow{
+    /* Header */
+    .head{
       display:flex;
+      align-items:center;
       gap:12px;
-      align-items:center;
+      padding: 6px 4px 6px;
+      margin-bottom: 10px;
     }
-
-    .logoBox{
+    .logo{
       width:56px; height:56px;
-      border-radius: 14px;
-      background: rgba(255,255,255,.18);
-      border: 1px solid rgba(255,255,255,.28);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      overflow:hidden;
-      flex: 0 0 auto;
+      border-radius: 16px;
+      background: linear-gradient(180deg, rgba(214,217,222,.55), rgba(255,255,255,.12));
+      border: 1px solid rgba(214,217,222,.55);
+      display:flex; align-items:center; justify-content:center;
+      color: var(--blue);
+      font-weight: 900;
+      letter-spacing:.5px;
+      user-select:none;
     }
-
-    .logoBox img{
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
-    .brandText{
-      flex:1;
-      min-width:0;
-    }
-
-    .dashTitle{
+    .brand h1{
       margin:0;
-      font-weight: 900;
-      letter-spacing:.7px;
-      color:#fff;
-      text-transform: uppercase;
-      font-size: 13px;
-      opacity:.95;
-    }
-
-    .vaultara{
-      margin: 6px 0 0;
       line-height:1.05;
-    }
-
-    .vaultara .top{
-      display:block;
+      letter-spacing:.4px;
+      color: var(--silver);
       font-weight: 900;
-      letter-spacing: 1px;
-      color: var(--brand);
+      text-transform: uppercase;
       font-size: 22px;
-      text-transform: uppercase;
     }
-
-    .vaultara .bottom{
+    .brand h1 .cap{
       display:block;
-      margin-top: 2px;
-      font-weight: 900;
-      letter-spacing: 4px;
-      color: var(--brand);
-      font-size: 13px;
-      text-transform: uppercase;
+      font-size: 14px;
+      letter-spacing: 2.2px;
+      margin-top: 4px;
+      opacity: .95;
     }
-
-    .subline{
-      margin: 8px 0 0;
-      color: rgba(255,255,255,.92);
+    .brand p{
+      margin:7px 0 0;
+      color: rgba(214,217,222,.92);
       font-size: 13px;
       line-height: 1.35;
     }
 
-    /* Body content */
-    .body{
+    .section{
+      margin-top: 14px;
       padding: 14px;
-      background: #fff;
+      border-radius: 18px;
+      border: 1px solid rgba(214,217,222,.35);
+      background: rgba(255,255,255,.10);
     }
-
-    .sectionTitle{
-      margin: 0 0 10px;
-      color: var(--blue);
-      font-weight: 900;
-      letter-spacing:.6px;
+    .section h2{
+      margin:0 0 8px;
+      font-size: 15px;
+      letter-spacing:.5px;
       text-transform: uppercase;
-      font-size: 14px;
+      color: var(--silver);
+      font-weight: 900;
     }
-
-    .note{
-      margin: 0 0 14px;
-      color: rgba(0,0,0,.70);
+    .section p{
+      margin:0;
+      color: rgba(214,217,222,.92);
       font-size: 13.5px;
       line-height: 1.55;
     }
 
+    /* Menu buttons */
+    .menu{
+      display:flex;
+      flex-direction:column;
+      gap: 12px;
+      margin-top: 12px;
+    }
     .btn{
-      display:block;
       width:100%;
-      border: 0;
-      border-radius: 16px;
-      padding: 14px 14px;
-      margin: 10px 0 0;
-      background: var(--gray);
+      border: 1px solid rgba(214,217,222,.55);
+      background: var(--silver);
       color: var(--blue);
+      border-radius: 18px;
+      padding: 14px 14px;
       font-weight: 900;
       letter-spacing:.3px;
-      text-align:center;
+      text-align:left;
       cursor:pointer;
       user-select:none;
       -webkit-tap-highlight-color: transparent;
-      box-shadow: 0 8px 16px rgba(0,0,0,.06);
-      transition: transform .06s ease, filter .12s ease, background .12s ease, color .12s ease;
+      transition: transform .08s ease, filter .15s ease, background .15s ease, color .15s ease;
+      box-shadow: 0 10px 20px rgba(0,0,0,.18);
     }
-    .btn:hover, .btn:active{
+    .btn small{
+      display:block;
+      margin-top:6px;
+      font-weight:700;
+      letter-spacing:.2px;
+      opacity:.95;
+    }
+    /* Tap/active (your “blue button with gray text”) */
+    .btn:active,
+    .btn:focus{
       background: var(--blue);
-      color: var(--light);
-      filter: brightness(1.02);
+      color: var(--silver);
+      border-color: rgba(214,217,222,.65);
+      outline:none;
+      filter: brightness(1.03);
     }
     .btn:active{ transform: translateY(1px); }
 
-    .btnSmall{
-      width:auto;
-      display:inline-block;
-      padding: 10px 12px;
-      border-radius: 14px;
-      margin: 0 0 10px;
-    }
-
-    .panel{
-      border: 1px solid var(--border);
-      border-radius: 16px;
-      padding: 14px;
-      background: #fff;
-    }
-
+    /* Forms */
     label{
       display:block;
-      margin-top: 12px;
+      margin-top:12px;
+      color: rgba(214,217,222,.95);
       font-weight: 800;
-      color: rgba(0,0,0,.78);
       font-size: 12.5px;
       letter-spacing:.2px;
     }
-
     input, select, textarea{
       width:100%;
-      margin-top: 6px;
+      margin-top:6px;
       padding: 12px 12px;
       border-radius: 14px;
-      border: 1px solid rgba(0,0,0,.14);
-      background: #fff;
-      color: #111;
-      outline: none;
+      border: 1px solid rgba(214,217,222,.55);
+      background: rgba(255,255,255,.12);
+      color: rgba(255,255,255,.96);
+      outline:none;
     }
-    textarea{ min-height: 92px; resize: vertical; }
-    input::placeholder, textarea::placeholder{ color: rgba(0,0,0,.35); }
+    textarea{ min-height: 96px; resize: vertical; }
+    input::placeholder, textarea::placeholder{ color: rgba(255,255,255,.65); }
+
+    .submit{
+      display:block;
+      width:100%;
+      margin-top: 14px;
+      border-radius: 18px;
+      padding: 14px 14px;
+      font-weight: 900;
+      letter-spacing:.3px;
+      border: 1px solid rgba(214,217,222,.55);
+      background: var(--silver);
+      color: var(--blue);
+      cursor:pointer;
+    }
+    .submit:active,.submit:focus{
+      background: var(--blue);
+      color: var(--silver);
+      outline:none;
+    }
+
+    .back{
+      margin-top: 12px;
+      display:inline-block;
+      color: rgba(214,217,222,.95);
+      text-decoration:none;
+      font-weight: 800;
+      letter-spacing:.2px;
+    }
 
     .fine{
       margin-top: 10px;
       font-size: 12px;
-      color: rgba(0,0,0,.55);
-      line-height: 1.45;
-    }
-
-    .status{
-      margin-top: 10px;
-      font-size: 13px;
-      color: rgba(0,0,0,.70);
+      color: rgba(214,217,222,.85);
+      line-height:1.5;
     }
 
     .footer{
       margin-top: 14px;
       padding: 12px 14px;
-      border-top: 1px solid rgba(255,255,255,.18);
-      color: rgba(255,255,255,.95);
+      border-radius: 18px;
+      border: 1px solid rgba(214,217,222,.35);
+      background: rgba(255,255,255,.10);
+      color: rgba(214,217,222,.92);
       font-size: 13px;
       line-height: 1.6;
       text-align:center;
-      background: linear-gradient(180deg, var(--blue2), var(--blue));
     }
-
     .footer strong{ color:#fff; }
     .hidden{ display:none !important; }
 
-    /* Make it feel nice on small screens */
-    @media (max-width:420px){
-      .vaultara .top{ font-size: 20px; }
-      .vaultara .bottom{ font-size: 12px; letter-spacing: 3px; }
+    .status{
+      margin-top:10px;
+      color: rgba(214,217,222,.95);
+      font-size: 13px;
+      line-height: 1.5;
     }
   </style>
 </head>
 
 <body>
   <div class="wrap">
-    <div class="card">
-      <!-- BLUE HEADER -->
-      <div class="banner">
-        <div class="bannerRow">
-          <div class="logoBox" aria-label="Vaultara logo">
-            <!-- Optional: put your logo file in the SAME folder as index.html and name it vaultara-logo.png -->
-            <!-- If you don't have it yet, it will just show 'VC' text -->
-            <img src="vaultara-logo.png" alt="Vaultara Capital Logo" onerror="this.remove(); this.parentElement.innerHTML='<span style=&quot;color:#fff;font-weight:900;letter-spacing:.5px;&quot;>VC</span>';">
-          </div>
+    <div class="board">
 
-          <div class="brandText">
-            <p class="dashTitle">DASHBOARD</p>
-            <div class="vaultara" aria-label="Vaultara Capital">
-              <span class="top">Vaultara</span>
-              <span class="bottom">CAPITAL</span>
-            </div>
-            <p class="subline">Business Funding • Business Credit • Business Formation</p>
-          </div>
+      <div class="head">
+        <!-- If you want your real logo: replace "VC" with <img src="vaultara-logo.png" ...> -->
+        <div class="logo">VC</div>
+        <div class="brand">
+          <h1>Vaultara <span class="cap">Capital</span></h1>
+          <p>Business Funding • Business Credit • Business Formation</p>
         </div>
       </div>
 
-      <!-- WHITE BODY -->
-      <div class="body">
+      <!-- MENU -->
+      <div class="section" id="menuSection">
+        <h2>Choose a Service</h2>
+        <p>Select what you need. Fill the form and you’ll see a thank-you message after submission.</p>
 
-        <!-- HOME -->
-        <section id="homeSection">
-          <h2 class="sectionTitle">Choose a Service</h2>
-          <p class="note">
-            Select what you need below. Submit your information and we’ll contact you by email to confirm next steps.
-          </p>
+        <div class="menu">
+          <button class="btn" type="button" data-go="fundingSection">
+            Business Funding
+            <small>Request funding + business financial details</small>
+          </button>
 
-          <button class="btn" type="button" data-go="fundingSection">BUSINESS FUNDING</button>
-          <button class="btn" type="button" data-go="creditSection">BUSINESS CREDIT</button>
-          <button class="btn" type="button" data-go="formationSection">BUSINESS FORMATION</button>
+          <button class="btn" type="button" data-go="creditSection">
+            Business Credit
+            <small>Build/strengthen business credit profile</small>
+          </button>
 
-          <p class="fine">
-            Note: Vaultara Capital reviews submissions and may request additional documents to verify eligibility.
-            We do not ask for SSN on this form.
-          </p>
-        </section>
+          <button class="btn" type="button" data-go="formationSection">
+            Business Formation
+            <small>LLC setup + EIN guidance + domain support</small>
+          </button>
+        </div>
 
-        <!-- FUNDING -->
-        <section id="fundingSection" class="hidden">
-          <button class="btn btnSmall" type="button" data-go="homeSection">← BACK</button>
-          <h2 class="sectionTitle">Business Funding Intake</h2>
-          <div class="panel" id="fundingFormWrap">
-
-            <form id="fundingForm" name="Vaultara-Business-Funding" method="POST"
-                  data-netlify="true" netlify-honeypot="bot-field-funding">
-              <input type="hidden" name="form-name" value="Vaultara-Business-Funding" />
-              <p class="hidden">
-                <label>Don’t fill this out: <input name="bot-field-funding" /></label>
-              </p>
-
-              <label>Full Name (Required)
-                <input name="full_name" type="text" placeholder="Your full name" required />
-              </label>
-
-              <label>Email (Required)
-                <input name="email" type="email" placeholder="name@domain.com" required />
-              </label>
-
-              <label>Phone (Required)
-                <input name="phone" type="tel" placeholder="(000) 000-0000" required />
-              </label>
-
-              <label>Business Name (Required)
-                <input name="business_name" type="text" placeholder="Your business name" required />
-              </label>
-
-              <label>Business Address (Required)
-                <input name="business_address" type="text" placeholder="Street, City, State, ZIP" required />
-              </label>
-
-              <label>How long has the business been operating? (Required)
-                <select name="time_in_business" required>
-                  <option value="" selected disabled>Select one</option>
-                  <option>Not launched yet</option>
-                  <option>0–6 months</option>
-                  <option>6–12 months</option>
-                  <option>1–2 years</option>
-                  <option>2–5 years</option>
-                  <option>5+ years</option>
-                </select>
-              </label>
-
-              <label>Business Type / Industry (Required)
-                <input name="industry" type="text" placeholder="Trucking, Construction, Retail, Services, etc." required />
-              </label>
-
-              <label>Monthly Revenue (Required)
-                <input name="monthly_revenue" type="text" placeholder="$ (estimate is okay)" required />
-              </label>
-
-              <label>Revenue (Last 3 Months Total) (Optional)
-                <input name="rev_3_months" type="text" placeholder="$" />
-              </label>
-
-              <label>Revenue (Last 6 Months Total) (Optional)
-                <input name="rev_6_months" type="text" placeholder="$" />
-              </label>
-
-              <label>Revenue (Last 12 Months Total) (Optional)
-                <input name="rev_12_months" type="text" placeholder="$" />
-              </label>
-
-              <label>How much funding are you requesting? (Required)
-                <input name="funding_amount" type="text" placeholder="$ amount requested" required />
-              </label>
-
-              <label>What will the funding be used for? (Required)
-                <textarea name="use_of_funds" placeholder="Inventory, equipment, payroll, expansion, etc." required></textarea>
-              </label>
-
-              <label>Notes / Details (Optional)
-                <textarea name="notes" placeholder="Any timeline or details you want us to review"></textarea>
-              </label>
-
-              <label style="margin-top:14px;font-weight:700;color:rgba(0,0,0,.70);">
-                <input type="checkbox" name="consent" required style="width:auto;margin-right:8px;" />
-                I confirm the information is accurate and I agree to be contacted by email.
-              </label>
-
-              <button class="btn" type="submit">SUBMIT FUNDING REQUEST</button>
-
-              <div class="status" id="fundingStatus"></div>
-              <div class="fine">
-                After submission, you will see a confirmation message on this same page.
-              </div>
-            </form>
-          </div>
-
-          <div class="panel hidden" id="fundingThanks">
-            <h2 class="sectionTitle">Thank You</h2>
-            <p class="note">
-              We received your funding request. We will review your submission and contact you by email as soon as possible
-              to confirm next steps and qualification.
-            </p>
-            <p class="fine">
-              If you need to reference your submission, reply to our email once you receive it.
-            </p>
-          </div>
-        </section>
-
-        <!-- CREDIT -->
-        <section id="creditSection" class="hidden">
-          <button class="btn btnSmall" type="button" data-go="homeSection">← BACK</button>
-          <h2 class="sectionTitle">Business Credit Intake</h2>
-          <div class="panel" id="creditFormWrap">
-
-            <form id="creditForm" name="Vaultara-Business-Credit" method="POST"
-                  data-netlify="true" netlify-honeypot="bot-field-credit">
-              <input type="hidden" name="form-name" value="Vaultara-Business-Credit" />
-              <p class="hidden">
-                <label>Don’t fill this out: <input name="bot-field-credit" /></label>
-              </p>
-
-              <label>Full Name (Required)
-                <input name="full_name" type="text" placeholder="Your full name" required />
-              </label>
-
-              <label>Email (Required)
-                <input name="email" type="email" placeholder="name@domain.com" required />
-              </label>
-
-              <label>Phone (Required)
-                <input name="phone" type="tel" placeholder="(000) 000-0000" required />
-              </label>
-
-              <label>Business Name (Required)
-                <input name="business_name" type="text" placeholder="Your business name" required />
-              </label>
-
-              <label>How long has the business existed? (Required)
-                <select name="time_in_business" required>
-                  <option value="" selected disabled>Select one</option>
-                  <option>Not formed yet</option>
-                  <option>0–6 months</option>
-                  <option>6–12 months</option>
-                  <option>1–2 years</option>
-                  <option>2–5 years</option>
-                  <option>5+ years</option>
-                </select>
-              </label>
-
-              <label>Do you already have business credit? (Required)
-                <select name="has_business_credit" required>
-                  <option value="" selected disabled>Select one</option>
-                  <option>No / Not sure</option>
-                  <option>Yes (basic)</option>
-                  <option>Yes (established)</option>
-                </select>
-              </label>
-
-              <label>How much business credit are you looking for? (Required)
-                <input name="credit_goal" type="text" placeholder="$ amount or goal (estimate ok)" required />
-              </label>
-
-              <label>Estimated personal credit score range (Optional)
-                <select name="personal_score_range">
-                  <option value="" selected>Skip (optional)</option>
-                  <option>Below 580</option>
-                  <option>580–619</option>
-                  <option>620–659</option>
-                  <option>660–699</option>
-                  <option>700+</option>
-                </select>
-              </label>
-
-              <label>What is the main reason you need business credit? (Required)
-                <textarea name="reason" placeholder="Vendor accounts, equipment, fuel, expansion, cash flow, etc." required></textarea>
-              </label>
-
-              <label>Notes (Optional)
-                <textarea name="notes" placeholder="Any details about your current situation"></textarea>
-              </label>
-
-              <label style="margin-top:14px;font-weight:700;color:rgba(0,0,0,.70);">
-                <input type="checkbox" name="consent" required style="width:auto;margin-right:8px;" />
-                I confirm the information is accurate and I agree to be contacted by email.
-              </label>
-
-              <button class="btn" type="submit">SUBMIT CREDIT REQUEST</button>
-
-              <div class="status" id="creditStatus"></div>
-              <div class="fine">
-                After submission, you will see a confirmation message on this same page.
-              </div>
-            </form>
-          </div>
-
-          <div class="panel hidden" id="creditThanks">
-            <h2 class="sectionTitle">Thank You</h2>
-            <p class="note">
-              We received your business credit request. We will review it and contact you by email as soon as possible
-              with next steps.
-            </p>
-            <p class="fine">
-              If you need to reference your submission, reply to our email once you receive it.
-            </p>
-          </div>
-        </section>
-
-        <!-- FORMATION -->
-        <section id="formationSection" class="hidden">
-          <button class="btn btnSmall" type="button" data-go="homeSection">← BACK</button>
-          <h2 class="sectionTitle">Business Formation Intake</h2>
-
-          <p class="note">
-            This is a guided “done-with-you” setup: we help you step-by-step (by email) with formation basics,
-            EIN/domain guidance, and next steps. (We do not provide legal or tax advice.)
-          </p>
-
-          <div class="panel" id="formationFormWrap">
-            <form id="formationForm" name="Vaultara-Business-Formation" method="POST"
-                  data-netlify="true" netlify-honeypot="bot-field-formation">
-              <input type="hidden" name="form-name" value="Vaultara-Business-Formation" />
-              <p class="hidden">
-                <label>Don’t fill this out: <input name="bot-field-formation" /></label>
-              </p>
-
-              <label>Full Name (Required)
-                <input name="full_name" type="text" placeholder="Your full name" required />
-              </label>
-
-              <label>Email (Required)
-                <input name="email" type="email" placeholder="name@domain.com" required />
-              </label>
-
-              <label>Phone (Required)
-                <input name="phone" type="tel" placeholder="(000) 000-0000" required />
-              </label>
-
-              <label>State where you want to register the business (Required)
-                <input name="state" type="text" placeholder="Example: Florida" required />
-              </label>
-
-              <label>Business name (or 2–3 name options) (Required)
-                <input name="business_name_options" type="text" placeholder="Name option 1 / option 2 / option 3" required />
-              </label>
-
-              <label>Entity type you want (Required)
-                <select name="entity_type" required>
-                  <option value="" selected disabled>Select one</option>
-                  <option>LLC</option>
-                  <option>Corporation</option>
-                  <option>Not sure (need guidance)</option>
-                </select>
-              </label>
-
-              <label>What does the business do? (Required)
-                <textarea name="business_purpose" placeholder="Brief description of services/products" required></textarea>
-              </label>
-
-              <label>Do you need help with a domain name / website setup? (Required)
-                <select name="domain_help" required>
-                  <option value="" selected disabled>Select one</option>
-                  <option>Yes — domain & email setup help</option>
-                  <option>Yes — domain only</option>
-                  <option>No</option>
-                </select>
-              </label>
-
-              <label>Notes (Optional)
-                <textarea name="notes" placeholder="Anything else we should know"></textarea>
-              </label>
-
-              <label style="margin-top:14px;font-weight:700;color:rgba(0,0,0,.70);">
-                <input type="checkbox" name="consent" required style="width:auto;margin-right:8px;" />
-                I confirm the information is accurate and I agree to be contacted by email.
-              </label>
-
-              <button class="btn" type="submit">SUBMIT FORMATION REQUEST</button>
-
-              <div class="status" id="formationStatus"></div>
-              <div class="fine">
-                After submission, you will see a confirmation message on this same page.
-              </div>
-            </form>
-          </div>
-
-          <div class="panel hidden" id="formationThanks">
-            <h2 class="sectionTitle">Thank You</h2>
-            <p class="note">
-              We received your business formation request. We will contact you by email as soon as possible with the next steps
-              to start your guided setup plan.
-            </p>
-            <p class="fine">
-              If you need to reference your submission, reply to our email once you receive it.
-            </p>
-          </div>
-        </section>
-
+        <div class="fine">
+          Note: Vaultara Capital is not a law firm. For legal/tax advice, consult a licensed professional.
+        </div>
       </div>
 
-      <!-- FOOTER (blue) -->
+      <!-- BUSINESS FUNDING -->
+      <div class="section hidden" id="fundingSection">
+        <h2>Business Funding Intake</h2>
+
+        <form id="fundingForm" name="Vaultara-Business-Funding" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="Vaultara-Business-Funding" />
+          <p class="hidden">
+            <label>Don’t fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <label>Full Name (Required)
+            <input name="full_name" type="text" required placeholder="Your full name" />
+          </label>
+
+          <label>Email (Required)
+            <input name="email" type="email" required placeholder="name@domain.com" />
+          </label>
+
+          <label>Phone (Required)
+            <input name="phone" type="tel" required placeholder="(000) 000-0000" />
+          </label>
+
+          <label>Business Name (Required)
+            <input name="business_name" type="text" required placeholder="Business legal name" />
+          </label>
+
+          <label>Business Address (Required)
+            <input name="business_address" type="text" required placeholder="Street, City, State, ZIP" />
+          </label>
+
+          <label>How long has the business existed? (Required)
+            <select name="time_in_business" required>
+              <option value="" selected disabled>Select one</option>
+              <option>Not started yet</option>
+              <option>0–6 months</option>
+              <option>6–12 months</option>
+              <option>1–2 years</option>
+              <option>2–5 years</option>
+              <option>5+ years</option>
+            </select>
+          </label>
+
+          <label>Business Type / Industry (Required)
+            <input name="industry" type="text" required placeholder="Example: Retail, Logistics, Construction..." />
+          </label>
+
+          <label>Funding Amount Requested (Required)
+            <input name="funding_amount" type="text" required placeholder="$ Amount requested" />
+          </label>
+
+          <label>Average Monthly Revenue (Required)
+            <input name="monthly_revenue" type="text" required placeholder="$ per month" />
+          </label>
+
+          <label>Revenue (Last 3 Months) (Optional)
+            <input name="revenue_3mo" type="text" placeholder="$ total (last 3 months)" />
+          </label>
+
+          <label>Revenue (Last 6 Months) (Optional)
+            <input name="revenue_6mo" type="text" placeholder="$ total (last 6 months)" />
+          </label>
+
+          <label>Revenue (Last 12 Months) (Optional)
+            <input name="revenue_12mo" type="text" placeholder="$ total (last 12 months)" />
+          </label>
+
+          <label>Estimated Personal Credit Range (Optional)
+            <select name="personal_credit_range">
+              <option value="" selected>Select (optional)</option>
+              <option>Prefer not to say</option>
+              <option>300–579</option>
+              <option>580–669</option>
+              <option>670–739</option>
+              <option>740–799</option>
+              <option>800+</option>
+            </select>
+          </label>
+
+          <label>Notes (Optional)
+            <textarea name="notes" placeholder="Anything else we should know (timeline, purpose, etc.)"></textarea>
+          </label>
+
+          <label style="margin-top:14px; font-weight:800;">
+            <input type="checkbox" name="consent" required style="width:auto; margin-right:8px;" />
+            I confirm the information is accurate and I agree to be contacted by email.
+          </label>
+
+          <button class="submit" type="submit">SUBMIT FUNDING REQUEST</button>
+          <div class="status" id="fundingStatus"></div>
+        </form>
+
+        <div class="hidden" id="fundingThanks">
+          <h2>Thank You</h2>
+          <p>We received your request. Vaultara Capital will contact you by email as soon as possible to review qualification.</p>
+          <div class="fine">If you need to reference your submission, reply to our email once you receive it.</div>
+        </div>
+
+        <a class="back" href="#" data-back>← Back to Vaultara menu</a>
+      </div>
+
+      <!-- BUSINESS CREDIT -->
+      <div class="section hidden" id="creditSection">
+        <h2>Business Credit Intake</h2>
+
+        <form id="creditForm" name="Vaultara-Business-Credit" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="Vaultara-Business-Credit" />
+          <p class="hidden">
+            <label>Don’t fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <label>Full Name (Required)
+            <input name="full_name" type="text" required placeholder="Your full name" />
+          </label>
+
+          <label>Email (Required)
+            <input name="email" type="email" required placeholder="name@domain.com" />
+          </label>
+
+          <label>Phone (Required)
+            <input name="phone" type="tel" required placeholder="(000) 000-0000" />
+          </label>
+
+          <label>Business Name (Required)
+            <input name="business_name" type="text" required placeholder="Business legal name" />
+          </label>
+
+          <label>How long has the business existed? (Required)
+            <select name="time_in_business" required>
+              <option value="" selected disabled>Select one</option>
+              <option>Not started yet</option>
+              <option>0–6 months</option>
+              <option>6–12 months</option>
+              <option>1–2 years</option>
+              <option>2–5 years</option>
+              <option>5+ years</option>
+            </select>
+          </label>
+
+          <label>Credit Amount You’re Seeking (Required)
+            <input name="desired_credit" type="text" required placeholder="$ credit line goal" />
+          </label>
+
+          <label>Do you currently have business credit? (Required)
+            <select name="has_business_credit" required>
+              <option value="" selected disabled>Select one</option>
+              <option>No</option>
+              <option>Yes — limited</option>
+              <option>Yes — established</option>
+            </select>
+          </label>
+
+          <label>Estimated Personal Credit Range (Optional)
+            <select name="personal_credit_range">
+              <option value="" selected>Select (optional)</option>
+              <option>Prefer not to say</option>
+              <option>300–579</option>
+              <option>580–669</option>
+              <option>670–739</option>
+              <option>740–799</option>
+              <option>800+</option>
+            </select>
+          </label>
+
+          <label>Why do you need business credit? (Required)
+            <textarea name="reason" required placeholder="Example: equipment, inventory, expansion, working capital..."></textarea>
+          </label>
+
+          <label style="margin-top:14px; font-weight:800;">
+            <input type="checkbox" name="consent" required style="width:auto; margin-right:8px;" />
+            I confirm the information is accurate and I agree to be contacted by email.
+          </label>
+
+          <button class="submit" type="submit">SUBMIT CREDIT INTAKE</button>
+          <div class="status" id="creditStatus"></div>
+
+          <div class="fine">
+            Note: We do not promise approval. If you need credit repair, we may refer you to a licensed provider.
+          </div>
+        </form>
+
+        <div class="hidden" id="creditThanks">
+          <h2>Thank You</h2>
+          <p>We received your request. Vaultara Capital will contact you by email as soon as possible.</p>
+          <div class="fine">If you need to reference your submission, reply to our email once you receive it.</div>
+        </div>
+
+        <a class="back" href="#" data-back>← Back to Vaultara menu</a>
+      </div>
+
+      <!-- BUSINESS FORMATION -->
+      <div class="section hidden" id="formationSection">
+        <h2>Business Formation Intake</h2>
+        <p>This is the professional term for “build your business” setup (LLC + basics). You pick the level of help.</p>
+
+        <form id="formationForm" name="Vaultara-Business-Formation" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="Vaultara-Business-Formation" />
+          <p class="hidden">
+            <label>Don’t fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <label>Full Name (Required)
+            <input name="full_name" type="text" required placeholder="Your full name" />
+          </label>
+
+          <label>Email (Required)
+            <input name="email" type="email" required placeholder="name@domain.com" />
+          </label>
+
+          <label>Phone (Required)
+            <input name="phone" type="tel" required placeholder="(000) 000-0000" />
+          </label>
+
+          <label>State You Want to Register In (Required)
+            <input name="state" type="text" required placeholder="Example: Florida" />
+          </label>
+
+          <label>Business Name Idea (Required)
+            <input name="business_name" type="text" required placeholder="Your proposed business name" />
+          </label>
+
+          <label>Service Level (Required)
+            <select name="service_level" required>
+              <option value="" selected disabled>Select one</option>
+              <option>Done-with-you (guided steps by email)</option>
+              <option>Assisted filing (we help prepare + you approve)</option>
+              <option>Setup package (formation + EIN guidance + domain support)</option>
+            </select>
+          </label>
+
+          <label>Do you want domain name help? (Optional)
+            <select name="domain_help">
+              <option value="" selected>Select (optional)</option>
+              <option>No</option>
+              <option>Yes — help me choose and register a domain</option>
+            </select>
+          </label>
+
+          <label>Notes (Optional)
+            <textarea name="notes" placeholder="Tell us your goal and timeline."></textarea>
+          </label>
+
+          <label style="margin-top:14px; font-weight:800;">
+            <input type="checkbox" name="consent" required style="width:auto; margin-right:8px;" />
+            I confirm the information is accurate and I agree to be contacted by email.
+          </label>
+
+          <button class="submit" type="submit">SUBMIT FORMATION INTAKE</button>
+          <div class="status" id="formationStatus"></div>
+
+          <div class="fine">
+            Administrative support only — not legal/tax advice.
+          </div>
+        </form>
+
+        <div class="hidden" id="formationThanks">
+          <h2>Thank You</h2>
+          <p>We received your request. Vaultara Capital will contact you by email as soon as possible.</p>
+          <div class="fine">If you need to reference your submission, reply to our email once you receive it.</div>
+        </div>
+
+        <a class="back" href="#" data-back>← Back to Vaultara menu</a>
+      </div>
+
       <div class="footer">
-        <div><strong>Central Main (800):</strong> (800) 827-9016</div>
+        <div><strong>TitanCore Main (800):</strong> (800) 827-9016</div>
         <div><strong>Email:</strong> contact@vaultaracapital.com</div>
-        <div style="opacity:.92;">© Vaultara Capital. All rights reserved.</div>
+        <div class="fine">© Vaultara Capital. All rights reserved.</div>
       </div>
+
     </div>
   </div>
 
   <script>
     // Simple section navigation
     (function(){
-      const sections = ["homeSection","fundingSection","creditSection","formationSection"];
-      function show(id){
-        sections.forEach(s => document.getElementById(s).classList.toggle("hidden", s !== id));
-        window.scrollTo({ top: 0, behavior: "instant" });
-      }
+      const menu = document.getElementById("menuSection");
+      const sections = ["fundingSection","creditSection","formationSection"].map(id => document.getElementById(id));
+
       document.querySelectorAll("[data-go]").forEach(btn=>{
-        btn.addEventListener("click", ()=> show(btn.getAttribute("data-go")));
+        btn.addEventListener("click", ()=>{
+          const target = document.getElementById(btn.getAttribute("data-go"));
+          menu.classList.add("hidden");
+          sections.forEach(s=>s.classList.add("hidden"));
+          target.classList.remove("hidden");
+          window.scrollTo({top:0, behavior:"smooth"});
+        });
+      });
+
+      document.querySelectorAll("[data-back]").forEach(a=>{
+        a.addEventListener("click", (e)=>{
+          e.preventDefault();
+          sections.forEach(s=>s.classList.add("hidden"));
+          menu.classList.remove("hidden");
+          window.scrollTo({top:0, behavior:"smooth"});
+        });
       });
     })();
 
-    // Netlify AJAX submit helpers
-    function encodeForm(form){
-      const data = new FormData(form);
-      const params = new URLSearchParams();
-      for (const [k,v] of data.entries()) params.append(k,v);
-      return params.toString();
-    }
-
-    function wireForm(formId, statusId, wrapId, thanksId){
+    // Netlify AJAX submit helper (shows thank-you inside same page)
+    function wireNetlifyForm(formId, statusId, thanksId){
       const form = document.getElementById(formId);
       const status = document.getElementById(statusId);
-      const wrap = document.getElementById(wrapId);
       const thanks = document.getElementById(thanksId);
+
+      function encode(fd){
+        const params = new URLSearchParams();
+        for (const pair of fd.entries()) params.append(pair[0], pair[1]);
+        return params.toString();
+      }
 
       form.addEventListener("submit", function(e){
         e.preventDefault();
         status.textContent = "Submitting…";
 
+        const formData = new FormData(form);
+
         fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: encodeForm(form)
+          body: encode(formData)
         })
         .then(() => {
-          wrap.classList.add("hidden");
+          form.classList.add("hidden");
           thanks.classList.remove("hidden");
+          status.textContent = "";
         })
         .catch(() => {
           status.textContent = "Submission failed. Please try again.";
@@ -628,9 +605,9 @@
       });
     }
 
-    wireForm("fundingForm", "fundingStatus", "fundingFormWrap", "fundingThanks");
-    wireForm("creditForm", "creditStatus", "creditFormWrap", "creditThanks");
-    wireForm("formationForm", "formationStatus", "formationFormWrap", "formationThanks");
+    wireNetlifyForm("fundingForm", "fundingStatus", "fundingThanks");
+    wireNetlifyForm("creditForm", "creditStatus", "creditThanks");
+    wireNetlifyForm("formationForm", "formationStatus", "formationThanks");
   </script>
 </body>
 </html>
