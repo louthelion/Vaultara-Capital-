@@ -1,169 +1,70 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Business Funding Intake | Vaultara Capital</title>
-  <link rel="stylesheet" href="style.css" />
-</head>
-<body>
-  <div class="container">
+<form id="vaultaraFundingForm" name="vaultara-funding" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+  <input type="hidden" name="form-name" value="vaultara-funding" />
+  <p class="hidden"><label>Don’t fill this out: <input name="bot-field" /></label></p>
 
-    <div class="card header">
-      <div class="logoBox">VC</div>
-      <div class="brand">
-        <h1>VAULTARA CAPITAL</h1>
-        <p class="subline">Business Funding Intake</p>
-      </div>
-    </div>
+  <!-- your fields -->
+  <label>Full Name (Required)</label>
+  <input required name="full_name" type="text" />
 
-    <!-- FORM SECTION -->
-    <div class="card formWrap" id="formSection">
-      <a class="ghostBtn" href="index.html">← Back</a>
+  <label>Email (Required)</label>
+  <input required name="email" type="email" />
 
-      <div class="sectionTitle">Funding Request</div>
-      <p class="p">
-        Tell us what you need and where your business is today. We’ll review and respond by email.
-      </p>
+  <label>Phone (Required)</label>
+  <input required name="phone" type="tel" />
 
-      <form id="fundingForm" name="vaultara-business-funding" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="vaultara-business-funding" />
-        <p class="hidden">
-          <label>Don’t fill this out: <input name="bot-field" /></label>
-        </p>
+  <label>Business Name (Required)</label>
+  <input required name="business_name" type="text" />
 
-        <div class="inputRow">
-          <div>
-            <label>Full Name (Required)</label>
-            <input name="fullName" required placeholder="Your full name" />
-          </div>
+  <label>Funding Purpose (Describe)</label>
+  <textarea name="funding_purpose" rows="4"></textarea>
 
-          <div>
-            <label>Email (Required)</label>
-            <input name="email" type="email" required placeholder="name@domain.com" />
-          </div>
+  <label>Current Challenges / Situation (Free Description)</label>
+  <textarea name="challenges" rows="5"></textarea>
 
-          <div>
-            <label>Phone (Required)</label>
-            <input name="phone" required placeholder="(000) 000-0000" />
-          </div>
-
-          <div>
-            <label>Business Name</label>
-            <input name="businessName" placeholder="Business legal name" />
-          </div>
-
-          <div>
-            <label>Business Address</label>
-            <input name="businessAddress" placeholder="Street address" />
-          </div>
-
-          <div>
-            <label>How long have you been operating?</label>
-            <input name="timeInBusiness" placeholder="Example: 6 months / 2 years" />
-          </div>
-
-          <div>
-            <label>Business Type / Industry</label>
-            <input name="industry" placeholder="Example: trucking, retail, cleaning, etc." />
-          </div>
-
-          <div>
-            <label>Funding Amount Needed</label>
-            <input name="fundingAmount" placeholder="Example: $25,000" />
-          </div>
-
-          <div>
-            <label>Monthly Revenue</label>
-            <input name="monthlyRevenue" placeholder="Example: $5,000/month" />
-          </div>
-
-          <div>
-            <label>Revenue (Last 3 months)</label>
-            <input name="rev3mo" placeholder="Example: $15,000" />
-          </div>
-
-          <div>
-            <label>Revenue (Last 6 months)</label>
-            <input name="rev6mo" placeholder="Example: $30,000" />
-          </div>
-
-          <div>
-            <label>Revenue (Last 12 months)</label>
-            <input name="rev12mo" placeholder="Example: $60,000" />
-          </div>
-
-          <div>
-            <label>Use of Funds</label>
-            <textarea name="useOfFunds" placeholder="Inventory, equipment, marketing, payroll, etc."></textarea>
-          </div>
-        </div>
-
-        <div class="actions">
-          <button class="primaryBtn" type="submit">Submit Funding Request</button>
-          <a class="ghostBtn" href="index.html">Cancel</a>
-        </div>
-
-        <div class="status" id="statusText"></div>
-        <p class="note">Vaultara Capital is not a law firm. For legal/tax advice consult a licensed professional.</p>
-      </form>
-    </div>
-
-    <!-- THANK YOU SECTION (INSIDE PAGE) -->
-    <div class="card services hidden" id="thanksSection">
-      <div class="sectionTitle">Thank you</div>
-      <p class="p">
-        We received your submission. Vaultara Capital will review it and contact you by email as soon as possible.
-      </p>
-
-      <div class="actions">
-        <a class="btn" href="index.html">
-          Back to Vaultara Landing Page
-          <small>Return to services</small>
-        </a>
-      </div>
-
-      <p class="note">
-        TitanCore Main (800): (800) 827-9016 • Email: contact@vaultaracapital.com
-      </p>
-    </div>
-
+  <div class="row">
+    <button class="submitBtn" type="submit">Submit Funding Application</button>
+    <a class="ghostBtn" href="index.html">Cancel</a>
   </div>
+</form>
 
-  <script>
-    // Submit to Netlify Forms WITHOUT redirect (thank-you stays inside page)
-    (function(){
-      const form = document.getElementById("fundingForm");
-      const status = document.getElementById("statusText");
-      const formSection = document.getElementById("formSection");
-      const thanksSection = document.getElementById("thanksSection");
+<!-- THANK YOU (INSIDE SAME PAGE) -->
+<section id="fundingThankYou" class="panel" style="display:none; margin-top:14px;">
+  <h2>THANK YOU</h2>
+  <p>
+    We received your submission. Vaultara Capital will contact you by email as soon as possible.
+  </p>
 
-      function encode(data){
-        const params = new URLSearchParams();
-        for (const pair of data.entries()) params.append(pair[0], pair[1]);
-        return params.toString();
-      }
+  <a class="bigBtn" href="index.html">Back to Vaultara Landing Page</a>
+</section>
 
-      form.addEventListener("submit", function(e){
-        e.preventDefault();
-        status.textContent = "Submitting…";
+<script>
+  (function () {
+    const form = document.getElementById("vaultaraFundingForm");
+    const thankYou = document.getElementById("fundingThankYou");
 
+    form.addEventListener("submit", async (e) => {
+      e.preventDefault();
+
+      try {
         const formData = new FormData(form);
 
-        fetch("/", {
+        // Netlify Forms AJAX submit:
+        await fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: encode(formData)
-        })
-        .then(() => {
-          formSection.classList.add("hidden");
-          thanksSection.classList.remove("hidden");
-        })
-        .catch(() => {
-          status.textContent = "Submission failed. Please try again.";
+          body: new URLSearchParams(formData).toString()
         });
-      });
-    })();
-  </script>
-</body>
-</html>
+
+        // Show thank you INSIDE same page
+        form.style.display = "none";
+        thankYou.style.display = "block";
+
+        // Scroll to thank you
+        thankYou.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      } catch (err) {
+        alert("Submission failed. Please try again.");
+      }
+    });
+  })();
+</script>
