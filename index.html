@@ -2,296 +2,462 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Vaultara Capital</title>
-  <link rel="stylesheet" href="style.css" />
+
+  <style>
+    :root{
+      --blue1:#0b4aa6;
+      --blue2:#0a3f8f;
+      --blue3:#07336f;
+
+      --text:#d7dde6;     /* light gray text */
+      --muted:#b8c0cc;
+
+      --btn:#d9dde3;      /* light gray button */
+      --btnText:#0b4aa6;  /* blue text */
+
+      --panelBorder: rgba(255,255,255,.18);
+      --shadow: rgba(0,0,0,.25);
+    }
+
+    *{box-sizing:border-box}
+    body{
+      margin:0;
+      font-family: Arial, Helvetica, sans-serif;
+      background: linear-gradient(180deg,var(--blue1),var(--blue2),var(--blue3));
+      color: var(--text);
+    }
+    a{color:var(--text);text-decoration:underline}
+
+    .wrap{max-width:560px;margin:0 auto;padding:18px 14px 40px;}
+    .panel{
+      border-radius:26px;
+      border:2px solid var(--panelBorder);
+      background: rgba(255,255,255,.06);
+      box-shadow:0 14px 40px var(--shadow);
+      overflow:hidden;
+      padding:18px 16px 16px;
+    }
+
+    .brand{display:flex;align-items:center;gap:12px;padding:4px 2px 12px;}
+    .mark{
+      width:54px;height:54px;border-radius:16px;
+      display:flex;align-items:center;justify-content:center;
+      font-weight:900;letter-spacing:.5px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.20);
+    }
+    .kicker{font-weight:900;letter-spacing:.8px;text-transform:uppercase;color:var(--text);font-size:13px;}
+    h1{margin:4px 0 0;font-size:18px;line-height:1.15;font-weight:900;color:var(--muted);}
+
+    .section{
+      margin-top:12px;padding:14px;border-radius:18px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+    }
+    .section h2{
+      margin:0 0 8px;text-transform:uppercase;letter-spacing:.6px;
+      font-size:15px;color:var(--muted);
+    }
+    .section p{margin:0;line-height:1.55}
+    .fine{margin-top:10px;font-size:12px;color: rgba(215,221,230,.75)}
+    ul{margin:10px 0 0;padding-left:16px}
+    li{margin:8px 0}
+
+    .cardBtn{
+      width:100%;border:0;text-align:left;
+      padding:14px 16px;border-radius:18px;
+      background: var(--btn); color: var(--btnText);
+      box-shadow:0 10px 18px rgba(0,0,0,.18);
+      cursor:pointer;margin-top:12px;
+      transition: transform .08s ease, filter .12s ease;
+    }
+    .cardBtn:active{
+      transform: translateY(1px);
+      background: linear-gradient(180deg,var(--blue1),var(--blue2));
+      color:#fff;
+    }
+    .cardTitle{font-weight:900;font-size:16px;letter-spacing:.2px;}
+    .cardSub{margin-top:6px;font-size:13px;font-weight:700;opacity:.9;}
+
+    .topbar{
+      display:flex;align-items:center;justify-content:space-between;gap:12px;
+      margin-top:8px;
+      padding:12px 12px;
+      border-radius:18px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+    }
+    .topbar .left{
+      display:flex;flex-direction:column;gap:4px;
+    }
+    .topbar .title{
+      font-weight:900;letter-spacing:.7px;text-transform:uppercase;color:var(--muted);
+    }
+    .topbar .sub{
+      font-size:12px;color: rgba(215,221,230,.78);font-weight:800;
+    }
+    .ghostBtn{
+      border:1px solid rgba(255,255,255,.25);
+      background: rgba(255,255,255,.08);
+      color: var(--text);
+      border-radius:14px;padding:10px 12px;font-weight:900;cursor:pointer;
+    }
+    .ghostBtn:active{transform: translateY(1px); filter:brightness(1.05)}
+
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px;}
+    .field{display:flex;flex-direction:column;gap:6px;}
+    .field span{
+      font-size:12px;font-weight:900;color:var(--muted);
+      text-transform:uppercase;letter-spacing:.4px;
+    }
+    .field input,.field select,.field textarea{
+      width:100%;padding:12px 12px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.22);
+      background: rgba(255,255,255,.10);
+      color: var(--text);
+      outline:none;
+    }
+    .field textarea{min-height:92px;resize:vertical}
+    .field input::placeholder,.field textarea::placeholder{color: rgba(215,221,230,.55)}
+    .full{grid-column:1/-1}
+
+    .actions{margin-top:12px;display:flex;gap:10px;}
+    .primaryBtn{
+      border:0;border-radius:16px;padding:12px 14px;
+      font-weight:900;cursor:pointer;
+      background: var(--btn); color: var(--btnText);
+      box-shadow:0 10px 18px rgba(0,0,0,.18);
+      flex:1;
+    }
+    .primaryBtn:active{
+      background: linear-gradient(180deg,var(--blue1),var(--blue2));
+      color:#fff;
+      transform: translateY(1px);
+    }
+    .actions .ghostBtn{flex:1}
+
+    .thankTitle{
+      margin:0 0 10px;
+      font-size:22px;
+      font-weight:900;
+      letter-spacing:.8px;
+      text-transform:uppercase;
+      color: var(--muted);
+      text-align:center;
+    }
+    .thankText{margin:0;line-height:1.65;text-align:center;color: rgba(215,221,230,.92);}
+
+    .footer{
+      margin-top:12px;padding:14px;border-radius:18px;
+      border:1px solid rgba(255,255,255,.18);
+      background: rgba(255,255,255,.06);
+      text-align:center;line-height:1.6;
+      color: rgba(215,221,230,.9);
+    }
+
+    .screen{display:none;}
+    .screen.active{display:block;}
+
+    @media (max-width:420px){
+      .grid{grid-template-columns:1fr}
+      h1{font-size:16px}
+    }
+  </style>
 </head>
 
 <body>
   <main class="wrap">
     <section class="panel">
-      <!-- Header -->
-      <header class="head">
-        <div class="logo" aria-label="Vaultara Capital logo">VC</div>
-        <div class="titleblock">
-          <h1>VAULTARA CAPITAL</h1>
-          <p>Business Funding • Business Credit • Business Formation</p>
-        </div>
-      </header>
 
-      <!-- About -->
-      <section class="section">
-        <h2>ABOUT VAULTARA CAPITAL</h2>
-        <p>
-          Vaultara Capital helps business owners set up the foundation needed to qualify for funding:
-          proper business formation, credible business profiles, vendor & trade credit setup, and
-          funding readiness. Submit the intake below and our team will follow up by email with next
-          steps and available service packages.
-        </p>
-        <p class="note">
-          Note: Vaultara Capital is not a law firm. For legal/tax advice, consult a licensed professional.
-        </p>
-      </section>
-
-      <!-- Choose a Service -->
-      <section class="section">
-        <h2>CHOOSE A SERVICE</h2>
-        <p>Select what you need. Fill the form and you’ll see a thank-you message after submission.</p>
-
-        <div class="btnGrid">
-          <button class="btn" type="button" data-open="funding">Business Funding</button>
-          <button class="btn" type="button" data-open="credit">Business Credit</button>
-          <button class="btn" type="button" data-open="formation">Business Formation</button>
-        </div>
-      </section>
-
-      <!-- FORMS (hidden until a service is selected) -->
-      <section class="section formWrap" id="formArea" hidden>
-        <div class="formTop">
-          <h2 id="formTitle">Service Intake</h2>
-          <button class="btnGhost" type="button" id="backToServices">Back</button>
+      <!-- ===== SCREEN 1: LANDING ===== -->
+      <section class="screen active" id="screen-landing">
+        <div class="brand">
+          <div class="mark">VC</div>
+          <div>
+            <div class="kicker">Vaultara Capital</div>
+            <h1>Business Funding • Business Credit • Business Formation</h1>
+          </div>
         </div>
 
-        <!-- Funding Form -->
-        <form class="form" id="funding" name="Funding Intake" data-netlify="true" netlify-honeypot="bot-field" hidden>
-          <input type="hidden" name="form-name" value="Funding Intake" />
-          <p class="hidden">
-            <label>Don’t fill this out: <input name="bot-field" /></label>
+        <section class="section">
+          <h2>About Vaultara Capital</h2>
+          <p>
+            Vaultara Capital helps entrepreneurs and growing companies get structured correctly,
+            build a strong business credit profile, and access funding pathways. We collect detailed
+            information up front so we can review your needs and respond with the best next steps.
           </p>
 
-          <div class="field">
-            <label>Full Name (Required)</label>
-            <input name="fullName" required placeholder="Your full name" />
-          </div>
+          <ul>
+            <li><strong>Business Funding</strong> — request funding and share business financial details</li>
+            <li><strong>Business Credit</strong> — build/strengthen your business credit profile</li>
+            <li><strong>Business Formation</strong> — guided setup (LLC basics, EIN/domain guidance, next steps)</li>
+          </ul>
 
-          <div class="field">
-            <label>Email (Required)</label>
-            <input name="email" type="email" required placeholder="name@domain.com" />
-          </div>
+          <p class="fine">Note: Vaultara Capital is not a law firm. We do not provide legal or tax advice.</p>
+        </section>
 
-          <div class="field">
-            <label>Phone (Required)</label>
-            <input name="phone" required placeholder="(000) 000-0000" />
-          </div>
+        <section class="section">
+          <h2>Choose a Service</h2>
 
-          <div class="field">
-            <label>Business Name (If any)</label>
-            <input name="businessName" placeholder="Your business name" />
-          </div>
+          <button class="cardBtn" type="button" data-service="funding">
+            <div class="cardTitle">Business Funding</div>
+            <div class="cardSub">Request funding + business financial details</div>
+          </button>
 
-          <div class="field">
-            <label>State where you want to register the business (Required)</label>
-            <input name="state" required placeholder="Example: Florida" />
-          </div>
+          <button class="cardBtn" type="button" data-service="credit">
+            <div class="cardTitle">Business Credit</div>
+            <div class="cardSub">Build/strengthen business credit profile</div>
+          </button>
 
-          <div class="field">
-            <label>Business Type</label>
-            <select name="businessType">
-              <option value="">Select</option>
-              <option>LLC</option>
-              <option>Corporation</option>
-              <option>Sole Proprietor</option>
-              <option>Not sure</option>
-            </select>
-          </div>
+          <button class="cardBtn" type="button" data-service="formation">
+            <div class="cardTitle">Business Formation</div>
+            <div class="cardSub">LLC setup + EIN guidance + domain support</div>
+          </button>
+        </section>
 
-          <div class="field">
-            <label>Monthly Revenue</label>
-            <select name="monthlyRevenue">
-              <option value="">Select</option>
-              <option>$0 - $5,000</option>
-              <option>$5,001 - $20,000</option>
-              <option>$20,001 - $50,000</option>
-              <option>$50,001+</option>
-            </select>
-          </div>
+        <footer class="footer">
+          <div><strong>Main (800):</strong> <a href="tel:+18008279016">(800) 827-9016</a></div>
+          <div><strong>Email:</strong> <a href="mailto:contact@vaultaracapital.com">contact@vaultaracapital.com</a></div>
+          <div class="fine">© Vaultara Capital. All rights reserved.</div>
+        </footer>
+      </section>
 
-          <div class="field">
-            <label>Funding Amount Needed</label>
-            <select name="fundingAmount">
-              <option value="">Select</option>
-              <option>$5,000 - $25,000</option>
-              <option>$25,001 - $100,000</option>
-              <option>$100,001 - $250,000</option>
-              <option>$250,001+</option>
-            </select>
+      <!-- ===== SCREEN 2: FORM ===== -->
+      <section class="screen" id="screen-form">
+        <div class="topbar">
+          <div class="left">
+            <div class="title">Vaultara Capital</div>
+            <div class="sub" id="form-subtitle">Service Intake</div>
           </div>
+          <button class="ghostBtn" type="button" id="btn-back">Back</button>
+        </div>
 
-          <div class="field">
-            <label>What will the funds be used for?</label>
-            <textarea name="useOfFunds" rows="4" placeholder="Example: inventory, marketing, equipment, working capital"></textarea>
-          </div>
+        <!-- 3 Netlify forms (only 1 is shown at a time) -->
+        <form class="section" id="form-funding" name="vaultara-funding" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="vaultara-funding" />
+          <p style="display:none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
 
-          <div class="field">
-            <label>What is your goal/timeline?</label>
-            <textarea name="timeline" rows="3" placeholder="Example: need funding in 30 days"></textarea>
+          <h2>Business Funding Intake</h2>
+
+          <div class="grid">
+            <label class="field"><span>Full Name (Required)</span><input name="full_name" required placeholder="Your full name"></label>
+            <label class="field"><span>Email (Required)</span><input name="email" type="email" required placeholder="name@domain.com"></label>
+            <label class="field"><span>Phone (Required)</span><input name="phone" required placeholder="(000) 000-0000"></label>
+            <label class="field"><span>Business Name</span><input name="business_name" placeholder="Company name (if any)"></label>
+
+            <label class="field"><span>State of Registration (Required)</span><input name="state" required placeholder="Example: Florida"></label>
+            <label class="field"><span>Funding Amount Requested</span><input name="funding_amount" placeholder="Example: $50,000"></label>
+
+            <label class="field full"><span>How will you use the funds? (Required)</span>
+              <textarea name="use_of_funds" required placeholder="Explain what the funding is for..."></textarea>
+            </label>
+
+            <label class="field full"><span>Business revenue / monthly sales</span>
+              <textarea name="revenue" placeholder="Optional: approximate revenue or monthly sales..."></textarea>
+            </label>
+
+            <label class="field full"><span>Anything else we should know?</span>
+              <textarea name="notes" placeholder="Optional details..."></textarea>
+            </label>
           </div>
 
           <div class="actions">
-            <button class="btnPrimary" type="submit">Submit Funding Intake</button>
-            <button class="btnGhost" type="button" data-cancel>Cancel</button>
-          </div>
-
-          <!-- THANK YOU (inside the same form) -->
-          <div class="thankyou" hidden>
-            <h3>THANK YOU</h3>
-            <p>We received your submission. Vaultara Capital will contact you by email as soon as possible.</p>
-            <button class="btn" type="button" data-return>Back to Services</button>
+            <button class="primaryBtn" type="submit">Submit Funding Intake</button>
+            <button class="ghostBtn" type="button" class="cancel" data-cancel>Cancel</button>
           </div>
         </form>
 
-        <!-- Credit Form -->
-        <form class="form" id="credit" name="Credit Intake" data-netlify="true" netlify-honeypot="bot-field" hidden>
-          <input type="hidden" name="form-name" value="Credit Intake" />
-          <p class="hidden">
-            <label>Don’t fill this out: <input name="bot-field" /></label>
-          </p>
+        <form class="section" id="form-credit" name="vaultara-credit" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:none">
+          <input type="hidden" name="form-name" value="vaultara-credit" />
+          <p style="display:none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
 
-          <div class="field">
-            <label>Full Name (Required)</label>
-            <input name="fullName" required placeholder="Your full name" />
-          </div>
+          <h2>Business Credit Intake</h2>
 
-          <div class="field">
-            <label>Email (Required)</label>
-            <input name="email" type="email" required placeholder="name@domain.com" />
-          </div>
+          <div class="grid">
+            <label class="field"><span>Full Name (Required)</span><input name="full_name" required placeholder="Your full name"></label>
+            <label class="field"><span>Email (Required)</span><input name="email" type="email" required placeholder="name@domain.com"></label>
+            <label class="field"><span>Phone (Required)</span><input name="phone" required placeholder="(000) 000-0000"></label>
+            <label class="field"><span>Business Name</span><input name="business_name" placeholder="Company name (if any)"></label>
 
-          <div class="field">
-            <label>Phone (Required)</label>
-            <input name="phone" required placeholder="(000) 000-0000" />
-          </div>
+            <label class="field"><span>Do you have an EIN?</span>
+              <select name="has_ein"><option value="">Select</option><option>Yes</option><option>No</option></select>
+            </label>
 
-          <div class="field">
-            <label>Do you already have an LLC / corporation?</label>
-            <select name="hasEntity">
-              <option value="">Select</option>
-              <option>Yes</option>
-              <option>No</option>
-              <option>Not sure</option>
-            </select>
-          </div>
+            <label class="field"><span>Do you have a business bank account?</span>
+              <select name="has_bank"><option value="">Select</option><option>Yes</option><option>No</option></select>
+            </label>
 
-          <div class="field">
-            <label>Do you have a business bank account?</label>
-            <select name="hasBank">
-              <option value="">Select</option>
-              <option>Yes</option>
-              <option>No</option>
-            </select>
-          </div>
+            <label class="field full"><span>What credit goal do you have? (Required)</span>
+              <textarea name="credit_goal" required placeholder="Example: vendor accounts + business credit profile + qualify for funding"></textarea>
+            </label>
 
-          <div class="field">
-            <label>What credit goal do you have?</label>
-            <textarea name="creditGoal" rows="4" placeholder="Example: build business credit + vendor accounts + qualify for funding"></textarea>
-          </div>
-
-          <div class="field">
-            <label>Any existing business credit profile?</label>
-            <select name="existingProfile">
-              <option value="">Select</option>
-              <option>Yes</option>
-              <option>No</option>
-              <option>Not sure</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label>Anything else we should know?</label>
-            <textarea name="notes" rows="3" placeholder="Optional"></textarea>
+            <label class="field full"><span>Anything else we should know?</span>
+              <textarea name="notes" placeholder="Optional details..."></textarea>
+            </label>
           </div>
 
           <div class="actions">
-            <button class="btnPrimary" type="submit">Submit Credit Intake</button>
-            <button class="btnGhost" type="button" data-cancel>Cancel</button>
-          </div>
-
-          <div class="thankyou" hidden>
-            <h3>THANK YOU</h3>
-            <p>We received your submission. Vaultara Capital will contact you by email as soon as possible.</p>
-            <button class="btn" type="button" data-return>Back to Services</button>
+            <button class="primaryBtn" type="submit">Submit Credit Intake</button>
+            <button class="ghostBtn" type="button" data-cancel>Cancel</button>
           </div>
         </form>
 
-        <!-- Formation Form -->
-        <form class="form" id="formation" name="Formation Intake" data-netlify="true" netlify-honeypot="bot-field" hidden>
-          <input type="hidden" name="form-name" value="Formation Intake" />
-          <p class="hidden">
-            <label>Don’t fill this out: <input name="bot-field" /></label>
-          </p>
+        <form class="section" id="form-formation" name="vaultara-formation" method="POST" data-netlify="true" netlify-honeypot="bot-field" style="display:none">
+          <input type="hidden" name="form-name" value="vaultara-formation" />
+          <p style="display:none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
 
-          <div class="field">
-            <label>Full Name (Required)</label>
-            <input name="fullName" required placeholder="Your full name" />
-          </div>
+          <h2>Business Formation Intake</h2>
 
-          <div class="field">
-            <label>Email (Required)</label>
-            <input name="email" type="email" required placeholder="name@domain.com" />
-          </div>
+          <div class="grid">
+            <label class="field"><span>Full Name (Required)</span><input name="full_name" required placeholder="Your full name"></label>
+            <label class="field"><span>Email (Required)</span><input name="email" type="email" required placeholder="name@domain.com"></label>
+            <label class="field"><span>Phone (Required)</span><input name="phone" required placeholder="(000) 000-0000"></label>
+            <label class="field"><span>State (Required)</span><input name="state" required placeholder="Example: Florida"></label>
 
-          <div class="field">
-            <label>Phone (Required)</label>
-            <input name="phone" required placeholder="(000) 000-0000" />
-          </div>
+            <label class="field full"><span>What does your business do? (Required)</span>
+              <textarea name="business_type" required placeholder="Describe your business activity..."></textarea>
+            </label>
 
-          <div class="field">
-            <label>State where you want to register (Required)</label>
-            <input name="state" required placeholder="Example: Florida" />
-          </div>
+            <label class="field full"><span>Preferred business name (if you have one)</span>
+              <textarea name="preferred_name" placeholder="Optional..."></textarea>
+            </label>
 
-          <div class="field">
-            <label>Business Type you want</label>
-            <select name="businessType">
-              <option value="">Select</option>
-              <option>LLC</option>
-              <option>Corporation</option>
-              <option>Not sure</option>
-            </select>
-          </div>
-
-          <div class="field">
-            <label>Do you already have a business name?</label>
-            <input name="businessName" placeholder="Optional" />
-          </div>
-
-          <div class="field">
-            <label>What will the business do?</label>
-            <textarea name="businessActivity" rows="4" placeholder="Describe the business"></textarea>
-          </div>
-
-          <div class="field">
-            <label>Do you need EIN / domain guidance?</label>
-            <select name="einDomain">
-              <option value="">Select</option>
-              <option>Yes</option>
-              <option>No</option>
-              <option>Not sure</option>
-            </select>
+            <label class="field full"><span>Anything else we should know?</span>
+              <textarea name="notes" placeholder="Optional details..."></textarea>
+            </label>
           </div>
 
           <div class="actions">
-            <button class="btnPrimary" type="submit">Submit Formation Intake</button>
-            <button class="btnGhost" type="button" data-cancel>Cancel</button>
-          </div>
-
-          <div class="thankyou" hidden>
-            <h3>THANK YOU</h3>
-            <p>We received your submission. Vaultara Capital will contact you by email as soon as possible.</p>
-            <button class="btn" type="button" data-return>Back to Services</button>
+            <button class="primaryBtn" type="submit">Submit Formation Intake</button>
+            <button class="ghostBtn" type="button" data-cancel>Cancel</button>
           </div>
         </form>
       </section>
 
-      <!-- Footer -->
-      <footer class="footer">
-        <p><strong>TitanCore Main (800):</strong> (800) 827-9016</p>
-        <p><strong>Email:</strong> contact@vaultaracapital.com</p>
-        <p class="fine">© Vaultara Capital. All rights reserved.</p>
-      </footer>
+      <!-- ===== SCREEN 3: THANK YOU ===== -->
+      <section class="screen" id="screen-thank">
+        <div class="topbar">
+          <div class="left">
+            <div class="title">Vaultara Capital</div>
+            <div class="sub" id="thank-subtitle">Submission Received</div>
+          </div>
+          <button class="ghostBtn" type="button" id="btn-home-top">Home</button>
+        </div>
+
+        <section class="section">
+          <h2 class="thankTitle">Thank You</h2>
+          <p class="thankText">
+            Thank you for submitting your application. We will review your information and contact you by email
+            as soon as possible with the next steps and available options.
+          </p>
+
+          <button class="cardBtn" type="button" id="btn-home">
+            <div class="cardTitle">Back to Vaultara Landing Page</div>
+            <div class="cardSub">Return to services</div>
+          </button>
+        </section>
+
+        <footer class="footer">
+          <div><strong>Main (800):</strong> <a href="tel:+18008279016">(800) 827-9016</a></div>
+          <div><strong>Email:</strong> <a href="mailto:contact@vaultaracapital.com">contact@vaultaracapital.com</a></div>
+          <div class="fine">© Vaultara Capital. All rights reserved.</div>
+        </footer>
+      </section>
+
     </section>
   </main>
 
-  <script src="script.js"></script>
+  <script>
+    const screens = {
+      landing: document.getElementById("screen-landing"),
+      form: document.getElementById("screen-form"),
+      thank: document.getElementById("screen-thank"),
+    };
+
+    const forms = {
+      funding: document.getElementById("form-funding"),
+      credit: document.getElementById("form-credit"),
+      formation: document.getElementById("form-formation"),
+    };
+
+    const formSubtitle = document.getElementById("form-subtitle");
+    const thankSubtitle = document.getElementById("thank-subtitle");
+
+    let currentService = null;
+
+    function showScreen(name){
+      Object.values(screens).forEach(s => s.classList.remove("active"));
+      screens[name].classList.add("active");
+      window.scrollTo({top:0, behavior:"smooth"});
+    }
+
+    function showServiceForm(service){
+      currentService = service;
+
+      // show only the chosen form
+      Object.keys(forms).forEach(k => forms[k].style.display = (k === service ? "block" : "none"));
+
+      // top header line
+      const label = service === "funding" ? "Business Funding Intake"
+                  : service === "credit" ? "Business Credit Intake"
+                  : "Business Formation Intake";
+
+      formSubtitle.textContent = label;
+      thankSubtitle.textContent = label + " — Submission Received";
+
+      showScreen("form");
+    }
+
+    function goHome(){
+      // reset forms (optional: keep data if you want)
+      currentService = null;
+      showScreen("landing");
+    }
+
+    // buttons on landing
+    document.querySelectorAll("[data-service]").forEach(btn=>{
+      btn.addEventListener("click", ()=> showServiceForm(btn.dataset.service));
+    });
+
+    // back + cancel
+    document.getElementById("btn-back").addEventListener("click", goHome);
+    document.querySelectorAll("[data-cancel]").forEach(b => b.addEventListener("click", goHome));
+
+    // thank -> home
+    document.getElementById("btn-home").addEventListener("click", goHome);
+    document.getElementById("btn-home-top").addEventListener("click", goHome);
+
+    // Netlify form submit + then go to THANK YOU screen
+    function encode(data) {
+      return Object.keys(data)
+        .map(key => encodeURIComponent(key) + "=" + encodeURIComponent(data[key]))
+        .join("&");
+    }
+
+    Object.values(forms).forEach(form=>{
+      form.addEventListener("submit", async (e)=>{
+        e.preventDefault();
+
+        const formData = new FormData(form);
+        const dataObj = {};
+        formData.forEach((v,k)=> dataObj[k]=v);
+
+        try{
+          await fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: encode(dataObj)
+          });
+
+          showScreen("thank");
+        }catch(err){
+          // If network fails, still show thank screen (you can change this if you want)
+          showScreen("thank");
+        }
+      });
+    });
+  </script>
 </body>
 </html>
