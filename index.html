@@ -1,179 +1,294 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Vaultara Capital</title>
   <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
-
-  <!-- BLUE FULL BACKGROUND -->
-  <main class="page">
-
-    <!-- CARD -->
-    <section class="card">
-      <!-- HEADER -->
-      <header class="header">
-        <div class="logoBox">
-          <span class="logoText">VC</span>
-        </div>
-
-        <div class="brand">
+  <main class="wrap">
+    <section class="panel">
+      <!-- Header -->
+      <header class="head">
+        <div class="logo" aria-label="Vaultara Capital logo">VC</div>
+        <div class="titleblock">
           <h1>VAULTARA CAPITAL</h1>
-          <p class="tagline">Business Funding • Business Credit • Business Formation</p>
+          <p>Business Funding • Business Credit • Business Formation</p>
         </div>
       </header>
 
-      <!-- ABOUT -->
-      <section class="about">
+      <!-- About -->
+      <section class="section">
         <h2>ABOUT VAULTARA CAPITAL</h2>
         <p>
-          Vaultara Capital helps business owners get organized, build credibility, and prepare for funding.
-          Choose a service below and complete the intake form. After submission, we’ll contact you by email
-          with next steps.
+          Vaultara Capital helps business owners set up the foundation needed to qualify for funding:
+          proper business formation, credible business profiles, vendor & trade credit setup, and
+          funding readiness. Submit the intake below and our team will follow up by email with next
+          steps and available service packages.
         </p>
-        <ul>
-          <li><strong>Business Funding:</strong> request funding and share business financial details.</li>
-          <li><strong>Business Credit:</strong> build/strengthen business credit profile & credibility.</li>
-          <li><strong>Business Formation:</strong> guided setup support + EIN/domain guidance + next steps.</li>
-        </ul>
-        <p class="finePrint">
+        <p class="note">
           Note: Vaultara Capital is not a law firm. For legal/tax advice, consult a licensed professional.
         </p>
       </section>
 
-      <!-- LANDING: CHOOSE A SERVICE -->
-      <section id="landing" class="panel">
+      <!-- Choose a Service -->
+      <section class="section">
         <h2>CHOOSE A SERVICE</h2>
-        <p class="muted">Select what you need. Fill the form and you’ll see a thank-you message after submission.</p>
+        <p>Select what you need. Fill the form and you’ll see a thank-you message after submission.</p>
 
-        <button class="bigBtn" data-open="funding">Business Funding</button>
-        <button class="bigBtn" data-open="credit">Business Credit</button>
-        <button class="bigBtn" data-open="formation">Business Formation</button>
+        <div class="btnGrid">
+          <button class="btn" type="button" data-open="funding">Business Funding</button>
+          <button class="btn" type="button" data-open="credit">Business Credit</button>
+          <button class="btn" type="button" data-open="formation">Business Formation</button>
+        </div>
       </section>
 
-      <!-- FORMS (hidden until chosen) -->
-      <section id="forms" class="panel hidden">
-        <button class="backBtn" id="backToLanding">← Back</button>
+      <!-- FORMS (hidden until a service is selected) -->
+      <section class="section formWrap" id="formArea" hidden>
+        <div class="formTop">
+          <h2 id="formTitle">Service Intake</h2>
+          <button class="btnGhost" type="button" id="backToServices">Back</button>
+        </div>
 
-        <!-- FUNDING FORM -->
-        <form id="formFunding" class="form hidden" autocomplete="on">
-          <h2>BUSINESS FUNDING INTAKE</h2>
-
-          <label>Full Name (Required)</label>
-          <input required name="fullName" type="text" placeholder="Your full name" />
-
-          <label>Email (Required)</label>
-          <input required name="email" type="email" placeholder="name@domain.com" />
-
-          <label>Phone (Required)</label>
-          <input required name="phone" type="tel" placeholder="(000) 000-0000" />
-
-          <label>Business Name (Required)</label>
-          <input required name="businessName" type="text" placeholder="Business name" />
-
-          <label>Monthly Revenue (Approx.)</label>
-          <input name="monthlyRevenue" type="text" placeholder="Example: $10,000" />
-
-          <label>Funding Amount Needed</label>
-          <input name="fundingAmount" type="text" placeholder="Example: $50,000" />
-
-          <label>What will the funds be used for?</label>
-          <textarea name="fundUse" rows="4" placeholder="Example: inventory, marketing, equipment, expansion"></textarea>
-
-          <div class="btnRow">
-            <button type="submit" class="submitBtn">Submit Funding Intake</button>
-            <button type="button" class="ghostBtn" data-cancel>Cancel</button>
-          </div>
-        </form>
-
-        <!-- CREDIT FORM -->
-        <form id="formCredit" class="form hidden" autocomplete="on">
-          <h2>BUSINESS CREDIT INTAKE</h2>
-
-          <label>Full Name (Required)</label>
-          <input required name="fullName" type="text" placeholder="Your full name" />
-
-          <label>Email (Required)</label>
-          <input required name="email" type="email" placeholder="name@domain.com" />
-
-          <label>Phone (Required)</label>
-          <input required name="phone" type="tel" placeholder="(000) 000-0000" />
-
-          <label>Do you have an EIN?</label>
-          <select name="hasEin">
-            <option value="">Select</option>
-            <option>Yes</option>
-            <option>No</option>
-          </select>
-
-          <label>Do you have a business bank account?</label>
-          <select name="hasBank">
-            <option value="">Select</option>
-            <option>Yes</option>
-            <option>No</option>
-          </select>
-
-          <label>What credit goal do you have?</label>
-          <textarea name="creditGoal" rows="4" placeholder="Example: build business credit + vendor accounts + qualify for funding"></textarea>
-
-          <div class="btnRow">
-            <button type="submit" class="submitBtn">Submit Credit Intake</button>
-            <button type="button" class="ghostBtn" data-cancel>Cancel</button>
-          </div>
-        </form>
-
-        <!-- FORMATION FORM -->
-        <form id="formFormation" class="form hidden" autocomplete="on">
-          <h2>BUSINESS FORMATION INTAKE</h2>
-
-          <label>Full Name (Required)</label>
-          <input required name="fullName" type="text" placeholder="Your full name" />
-
-          <label>Email (Required)</label>
-          <input required name="email" type="email" placeholder="name@domain.com" />
-
-          <label>Phone (Required)</label>
-          <input required name="phone" type="tel" placeholder="(000) 000-0000" />
-
-          <label>State where you want to register the business (Required)</label>
-          <input required name="state" type="text" placeholder="Example: Florida" />
-
-          <label>Business Name Ideas</label>
-          <textarea name="nameIdeas" rows="3" placeholder="List a few names you want"></textarea>
-
-          <label>Describe what your business does</label>
-          <textarea name="businessDesc" rows="4" placeholder="Short description of your business"></textarea>
-
-          <div class="btnRow">
-            <button type="submit" class="submitBtn">Submit Formation Intake</button>
-            <button type="button" class="ghostBtn" data-cancel>Cancel</button>
-          </div>
-
-          <p class="finePrint">
-            Note: We provide guided setup support. For legal/tax advice, consult a licensed professional.
+        <!-- Funding Form -->
+        <form class="form" id="funding" name="Funding Intake" data-netlify="true" netlify-honeypot="bot-field" hidden>
+          <input type="hidden" name="form-name" value="Funding Intake" />
+          <p class="hidden">
+            <label>Don’t fill this out: <input name="bot-field" /></label>
           </p>
+
+          <div class="field">
+            <label>Full Name (Required)</label>
+            <input name="fullName" required placeholder="Your full name" />
+          </div>
+
+          <div class="field">
+            <label>Email (Required)</label>
+            <input name="email" type="email" required placeholder="name@domain.com" />
+          </div>
+
+          <div class="field">
+            <label>Phone (Required)</label>
+            <input name="phone" required placeholder="(000) 000-0000" />
+          </div>
+
+          <div class="field">
+            <label>Business Name (If any)</label>
+            <input name="businessName" placeholder="Your business name" />
+          </div>
+
+          <div class="field">
+            <label>State where you want to register the business (Required)</label>
+            <input name="state" required placeholder="Example: Florida" />
+          </div>
+
+          <div class="field">
+            <label>Business Type</label>
+            <select name="businessType">
+              <option value="">Select</option>
+              <option>LLC</option>
+              <option>Corporation</option>
+              <option>Sole Proprietor</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Monthly Revenue</label>
+            <select name="monthlyRevenue">
+              <option value="">Select</option>
+              <option>$0 - $5,000</option>
+              <option>$5,001 - $20,000</option>
+              <option>$20,001 - $50,000</option>
+              <option>$50,001+</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Funding Amount Needed</label>
+            <select name="fundingAmount">
+              <option value="">Select</option>
+              <option>$5,000 - $25,000</option>
+              <option>$25,001 - $100,000</option>
+              <option>$100,001 - $250,000</option>
+              <option>$250,001+</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>What will the funds be used for?</label>
+            <textarea name="useOfFunds" rows="4" placeholder="Example: inventory, marketing, equipment, working capital"></textarea>
+          </div>
+
+          <div class="field">
+            <label>What is your goal/timeline?</label>
+            <textarea name="timeline" rows="3" placeholder="Example: need funding in 30 days"></textarea>
+          </div>
+
+          <div class="actions">
+            <button class="btnPrimary" type="submit">Submit Funding Intake</button>
+            <button class="btnGhost" type="button" data-cancel>Cancel</button>
+          </div>
+
+          <!-- THANK YOU (inside the same form) -->
+          <div class="thankyou" hidden>
+            <h3>THANK YOU</h3>
+            <p>We received your submission. Vaultara Capital will contact you by email as soon as possible.</p>
+            <button class="btn" type="button" data-return>Back to Services</button>
+          </div>
+        </form>
+
+        <!-- Credit Form -->
+        <form class="form" id="credit" name="Credit Intake" data-netlify="true" netlify-honeypot="bot-field" hidden>
+          <input type="hidden" name="form-name" value="Credit Intake" />
+          <p class="hidden">
+            <label>Don’t fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <div class="field">
+            <label>Full Name (Required)</label>
+            <input name="fullName" required placeholder="Your full name" />
+          </div>
+
+          <div class="field">
+            <label>Email (Required)</label>
+            <input name="email" type="email" required placeholder="name@domain.com" />
+          </div>
+
+          <div class="field">
+            <label>Phone (Required)</label>
+            <input name="phone" required placeholder="(000) 000-0000" />
+          </div>
+
+          <div class="field">
+            <label>Do you already have an LLC / corporation?</label>
+            <select name="hasEntity">
+              <option value="">Select</option>
+              <option>Yes</option>
+              <option>No</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Do you have a business bank account?</label>
+            <select name="hasBank">
+              <option value="">Select</option>
+              <option>Yes</option>
+              <option>No</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>What credit goal do you have?</label>
+            <textarea name="creditGoal" rows="4" placeholder="Example: build business credit + vendor accounts + qualify for funding"></textarea>
+          </div>
+
+          <div class="field">
+            <label>Any existing business credit profile?</label>
+            <select name="existingProfile">
+              <option value="">Select</option>
+              <option>Yes</option>
+              <option>No</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Anything else we should know?</label>
+            <textarea name="notes" rows="3" placeholder="Optional"></textarea>
+          </div>
+
+          <div class="actions">
+            <button class="btnPrimary" type="submit">Submit Credit Intake</button>
+            <button class="btnGhost" type="button" data-cancel>Cancel</button>
+          </div>
+
+          <div class="thankyou" hidden>
+            <h3>THANK YOU</h3>
+            <p>We received your submission. Vaultara Capital will contact you by email as soon as possible.</p>
+            <button class="btn" type="button" data-return>Back to Services</button>
+          </div>
+        </form>
+
+        <!-- Formation Form -->
+        <form class="form" id="formation" name="Formation Intake" data-netlify="true" netlify-honeypot="bot-field" hidden>
+          <input type="hidden" name="form-name" value="Formation Intake" />
+          <p class="hidden">
+            <label>Don’t fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <div class="field">
+            <label>Full Name (Required)</label>
+            <input name="fullName" required placeholder="Your full name" />
+          </div>
+
+          <div class="field">
+            <label>Email (Required)</label>
+            <input name="email" type="email" required placeholder="name@domain.com" />
+          </div>
+
+          <div class="field">
+            <label>Phone (Required)</label>
+            <input name="phone" required placeholder="(000) 000-0000" />
+          </div>
+
+          <div class="field">
+            <label>State where you want to register (Required)</label>
+            <input name="state" required placeholder="Example: Florida" />
+          </div>
+
+          <div class="field">
+            <label>Business Type you want</label>
+            <select name="businessType">
+              <option value="">Select</option>
+              <option>LLC</option>
+              <option>Corporation</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+
+          <div class="field">
+            <label>Do you already have a business name?</label>
+            <input name="businessName" placeholder="Optional" />
+          </div>
+
+          <div class="field">
+            <label>What will the business do?</label>
+            <textarea name="businessActivity" rows="4" placeholder="Describe the business"></textarea>
+          </div>
+
+          <div class="field">
+            <label>Do you need EIN / domain guidance?</label>
+            <select name="einDomain">
+              <option value="">Select</option>
+              <option>Yes</option>
+              <option>No</option>
+              <option>Not sure</option>
+            </select>
+          </div>
+
+          <div class="actions">
+            <button class="btnPrimary" type="submit">Submit Formation Intake</button>
+            <button class="btnGhost" type="button" data-cancel>Cancel</button>
+          </div>
+
+          <div class="thankyou" hidden>
+            <h3>THANK YOU</h3>
+            <p>We received your submission. Vaultara Capital will contact you by email as soon as possible.</p>
+            <button class="btn" type="button" data-return>Back to Services</button>
+          </div>
         </form>
       </section>
 
-      <!-- THANK YOU "PAGE" -->
-      <section id="thankyou" class="panel hidden">
-        <h2>THANK YOU</h2>
-        <p class="muted">
-          We received your submission. Vaultara Capital will contact you by email as soon as possible.
-        </p>
-
-        <button class="bigBtn" id="backHome">Back to Vaultara Landing Page</button>
-      </section>
-
-      <!-- FOOTER -->
+      <!-- Footer -->
       <footer class="footer">
-        <p><strong>TitanCore Main (800):</strong> <a href="tel:8008279016">(800) 827-9016</a></p>
-        <p><strong>Email:</strong> <a href="mailto:contact@vaultaracapital.com">contact@vaultaracapital.com</a></p>
-        <p class="muted">© Vaultara Capital. All rights reserved.</p>
+        <p><strong>TitanCore Main (800):</strong> (800) 827-9016</p>
+        <p><strong>Email:</strong> contact@vaultaracapital.com</p>
+        <p class="fine">© Vaultara Capital. All rights reserved.</p>
       </footer>
-
     </section>
   </main>
 
