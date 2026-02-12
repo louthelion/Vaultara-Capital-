@@ -1,63 +1,74 @@
-const landing = document.getElementById("landing");
-const formsWrap = document.getElementById("forms");
-const thankyou = document.getElementById("thankyou");
+const formArea = document.getElementById("formArea");
+const formTitle = document.getElementById("formTitle");
+const backToServices = document.getElementById("backToServices");
 
-const formFunding = document.getElementById("formFunding");
-const formCredit = document.getElementById("formCredit");
-const formFormation = document.getElementById("formFormation");
+const forms = {
+  funding: document.getElementById("funding"),
+  credit: document.getElementById("credit"),
+  formation: document.getElementById("formation"),
+};
 
-function showLanding(){
-  landing.classList.remove("hidden");
-  formsWrap.classList.add("hidden");
-  thankyou.classList.add("hidden");
-
-  formFunding.classList.add("hidden");
-  formCredit.classList.add("hidden");
-  formFormation.classList.add("hidden");
+function hideAllForms(){
+  Object.values(forms).forEach(f => {
+    f.hidden = true;
+    // reset thank you
+    const ty = f.querySelector(".thankyou");
+    if (ty) ty.hidden = true;
+    // show fields back
+    f.querySelectorAll(".field, .actions").forEach(el => el.hidden = false);
+  });
 }
 
-function showForm(which){
-  landing.classList.add("hidden");
-  thankyou.classList.add("hidden");
-  formsWrap.classList.remove("hidden");
+function openForm(key){
+  hideAllForms();
+  formArea.hidden = false;
+  forms[key].hidden = false;
 
-  formFunding.classList.toggle("hidden", which !== "funding");
-  formCredit.classList.toggle("hidden", which !== "credit");
-  formFormation.classList.toggle("hidden", which !== "formation");
-}
-
-function showThankYou(){
-  landing.classList.add("hidden");
-  formsWrap.classList.add("hidden");
-  thankyou.classList.remove("hidden");
-
-  // reset forms so next person starts fresh
-  formFunding.reset();
-  formCredit.reset();
-  formFormation.reset();
+  const titles = {
+    funding: "BUSINESS FUNDING INTAKE",
+    credit: "BUSINESS CREDIT INTAKE",
+    formation: "BUSINESS FORMATION INTAKE",
+  };
+  formTitle.textContent = titles[key] || "Service Intake";
+  window.scrollTo({ top: formArea.offsetTop - 10, behavior: "smooth" });
 }
 
 document.querySelectorAll("[data-open]").forEach(btn=>{
-  btn.addEventListener("click", ()=>{
-    showForm(btn.dataset.open);
-  });
+  btn.addEventListener("click", ()=> openForm(btn.dataset.open));
 });
 
-document.getElementById("backToLanding").addEventListener("click", showLanding);
-document.getElementById("backHome").addEventListener("click", showLanding);
+function backToLanding(){
+  hideAllForms();
+  formArea.hidden = true;
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
 
+backToServices.addEventListener("click", backToLanding);
 document.querySelectorAll("[data-cancel]").forEach(btn=>{
-  btn.addEventListener("click", showLanding);
+  btn.addEventListener("click", backToLanding);
+});
+document.querySelectorAll("[data-return]").forEach(btn=>{
+  btn.addEventListener("click", backToLanding);
 });
 
-// For now: show thank you immediately after submit.
-// Later we can connect to Netlify Forms / email routing.
-[formFunding, formCredit, formFormation].forEach(form=>{
-  form.addEventListener("submit", (e)=>{
+// Submit handler: show THANK YOU INSIDE the same form
+Object.values(forms).forEach(form=>{
+  form.addEventListener("submit", async (e)=>{
     e.preventDefault();
-    showThankYou();
+
+    // Netlify-friendly submit (still stays on page)
+    try{
+      const data = new FormData(form);
+      await fetch("/", { method:"POST", body: data });
+    }catch(err){
+      // even if fetch fails, still show thank you
+    }
+
+    // hide fields + actions, show thankyou (inside the form)
+    form.querySelectorAll(".field, .actions").forEach(el => el.hidden = true);
+    const ty = form.querySelector(".thankyou");
+    if (ty) ty.hidden = false;
+
+    window.scrollTo({ top: formArea.offsetTop - 10, behavior: "smooth" });
   });
 });
-
-// start on landing
-showLanding();
