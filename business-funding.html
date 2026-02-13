@@ -1,70 +1,232 @@
-<form id="vaultaraFundingForm" name="vaultara-funding" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-  <input type="hidden" name="form-name" value="vaultara-funding" />
-  <p class="hidden"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vaultara Capital — Business Funding</title>
 
-  <!-- your fields -->
-  <label>Full Name (Required)</label>
-  <input required name="full_name" type="text" />
+  <style>
+    :root{
+      --white:#ffffff;
+      --blue:#0b2a5a;
+      --blue2:#0f3a7a;
+      --gray:#d7dde6;
+      --gray2:#bfc7d3;
+    }
+    *{box-sizing:border-box}
+    body{ margin:0; font-family: Arial, Helvetica, sans-serif; background:var(--white); }
+    .wrap{ max-width: 560px; margin:0 auto; padding: 22px 14px 40px; }
+    .panel{
+      background: radial-gradient(120% 120% at 10% 10%, #1a4aa0 0%, var(--blue) 55%, #061a38 100%);
+      border-radius: 26px;
+      padding: 18px 16px 18px;
+      position: relative; overflow: hidden;
+      box-shadow: 0 12px 40px rgba(0,0,0,.20);
+    }
+    .panel:before{
+      content:""; position:absolute; inset:10px; border-radius:18px;
+      border: 1px solid rgba(215,221,230,.25); pointer-events:none;
+    }
+    .head{ display:flex; align-items:center; gap:12px; margin-bottom:12px; padding:6px 4px 2px; }
+    .logo{
+      width:54px;height:54px;border-radius:16px;
+      background: linear-gradient(180deg, rgba(215,221,230,.22), rgba(0,0,0,.15));
+      border: 1px solid rgba(215,221,230,.55);
+      display:flex;align-items:center;justify-content:center;
+      color: var(--gray); font-weight:900; letter-spacing:.5px;
+    }
+    .titleblock h1{
+      margin:0; font-size: 18px; color: var(--gray);
+      letter-spacing:.6px; text-transform: uppercase; font-weight:900;
+      line-height:1.1;
+    }
+    .titleblock p{ margin:6px 0 0; color: rgba(255,255,255,.85); font-size: 13px; }
 
-  <label>Email (Required)</label>
-  <input required name="email" type="email" />
+    .section{
+      margin-top: 14px; padding: 14px; border-radius: 18px;
+      border: 1px solid rgba(215,221,230,.25);
+      background: rgba(255,255,255,.06);
+    }
+    .section h2{
+      margin:0 0 8px; font-size: 14px; letter-spacing:.6px;
+      text-transform: uppercase; color: #eef3ff; font-weight:900;
+    }
+    label{ display:block; margin-top:12px; color: rgba(255,255,255,.92); font-weight:800; font-size:12.5px; }
+    input, select, textarea{
+      width:100%; margin-top:6px; padding:12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(215,221,230,.25);
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.95);
+      outline:none;
+    }
+    textarea{ min-height: 92px; resize: vertical; }
+    input::placeholder, textarea::placeholder{ color: rgba(255,255,255,.60); }
 
-  <label>Phone (Required)</label>
-  <input required name="phone" type="tel" />
+    .btn{
+      display:block; width:100%;
+      border-radius: 18px; padding:14px 14px; margin-top:14px;
+      border: 1px solid rgba(215,221,230,.60);
+      font-weight: 900; letter-spacing:.3px; text-align:center;
+      background: linear-gradient(180deg, var(--gray), var(--gray2));
+      color: var(--blue);
+      box-shadow: 0 8px 18px rgba(0,0,0,.18);
+      cursor:pointer;
+    }
+    .btn:hover,.btn:active,.btn:focus{
+      background: linear-gradient(180deg, var(--blue2), var(--blue));
+      color: var(--gray);
+    }
 
-  <label>Business Name (Required)</label>
-  <input required name="business_name" type="text" />
+    .hidden{ display:none !important; }
+    .status{ margin-top:10px; color: rgba(255,255,255,.88); font-size: 13px; }
 
-  <label>Funding Purpose (Describe)</label>
-  <textarea name="funding_purpose" rows="4"></textarea>
+    .footer{
+      margin-top:14px; padding: 12px 14px; border-radius:18px;
+      border:1px solid rgba(215,221,230,.25);
+      background: rgba(255,255,255,.06);
+      color: rgba(255,255,255,.90);
+      font-size:13px; line-height:1.6; text-align:center;
+    }
+    .fine{ margin-top:10px; font-size:12px; color: rgba(255,255,255,.65); }
+  </style>
+</head>
 
-  <label>Current Challenges / Situation (Free Description)</label>
-  <textarea name="challenges" rows="5"></textarea>
+<body>
+  <div class="wrap">
+    <div class="panel">
 
-  <div class="row">
-    <button class="submitBtn" type="submit">Submit Funding Application</button>
-    <a class="ghostBtn" href="index.html">Cancel</a>
+      <div class="head">
+        <div class="logo">VC</div>
+        <div class="titleblock">
+          <h1>Business Funding Request</h1>
+          <p>Vaultara Capital • Submit → Review → Response by Email</p>
+        </div>
+      </div>
+
+      <div class="section" id="formSection">
+        <h2>Funding Intake Form</h2>
+
+        <form id="fundingForm" name="Vaultara-Business-Funding" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="Vaultara-Business-Funding" />
+          <p class="hidden">
+            <label>Don’t fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <label>Full Name (Required)
+            <input name="full_name" type="text" required placeholder="Your full name" />
+          </label>
+
+          <label>Email (Required)
+            <input name="email" type="email" required placeholder="name@domain.com" />
+          </label>
+
+          <label>Phone (Required)
+            <input name="phone" type="tel" required placeholder="(000) 000-0000" />
+          </label>
+
+          <label>Business Legal Name (Required)
+            <input name="business_name" type="text" required placeholder="Business name" />
+          </label>
+
+          <label>Business Address (Required)
+            <input name="business_address" type="text" required placeholder="Street address" />
+          </label>
+
+          <label>Time in Business (Required)
+            <select name="time_in_business" required>
+              <option value="" selected disabled>Select</option>
+              <option>Startup (0–6 months)</option>
+              <option>6–12 months</option>
+              <option>1–2 years</option>
+              <option>2–5 years</option>
+              <option>5+ years</option>
+            </select>
+          </label>
+
+          <label>Business Type / Industry (Required)
+            <input name="industry" type="text" required placeholder="Construction, Logistics, Healthcare, etc." />
+          </label>
+
+          <label>Requested Funding Amount (Required)
+            <input name="requested_amount" type="text" required placeholder="$50,000" />
+          </label>
+
+          <label>Average Monthly Revenue (Required)
+            <input name="monthly_revenue" type="text" required placeholder="$10,000 / month" />
+          </label>
+
+          <label>Revenue (Optional: last 3 / 6 / 12 months)
+            <textarea name="revenue_notes" placeholder="Example: 3mo=$30k, 6mo=$60k, 12mo=$120k"></textarea>
+          </label>
+
+          <label>What is the funding for? (Required)
+            <textarea name="purpose" required placeholder="Inventory, equipment, expansion, payroll, etc."></textarea>
+          </label>
+
+          <label style="margin-top:14px; font-weight:700; color: rgba(255,255,255,.88);">
+            <input type="checkbox" name="consent" required style="width:auto; margin-right:8px;" />
+            I confirm this information is accurate and I agree to be contacted by email.
+          </label>
+
+          <button class="btn" type="submit">SUBMIT REQUEST</button>
+          <div class="status" id="statusText"></div>
+          <div class="fine">After submission, you will see a confirmation on-screen.</div>
+        </form>
+      </div>
+
+      <div class="section hidden" id="thanksSection">
+        <h2>Thank You</h2>
+        <p style="color: rgba(255,255,255,.92); margin:0;">
+          We received your funding request. Vaultara Capital will review it and contact you by email as soon as possible.
+        </p>
+        <div class="fine" style="margin-top:12px;">
+          If you need to reference your submission, reply to our email once you receive it.
+        </div>
+      </div>
+
+      <div class="footer">
+        <div><strong>Main (800):</strong> (800) 827-9016</div>
+        <div><strong>Email:</strong> contact@vaultaracapital.com</div>
+        <div class="fine">© Vaultara Capital. All rights reserved.</div>
+      </div>
+
+    </div>
   </div>
-</form>
 
-<!-- THANK YOU (INSIDE SAME PAGE) -->
-<section id="fundingThankYou" class="panel" style="display:none; margin-top:14px;">
-  <h2>THANK YOU</h2>
-  <p>
-    We received your submission. Vaultara Capital will contact you by email as soon as possible.
-  </p>
+  <script>
+    (function(){
+      const form = document.getElementById("fundingForm");
+      const status = document.getElementById("statusText");
+      const formSection = document.getElementById("formSection");
+      const thanksSection = document.getElementById("thanksSection");
 
-  <a class="bigBtn" href="index.html">Back to Vaultara Landing Page</a>
-</section>
+      function encode(data){
+        const params = new URLSearchParams();
+        for (const pair of data.entries()) params.append(pair[0], pair[1]);
+        return params.toString();
+      }
 
-<script>
-  (function () {
-    const form = document.getElementById("vaultaraFundingForm");
-    const thankYou = document.getElementById("fundingThankYou");
+      form.addEventListener("submit", function(e){
+        e.preventDefault();
+        status.textContent = "Submitting…";
 
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-
-      try {
         const formData = new FormData(form);
 
-        // Netlify Forms AJAX submit:
-        await fetch("/", {
+        fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(formData).toString()
+          body: encode(formData)
+        })
+        .then(() => {
+          formSection.classList.add("hidden");
+          thanksSection.classList.remove("hidden");
+        })
+        .catch(() => {
+          status.textContent = "Submission failed. Please try again.";
         });
-
-        // Show thank you INSIDE same page
-        form.style.display = "none";
-        thankYou.style.display = "block";
-
-        // Scroll to thank you
-        thankYou.scrollIntoView({ behavior: "smooth", block: "start" });
-
-      } catch (err) {
-        alert("Submission failed. Please try again.");
-      }
-    });
-  })();
-</script>
+      });
+    })();
+  </script>
+</body>
+</html>
