@@ -3,130 +3,79 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Vaultara Capital — Business Funding</title>
+  <title>Vaultara Capital — Business Funding Request</title>
+  <meta name="description" content="Business funding request intake for Vaultara Capital." />
 
   <style>
-    :root{
-      --blue:#0b4ea2;
-      --blue2:#1b66c7;
-      --silver:#d9d9d9;
-      --silver2:#efefef;
-      --white:#ffffff;
-    }
+    :root{ --white:#fff; --blue:#0b2a66; --blue2:#0a2457; --gray:#cfd3d8; --gray2:#b9bec6; --textBlue:#0b2a66; }
     *{box-sizing:border-box}
-    body{ margin:0; font-family: Arial, Helvetica, sans-serif; background:var(--white); }
-    .wrap{ max-width: 640px; margin:0 auto; padding: 18px 14px 42px; }
-    .board{
-      background: linear-gradient(180deg, var(--blue2), var(--blue));
-      border-radius: 22px;
-      padding: 18px 16px 16px;
-      box-shadow: 0 16px 50px rgba(0,0,0,.18);
-      position: relative;
-      overflow:hidden;
+    body{ margin:0; font-family:Arial,Helvetica,sans-serif; background:var(--white); color:#111; }
+    .wrap{ max-width: 600px; margin:0 auto; padding:22px 14px 40px; }
+    .panel{
+      background: radial-gradient(120% 120% at 10% 10%, #123b8b 0%, var(--blue) 55%, #071a3e 100%);
+      border-radius: 26px; padding:18px 16px; position:relative; overflow:hidden;
+      box-shadow: 0 14px 40px rgba(0,0,0,.25);
     }
-    .board:before{
-      content:""; position:absolute; inset:10px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.18);
-      pointer-events:none;
-    }
+    .panel:before{ content:""; position:absolute; inset:10px; border-radius:18px; border:1px solid rgba(255,255,255,.12); pointer-events:none; }
+    .head{ display:flex; gap:12px; align-items:center; margin-bottom:12px; padding:6px 4px 2px; }
+    .logo{ width:54px; height:54px; border-radius:16px; display:flex; align-items:center; justify-content:center;
+      background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(0,0,0,.25));
+      border:1px solid rgba(255,255,255,.22); color:var(--gray); font-weight:900; letter-spacing:.5px; }
+    h1{ margin:0; color:var(--gray); font-size:20px; font-weight:900; text-transform:uppercase; letter-spacing:.6px; }
+    .sub{ margin:6px 0 0; color:rgba(207,211,216,.85); font-size:13px; font-weight:700; }
 
-    .head{ display:flex; align-items:center; justify-content:space-between; gap:12px; margin-bottom: 10px; }
-    .title{
-      margin:0;
-      color: var(--silver);
-      font-weight: 900;
-      letter-spacing:.5px;
-      text-transform: uppercase;
-      font-size: 18px;
-    }
-    .back{
-      text-decoration:none;
-      background: rgba(255,255,255,.14);
-      border: 1px solid rgba(255,255,255,.18);
-      color: var(--silver2);
-      padding: 10px 12px;
-      border-radius: 14px;
-      font-weight: 900;
-    }
+    .section{ margin-top:14px; padding:14px; border-radius:18px; border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.18); }
+    .section h2{ margin:0 0 8px; color:var(--gray); font-size:15px; font-weight:900; text-transform:uppercase; letter-spacing:.4px; }
+    .section p{ margin:0; color:rgba(255,255,255,.86); font-size:13.5px; line-height:1.55; }
 
-    .section{
-      margin-top: 12px;
-      background: rgba(255,255,255,.10);
-      border: 1px solid rgba(255,255,255,.18);
-      border-radius: 18px;
-      padding: 14px;
-      color: rgba(239,239,239,.95);
-    }
-    .section h2{
-      margin:0 0 8px;
-      color: var(--silver);
-      font-size: 14px;
-      letter-spacing:.4px;
-      text-transform: uppercase;
-      font-weight: 900;
-    }
-    label{
-      display:block;
-      margin-top: 12px;
-      font-weight: 900;
-      font-size: 12.5px;
-      color: rgba(239,239,239,.95);
-      letter-spacing:.2px;
-    }
+    label{ display:block; margin-top:12px; color:rgba(255,255,255,.92); font-weight:800; font-size:12.5px; }
     input, select, textarea{
-      width:100%;
-      margin-top:6px;
-      padding: 12px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.10);
-      color: rgba(239,239,239,.98);
-      outline:none;
+      width:100%; margin-top:6px; padding:12px 12px; border-radius:14px;
+      border:1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.06);
+      color:rgba(255,255,255,.92); outline:none;
     }
-    textarea{ min-height: 92px; resize: vertical; }
-    input::placeholder, textarea::placeholder{ color: rgba(239,239,239,.70); }
+    textarea{ min-height: 96px; resize: vertical; }
+    input::placeholder, textarea::placeholder{ color: rgba(255,255,255,.55); }
 
     .btn{
-      display:block;
-      width:100%;
-      margin-top: 14px;
-      padding: 14px 14px;
-      border-radius: 16px;
-      border: none;
-      background: var(--silver);
-      color: var(--blue);
-      font-weight: 900;
-      letter-spacing:.2px;
-      cursor:pointer;
+      width:100%; margin-top:14px; padding:14px; border-radius:18px;
+      border:1px solid rgba(0,0,0,.12);
+      background: linear-gradient(180deg, var(--gray), var(--gray2));
+      color:var(--textBlue); font-weight:900; letter-spacing:.3px; cursor:pointer;
       transition: background .15s ease, color .15s ease, transform .08s ease;
     }
-    .btn:hover,.btn:focus{
-      background: var(--blue);
-      color: var(--silver);
-    }
+    .btn:hover,.btn:active,.btn:focus{ background: linear-gradient(180deg, #1849ad, var(--blue2)); color:var(--gray); }
     .btn:active{ transform: translateY(1px); }
 
-    .fine{ margin-top:10px; font-size: 12px; color: rgba(239,239,239,.78); line-height:1.5; }
+    .footer{ margin-top:14px; padding:12px 14px; border-radius:18px; border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.18);
+      color:rgba(255,255,255,.86); font-size:13px; text-align:center; line-height:1.6; }
+    .footer strong{ color:var(--gray); }
     .hidden{ display:none !important; }
-    .status{ margin-top:10px; font-size: 13px; color: rgba(239,239,239,.92); }
+    .status{ margin-top:10px; color:rgba(255,255,255,.85); font-size:13px; }
   </style>
 </head>
-
 <body>
   <div class="wrap">
-    <div class="board">
+    <div class="panel">
 
       <div class="head">
-        <h1 class="title">Business Funding</h1>
-        <a class="back" href="index.html">Back</a>
+        <div class="logo">VC</div>
+        <div>
+          <h1>Business Funding</h1>
+          <div class="sub">Vaultara Capital • Request Intake</div>
+        </div>
+      </div>
+
+      <div class="section">
+        <h2>What you’re submitting</h2>
+        <p>Provide your business details and funding target. We review and respond by email.</p>
       </div>
 
       <div class="section" id="formSection">
-        <h2>Funding Intake Form</h2>
+        <h2>Funding Request Form</h2>
 
-        <form id="fundingForm" name="Vaultara-Business-Funding" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="Vaultara-Business-Funding" />
+        <form id="vaultaraFundingForm" name="Vaultara-Funding" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="Vaultara-Funding" />
           <p class="hidden"><label>Don’t fill this out: <input name="bot-field" /></label></p>
 
           <label>Full Name (Required)
@@ -138,20 +87,21 @@
           </label>
 
           <label>Phone (Required)
-            <input name="phone" required placeholder="(000) 000-0000" />
+            <input name="phone" type="tel" required placeholder="(000) 000-0000" />
           </label>
 
-          <label>Business Name (Required)
-            <input name="business_name" required placeholder="Business legal name" />
+          <label>Business Legal Name (Required)
+            <input name="business_name" required placeholder="Business name" />
           </label>
 
           <label>Business Address (Required)
             <input name="business_address" required placeholder="Street address" />
           </label>
 
-          <label>How long has the business been operating? (Required)
+          <label>How long has the business operated? (Required)
             <select name="time_in_business" required>
               <option value="" selected disabled>Select one</option>
+              <option>Not launched yet</option>
               <option>0–6 months</option>
               <option>6–12 months</option>
               <option>1–2 years</option>
@@ -161,56 +111,46 @@
           </label>
 
           <label>Business Type / Industry (Required)
-            <input name="industry" required placeholder="Trucking, retail, construction, etc." />
+            <input name="industry" required placeholder="Construction, trucking, retail, etc." />
           </label>
 
           <label>Funding Amount Requested (Required)
-            <input name="funding_amount" required placeholder="$ Amount requested" />
+            <input name="funding_amount" required placeholder="$" />
           </label>
 
-          <label>Monthly Revenue (Required)
-            <input name="rev_monthly" required placeholder="$ per month" />
+          <label>Monthly Revenue (Estimated) (Required)
+            <input name="monthly_revenue" required placeholder="$ per month" />
           </label>
 
-          <label>Last 3 Months Revenue (Required)
-            <input name="rev_3mo" required placeholder="$ last 3 months total" />
+          <label>Last 3 Months Revenue (Optional)
+            <input name="rev_3mo" placeholder="$" />
           </label>
 
-          <label>Last 6 Months Revenue (Required)
-            <input name="rev_6mo" required placeholder="$ last 6 months total" />
+          <label>Last 6 Months Revenue (Optional)
+            <input name="rev_6mo" placeholder="$" />
           </label>
 
-          <label>Annual Revenue (Required)
-            <input name="rev_annual" required placeholder="$ per year" />
+          <label>Last 12 Months Revenue (Optional)
+            <input name="rev_12mo" placeholder="$" />
           </label>
 
-          <label>Notes (Optional)
-            <textarea name="notes" placeholder="Use of funds, timeline, any details..."></textarea>
+          <label>Use of Funds (Required)
+            <textarea name="use_of_funds" required placeholder="Explain what the funding will be used for"></textarea>
           </label>
 
-          <label style="margin-top:14px; font-weight:800;">
-            <input type="checkbox" name="consent" required style="width:auto; margin-right:8px;" />
-            I confirm the information is accurate and I agree to be contacted by email.
-          </label>
-
-          <button class="btn" type="submit">SUBMIT FUNDING REQUEST</button>
+          <button class="btn" type="submit">SUBMIT</button>
           <div class="status" id="statusText"></div>
-
-          <div class="fine">
-            Vaultara Main (800): (800) 827-9016 • Email: contact@vaultaracapital.com
-          </div>
         </form>
       </div>
 
       <div class="section hidden" id="thanksSection">
         <h2>Thank You</h2>
-        <p>
-          We received your funding request. Vaultara will review it and contact you by email as soon as possible
-          to confirm eligibility and next steps.
-        </p>
-        <div class="fine" style="margin-top:12px;">
-          If you need to reference your submission, reply to our email once you receive it.
-        </div>
+        <p>We received your funding request. We will contact you by email as soon as possible.</p>
+      </div>
+
+      <div class="footer">
+        <div><strong>Main (800):</strong> (800) 827-9016</div>
+        <div><strong>Email:</strong> contact@vaultaracapital.com</div>
       </div>
 
     </div>
@@ -218,27 +158,27 @@
 
   <script>
     (function(){
-      const form = document.getElementById("fundingForm");
+      const form = document.getElementById("vaultaraFundingForm");
       const status = document.getElementById("statusText");
       const formSection = document.getElementById("formSection");
       const thanksSection = document.getElementById("thanksSection");
 
-      function encode(data){
-        const params = new URLSearchParams();
-        for (const pair of data.entries()) params.append(pair[0], pair[1]);
-        return params.toString();
+      function encode(fd){
+        const p = new URLSearchParams();
+        for (const pair of fd.entries()) p.append(pair[0], pair[1]);
+        return p.toString();
       }
 
       form.addEventListener("submit", function(e){
         e.preventDefault();
         status.textContent = "Submitting…";
 
-        const formData = new FormData(form);
+        const fd = new FormData(form);
 
         fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: encode(formData)
+          body: encode(fd)
         })
         .then(() => {
           formSection.classList.add("hidden");
