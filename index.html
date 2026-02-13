@@ -6,6 +6,56 @@
   <title>Vaultara Capital</title>
 
   <style>
+    /* ===== BIG VAULTARA TITLE ===== */
+.vcTitle{
+  display:flex;
+  flex-direction:column;
+  line-height:1;
+  margin: 2px 0 6px;
+}
+
+.vcTop{
+  font-size: 34px;
+  font-weight: 900;
+  letter-spacing: 1.6px;
+  color: var(--muted); /* light gray */
+  text-transform: uppercase;
+}
+
+.vcBottom{
+  font-size: 22px;
+  font-weight: 900;
+  letter-spacing: 1.2px;
+  color: var(--muted);
+  text-transform: uppercase;
+  opacity: .95;
+  margin-top: 6px;
+}
+
+.vcSub{
+  font-size: 14px;
+  color: var(--muted);
+  opacity: .9;
+  margin-top: 10px;
+  font-weight: 700;
+}
+
+/* ===== BIG THANK YOU ===== */
+.thankBig{
+  font-size: 44px;     /* BIG */
+  font-weight: 900;
+  letter-spacing: 1.4px;
+  color: var(--muted);
+  text-transform: uppercase;
+  margin: 0 0 12px;
+}
+
+/* Mobile adjust so it still fits */
+@media (max-width:420px){
+  .vcTop{ font-size: 28px; }
+  .vcBottom{ font-size: 19px; }
+  .thankBig{ font-size: 36px; }
+}
     :root{
       --blue1:#0b4aa6;
       --blue2:#0a3f8f;
