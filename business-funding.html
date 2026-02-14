@@ -3,105 +3,183 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Vaultara Capital — Business Funding Request</title>
-  <meta name="description" content="Business funding request intake for Vaultara Capital." />
+  <title>Vaultara Capital — Business Funding</title>
+  <meta name="description" content="Business Funding application for Vaultara Capital." />
 
   <style>
-    :root{ --white:#fff; --blue:#0b2a66; --blue2:#0a2457; --gray:#cfd3d8; --gray2:#b9bec6; --textBlue:#0b2a66; }
+    :root{
+      --blue:#1f4e79;
+      --blue2:#2f6ea6;
+      --gray:#d9dde3;
+      --gray2:#c7cdd6;
+      --textOnBlue:#e9edf2;
+      --white:#ffffff;
+    }
     *{box-sizing:border-box}
-    body{ margin:0; font-family:Arial,Helvetica,sans-serif; background:var(--white); color:#111; }
-    .wrap{ max-width: 600px; margin:0 auto; padding:22px 14px 40px; }
+    body{ margin:0; font-family: Arial, Helvetica, sans-serif; background:var(--blue); color:var(--textOnBlue); }
+    .wrap{ max-width: 600px; margin:0 auto; padding: 22px 14px 40px; }
+
     .panel{
-      background: radial-gradient(120% 120% at 10% 10%, #123b8b 0%, var(--blue) 55%, #071a3e 100%);
-      border-radius: 26px; padding:18px 16px; position:relative; overflow:hidden;
-      box-shadow: 0 14px 40px rgba(0,0,0,.25);
+      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
+      border: 1px solid rgba(217,221,227,.55);
+      border-radius: 22px;
+      padding: 18px 16px 18px;
+      box-shadow: 0 14px 40px rgba(0,0,0,.22);
+      position: relative;
+      overflow:hidden;
     }
-    .panel:before{ content:""; position:absolute; inset:10px; border-radius:18px; border:1px solid rgba(255,255,255,.12); pointer-events:none; }
-    .head{ display:flex; gap:12px; align-items:center; margin-bottom:12px; padding:6px 4px 2px; }
-    .logo{ width:54px; height:54px; border-radius:16px; display:flex; align-items:center; justify-content:center;
-      background: linear-gradient(180deg, rgba(255,255,255,.18), rgba(0,0,0,.25));
-      border:1px solid rgba(255,255,255,.22); color:var(--gray); font-weight:900; letter-spacing:.5px; }
-    h1{ margin:0; color:var(--gray); font-size:20px; font-weight:900; text-transform:uppercase; letter-spacing:.6px; }
-    .sub{ margin:6px 0 0; color:rgba(207,211,216,.85); font-size:13px; font-weight:700; }
+    .panel:before{
+      content:""; position:absolute; inset:10px; border-radius: 16px;
+      border: 1px solid rgba(217,221,227,.22); pointer-events:none;
+    }
 
-    .section{ margin-top:14px; padding:14px; border-radius:18px; border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.18); }
-    .section h2{ margin:0 0 8px; color:var(--gray); font-size:15px; font-weight:900; text-transform:uppercase; letter-spacing:.4px; }
-    .section p{ margin:0; color:rgba(255,255,255,.86); font-size:13.5px; line-height:1.55; }
+    .head{ display:flex; align-items:center; gap:12px; margin-bottom: 10px; padding: 6px 4px 2px; }
+    .logo{
+      width:54px;height:54px;border-radius:16px;
+      background: linear-gradient(180deg, rgba(217,221,227,.35), rgba(0,0,0,.10));
+      border:1px solid rgba(217,221,227,.65);
+      display:flex;align-items:center;justify-content:center;
+      color: var(--gray); font-weight:900; letter-spacing:.6px;
+    }
+    .titles h1{ margin:0; font-size: 20px; color: var(--gray); font-weight: 900; letter-spacing:.5px; text-transform: uppercase; }
+    .titles p{ margin:6px 0 0; font-size: 13px; font-weight: 800; color: rgba(233,237,242,.9); }
 
-    label{ display:block; margin-top:12px; color:rgba(255,255,255,.92); font-weight:800; font-size:12.5px; }
+    .section{
+      margin-top: 14px; padding: 14px; border-radius: 16px;
+      border: 1px solid rgba(217,221,227,.25);
+      background: rgba(255,255,255,.05);
+    }
+    .section h2{
+      margin:0 0 8px; font-size: 14px; letter-spacing:.4px;
+      text-transform: uppercase; color: var(--gray); font-weight: 900;
+    }
+    .section p{ margin:0; color: rgba(233,237,242,.92); font-size: 13.5px; line-height: 1.55; }
+
+    .disclaimer{
+      margin-top: 10px;
+      padding: 12px 14px;
+      border-radius: 14px;
+      border: 1px dashed rgba(217,221,227,.35);
+      background: rgba(0,0,0,.10);
+      color: rgba(233,237,242,.92);
+      font-size: 12.5px;
+      line-height: 1.55;
+    }
+
+    label{
+      display:block; margin-top: 12px;
+      color: rgba(233,237,242,.95);
+      font-weight: 800; font-size: 12.5px; letter-spacing:.2px;
+    }
     input, select, textarea{
-      width:100%; margin-top:6px; padding:12px 12px; border-radius:14px;
-      border:1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.06);
-      color:rgba(255,255,255,.92); outline:none;
+      width:100%; margin-top:6px; padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(217,221,227,.35);
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.95);
+      outline:none;
     }
-    textarea{ min-height: 96px; resize: vertical; }
-    input::placeholder, textarea::placeholder{ color: rgba(255,255,255,.55); }
+    textarea{ min-height: 110px; resize: vertical; }
+    input::placeholder, textarea::placeholder{ color: rgba(255,255,255,.60); }
 
     .btn{
-      width:100%; margin-top:14px; padding:14px; border-radius:18px;
-      border:1px solid rgba(0,0,0,.12);
+      display:block; width:100%;
+      border-radius: 16px; padding: 14px 14px; margin-top: 14px;
+      border: 1px solid rgba(0,0,0,.08);
+      font-weight: 900; letter-spacing: .3px; text-align:center;
       background: linear-gradient(180deg, var(--gray), var(--gray2));
-      color:var(--textBlue); font-weight:900; letter-spacing:.3px; cursor:pointer;
-      transition: background .15s ease, color .15s ease, transform .08s ease;
+      color: var(--blue);
+      box-shadow: 0 10px 18px rgba(0,0,0,.18);
+      transition: transform .08s ease, filter .15s ease, background .15s ease, color .15s ease;
+      cursor:pointer; user-select:none; -webkit-tap-highlight-color: transparent;
     }
-    .btn:hover,.btn:active,.btn:focus{ background: linear-gradient(180deg, #1849ad, var(--blue2)); color:var(--gray); }
+    .btn:hover,.btn:active,.btn:focus{
+      background: linear-gradient(180deg, var(--blue2), var(--blue));
+      color:#fff; filter: brightness(1.03);
+    }
     .btn:active{ transform: translateY(1px); }
 
-    .footer{ margin-top:14px; padding:12px 14px; border-radius:18px; border:1px solid rgba(255,255,255,.14); background:rgba(0,0,0,.18);
-      color:rgba(255,255,255,.86); font-size:13px; text-align:center; line-height:1.6; }
-    .footer strong{ color:var(--gray); }
     .hidden{ display:none !important; }
-    .status{ margin-top:10px; color:rgba(255,255,255,.85); font-size:13px; }
+    .status{ margin-top:10px; font-size: 13px; color: rgba(233,237,242,.92); }
+
+    .footer{
+      margin-top: 14px; padding: 12px 14px; border-radius: 16px;
+      border: 1px solid rgba(217,221,227,.25);
+      background: rgba(255,255,255,.05);
+      color: rgba(233,237,242,.92);
+      font-size: 13px; line-height: 1.6; text-align:center;
+    }
+    .footer strong{ color: var(--gray); }
+    .fine{ margin-top:10px; font-size:12px; opacity:.82; }
   </style>
 </head>
+
 <body>
   <div class="wrap">
     <div class="panel">
 
       <div class="head">
         <div class="logo">VC</div>
-        <div>
+        <div class="titles">
           <h1>Business Funding</h1>
-          <div class="sub">Vaultara Capital • Request Intake</div>
+          <p>Vaultara Capital • Application Intake</p>
         </div>
       </div>
 
       <div class="section">
-        <h2>What you’re submitting</h2>
-        <p>Provide your business details and funding target. We review and respond by email.</p>
+        <h2>Before you submit</h2>
+        <p>
+          Complete this application to help us evaluate your funding request and timeline. After submission,
+          we will contact you by email with next steps and required documentation.
+        </p>
+
+        <div class="disclaimer">
+          <strong>Important Notice:</strong> Vaultara Capital is not a law firm, is not an attorney, and does not provide legal advice.
+          For legal advice, consult a licensed attorney.
+        </div>
       </div>
 
+      <!-- FORM -->
       <div class="section" id="formSection">
-        <h2>Funding Request Form</h2>
+        <h2>Funding Application</h2>
 
-        <form id="vaultaraFundingForm" name="Vaultara-Funding" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="Vaultara-Funding" />
+        <form id="fundingForm" name="Vaultara-Business-Funding" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="Vaultara-Business-Funding" />
           <p class="hidden"><label>Don’t fill this out: <input name="bot-field" /></label></p>
 
+          <!-- Contact -->
           <label>Full Name (Required)
-            <input name="full_name" required placeholder="Your full name" />
+            <input name="full_name" type="text" placeholder="Your full name" required />
           </label>
 
           <label>Email (Required)
-            <input name="email" type="email" required placeholder="name@domain.com" />
+            <input name="email" type="email" placeholder="name@domain.com" required />
           </label>
 
           <label>Phone (Required)
-            <input name="phone" type="tel" required placeholder="(000) 000-0000" />
+            <input name="phone" type="tel" placeholder="(000) 000-0000" required />
           </label>
 
+          <!-- Business -->
           <label>Business Legal Name (Required)
-            <input name="business_name" required placeholder="Business name" />
+            <input name="business_name" type="text" placeholder="Your business name" required />
           </label>
 
           <label>Business Address (Required)
-            <input name="business_address" required placeholder="Street address" />
+            <input name="business_address" type="text" placeholder="Street address" required />
           </label>
 
-          <label>How long has the business operated? (Required)
+          <label>City / State (Required)
+            <input name="business_city_state" type="text" placeholder="City, State" required />
+          </label>
+
+          <label>Business Type / Industry (Required)
+            <input name="industry" type="text" placeholder="Trucking, Construction, Retail, Healthcare, etc." required />
+          </label>
+
+          <label>Time in Business (Required)
             <select name="time_in_business" required>
-              <option value="" selected disabled>Select one</option>
-              <option>Not launched yet</option>
+              <option value="" selected disabled>Select</option>
               <option>0–6 months</option>
               <option>6–12 months</option>
               <option>1–2 years</option>
@@ -110,47 +188,141 @@
             </select>
           </label>
 
-          <label>Business Type / Industry (Required)
-            <input name="industry" required placeholder="Construction, trucking, retail, etc." />
-          </label>
-
+          <!-- Funding -->
           <label>Funding Amount Requested (Required)
-            <input name="funding_amount" required placeholder="$" />
+            <select name="funding_amount" required>
+              <option value="" selected disabled>Select</option>
+              <option>$10,000</option>
+              <option>$25,000</option>
+              <option>$50,000</option>
+              <option>$100,000</option>
+              <option>$250,000</option>
+              <option>$500,000+</option>
+            </select>
           </label>
 
-          <label>Monthly Revenue (Estimated) (Required)
-            <input name="monthly_revenue" required placeholder="$ per month" />
+          <label>Funding Purpose (Required)
+            <select name="funding_purpose" required>
+              <option value="" selected disabled>Select</option>
+              <option>Working Capital</option>
+              <option>Equipment / Vehicles</option>
+              <option>Expansion / Growth</option>
+              <option>Inventory / Supply</option>
+              <option>Debt Refinance / Consolidation</option>
+              <option>Other (Explain in Notes)</option>
+            </select>
           </label>
 
-          <label>Last 3 Months Revenue (Optional)
-            <input name="rev_3mo" placeholder="$" />
+          <label>Timeline (Required)
+            <select name="timeline" required>
+              <option value="" selected disabled>Select</option>
+              <option>ASAP (0–14 days)</option>
+              <option>2–4 weeks</option>
+              <option>1–2 months</option>
+              <option>3+ months</option>
+            </select>
           </label>
 
-          <label>Last 6 Months Revenue (Optional)
-            <input name="rev_6mo" placeholder="$" />
+          <!-- Revenue signals (big questions) -->
+          <label>Average Monthly Revenue (Required)
+            <select name="monthly_revenue" required>
+              <option value="" selected disabled>Select</option>
+              <option>Under $5,000</option>
+              <option>$5,000 – $10,000</option>
+              <option>$10,000 – $25,000</option>
+              <option>$25,000 – $50,000</option>
+              <option>$50,000 – $100,000</option>
+              <option>$100,000+</option>
+            </select>
           </label>
 
-          <label>Last 12 Months Revenue (Optional)
-            <input name="rev_12mo" placeholder="$" />
+          <label>Last 3 Months Revenue Total (Required)
+            <select name="revenue_3mo" required>
+              <option value="" selected disabled>Select</option>
+              <option>Under $15,000</option>
+              <option>$15,000 – $30,000</option>
+              <option>$30,000 – $75,000</option>
+              <option>$75,000 – $150,000</option>
+              <option>$150,000+</option>
+            </select>
           </label>
 
-          <label>Use of Funds (Required)
-            <textarea name="use_of_funds" required placeholder="Explain what the funding will be used for"></textarea>
+          <label>Last 6 Months Revenue Total (Required)
+            <select name="revenue_6mo" required>
+              <option value="" selected disabled>Select</option>
+              <option>Under $30,000</option>
+              <option>$30,000 – $60,000</option>
+              <option>$60,000 – $150,000</option>
+              <option>$150,000 – $300,000</option>
+              <option>$300,000+</option>
+            </select>
           </label>
 
-          <button class="btn" type="submit">SUBMIT</button>
+          <label>Estimated Annual Revenue (Required)
+            <select name="annual_revenue" required>
+              <option value="" selected disabled>Select</option>
+              <option>Under $60,000</option>
+              <option>$60,000 – $120,000</option>
+              <option>$120,000 – $300,000</option>
+              <option>$300,000 – $600,000</option>
+              <option>$600,000+</option>
+            </select>
+          </label>
+
+          <!-- Owner basic credit signal (not “credit repair”) -->
+          <label>Owner Credit Estimate (Required)
+            <select name="owner_credit_estimate" required>
+              <option value="" selected disabled>Select</option>
+              <option>Not sure</option>
+              <option>Below 580</option>
+              <option>580 – 649</option>
+              <option>650 – 699</option>
+              <option>700+</option>
+            </select>
+          </label>
+
+          <label>Any Recent Late Payments / Collections? (Required)
+            <select name="derogatories" required>
+              <option value="" selected disabled>Select</option>
+              <option>No</option>
+              <option>Yes (Explain in Notes)</option>
+              <option>Not sure</option>
+            </select>
+          </label>
+
+          <label>Notes / Details (Optional)
+            <textarea name="notes" placeholder="Add any details that help (purpose, contracts, equipment quote, etc.)"></textarea>
+          </label>
+
+          <label style="margin-top:14px; font-weight:700; color: rgba(233,237,242,.92);">
+            <input type="checkbox" name="consent" required style="width:auto; margin-right:8px;" />
+            I confirm the information is accurate and I agree to be contacted by email.
+          </label>
+
+          <button class="btn" type="submit">SUBMIT APPLICATION</button>
+
           <div class="status" id="statusText"></div>
+          <div class="fine">
+            Response will be sent by email.
+          </div>
         </form>
       </div>
 
+      <!-- THANK YOU (INSIDE SAME PAGE) -->
       <div class="section hidden" id="thanksSection">
         <h2>Thank You</h2>
-        <p>We received your funding request. We will contact you by email as soon as possible.</p>
+        <p>
+          We received your Business Funding application. Vaultara Capital will review it and contact you by email as soon as possible.
+        </p>
+        <div class="fine" style="margin-top:12px;">
+          If you need to reference your submission, reply to our email once you receive it.
+        </div>
       </div>
 
       <div class="footer">
         <div><strong>Main (800):</strong> (800) 827-9016</div>
         <div><strong>Email:</strong> contact@vaultaracapital.com</div>
+        <div class="fine">© Vaultara Capital. All rights reserved.</div>
       </div>
 
     </div>
@@ -158,27 +330,27 @@
 
   <script>
     (function(){
-      const form = document.getElementById("vaultaraFundingForm");
+      const form = document.getElementById("fundingForm");
       const status = document.getElementById("statusText");
       const formSection = document.getElementById("formSection");
       const thanksSection = document.getElementById("thanksSection");
 
-      function encode(fd){
-        const p = new URLSearchParams();
-        for (const pair of fd.entries()) p.append(pair[0], pair[1]);
-        return p.toString();
+      function encode(data){
+        const params = new URLSearchParams();
+        for (const pair of data.entries()) params.append(pair[0], pair[1]);
+        return params.toString();
       }
 
       form.addEventListener("submit", function(e){
         e.preventDefault();
         status.textContent = "Submitting…";
 
-        const fd = new FormData(form);
+        const formData = new FormData(form);
 
         fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: encode(fd)
+          body: encode(formData)
         })
         .then(() => {
           formSection.classList.add("hidden");
