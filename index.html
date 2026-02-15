@@ -1,146 +1,145 @@
-<!doctype html>
+<<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Vaultara Capital</title>
-  <meta name="description" content="Vaultara Capital — Business Funding, Business Credit, and Business Formation." />
-
+  <title>Vaultara Capital — TitanCore Holdings</title>
+  <meta name="description" content="Vaultara Capital is a capital structuring and funding preparation division under TitanCore Holdings." />
   <style>
     :root{
-      --blue:#1f4e79;       /* Vaultara blue */
-      --blue2:#2f6ea6;
-      --gray:#d9dde3;       /* light gray */
-      --gray2:#c7cdd6;
-      --textOnBlue:#e9edf2; /* light gray text */
+      --blue:#123a86;
+      --blue2:#0f2f6b;
+      --gray:#cfd3d8;      /* light gray */
+      --gray2:#b9bec6;
+      --text-gray:#d7dbe0; /* headings + text */
       --white:#ffffff;
+      --shadow: rgba(0,0,0,.25);
     }
-
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family: Arial, Helvetica, sans-serif;
       background: var(--blue);
-      color: var(--textOnBlue);
+      color: var(--text-gray);
     }
-
     .wrap{
-      max-width: 560px;
+      max-width: 680px;
       margin: 0 auto;
-      padding: 22px 14px 40px;
+      padding: 20px 14px 40px;
     }
-
     .panel{
-      background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.03));
-      border: 1px solid rgba(217,221,227,.55);
-      border-radius: 22px;
+      background: linear-gradient(180deg, var(--blue), var(--blue2));
+      border-radius: 26px;
       padding: 18px 16px 18px;
-      box-shadow: 0 14px 40px rgba(0,0,0,.22);
+      box-shadow: 0 14px 40px var(--shadow);
       position: relative;
       overflow:hidden;
+      border: 1px solid rgba(255,255,255,.10);
     }
-
     .panel:before{
       content:"";
       position:absolute;
       inset:10px;
-      border-radius: 16px;
-      border: 1px solid rgba(217,221,227,.22);
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.14);
       pointer-events:none;
     }
 
     .head{
       display:flex;
       align-items:center;
-      justify-content:space-between;
       gap:12px;
       padding: 6px 4px 2px;
       margin-bottom: 10px;
     }
-
-    .brandleft{
+    .logo{
+      width:56px;height:56px;
+      border-radius:16px;
+      background: rgba(255,255,255,.10);
+      border: 1px solid rgba(255,255,255,.18);
       display:flex;
       align-items:center;
-      gap:12px;
-    }
-
-    .logo{
-      width:54px;height:54px;border-radius:16px;
-      background: linear-gradient(180deg, rgba(217,221,227,.35), rgba(0,0,0,.10));
-      border:1px solid rgba(217,221,227,.65);
-      display:flex;align-items:center;justify-content:center;
-      color: var(--gray);
+      justify-content:center;
       font-weight:900;
+      color: var(--gray);
       letter-spacing:.6px;
     }
 
-    .titles h1{
-      margin:0;
-      font-size: 22px;
-      line-height:1.05;
-      color: var(--gray);
-      font-weight: 900;
-      letter-spacing:.6px;
-      text-transform: uppercase;
+    .titleblock{
+      width:100%;
     }
-    .titles h2{
-      margin:6px 0 0;
-      font-size: 13px;
+    .kicker{
+      margin:0;
+      font-size: 12px;
+      letter-spacing: .9px;
+      text-transform: uppercase;
+      color: rgba(255,255,255,.75);
       font-weight: 800;
-      color: rgba(233,237,242,.9);
-      letter-spacing:.25px;
+    }
+    .brand{
+      margin:6px 0 0;
+      font-weight: 900;
+      letter-spacing: .8px;
+      text-transform: uppercase;
+      color: var(--gray);
+      font-size: 22px;
+      line-height: 1.05;
+    }
+    .brand small{
+      display:block;
+      margin-top: 4px;
+      font-size: 14px;
+      color: rgba(255,255,255,.78);
+      font-weight: 800;
+      letter-spacing:.3px;
+      text-transform:none;
     }
 
     .section{
       margin-top: 14px;
       padding: 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(217,221,227,.25);
-      background: rgba(255,255,255,.05);
+      border-radius: 18px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
     }
-
-    .section h3{
+    .section h2{
       margin:0 0 8px;
       font-size: 14px;
-      letter-spacing:.4px;
+      letter-spacing: .8px;
       text-transform: uppercase;
-      color: var(--gray);
+      color: var(--text-gray);
       font-weight: 900;
     }
-
     .section p{
       margin:0;
-      color: rgba(233,237,242,.92);
-      font-size: 13.5px;
-      line-height: 1.55;
+      color: rgba(255,255,255,.85);
+      font-size: 13.8px;
+      line-height: 1.6;
     }
 
+    /* Buttons: default gray with blue text; active/hover -> blue with white text */
     .btn{
       display:block;
       width:100%;
       text-decoration:none;
-      border-radius: 16px;
+      border-radius: 18px;
       padding: 14px 14px;
       margin-top: 10px;
-      border: 1px solid rgba(0,0,0,.08);
       font-weight: 900;
-      letter-spacing: .3px;
       text-align:center;
-
-      /* default button: gray with blue text */
+      letter-spacing: .3px;
       background: linear-gradient(180deg, var(--gray), var(--gray2));
       color: var(--blue);
-      box-shadow: 0 10px 18px rgba(0,0,0,.18);
+      border: 1px solid rgba(0,0,0,.12);
+      box-shadow: 0 10px 20px rgba(0,0,0,.18);
       transition: transform .08s ease, filter .15s ease, background .15s ease, color .15s ease;
-      user-select:none;
       -webkit-tap-highlight-color: transparent;
+      user-select:none;
     }
-
     .btn:hover,.btn:focus,.btn:active{
-      /* pressed: blue with white text */
-      background: linear-gradient(180deg, var(--blue2), var(--blue));
-      color: var(--white);
-      filter: brightness(1.03);
+      background: linear-gradient(180deg, #1a4bb0, var(--blue2));
+      color: #fff;
+      filter: brightness(1.05);
     }
     .btn:active{ transform: translateY(1px); }
 
@@ -148,42 +147,29 @@
       display:block;
       margin-top: 6px;
       font-size: 12px;
-      font-weight: 700;
-      opacity:.95;
-      color: rgba(31,78,121,.92);
+      font-weight: 800;
+      color: rgba(18,58,134,.85);
     }
     .btn:hover .sub,.btn:active .sub,.btn:focus .sub{
-      color: rgba(255,255,255,.9);
-    }
-
-    .disclaimer{
-      margin-top: 12px;
-      padding: 12px 14px;
-      border-radius: 14px;
-      border: 1px dashed rgba(217,221,227,.35);
-      background: rgba(0,0,0,.10);
-      color: rgba(233,237,242,.92);
-      font-size: 12.5px;
-      line-height: 1.55;
+      color: rgba(255,255,255,.85);
     }
 
     .footer{
       margin-top: 14px;
       padding: 12px 14px;
-      border-radius: 16px;
-      border: 1px solid rgba(217,221,227,.25);
-      background: rgba(255,255,255,.05);
-      color: rgba(233,237,242,.92);
+      border-radius: 18px;
+      background: rgba(255,255,255,.08);
+      border: 1px solid rgba(255,255,255,.12);
       font-size: 13px;
       line-height: 1.6;
       text-align:center;
+      color: rgba(255,255,255,.88);
     }
-
     .footer strong{ color: var(--gray); }
     .fine{
-      margin-top:10px;
-      font-size:12px;
-      opacity:.8;
+      margin-top: 10px;
+      font-size: 12px;
+      color: rgba(255,255,255,.70);
     }
   </style>
 </head>
@@ -193,53 +179,54 @@
     <div class="panel">
 
       <div class="head">
-        <div class="brandleft">
-          <div class="logo">VC</div>
-          <div class="titles">
-               <h1>VAULTARA CAPITAL</h1>
-            <h2>
-               </h2>
-            </div>
+        <div class="logo">VC</div>
+        <div class="titleblock">
+          <p class="kicker">TitanCore Holdings Division</p>
+          <div class="brand">
+            Vaultara
+            <small>Capital</small>
+          </div>
         </div>
       </div>
 
       <div class="section">
-        <h3>What Vaultara Capital does</h3>
+        <h2>About Vaultara Capital</h2>
         <p>
-          Vaultara Capital supports business owners with funding readiness, credit positioning, and structured business formation.
-          Our process begins with an intake application so we can understand your business goals, eligibility signals, and timeline.
-          After submission, our team responds by email with next steps and required documentation.
+          Vaultara Capital is a capital structuring and funding preparation division under TitanCore Holdings.
+          We help businesses position themselves for funding readiness, credit access, and capital deployment.
+          Vaultara Capital does not issue loans. We prepare and structure submissions so clients can pursue
+          appropriate funding opportunities.
+        </p>
+        <p style="margin-top:10px;">
+          <strong style="color:var(--gray);">Important:</strong>
+          Vaultara Capital is not a lender, credit bureau, attorney, or financial advisor. We provide preparation,
+          structuring, and operational readiness support.
         </p>
       </div>
 
-      <div class="section" style="margin-top:12px;">
-        <h3>Choose a service</h3>
+      <div class="section">
+        <h2>Start Here</h2>
 
         <a class="btn" href="funding.html">
-          Business Funding
-          <span class="sub">Amount • timeline • revenue signals • basic eligibility</span>
+          Funding Strategy
+          <span class="sub">Funding readiness • purpose • ranges • submission prep</span>
         </a>
 
         <a class="btn" href="credit.html">
-          Business Credit
-          <span class="sub">Current profile • goals • usage • readiness</span>
+          Business Credit Structuring
+          <span class="sub">Foundation • compliance • trade lines • credit profile building</span>
         </a>
 
         <a class="btn" href="formation.html">
           Business Formation
-          <span class="sub">Entity setup • basics • structure intake</span>
+          <span class="sub">LLC setup • EIN guidance • domain + business-ready structure</span>
         </a>
-
-        <div class="disclaimer">
-          <strong>Important Notice:</strong> Vaultara Capital is not a law firm, is not an attorney, and does not provide legal advice.
-          Information on this site is for general business and administrative purposes only. For legal advice, consult a licensed attorney.
-        </div>
       </div>
 
       <div class="footer">
         <div><strong>Main (800):</strong> (800) 827-9016</div>
         <div><strong>Email:</strong> contact@vaultaracapital.com</div>
-        <div class="fine">© Vaultara Capital. All rights reserved.</div>
+        <div class="fine">© Vaultara Capital (TitanCore Holdings). All rights reserved.</div>
       </div>
 
     </div>
