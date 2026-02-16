@@ -1,74 +1,43 @@
-const formArea = document.getElementById("formArea");
-const formTitle = document.getElementById("formTitle");
-const backToServices = document.getElementById("backToServices");
+const nodemailer = require("nodemailer");
+const querystring = require("querystring");
 
-const forms = {
-  funding: document.getElementById("funding"),
-  credit: document.getElementById("credit"),
-  formation: document.getElementById("formation"),
+exports.handler = async (event) => {
+  try {
+    const data = querystring.parse(event.body || "");
+    const to = data.email;
+    const name = data.full_name || "there";
+
+    if (!to) return { statusCode: 400, body: "Missing email" };
+
+    const transporter = nodemailer.createTransport({
+      host: process.env.SMTP_HOST,      // mail.privateemail.com
+      port: Number(process.env.SMTP_PORT || 587),
+      secure: false,
+      auth: {
+        user: process.env.SMTP_USER,    // contact@vaultaracapital.com
+        pass: process.env.SMTP_PASS
+      }
+    });
+
+    await transporter.sendMail({
+      from: `Vaultara Capital <${process.env.SMTP_USER}>`,
+      to,
+      subject: "Application Received – Vaultara Capital",
+      text: `Hello ${name},
+
+We received your application. Vaultara Capital will review it and contact you by email as soon as possible.
+
+Vaultara Capital
+(800) 827-9016
+contact@vaultaracapital.com`
+    });
+
+    return {
+      statusCode: 302,
+      headers: { Location: "/thankyou.html" },
+      body: ""
+    };
+  } catch (e) {
+    return { statusCode: 500, body: "Email failed: " + e.message };
+  }
 };
-
-function hideAllForms(){
-  Object.values(forms).forEach(f => {
-    f.hidden = true;
-    // reset thank you
-    const ty = f.querySelector(".thankyou");
-    if (ty) ty.hidden = true;
-    // show fields back
-    f.querySelectorAll(".field, .actions").forEach(el => el.hidden = false);
-  });
-}
-
-function openForm(key){
-  hideAllForms();
-  formArea.hidden = false;
-  forms[key].hidden = false;
-
-  const titles = {
-    funding: "BUSINESS FUNDING INTAKE",
-    credit: "BUSINESS CREDIT INTAKE",
-    formation: "BUSINESS FORMATION INTAKE",
-  };
-  formTitle.textContent = titles[key] || "Service Intake";
-  window.scrollTo({ top: formArea.offsetTop - 10, behavior: "smooth" });
-}
-
-document.querySelectorAll("[data-open]").forEach(btn=>{
-  btn.addEventListener("click", ()=> openForm(btn.dataset.open));
-});
-
-function backToLanding(){
-  hideAllForms();
-  formArea.hidden = true;
-  window.scrollTo({ top: 0, behavior: "smooth" });
-}
-
-backToServices.addEventListener("click", backToLanding);
-document.querySelectorAll("[data-cancel]").forEach(btn=>{
-  btn.addEventListener("click", backToLanding);
-});
-document.querySelectorAll("[data-return]").forEach(btn=>{
-  btn.addEventListener("click", backToLanding);
-});
-
-// Submit handler: show THANK YOU INSIDE the same form
-Object.values(forms).forEach(form=>{
-  form.addEventListener("submit", async (e)=>{
-    e.preventDefault();
-
-    // Netlify-friendly submit (still stays on page)
-    try{
-      const data = new FormData(form);
-      await fetch("/", { method:"POST", body: data });
-    }catch(err){
-      // even if fetch fails, still show thank you
-    }
-
-    // hide fields + actions, show thankyou (inside the form)
-    form.querySelectorAll(".field, .actions").forEach(el => el.hidden = true);
-    const ty = form.querySelector(".thankyou");
-    if (ty) ty.hidden = false;
-
-    window.scrollTo({ top: formArea.offsetTop - 10, behavior: "smooth" });
-  });
-});
