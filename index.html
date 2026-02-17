@@ -1,233 +1,52 @@
-<<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Vaultara Capital — TitanCore Holdings</title>
-  <meta name="description" content="Vaultara Capital is a capital structuring and funding preparation division under TitanCore Holdings." />
+  <title>Vaultara Capital — Funding • Credit • Business Formation</title>
+  <meta name="description" content="Vaultara Capital provides funding readiness, credit strategy, and business formation support through the TitanCore network." />
+
   <style>
     :root{
-      --blue:#123a86;
-      --blue2:#0f2f6b;
-      --gray:#cfd3d8;      /* light gray */
-      --gray2:#b9bec6;
-      --text-gray:#d7dbe0; /* headings + text */
+      /* Vaultara brand vibe: Blue + Light Gray */
+      --blue:#0b3a8a;          /* primary blue */
+      --blue2:#0e4fb8;         /* hover blue */
+      --panelBlue:#0b3a8a;     /* page background */
+      --gray:#d7dbe0;          /* light gray text/buttons */
+      --gray2:#eef1f5;         /* lighter gray */
       --white:#ffffff;
-      --shadow: rgba(0,0,0,.25);
+
+      --shadow: rgba(0,0,0,.28);
+      --stroke: rgba(255,255,255,.20);
+      --stroke2: rgba(255,255,255,.10);
     }
+
     *{box-sizing:border-box}
     body{
       margin:0;
       font-family: Arial, Helvetica, sans-serif;
-      background: var(--blue);
-      color: var(--text-gray);
+      background: var(--panelBlue);
+      color: var(--gray);
     }
+
     .wrap{
-      max-width: 680px;
+      max-width: 620px;
       margin: 0 auto;
-      padding: 20px 14px 40px;
+      padding: 22px 14px 44px;
     }
+
     .panel{
-      background: linear-gradient(180deg, var(--blue), var(--blue2));
+      background: radial-gradient(140% 120% at 10% 10%, #0f5ad1 0%, var(--blue) 55%, #06224f 100%);
+      border: 1px solid var(--stroke);
+      box-shadow: 0 14px 46px var(--shadow);
       border-radius: 26px;
       padding: 18px 16px 18px;
-      box-shadow: 0 14px 40px var(--shadow);
       position: relative;
       overflow:hidden;
-      border: 1px solid rgba(255,255,255,.10);
     }
+
     .panel:before{
       content:"";
       position:absolute;
       inset:10px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.14);
-      pointer-events:none;
-    }
-
-    .head{
-      display:flex;
-      align-items:center;
-      gap:12px;
-      padding: 6px 4px 2px;
-      margin-bottom: 10px;
-    }
-    .logo{
-      width:56px;height:56px;
-      border-radius:16px;
-      background: rgba(255,255,255,.10);
-      border: 1px solid rgba(255,255,255,.18);
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      font-weight:900;
-      color: var(--gray);
-      letter-spacing:.6px;
-    }
-
-    .titleblock{
-      width:100%;
-    }
-    .kicker{
-      margin:0;
-      font-size: 12px;
-      letter-spacing: .9px;
-      text-transform: uppercase;
-      color: rgba(255,255,255,.75);
-      font-weight: 800;
-    }
-    .brand{
-      margin:6px 0 0;
-      font-weight: 900;
-      letter-spacing: .8px;
-      text-transform: uppercase;
-      color: var(--gray);
-      font-size: 22px;
-      line-height: 1.05;
-    }
-    .brand small{
-      display:block;
-      margin-top: 4px;
-      font-size: 14px;
-      color: rgba(255,255,255,.78);
-      font-weight: 800;
-      letter-spacing:.3px;
-      text-transform:none;
-    }
-
-    .section{
-      margin-top: 14px;
-      padding: 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.12);
-    }
-    .section h2{
-      margin:0 0 8px;
-      font-size: 14px;
-      letter-spacing: .8px;
-      text-transform: uppercase;
-      color: var(--text-gray);
-      font-weight: 900;
-    }
-    .section p{
-      margin:0;
-      color: rgba(255,255,255,.85);
-      font-size: 13.8px;
-      line-height: 1.6;
-    }
-
-    /* Buttons: default gray with blue text; active/hover -> blue with white text */
-    .btn{
-      display:block;
-      width:100%;
-      text-decoration:none;
-      border-radius: 18px;
-      padding: 14px 14px;
-      margin-top: 10px;
-      font-weight: 900;
-      text-align:center;
-      letter-spacing: .3px;
-      background: linear-gradient(180deg, var(--gray), var(--gray2));
-      color: var(--blue);
-      border: 1px solid rgba(0,0,0,.12);
-      box-shadow: 0 10px 20px rgba(0,0,0,.18);
-      transition: transform .08s ease, filter .15s ease, background .15s ease, color .15s ease;
-      -webkit-tap-highlight-color: transparent;
-      user-select:none;
-    }
-    .btn:hover,.btn:focus,.btn:active{
-      background: linear-gradient(180deg, #1a4bb0, var(--blue2));
-      color: #fff;
-      filter: brightness(1.05);
-    }
-    .btn:active{ transform: translateY(1px); }
-
-    .sub{
-      display:block;
-      margin-top: 6px;
-      font-size: 12px;
-      font-weight: 800;
-      color: rgba(18,58,134,.85);
-    }
-    .btn:hover .sub,.btn:active .sub,.btn:focus .sub{
-      color: rgba(255,255,255,.85);
-    }
-
-    .footer{
-      margin-top: 14px;
-      padding: 12px 14px;
-      border-radius: 18px;
-      background: rgba(255,255,255,.08);
-      border: 1px solid rgba(255,255,255,.12);
-      font-size: 13px;
-      line-height: 1.6;
-      text-align:center;
-      color: rgba(255,255,255,.88);
-    }
-    .footer strong{ color: var(--gray); }
-    .fine{
-      margin-top: 10px;
-      font-size: 12px;
-      color: rgba(255,255,255,.70);
-    }
-  </style>
-</head>
-
-<body>
-  <div class="wrap">
-    <div class="panel">
-
-      <div class="head">
-        <div class="logo">VC</div>
-        <div class="titleblock">
-          <div class="brand">
-            VAULTATRA CAPITAL
-          </div>
-        </div>
-      </div>
-
-      <div class="section">
-        <h2>About Vaultara Capital</h2>
-        <p>
-          Vaultara Capital is a capital structuring and funding preparation division under TitanCore Holdings.
-          We help businesses position themselves for funding readiness, credit access, and capital deployment.
-          Vaultara Capital does not issue loans. We prepare and structure submissions so clients can pursue
-          appropriate funding opportunities.
-        </p>
-        <p style="margin-top:10px;">
-          <strong style="color:var(--gray);">Important:</strong>
-          Vaultara Capital is not a lender, credit bureau, attorney, or financial advisor. We provide preparation,
-          structuring, and operational readiness support.
-        </p>
-      </div>
-
-      <div class="section">
-        <h2>Start Here</h2>
-
-        <a class="btn" href="funding.html">
-          Funding Strategy
-          <span class="sub">Funding readiness • purpose • ranges • submission prep</span>
-        </a>
-
-        <a class="btn" href="credit.html">
-          Business Credit Structuring
-          <span class="sub">Foundation • compliance • trade lines • credit profile building</span>
-        </a>
-
-        <a class="btn" href="formation.html">
-          Business Formation
-          <span class="sub">LLC setup • EIN guidance • domain + business-ready structure</span>
-        </a>
-      </div>
-
-      <div class="footer">
-        <div><strong>Main (800):</strong> (800) 827-9016</div>
-        <div><strong>Email:</strong> contact@vaultaracapital.com</div>
-        <div class="fine">© Vaultara Capital. All rights reserved.</div>
-      </div>
-
-    </div>
-  </div>
-</body>
-</html>
+      border-radius: 18px
