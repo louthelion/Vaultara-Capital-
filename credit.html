@@ -42,19 +42,23 @@
       <div class="head">
         <div class="logo">VC</div>
         <div>
-            <div class="brand">VAULTARA CAPITAL</div>
+          <p class="kicker">TitanCore Holdings Division</p>
+          <div class="brand">Vaultara <small>Capital</small></div>
         </div>
       </div>
+
+      <div class="section">
+        <h2>Business Credit Structuring</h2>
+        <p>
+          This intake helps Vaultara review your business profile and determine what foundation is needed for a credit-ready structure.
+        </p>
+        <p style="margin-top:10px;">
+          <strong style="color:var(--gray);">Disclaimer:</strong> Vaultara Capital is not a lender, credit bureau, attorney, or financial advisor.
+        </p>
+      </div>
+
       <div class="section" id="formSection">
-        <form id="creditForm" name="creditForm" method="POST" data-netlify="true">
-<input type="hidden" name="form-name" value="creditForm">
-
-<h2>Credit Application</h2>
-
-<!-- ALL YOUR INPUTS HERE -->
-
-<button type="submit">Submit</button>
-</form>
+        <h2>Application</h2>
 
         <form id="creditForm" name="Vaultara-Business-Credit-Structuring" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="Vaultara-Business-Credit-Structuring" />
@@ -151,13 +155,11 @@
           If you need to reference your submission, reply to our email once you receive it.
         </div>
       </div>
-      <p style="margin-top:10px;">
-          <strong style="color:var(--gray);">Disclaimer:</strong> Vaultara Capital is not a lender, credit bureau, attorney, or financial advisor.
-        </p>
+
       <div class="footer">
         <div><strong>Main (800):</strong> (800) 827-9016</div>
         <div><strong>Email:</strong> contact@vaultaracapital.com</div>
-        <div class="fine">© Vaultara Capital. All rights reserved.</div>
+        <div class="fine">© Vaultara Capital (TitanCore Holdings). All rights reserved.</div>
       </div>
 
     </div>
@@ -165,7 +167,7 @@
 
   <script>
     (function(){
-      const form = document.querySelector("form");
+      const form = document.getElementById("creditForm");
       const status = document.getElementById("statusText");
       const formSection = document.getElementById("formSection");
       const thanksSection = document.getElementById("thanksSection");
