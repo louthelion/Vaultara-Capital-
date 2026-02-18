@@ -3,101 +3,145 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Vaultara Capital — Credit Intake</title>
+  <title>Vaultara Capital — Credit Application</title>
+  <meta name="description" content="Credit application intake for Vaultara Capital." />
 
   <style>
     :root{
-      --blue:#0b2f6b;
-      --blue2:#144a9a;
-      --gray:#cfd3d8;
-      --gray2:#aeb5be;
+      --blue:#0b3a88;
+      --blue2:#0a2f6b;
+      --gray:#cfd3da;
+      --gray2:#e6e9ef;
+      --text:#0a0a0a;
       --white:#ffffff;
-      --panel-border: rgba(255,255,255,.16);
-      --shadow: 0 14px 48px rgba(0,0,0,.28);
-      --radius: 24px;
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--blue);color:var(--gray)}
-    .wrap{max-width:720px;margin:0 auto;padding:22px 14px 44px}
+    body{ margin:0; font-family: Arial, Helvetica, sans-serif; background: var(--blue); color: var(--gray); }
+    .wrap{ max-width: 620px; margin:0 auto; padding: 22px 14px 40px; }
     .panel{
-      border:2px solid rgba(255,255,255,.18);
-      border-radius:var(--radius);
-      padding:18px 16px;
-      box-shadow:var(--shadow);
-      background:radial-gradient(120% 120% at 15% 15%, var(--blue2) 0%, var(--blue) 55%, #061b3f 100%);
-      position:relative;overflow:hidden;
+      background: radial-gradient(120% 120% at 10% 10%, #144aa6 0%, var(--blue2) 60%, #071f46 100%);
+      border-radius: 22px;
+      padding: 18px 16px;
+      box-shadow: 0 14px 45px rgba(0,0,0,.35);
+      border: 1px solid rgba(255,255,255,.10);
+      position:relative;
+      overflow:hidden;
     }
     .panel:before{
-      content:"";position:absolute;inset:10px;border-radius:calc(var(--radius) - 10px);
-      border:1px solid rgba(255,255,255,.10);pointer-events:none;
+      content:"";
+      position:absolute;
+      inset:10px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,.08);
+      pointer-events:none;
     }
-    .head{display:flex;align-items:center;gap:12px;padding:6px 4px 2px;margin-bottom:8px}
+
+    .head{ display:flex; align-items:center; gap:12px; padding: 6px 4px 10px; }
     .logo{
-      width:56px;height:56px;border-radius:16px;
-      background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(0,0,0,.10));
-      border:1px solid rgba(255,255,255,.22);
+      width:54px;height:54px;border-radius:16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.15), rgba(0,0,0,.25));
+      border: 1px solid rgba(255,255,255,.14);
       display:flex;align-items:center;justify-content:center;
-      color:var(--gray);font-weight:900;letter-spacing:.7px
+      color: var(--gray2); font-weight:900; letter-spacing:.5px;
     }
     .titleblock h1{
-      margin:0;font-size:24px;line-height:1.05;color:var(--gray);
-      font-weight:900;letter-spacing:.7px;text-transform:uppercase
+      margin:0;
+      font-size: 22px;
+      line-height: 1.1;
+      color: var(--gray);
+      font-weight: 900;
+      letter-spacing: .4px;
+      text-transform: uppercase;
     }
-    .titleblock .subline{margin:6px 0 0;color:rgba(207,211,216,.90);font-size:13px;line-height:1.35;font-weight:700}
+    .titleblock p{
+      margin:6px 0 0;
+      color: rgba(230,233,239,.78);
+      font-size: 13px;
+      line-height: 1.35;
+    }
 
     .section{
-      margin-top:12px;padding:14px;border-radius:18px;border:1px solid var(--panel-border);
-      background:rgba(255,255,255,.06)
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
     }
-    .section h2{margin:0 0 10px;font-size:15px;letter-spacing:.4px;text-transform:uppercase;color:var(--gray);font-weight:900}
-    .section p{margin:0;color:rgba(207,211,216,.90);line-height:1.65;font-size:13.7px}
-
-    .choiceRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
-    .choiceBtn{
-      flex:1 1 220px;
-      border-radius:18px;padding:14px;
-      border:1px solid rgba(255,255,255,.18);
-      font-weight:900;letter-spacing:.3px;text-align:center;
-      background:linear-gradient(180deg, var(--gray), var(--gray2));
-      color:var(--blue);
-      cursor:pointer;
-      user-select:none;
+    .section h2{
+      margin:0 0 10px;
+      font-size: 15px;
+      letter-spacing:.35px;
+      text-transform: uppercase;
+      color: var(--gray2);
+      font-weight: 900;
     }
-    .choiceBtn.active{
-      background:linear-gradient(180deg, var(--blue2), var(--blue));
-      color:var(--white)
-    }
-
-    label{display:block;margin-top:12px;color:rgba(207,211,216,.92);font-weight:800;font-size:12.6px;letter-spacing:.2px}
-    input,select,textarea{
-      width:100%;margin-top:6px;padding:12px;border-radius:14px;
-      border:1px solid rgba(255,255,255,.18);
-      background:rgba(255,255,255,.08);
-      color:rgba(255,255,255,.92);outline:none
-    }
-    textarea{min-height:110px;resize:vertical}
-    .row2{display:flex;gap:10px;flex-wrap:wrap}
-    .row2>div{flex:1 1 220px}
+    .section p{ margin:0; color: rgba(230,233,239,.82); font-size: 13.5px; line-height: 1.55; }
 
     .btn{
-      display:block;width:100%;
-      border-radius:18px;padding:14px;margin-top:14px;
-      border:1px solid rgba(255,255,255,.18);
-      font-weight:900;letter-spacing:.3px;text-align:center;
-      background:linear-gradient(180deg, var(--gray), var(--gray2));
-      color:var(--blue);
-      box-shadow:0 10px 22px rgba(0,0,0,.22);
+      display:block;
+      width:100%;
+      text-decoration:none;
+      border-radius: 16px;
+      padding: 14px 14px;
+      margin-top: 10px;
+      border: 1px solid rgba(0,0,0,.10);
+      font-weight: 900;
+      letter-spacing: .3px;
+      text-align:center;
+      background: linear-gradient(180deg, var(--gray2), var(--gray));
+      color: var(--blue);
+      box-shadow: 0 8px 18px rgba(0,0,0,.25);
+      transition: transform .08s ease, filter .15s ease, background .15s ease, color .15s ease;
+      user-select:none;
+      -webkit-tap-highlight-color: transparent;
       cursor:pointer;
     }
-    .btn:hover,.btn:active,.btn:focus{background:linear-gradient(180deg, var(--blue2), var(--blue));color:var(--white)}
-    .fine{margin-top:10px;font-size:12px;color:rgba(207,211,216,.72);line-height:1.55}
-    .hidden{display:none!important}
-    .footer{
-      margin-top:12px;padding:12px 14px;border-radius:18px;border:1px solid var(--panel-border);
-      background:rgba(255,255,255,.06);text-align:center;line-height:1.6
+    .btn:hover,.btn:focus,.btn:active{
+      background: linear-gradient(180deg, #2b6cff, var(--blue));
+      color:#fff;
+      filter: brightness(1.03);
     }
-    .footer strong{color:rgba(255,255,255,.92)}
-    .bigThanks{font-size:20px;font-weight:900;letter-spacing:.6px;text-transform:uppercase;color:var(--gray);margin:0 0 8px}
+    .btn:active{ transform: translateY(1px); }
+
+    .choiceRow{ display:flex; gap:10px; flex-wrap:wrap; }
+    .choiceRow .btn{ flex:1 1 160px; }
+
+    label{ display:block; margin-top:12px; color: rgba(230,233,239,.92); font-weight:800; font-size: 12.5px; letter-spacing:.2px; }
+    input, select, textarea{
+      width:100%;
+      margin-top:6px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.92);
+      outline:none;
+    }
+    textarea{ min-height: 96px; resize: vertical; }
+    input::placeholder, textarea::placeholder{ color: rgba(255,255,255,.55); }
+
+    .fine{ margin-top: 10px; font-size: 12px; color: rgba(230,233,239,.62); }
+    .hidden{ display:none !important; }
+
+    .footer{
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,.10);
+      background: rgba(255,255,255,.06);
+      color: rgba(230,233,239,.82);
+      font-size: 13px;
+      line-height: 1.6;
+      text-align:center;
+    }
+    .footer strong{ color: var(--gray2); }
+
+    .status{
+      margin-top:10px;
+      color: rgba(230,233,239,.88);
+      font-size: 13px;
+      line-height: 1.5;
+    }
   </style>
 </head>
 
@@ -105,180 +149,201 @@
   <div class="wrap">
     <div class="panel">
 
+      <!-- HEADER -->
       <div class="head">
         <div class="logo">VC</div>
         <div class="titleblock">
           <h1>Vaultara Capital</h1>
-          <div class="subline">Credit Intake • Business or Personal</div>
+          <p>Credit Intake • Business or Personal • Response by Email</p>
         </div>
       </div>
 
-      <div class="section" id="intro">
-        <h2>Before you submit</h2>
+      <!-- DESCRIPTION (shows BEFORE they choose anything) -->
+      <div class="section" id="introSection">
+        <h2>What this is</h2>
         <p>
-          Choose the credit type below. The application will change based on your selection.
-          After you submit, you will see a confirmation message and we will contact you by email.
+          Vaultara Capital collects your information to evaluate credit readiness and next-step options.
+          This page is an intake only — we review and respond by email with guidance and next actions.
         </p>
         <div class="fine" style="margin-top:10px;">
-          <strong>Notice:</strong> Vaultara Capital is not a law firm and does not provide legal advice.
-        </div>
-
-        <div class="choiceRow" style="margin-top:12px;">
-          <div class="choiceBtn active" id="pickBiz">BUSINESS CREDIT</div>
-          <div class="choiceBtn" id="pickPer">PERSONAL CREDIT</div>
+          Disclaimer: Vaultara Capital is not a law firm and does not provide legal advice.
         </div>
       </div>
 
-      <div class="section" id="formSection">
-        <h2>Credit Application</h2>
+      <!-- CHOOSE TYPE -->
+      <div class="section" id="chooseSection">
+        <h2>Choose credit type</h2>
+        <div class="choiceRow">
+          <button class="btn" type="button" id="btnBusinessCredit">Business Credit</button>
+          <button class="btn" type="button" id="btnPersonalCredit">Personal Credit</button>
+        </div>
+        <div class="fine">
+          Choose one. The form below will switch to match your selection.
+        </div>
+      </div>
 
-        <!-- BUSINESS CREDIT -->
-        <form id="bizCreditForm" name="Vaultara-Business-Credit" method="POST"
-              data-netlify="true" netlify-honeypot="bot-field-biz">
-          <input type="hidden" name="form-name" value="Vaultara-Business-Credit" />
-          <p class="hidden"><label>Don’t fill this out: <input name="bot-field-biz" /></label></p>
-          <input type="hidden" name="credit_type" value="Business Credit" />
+      <!-- FORM -->
+      <div class="section hidden" id="formSection">
+        <h2 id="formTitle">Credit Application</h2>
 
-          <label>Full Name (Required)<input name="full_name" required /></label>
-          <label>Email (Required)<input name="email" type="email" required /></label>
-          <label>Phone (Required)<input name="phone" type="tel" required /></label>
+        <!-- Netlify Form (Saved in Netlify) -->
+        <form id="creditForm"
+              name="Vaultara-Credit-Application"
+              method="POST"
+              data-netlify="true"
+              netlify-honeypot="bot-field">
 
-          <label>Business Name (Required)<input name="business_name" required /></label>
+          <input type="hidden" name="form-name" value="Vaultara-Credit-Application" />
+          <input type="hidden" name="credit_type" id="creditType" value="" />
 
-          <label>Time in Business (Required)
-            <select name="time_in_business" required>
-              <option value="" selected disabled>Select</option>
-              <option>Startup (0–6 months)</option>
-              <option>6–12 months</option>
-              <option>1–2 years</option>
-              <option>2–5 years</option>
-              <option>5+ years</option>
-            </select>
+          <p class="hidden">
+            <label>Don’t fill this out: <input name="bot-field" /></label>
+          </p>
+
+          <!-- COMMON -->
+          <label>Full Name (Required)
+            <input name="full_name" type="text" placeholder="Your full name" required />
           </label>
 
-          <label>Do you already have business credit?
-            <select name="has_business_credit" required>
-              <option value="" selected disabled>Select</option>
-              <option>Yes</option>
-              <option>No</option>
-              <option>Not Sure</option>
-            </select>
+          <label>Email (Required)
+            <input name="email" type="email" placeholder="name@domain.com" required />
           </label>
 
-          <label>Estimated Owner Credit Score Range (Required)
-            <select name="owner_score_range" required>
-              <option value="" selected disabled>Select</option>
-              <option>500–579</option>
-              <option>580–639</option>
-              <option>640–699</option>
-              <option>700+</option>
-              <option>Not Sure</option>
-            </select>
+          <label>Phone (Required)
+            <input name="phone" type="tel" placeholder="(000) 000-0000" required />
           </label>
 
-          <label>What do you need business credit for? (Required)
-            <select name="goal" required>
-              <option value="" selected disabled>Select</option>
-              <option>Qualify for funding</option>
-              <option>Business credit cards</option>
-              <option>Vendor / trade lines</option>
-              <option>Improve approvals</option>
-              <option>Other</option>
-            </select>
+          <label>Address (Required)
+            <input name="address" type="text" placeholder="Street address" required />
           </label>
 
-          <label>Any late payments / collections?
-            <select name="collections" required>
-              <option value="" selected disabled>Select</option>
-              <option>No</option>
-              <option>Yes — Minor</option>
-              <option>Yes — Significant</option>
-              <option>Not sure</option>
-            </select>
+          <label>City / State / ZIP (Required)
+            <input name="location" type="text" placeholder="City, State, ZIP" required />
           </label>
 
-          <label>Notes / Details (Required)
-            <textarea name="notes" required placeholder="Explain what you need and your current situation."></textarea>
-          </label>
+          <!-- BUSINESS CREDIT ONLY -->
+          <div id="businessBlock" class="hidden">
+            <label>Business Legal Name (Required)
+              <input name="business_name" type="text" placeholder="Business legal name" />
+            </label>
 
-          <label style="margin-top:14px;font-weight:700;color:rgba(207,211,216,.90);">
-            <input type="checkbox" name="consent" required style="width:auto;margin-right:8px;" />
-            I confirm the information is accurate and I agree to be contacted by email.
-          </label>
+            <label>Business Type (Required)
+              <select name="business_type">
+                <option value="" selected disabled>Select</option>
+                <option>LLC</option>
+                <option>Corporation</option>
+                <option>Sole Proprietor</option>
+                <option>Partnership</option>
+                <option>Other</option>
+              </select>
+            </label>
 
-          <button class="btn" type="submit">SUBMIT BUSINESS CREDIT</button>
-          <div class="fine" id="statusBiz"></div>
-        </form>
+            <label>Time in Business (Required)
+              <select name="time_in_business">
+                <option value="" selected disabled>Select</option>
+                <option>Not formed yet</option>
+                <option>0–6 months</option>
+                <option>6–12 months</option>
+                <option>1–2 years</option>
+                <option>2–5 years</option>
+                <option>5+ years</option>
+              </select>
+            </label>
 
-        <!-- PERSONAL CREDIT -->
-        <form id="perCreditForm" class="hidden" name="Vaultara-Personal-Credit" method="POST"
-              data-netlify="true" netlify-honeypot="bot-field-per">
-          <input type="hidden" name="form-name" value="Vaultara-Personal-Credit" />
-          <p class="hidden"><label>Don’t fill this out: <input name="bot-field-per" /></label></p>
-          <input type="hidden" name="credit_type" value="Personal Credit" />
+            <label>Do you have an EIN?
+              <select name="ein_status">
+                <option value="" selected disabled>Select</option>
+                <option>Yes</option>
+                <option>No</option>
+              </select>
+            </label>
 
-          <label>Full Name (Required)<input name="full_name" required /></label>
-          <label>Email (Required)<input name="email" type="email" required /></label>
-          <label>Phone (Required)<input name="phone" type="tel" required /></label>
+            <label>Current Business Credit Status
+              <select name="business_credit_status">
+                <option value="" selected disabled>Select</option>
+                <option>No established business credit</option>
+                <option>Some trade lines / starter credit</option>
+                <option>Established credit profile</option>
+                <option>Unsure</option>
+              </select>
+            </label>
 
-          <div class="row2">
-            <div><label>City (Required)<input name="city" required /></label></div>
-            <div><label>State (Required)<input name="state" required /></label></div>
+            <label>What business credit are you seeking?
+              <select name="business_credit_goal">
+                <option value="" selected disabled>Select</option>
+                <option>Vendor / Net-30</option>
+                <option>Business credit cards</option>
+                <option>Lines of credit</option>
+                <option>Equipment / vehicle credit</option>
+                <option>Not sure</option>
+              </select>
+            </label>
           </div>
 
-          <label>Estimated Credit Score Range (Required)
-            <select name="score_range" required>
-              <option value="" selected disabled>Select</option>
-              <option>500–579</option>
-              <option>580–639</option>
-              <option>640–699</option>
-              <option>700+</option>
-              <option>Not Sure</option>
-            </select>
+          <!-- PERSONAL CREDIT ONLY -->
+          <div id="personalBlock" class="hidden">
+            <label>Primary Goal
+              <select name="personal_credit_goal">
+                <option value="" selected disabled>Select</option>
+                <option>Improve score / profile</option>
+                <option>Prepare for financing</option>
+                <option>Resolve errors / disputes</option>
+                <option>Not sure</option>
+              </select>
+            </label>
+
+            <label>Current Credit Situation
+              <select name="personal_credit_status">
+                <option value="" selected disabled>Select</option>
+                <option>Excellent</option>
+                <option>Good</option>
+                <option>Fair</option>
+                <option>Poor</option>
+                <option>Not sure</option>
+              </select>
+            </label>
+
+            <label>Any recent negative items? (Optional)
+              <select name="negative_items">
+                <option value="" selected disabled>Select</option>
+                <option>Late payments</option>
+                <option>Collections</option>
+                <option>Charge-offs</option>
+                <option>Bankruptcy</option>
+                <option>None / Unsure</option>
+              </select>
+            </label>
+          </div>
+
+          <!-- MORE DETAILS -->
+          <label>Tell us what you need (Required)
+            <textarea name="details" placeholder="Explain your situation and what you want to accomplish" required></textarea>
           </label>
 
-          <label>Primary Reason (Required)
-            <select name="reason" required>
-              <option value="" selected disabled>Select</option>
-              <option>Prepare for financing</option>
-              <option>Improve approvals</option>
-              <option>Reduce negative items impact</option>
-              <option>Other</option>
-            </select>
-          </label>
-
-          <label>Any late payments / collections?
-            <select name="collections" required>
-              <option value="" selected disabled>Select</option>
-              <option>No</option>
-              <option>Yes — Minor</option>
-              <option>Yes — Significant</option>
-              <option>Not sure</option>
-            </select>
-          </label>
-
-          <label>Notes / Details (Required)
-            <textarea name="notes" required placeholder="Explain your situation and what you need."></textarea>
-          </label>
-
-          <label style="margin-top:14px;font-weight:700;color:rgba(207,211,216,.90);">
-            <input type="checkbox" name="consent" required style="width:auto;margin-right:8px;" />
+          <label style="margin-top:14px; font-weight:700; color: rgba(230,233,239,.86);">
+            <input type="checkbox" name="consent" required style="width:auto; margin-right:8px;" />
             I confirm the information is accurate and I agree to be contacted by email.
           </label>
 
-          <button class="btn" type="submit">SUBMIT PERSONAL CREDIT</button>
-          <div class="fine" id="statusPer"></div>
-        </form>
+          <button class="btn" type="submit">SUBMIT APPLICATION</button>
 
+          <div class="status" id="statusText"></div>
+          <div class="fine">
+            Vaultara Capital Email: contact@vaultaracapital.com • Main (800): (800) 827-9016
+          </div>
+        </form>
       </div>
 
+      <!-- THANK YOU (SIMPLE ONLY) -->
       <div class="section hidden" id="thanksSection">
-        <div class="bigThanks">Thank You</div>
-        <div>We received your application. We will contact you by email as soon as possible.</div>
+        <h2 style="font-size:18px;">Thank You</h2>
+        <p>
+          We received your application. Vaultara Capital will review it and contact you by email as soon as possible.
+        </p>
       </div>
 
       <div class="footer">
-        <div><strong>Phone (Main):</strong> (800) 827-9016</div>
+        <div><strong>Main (800):</strong> (800) 827-9016</div>
         <div><strong>Email:</strong> contact@vaultaracapital.com</div>
         <div class="fine">© Vaultara Capital. All rights reserved.</div>
       </div>
@@ -287,63 +352,86 @@
   </div>
 
   <script>
-    (function(){
-      const pickBiz = document.getElementById("pickBiz");
-      const pickPer = document.getElementById("pickPer");
-      const bizForm = document.getElementById("bizCreditForm");
-      const perForm = document.getElementById("perCreditForm");
+    // ===== helpers =====
+    function show(el){ el.classList.remove("hidden"); }
+    function hide(el){ el.classList.add("hidden"); }
 
-      const formSection = document.getElementById("formSection");
-      const thanksSection = document.getElementById("thanksSection");
+    function encodeForm(form){
+      const data = new FormData(form);
+      const params = new URLSearchParams();
+      for (const pair of data.entries()) params.append(pair[0], pair[1]);
+      return params.toString();
+    }
 
-      const statusBiz = document.getElementById("statusBiz");
-      const statusPer = document.getElementById("statusPer");
+    function showThankYouOnly(){
+      hide(document.getElementById("introSection"));
+      hide(document.getElementById("chooseSection"));
+      hide(document.getElementById("formSection"));
+      show(document.getElementById("thanksSection"));
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
 
-      function encode(data){
-        const params = new URLSearchParams();
-        for (const pair of data.entries()) params.append(pair[0], pair[1]);
-        return params.toString();
-      }
+    // ===== page logic =====
+    const btnBusinessCredit = document.getElementById("btnBusinessCredit");
+    const btnPersonalCredit = document.getElementById("btnPersonalCredit");
 
-      function showBiz(){
-        pickBiz.classList.add("active");
-        pickPer.classList.remove("active");
-        bizForm.classList.remove("hidden");
-        perForm.classList.add("hidden");
-      }
-      function showPer(){
-        pickPer.classList.add("active");
-        pickBiz.classList.remove("active");
-        perForm.classList.remove("hidden");
-        bizForm.classList.add("hidden");
-      }
+    const formSection = document.getElementById("formSection");
+    const businessBlock = document.getElementById("businessBlock");
+    const personalBlock = document.getElementById("personalBlock");
 
-      pickBiz.addEventListener("click", showBiz);
-      pickPer.addEventListener("click", showPer);
+    const formTitle = document.getElementById("formTitle");
+    const creditType = document.getElementById("creditType");
 
-      function wireSubmit(formEl, statusEl){
-        formEl.addEventListener("submit", function(e){
-          e.preventDefault();
-          statusEl.textContent = "Submitting…";
-          const data = new FormData(formEl);
+    const form = document.getElementById("creditForm");
+    const status = document.getElementById("statusText");
 
-          fetch("/", {
-            method:"POST",
-            headers:{ "Content-Type":"application/x-www-form-urlencoded" },
-            body: encode(data)
-          })
-          .then(()=>{
-            formSection.classList.add("hidden");
-            thanksSection.classList.remove("hidden");
-            window.scrollTo({top:0, behavior:"smooth"});
-          })
-          .catch(()=> statusEl.textContent = "Submission failed. Please try again.");
+    function setType(type){
+      show(formSection);
+      if(type === "Business Credit"){
+        creditType.value = "Business Credit";
+        formTitle.textContent = "Business Credit Application";
+        show(businessBlock); hide(personalBlock);
+
+        // enforce required on business-only fields
+        businessBlock.querySelectorAll("input,select,textarea").forEach(i => i.required = true);
+        personalBlock.querySelectorAll("input,select,textarea").forEach(i => i.required = false);
+      }else{
+        creditType.value = "Personal Credit";
+        formTitle.textContent = "Personal Credit Application";
+        show(personalBlock); hide(businessBlock);
+
+        personalBlock.querySelectorAll("input,select,textarea").forEach(i => i.required = true);
+        businessBlock.querySelectorAll("input,select,textarea").forEach(i => i.required = false);
+
+        // personal block has some selects that are optional, keep them optional:
+        const optional = ["negative_items"];
+        optional.forEach(name=>{
+          const el = personalBlock.querySelector(`[name="${name}"]`);
+          if(el) el.required = false;
         });
       }
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
+    }
 
-      wireSubmit(bizForm, statusBiz);
-      wireSubmit(perForm, statusPer);
-    })();
+    btnBusinessCredit.addEventListener("click", ()=> setType("Business Credit"));
+    btnPersonalCredit.addEventListener("click", ()=> setType("Personal Credit"));
+
+    // ===== Netlify submit + simple thank you =====
+    form.addEventListener("submit", async function(e){
+      e.preventDefault();
+      status.textContent = "Submitting…";
+
+      try{
+        await fetch("/", {
+          method: "POST",
+          headers: { "Content-Type": "application/x-www-form-urlencoded" },
+          body: encodeForm(form)
+        });
+        showThankYouOnly();
+      }catch(err){
+        status.textContent = "Submission failed. Please try again.";
+      }
+    });
   </script>
 </body>
 </html>
