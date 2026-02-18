@@ -1,107 +1,131 @@
-<<!doctype html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Vaultara Capital — Funding Application</title>
-  <meta name="description" content="Funding application intake for Vaultara Capital." />
 
   <style>
     :root{
-      --blue:#0b3a88;
-      --blue2:#0a2f6b;
-      --gray:#cfd3da;
-      --gray2:#e6e9ef;
+      --blue:#0b4ea2;
+      --blue2:#073a78;
+      --gray:#c9cdd3;
+      --gray2:#e3e6ea;
       --white:#ffffff;
     }
+
     *{box-sizing:border-box}
     body{ margin:0; font-family: Arial, Helvetica, sans-serif; background: var(--blue); color: var(--gray); }
-    .wrap{ max-width: 620px; margin:0 auto; padding: 22px 14px 40px; }
+
+    .wrap{ max-width: 640px; margin:0 auto; padding: 18px 14px 42px; }
     .panel{
-      background: radial-gradient(120% 120% at 10% 10%, #144aa6 0%, var(--blue2) 60%, #071f46 100%);
+      border: 1px solid rgba(201,205,211,.55);
       border-radius: 22px;
       padding: 18px 16px;
-      box-shadow: 0 14px 45px rgba(0,0,0,.35);
-      border: 1px solid rgba(255,255,255,.10);
-      position:relative;
-      overflow:hidden;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow: 0 18px 40px rgba(0,0,0,.18);
     }
-    .panel:before{
-      content:"";
-      position:absolute;
-      inset:10px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.08);
-      pointer-events:none;
+
+    .head{ display:flex; align-items:center; gap:12px; padding: 6px 2px 2px; }
+    .mark{
+      width: 56px; height: 56px; border-radius: 16px;
+      background: linear-gradient(180deg, rgba(227,230,234,.18), rgba(0,0,0,.10));
+      border: 1px solid rgba(201,205,211,.55);
+      display:flex; align-items:center; justify-content:center;
+      font-weight: 900; letter-spacing: .6px; color: var(--gray2);
+      user-select:none;
     }
-    .head{ display:flex; align-items:center; gap:12px; padding: 6px 4px 10px; }
-    .logo{
-      width:54px;height:54px;border-radius:16px;
-      background: linear-gradient(180deg, rgba(255,255,255,.15), rgba(0,0,0,.25));
-      border: 1px solid rgba(255,255,255,.14);
-      display:flex;align-items:center;justify-content:center;
-      color: var(--gray2); font-weight:900; letter-spacing:.5px;
-    }
-    .titleblock h1{
-      margin:0; font-size: 22px; line-height: 1.1;
-      color: var(--gray); font-weight: 900; letter-spacing: .4px; text-transform: uppercase;
-    }
-    .titleblock p{ margin:6px 0 0; color: rgba(230,233,239,.78); font-size: 13px; line-height: 1.35; }
+    .titles h1{ margin:0; font-size: 20px; color: var(--gray2); font-weight: 900; text-transform: uppercase; }
+    .titles p{ margin:6px 0 0; font-size: 13px; color: rgba(201,205,211,.92); font-weight: 800; }
 
     .section{
-      margin-top: 14px; padding: 14px; border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.06);
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(201,205,211,.45);
+      background: rgba(255,255,255,.05);
     }
     .section h2{
-      margin:0 0 10px; font-size: 15px; letter-spacing:.35px;
-      text-transform: uppercase; color: var(--gray2); font-weight: 900;
+      margin:0 0 8px;
+      font-size: 14px;
+      color: var(--gray2);
+      font-weight: 900;
+      text-transform: uppercase;
+      letter-spacing:.25px;
     }
-    .section p{ margin:0; color: rgba(230,233,239,.82); font-size: 13.5px; line-height: 1.55; }
+    .section p{ margin:0; color: rgba(201,205,211,.92); font-size: 13.4px; line-height: 1.6; }
+
+    label{
+      display:block;
+      margin-top: 12px;
+      font-weight: 900;
+      font-size: 12.5px;
+      color: rgba(227,230,234,.95);
+      letter-spacing:.2px;
+    }
+    input, select, textarea{
+      width:100%;
+      margin-top: 6px;
+      padding: 12px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(201,205,211,.45);
+      background: rgba(255,255,255,.07);
+      color: rgba(255,255,255,.94);
+      outline:none;
+    }
+    input::placeholder, textarea::placeholder{ color: rgba(227,230,234,.55); }
+    textarea{ min-height: 96px; resize: vertical; }
 
     .btn{
-      display:block; width:100%; text-decoration:none;
-      border-radius: 16px; padding: 14px 14px; margin-top: 10px;
-      border: 1px solid rgba(0,0,0,.10);
-      font-weight: 900; letter-spacing: .3px; text-align:center;
+      width:100%;
+      margin-top: 14px;
+      padding: 14px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(201,205,211,.55);
       background: linear-gradient(180deg, var(--gray2), var(--gray));
       color: var(--blue);
-      box-shadow: 0 8px 18px rgba(0,0,0,.25);
+      font-weight: 900;
+      letter-spacing:.2px;
+      cursor:pointer;
+      box-shadow: 0 10px 22px rgba(0,0,0,.16);
       transition: transform .08s ease, filter .15s ease, background .15s ease, color .15s ease;
-      user-select:none; -webkit-tap-highlight-color: transparent; cursor:pointer;
+      -webkit-tap-highlight-color: transparent;
     }
-    .btn:hover,.btn:focus,.btn:active{
-      background: linear-gradient(180deg, #2b6cff, var(--blue));
-      color:#fff; filter: brightness(1.03);
+    .btn:hover,.btn:active,.btn:focus{
+      background: linear-gradient(180deg, #0c5cc2, var(--blue2));
+      color:#fff;
     }
     .btn:active{ transform: translateY(1px); }
 
-    .choiceRow{ display:flex; gap:10px; flex-wrap:wrap; }
-    .choiceRow .btn{ flex:1 1 160px; }
+    .row2{ display:flex; gap:10px; flex-wrap:wrap; }
+    .row2 > div{ flex: 1 1 160px; }
 
-    label{ display:block; margin-top:12px; color: rgba(230,233,239,.92); font-weight:800; font-size: 12.5px; letter-spacing:.2px; }
-    input, select, textarea{
-      width:100%; margin-top:6px; padding: 12px 12px;
-      border-radius: 14px; border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.08);
-      color: rgba(255,255,255,.92);
-      outline:none;
+    .legal{
+      margin-top: 10px;
+      padding: 10px 12px;
+      border-radius: 14px;
+      border: 1px solid rgba(201,205,211,.35);
+      background: rgba(0,0,0,.10);
+      color: rgba(201,205,211,.86);
+      font-size: 12.5px;
+      line-height: 1.55;
     }
-    textarea{ min-height: 96px; resize: vertical; }
-    input::placeholder, textarea::placeholder{ color: rgba(255,255,255,.55); }
-
-    .fine{ margin-top: 10px; font-size: 12px; color: rgba(230,233,239,.62); }
-    .hidden{ display:none !important; }
-    .status{ margin-top:10px; color: rgba(230,233,239,.88); font-size: 13px; line-height: 1.5; }
 
     .footer{
-      margin-top: 14px; padding: 12px 14px; border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.06);
-      color: rgba(230,233,239,.82);
-      font-size: 13px; line-height: 1.6; text-align:center;
+      margin-top: 14px;
+      padding: 12px 14px;
+      border-radius: 18px;
+      border: 1px solid rgba(201,205,211,.45);
+      background: rgba(255,255,255,.05);
+      text-align:center;
+      color: rgba(201,205,211,.92);
+      font-size: 13px;
+      line-height: 1.6;
     }
     .footer strong{ color: var(--gray2); }
+
+    .hidden{ display:none !important; }
+    .status{ margin-top:10px; color: rgba(227,230,234,.95); font-size: 13px; line-height:1.5; }
   </style>
 </head>
 
@@ -110,284 +134,340 @@
     <div class="panel">
 
       <div class="head">
-        <div class="logo">VC</div>
-        <div class="titleblock">
-          <h1>Vaultara Capital</h1>
-          <p>Funding Intake • Business or Personal • Response by Email</p>
+        <div class="mark">V</div>
+        <div class="titles">
+          <h1>Funding Application</h1>
+          <p>Vaultara Capital • Business or Personal Funding Intake</p>
         </div>
       </div>
 
-      <div class="section" id="introSection">
-        <h2>What this is</h2>
+      <div class="section">
+        <h2>Before You Submit</h2>
         <p>
-          Vaultara Capital collects your information to evaluate funding readiness. This page is an intake only —
-          we review and respond by email with next steps.
+          Please answer fully. The more complete your submission is, the faster Vaultara can evaluate and respond by email.
         </p>
-        <div class="fine" style="margin-top:10px;">
-          Disclaimer: Vaultara Capital is not a law firm and does not provide legal advice.
+        <div class="legal">
+          <b>Notice:</b> Vaultara Capital is not a law firm and does not provide legal advice.
         </div>
       </div>
 
-      <div class="section" id="chooseSection">
-        <h2>Choose funding type</h2>
-        <div class="choiceRow">
-          <button class="btn" type="button" id="btnBusinessFunding">Business Funding</button>
-          <button class="btn" type="button" id="btnPersonalFunding">Personal Funding</button>
-        </div>
-        <div class="fine">Choose one. The form below will switch to match your selection.</div>
-      </div>
+      <!-- FORM SECTION -->
+      <div class="section" id="formSection">
+        <h2>Application Form</h2>
 
-      <div class="section hidden" id="formSection">
-        <h2 id="formTitle">Funding Application</h2>
-
-        <form id="fundingForm"
-              name="Vaultara-Funding-Application"
-              method="POST"
-              data-netlify="true"
-              netlify-honeypot="bot-field">
-
+        <form id="fundingForm" name="Vaultara-Funding-Application" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="Vaultara-Funding-Application" />
-          <input type="hidden" name="funding_type" id="fundingType" value="" />
-
           <p class="hidden">
             <label>Don’t fill this out: <input name="bot-field" /></label>
           </p>
 
-          <!-- COMMON -->
+          <!-- Type -->
+          <label>Funding Type (Required)
+            <select name="funding_type" id="fundingType" required>
+              <option value="" selected disabled>Select one</option>
+              <option value="business">Business Funding</option>
+              <option value="personal">Personal Funding</option>
+            </select>
+          </label>
+
+          <!-- Applicant -->
           <label>Full Name (Required)
             <input name="full_name" type="text" placeholder="Your full name" required />
           </label>
 
-          <label>Email (Required)
-            <input name="email" type="email" placeholder="name@domain.com" required />
-          </label>
+          <div class="row2">
+            <div>
+              <label>Email (Required)
+                <input name="email" type="email" placeholder="name@domain.com" required />
+              </label>
+            </div>
+            <div>
+              <label>Phone (Required)
+                <input name="phone" type="tel" placeholder="(000) 000-0000" required />
+              </label>
+            </div>
+          </div>
 
-          <label>Phone (Required)
-            <input name="phone" type="tel" placeholder="(000) 000-0000" required />
-          </label>
+          <div class="row2">
+            <div>
+              <label>State (Required)
+                <input name="state" type="text" placeholder="State" required />
+              </label>
+            </div>
+            <div>
+              <label>Credit Range (Required)
+                <select name="credit_range" required>
+                  <option value="" selected disabled>Select range</option>
+                  <option>Below 580</option>
+                  <option>580–639</option>
+                  <option>640–699</option>
+                  <option>700–739</option>
+                  <option>740+</option>
+                  <option>Not sure</option>
+                </select>
+              </label>
+            </div>
+          </div>
 
-          <label>Address (Required)
-            <input name="address" type="text" placeholder="Street address" required />
-          </label>
-
-          <label>City / State / ZIP (Required)
-            <input name="location" type="text" placeholder="City, State, ZIP" required />
-          </label>
-
-          <!-- BUSINESS FUNDING ONLY -->
+          <!-- BUSINESS BLOCK -->
           <div id="businessBlock" class="hidden">
-            <label>Business Legal Name (Required)
-              <input name="business_name" type="text" placeholder="Business legal name" />
+            <label>Business Name (Required)
+              <input name="business_name" type="text" placeholder="Registered business name" />
             </label>
 
-            <label>Business Type (Required)
-              <select name="business_type">
-                <option value="" selected disabled>Select</option>
-                <option>LLC</option>
-                <option>Corporation</option>
-                <option>Sole Proprietor</option>
-                <option>Partnership</option>
-                <option>Other</option>
-              </select>
+            <div class="row2">
+              <div>
+                <label>Entity Type
+                  <select name="entity_type">
+                    <option value="" selected disabled>Select</option>
+                    <option>LLC</option>
+                    <option>S-Corp</option>
+                    <option>C-Corp</option>
+                    <option>Sole Proprietor</option>
+                    <option>Partnership</option>
+                    <option>Other</option>
+                  </select>
+                </label>
+              </div>
+              <div>
+                <label>Years in Business
+                  <select name="years_in_business">
+                    <option value="" selected disabled>Select</option>
+                    <option>Not started yet</option>
+                    <option>0–6 months</option>
+                    <option>6–12 months</option>
+                    <option>1–2 years</option>
+                    <option>2–5 years</option>
+                    <option>5+ years</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            <label>Business Address
+              <input name="business_address" type="text" placeholder="Street, City, State" />
             </label>
 
-            <label>Time in Business (Required)
-              <select name="time_in_business">
-                <option value="" selected disabled>Select</option>
-                <option>Not formed yet</option>
-                <option>0–6 months</option>
-                <option>6–12 months</option>
-                <option>1–2 years</option>
-                <option>2–5 years</option>
-                <option>5+ years</option>
-              </select>
+            <div class="row2">
+              <div>
+                <label>Average Monthly Revenue
+                  <select name="monthly_revenue">
+                    <option value="" selected disabled>Select</option>
+                    <option>$0–$5,000</option>
+                    <option>$5,000–$15,000</option>
+                    <option>$15,000–$50,000</option>
+                    <option>$50,000–$100,000</option>
+                    <option>$100,000+</option>
+                    <option>Prefer not to say</option>
+                  </select>
+                </label>
+              </div>
+              <div>
+                <label>Annual Revenue (Estimate)
+                  <select name="annual_revenue">
+                    <option value="" selected disabled>Select</option>
+                    <option>Under $50,000</option>
+                    <option>$50,000–$150,000</option>
+                    <option>$150,000–$500,000</option>
+                    <option>$500,000–$1M</option>
+                    <option>$1M+</option>
+                    <option>Prefer not to say</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            <label>Industry / Business Type
+              <input name="industry" type="text" placeholder="Construction, Transportation, Retail, etc." />
             </label>
 
-            <label>Funding Amount Needed (Required)
-              <select name="funding_amount">
+            <label>Existing Business Debt?
+              <select name="business_debt">
                 <option value="" selected disabled>Select</option>
-                <option>$10,000 – $25,000</option>
-                <option>$25,000 – $50,000</option>
-                <option>$50,000 – $100,000</option>
-                <option>$100,000 – $250,000</option>
-                <option>$250,000+</option>
-              </select>
-            </label>
-
-            <label>Average Monthly Revenue (Required)
-              <select name="monthly_revenue">
-                <option value="" selected disabled>Select</option>
-                <option>$0 – $5,000</option>
-                <option>$5,000 – $15,000</option>
-                <option>$15,000 – $30,000</option>
-                <option>$30,000 – $75,000</option>
-                <option>$75,000+</option>
-              </select>
-            </label>
-
-            <label>Use of Funds (Required)
-              <select name="use_of_funds">
-                <option value="" selected disabled>Select</option>
-                <option>Working capital</option>
-                <option>Inventory</option>
-                <option>Marketing</option>
-                <option>Equipment</option>
-                <option>Expansion</option>
-                <option>Other</option>
+                <option>No</option>
+                <option>Yes — under $10k</option>
+                <option>Yes — $10k–$50k</option>
+                <option>Yes — $50k+</option>
+                <option>Not sure</option>
               </select>
             </label>
           </div>
 
-          <!-- PERSONAL FUNDING ONLY -->
+          <!-- PERSONAL BLOCK -->
           <div id="personalBlock" class="hidden">
-            <label>Funding Purpose (Required)
-              <select name="personal_purpose">
-                <option value="" selected disabled>Select</option>
-                <option>Debt consolidation</option>
-                <option>Emergency</option>
-                <option>Vehicle</option>
-                <option>Home-related</option>
-                <option>Other</option>
-              </select>
-            </label>
-
-            <label>Funding Amount Needed (Required)
-              <select name="personal_amount">
-                <option value="" selected disabled>Select</option>
-                <option>$1,000 – $5,000</option>
-                <option>$5,000 – $10,000</option>
-                <option>$10,000 – $25,000</option>
-                <option>$25,000+</option>
-              </select>
-            </label>
-
-            <label>Employment Status (Required)
+            <label>Employment Status
               <select name="employment_status">
                 <option value="" selected disabled>Select</option>
                 <option>Employed</option>
-                <option>Self-employed</option>
+                <option>Self-Employed</option>
                 <option>Unemployed</option>
-                <option>Other</option>
+                <option>Retired</option>
               </select>
             </label>
 
-            <label>Approx. Monthly Income (Required)
-              <select name="monthly_income">
+            <label>Employer / Source of Income
+              <input name="income_source" type="text" placeholder="Employer name or income source" />
+            </label>
+
+            <div class="row2">
+              <div>
+                <label>Monthly Income (Estimate)
+                  <select name="monthly_income">
+                    <option value="" selected disabled>Select</option>
+                    <option>Under $2,000</option>
+                    <option>$2,000–$4,000</option>
+                    <option>$4,000–$8,000</option>
+                    <option>$8,000–$15,000</option>
+                    <option>$15,000+</option>
+                    <option>Prefer not to say</option>
+                  </select>
+                </label>
+              </div>
+              <div>
+                <label>Housing Status
+                  <select name="housing_status">
+                    <option value="" selected disabled>Select</option>
+                    <option>Rent</option>
+                    <option>Own</option>
+                    <option>Other</option>
+                  </select>
+                </label>
+              </div>
+            </div>
+
+            <label>Total Personal Debt (Estimate)
+              <select name="personal_debt">
                 <option value="" selected disabled>Select</option>
-                <option>$0 – $2,500</option>
-                <option>$2,500 – $5,000</option>
-                <option>$5,000 – $10,000</option>
-                <option>$10,000+</option>
+                <option>None</option>
+                <option>Under $5,000</option>
+                <option>$5,000–$25,000</option>
+                <option>$25,000–$75,000</option>
+                <option>$75,000+</option>
+                <option>Not sure</option>
               </select>
             </label>
           </div>
 
-          <label>Tell us what you need (Required)
-            <textarea name="details" placeholder="Explain your situation and what you want to accomplish" required></textarea>
+          <!-- REQUEST -->
+          <label>Funding Amount Requested (Required)
+            <select name="amount_requested" required>
+              <option value="" selected disabled>Select</option>
+              <option>$10,000–$25,000</option>
+              <option>$25,000–$50,000</option>
+              <option>$50,000–$100,000</option>
+              <option>$100,000–$250,000</option>
+              <option>$250,000+</option>
+            </select>
           </label>
 
-          <label style="margin-top:14px; font-weight:700; color: rgba(230,233,239,.86);">
+          <label>Primary Purpose (Required)
+            <select name="purpose" required>
+              <option value="" selected disabled>Select</option>
+              <option>Business Expansion</option>
+              <option>Inventory / Equipment</option>
+              <option>Vehicle Purchase</option>
+              <option>Real Estate (Purchase/Refinance)</option>
+              <option>Debt Consolidation</option>
+              <option>Other</option>
+            </select>
+          </label>
+
+          <label>Timeline Needed (Required)
+            <select name="timeline" required>
+              <option value="" selected disabled>Select</option>
+              <option>Immediately</option>
+              <option>Within 30 days</option>
+              <option>Within 60 days</option>
+              <option>Flexible</option>
+            </select>
+          </label>
+
+          <label>Additional Notes (Optional)
+            <textarea name="notes" placeholder="Tell us anything that helps: goals, situation, what you're trying to accomplish."></textarea>
+          </label>
+
+          <label style="margin-top:14px; font-weight:800; color: rgba(227,230,234,.95);">
             <input type="checkbox" name="consent" required style="width:auto; margin-right:8px;" />
-            I confirm the information is accurate and I agree to be contacted by email.
+            I confirm the information provided is accurate and I agree to be contacted by email.
           </label>
 
           <button class="btn" type="submit">SUBMIT APPLICATION</button>
-
           <div class="status" id="statusText"></div>
-          <div class="fine">
-            Vaultara Capital Email: contact@vaultaracapital.com • Main (800): (800) 827-9016
-          </div>
         </form>
       </div>
 
+      <!-- THANK YOU SECTION (SIMPLE ONLY) -->
       <div class="section hidden" id="thanksSection">
-        <h2 style="font-size:18px;">Thank You</h2>
+        <h2>Thank You</h2>
         <p>
-          We received your application. Vaultara Capital will review it and contact you by email as soon as possible.
+          We received your application. Vaultara Capital will review it and contact you by email shortly.
         </p>
       </div>
 
       <div class="footer">
-        <div><strong>Main (800):</strong> (800) 827-9016</div>
-        <div><strong>Email:</strong> contact@vaultaracapital.com</div>
-        <div class="fine">© Vaultara Capital. All rights reserved.</div>
+        <div><strong>TitanCore Main (800):</strong> (800) 827-9016</div>
+        <div><strong>Vaultara Email:</strong> contact@vaultaracapital.com</div>
+        <div style="opacity:.85;margin-top:6px;">© Vaultara Capital. All rights reserved.</div>
       </div>
 
     </div>
   </div>
 
   <script>
-    function show(el){ el.classList.remove("hidden"); }
-    function hide(el){ el.classList.add("hidden"); }
+    (function(){
+      const typeSel = document.getElementById("fundingType");
+      const businessBlock = document.getElementById("businessBlock");
+      const personalBlock = document.getElementById("personalBlock");
 
-    function encodeForm(form){
-      const data = new FormData(form);
-      const params = new URLSearchParams();
-      for (const pair of data.entries()) params.append(pair[0], pair[1]);
-      return params.toString();
-    }
+      function syncBlocks(){
+        const v = typeSel.value;
+        businessBlock.classList.toggle("hidden", v !== "business");
+        personalBlock.classList.toggle("hidden", v !== "personal");
 
-    function showThankYouOnly(){
-      hide(document.getElementById("introSection"));
-      hide(document.getElementById("chooseSection"));
-      hide(document.getElementById("formSection"));
-      show(document.getElementById("thanksSection"));
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
+        // toggle required fields inside blocks safely
+        const bInputs = businessBlock.querySelectorAll("input,select,textarea");
+        const pInputs = personalBlock.querySelectorAll("input,select,textarea");
 
-    const btnBusinessFunding = document.getElementById("btnBusinessFunding");
-    const btnPersonalFunding = document.getElementById("btnPersonalFunding");
-
-    const formSection = document.getElementById("formSection");
-    const businessBlock = document.getElementById("businessBlock");
-    const personalBlock = document.getElementById("personalBlock");
-
-    const formTitle = document.getElementById("formTitle");
-    const fundingType = document.getElementById("fundingType");
-
-    const form = document.getElementById("fundingForm");
-    const status = document.getElementById("statusText");
-
-    function setType(type){
-      show(formSection);
-
-      if(type === "Business Funding"){
-        fundingType.value = "Business Funding";
-        formTitle.textContent = "Business Funding Application";
-        show(businessBlock); hide(personalBlock);
-
-        businessBlock.querySelectorAll("input,select,textarea").forEach(i => i.required = true);
-        personalBlock.querySelectorAll("input,select,textarea").forEach(i => i.required = false);
-      }else{
-        fundingType.value = "Personal Funding";
-        formTitle.textContent = "Personal Funding Application";
-        show(personalBlock); hide(businessBlock);
-
-        personalBlock.querySelectorAll("input,select,textarea").forEach(i => i.required = true);
-        businessBlock.querySelectorAll("input,select,textarea").forEach(i => i.required = false);
+        bInputs.forEach(el => el.required = (v === "business") && (el.name === "business_name"));
+        pInputs.forEach(el => el.required = false);
       }
 
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-    }
+      typeSel.addEventListener("change", syncBlocks);
 
-    btnBusinessFunding.addEventListener("click", ()=> setType("Business Funding"));
-    btnPersonalFunding.addEventListener("click", ()=> setType("Personal Funding"));
+      // Netlify AJAX submit (NO redirect)
+      const form = document.getElementById("fundingForm");
+      const status = document.getElementById("statusText");
+      const formSection = document.getElementById("formSection");
+      const thanksSection = document.getElementById("thanksSection");
 
-    form.addEventListener("submit", async function(e){
-      e.preventDefault();
-      status.textContent = "Submitting…";
+      function encode(data){
+        const params = new URLSearchParams();
+        for (const pair of data.entries()) params.append(pair[0], pair[1]);
+        return params.toString();
+      }
 
-      try{
-        await fetch("/", {
+      form.addEventListener("submit", function(e){
+        e.preventDefault();
+        status.textContent = "Submitting…";
+
+        const formData = new FormData(form);
+
+        fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: encodeForm(form)
+          body: encode(formData)
+        })
+        .then(() => {
+          formSection.classList.add("hidden");
+          thanksSection.classList.remove("hidden");
+        })
+        .catch(() => {
+          status.textContent = "Submission failed. Please try again.";
         });
-        showThankYouOnly();
-      }catch(err){
-        status.textContent = "Submission failed. Please try again.";
-      }
-    });
+      });
+
+      syncBlocks();
+    })();
   </script>
 </body>
 </html>
