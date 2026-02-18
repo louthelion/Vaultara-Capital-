@@ -1,276 +1,395 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Vaultara Capital • Funding / Credit</title>
-
-  <!-- Use your existing Vaultara style.css -->
-  <link rel="stylesheet" href="style.css" />
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Vaultara Capital — Funding Intake</title>
 
   <style>
-    /* Small extra styling just for active button highlight (safe even if you keep your own CSS) */
-    .activeBtn{
-      outline: 3px solid rgba(31,79,255,0.25);
-      filter: brightness(0.98);
+    :root{
+      --blue:#0b2f6b;
+      --blue2:#144a9a;
+      --gray:#cfd3d8;
+      --gray2:#aeb5be;
+      --white:#ffffff;
+      --panel-border: rgba(255,255,255,.16);
+      --shadow: 0 14px 48px rgba(0,0,0,.28);
+      --radius: 24px;
     }
+    *{box-sizing:border-box}
+    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--blue);color:var(--gray)}
+    .wrap{max-width:720px;margin:0 auto;padding:22px 14px 44px}
+    .panel{
+      border:2px solid rgba(255,255,255,.18);
+      border-radius:var(--radius);
+      padding:18px 16px;
+      box-shadow:var(--shadow);
+      background:radial-gradient(120% 120% at 15% 15%, var(--blue2) 0%, var(--blue) 55%, #061b3f 100%);
+      position:relative;overflow:hidden;
+    }
+    .panel:before{
+      content:"";position:absolute;inset:10px;border-radius:calc(var(--radius) - 10px);
+      border:1px solid rgba(255,255,255,.10);pointer-events:none;
+    }
+    .head{display:flex;align-items:center;gap:12px;padding:6px 4px 2px;margin-bottom:8px}
+    .logo{
+      width:56px;height:56px;border-radius:16px;
+      background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(0,0,0,.10));
+      border:1px solid rgba(255,255,255,.22);
+      display:flex;align-items:center;justify-content:center;
+      color:var(--gray);font-weight:900;letter-spacing:.7px
+    }
+    .titleblock h1{
+      margin:0;font-size:24px;line-height:1.05;color:var(--gray);
+      font-weight:900;letter-spacing:.7px;text-transform:uppercase
+    }
+    .titleblock .subline{margin:6px 0 0;color:rgba(207,211,216,.90);font-size:13px;line-height:1.35;font-weight:700}
+
+    .section{
+      margin-top:12px;padding:14px;border-radius:18px;border:1px solid var(--panel-border);
+      background:rgba(255,255,255,.06)
+    }
+    .section h2{margin:0 0 10px;font-size:15px;letter-spacing:.4px;text-transform:uppercase;color:var(--gray);font-weight:900}
+    .section p{margin:0;color:rgba(207,211,216,.90);line-height:1.65;font-size:13.7px}
+
+    .choiceRow{display:flex;gap:10px;flex-wrap:wrap;margin-top:10px}
+    .choiceBtn{
+      flex:1 1 220px;
+      border-radius:18px;padding:14px;
+      border:1px solid rgba(255,255,255,.18);
+      font-weight:900;letter-spacing:.3px;text-align:center;
+      background:linear-gradient(180deg, var(--gray), var(--gray2));
+      color:var(--blue);
+      cursor:pointer;
+      user-select:none;
+    }
+    .choiceBtn.active{
+      background:linear-gradient(180deg, var(--blue2), var(--blue));
+      color:var(--white)
+    }
+
+    label{display:block;margin-top:12px;color:rgba(207,211,216,.92);font-weight:800;font-size:12.6px;letter-spacing:.2px}
+    input,select,textarea{
+      width:100%;margin-top:6px;padding:12px;border-radius:14px;
+      border:1px solid rgba(255,255,255,.18);
+      background:rgba(255,255,255,.08);
+      color:rgba(255,255,255,.92);outline:none
+    }
+    textarea{min-height:110px;resize:vertical}
+    .row2{display:flex;gap:10px;flex-wrap:wrap}
+    .row2>div{flex:1 1 220px}
+
+    .btn{
+      display:block;width:100%;
+      border-radius:18px;padding:14px;margin-top:14px;
+      border:1px solid rgba(255,255,255,.18);
+      font-weight:900;letter-spacing:.3px;text-align:center;
+      background:linear-gradient(180deg, var(--gray), var(--gray2));
+      color:var(--blue);
+      box-shadow:0 10px 22px rgba(0,0,0,.22);
+      cursor:pointer;
+    }
+    .btn:hover,.btn:active,.btn:focus{background:linear-gradient(180deg, var(--blue2), var(--blue));color:var(--white)}
+    .fine{margin-top:10px;font-size:12px;color:rgba(207,211,216,.72);line-height:1.55}
+    .hidden{display:none!important}
+    .footer{
+      margin-top:12px;padding:12px 14px;border-radius:18px;border:1px solid var(--panel-border);
+      background:rgba(255,255,255,.06);text-align:center;line-height:1.6
+    }
+    .footer strong{color:rgba(255,255,255,.92)}
+    .bigThanks{font-size:20px;font-weight:900;letter-spacing:.6px;text-transform:uppercase;color:var(--gray);margin:0 0 8px}
   </style>
 </head>
+
 <body>
+  <div class="wrap">
+    <div class="panel">
 
-  <header class="topbar">
-    <div class="brand">
-      <div class="logoBox">V</div>
-      <div>
-        <div class="title">Funding / Credit Application</div>
-        <div class="subtitle">contact@vaultaracapital.com • (800) 827-9016</div>
-      </div>
-    </div>
-
-    <a class="backLink" href="index.html">← Back</a>
-  </header>
-
-  <main class="wrap">
-    <section class="panel">
-
-      <h1>Apply for Funding</h1>
-      <p class="desc">Choose Personal or Business. The page will switch and stay on your choice.</p>
-
-      <!-- PERSONAL / BUSINESS CHOICE -->
-      <div class="btnRow" style="margin-top:12px;">
-        <button type="button" class="btn" id="btnPersonal">Personal Funding</button>
-        <button type="button" class="btn" id="btnBusiness">Business Funding</button>
-      </div>
-
-      <div class="divider"></div>
-
-      <!-- THANK YOU (INSIDE SAME PAGE) -->
-      <div id="thankYouBox" class="thankyou" style="display:none;">
-        <h2>✅ Thank You!</h2>
-        <p>Your application has been submitted successfully. A Vaultara Capital specialist will contact you shortly.</p>
-        <div class="tinyNote">Support: contact@vaultaracapital.com • (800) 827-9016</div>
-
-        <div style="margin-top:12px; max-width:520px;">
-          <a class="btn outline" href="index.html">Back to Vaultara Home</a>
+      <div class="head">
+        <div class="logo">VC</div>
+        <div class="titleblock">
+          <h1>Vaultara Capital</h1>
+          <div class="subline">Funding Intake • Business or Personal</div>
         </div>
       </div>
 
-      <!-- FORM (Netlify-ready) -->
-      <form id="fundingForm" name="vaultara-funding" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-        <input type="hidden" name="form-name" value="vaultara-funding" />
-        <p class="honeypot">
-          <label>Don’t fill this out: <input name="bot-field" /></label>
+      <div class="section" id="intro">
+        <h2>Before you submit</h2>
+        <p>
+          Choose the funding type below. The application will change based on your selection.
+          After you submit, you will see a confirmation message and we will contact you by email.
         </p>
-
-        <!-- THIS STORES WHICH TYPE THEY PICKED -->
-        <input type="hidden" name="Funding Type" id="fundingType" value="personal" />
-
-        <!-- COMMON FIELDS (ALWAYS SHOW) -->
-        <h2 class="sectionTitle">Contact Information</h2>
-
-        <div class="formGrid">
-          <div class="field">
-            <label>Full Name</label>
-            <input name="Full Name" required />
-          </div>
-
-          <div class="field">
-            <label>Phone</label>
-            <input name="Phone" required />
-          </div>
-
-          <div class="field">
-            <label>Email</label>
-            <input type="email" name="Email" required />
-          </div>
-
-          <div class="field">
-            <label>State</label>
-            <input name="State" placeholder="Example: FL" required />
-          </div>
-
-          <div class="field">
-            <label>Requested Amount</label>
-            <input name="Requested Amount" placeholder="$" />
-          </div>
+        <div class="fine" style="margin-top:10px;">
+          <strong>Notice:</strong> Vaultara Capital is not a law firm and does not provide legal advice.
         </div>
 
-        <!-- PERSONAL SECTION (ONLY SHOWS IF PERSONAL) -->
-        <div id="personalFields" class="switchSection" style="margin-top:14px;">
-          <h2 class="sectionTitle">Personal Funding Details</h2>
-
-          <div class="formGrid">
-            <div class="field">
-              <label>Date of Birth</label>
-              <input name="DOB" placeholder="MM/DD/YYYY" />
-            </div>
-
-            <div class="field">
-              <label>Monthly Income</label>
-              <input name="Monthly Income" placeholder="$" />
-            </div>
-
-            <div class="field">
-              <label>Employment Status</label>
-              <select name="Employment Status">
-                <option value="">Select</option>
-                <option>Employed</option>
-                <option>Self-Employed</option>
-                <option>Unemployed</option>
-                <option>Retired</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label>Rent / Mortgage (Monthly)</label>
-              <input name="Housing Payment" placeholder="$" />
-            </div>
-
-            <div class="field">
-              <label>Credit Score Range (Estimate)</label>
-              <select name="Credit Score Range">
-                <option value="">Select</option>
-                <option>Not sure</option>
-                <option>300-579</option>
-                <option>580-669</option>
-                <option>670-739</option>
-                <option>740+</option>
-              </select>
-            </div>
-
-            <div class="field">
-              <label>Best Time To Contact</label>
-              <select name="Best Time To Contact">
-                <option value="">Select</option>
-                <option>Morning</option>
-                <option>Afternoon</option>
-                <option>Evening</option>
-              </select>
-            </div>
-          </div>
+        <div class="choiceRow" style="margin-top:12px;">
+          <div class="choiceBtn active" id="pickBusiness">BUSINESS FUNDING</div>
+          <div class="choiceBtn" id="pickPersonal">PERSONAL FUNDING</div>
         </div>
+      </div>
 
-        <!-- BUSINESS SECTION (ONLY SHOWS IF BUSINESS) -->
-        <div id="businessFields" class="switchSection" style="display:none; margin-top:14px;">
-          <h2 class="sectionTitle">Business Funding Details</h2>
+      <!-- FORMS WRAPPER -->
+      <div class="section" id="formSection">
+        <h2>Funding Application</h2>
 
-          <div class="formGrid">
-            <div class="field">
-              <label>Business Legal Name</label>
-              <input name="Business Name" />
-            </div>
+        <!-- BUSINESS FUNDING FORM -->
+        <form id="businessFundingForm" name="Vaultara-Business-Funding" method="POST"
+              data-netlify="true" netlify-honeypot="bot-field-business">
+          <input type="hidden" name="form-name" value="Vaultara-Business-Funding" />
+          <p class="hidden"><label>Don’t fill this out: <input name="bot-field-business" /></label></p>
 
-            <div class="field">
-              <label>EIN</label>
-              <input name="EIN" />
-            </div>
+          <input type="hidden" name="funding_type" value="Business Funding" />
 
-            <div class="field">
-              <label>Business Structure</label>
-              <select name="Business Structure">
-                <option value="">Select</option>
-                <option>LLC</option>
-                <option>Corporation</option>
-                <option>Sole Proprietor</option>
-                <option>Partnership</option>
-                <option>Other</option>
-              </select>
-            </div>
+          <label>Full Name (Required)<input name="full_name" required /></label>
+          <label>Email (Required)<input name="email" type="email" required /></label>
+          <label>Phone (Required)<input name="phone" type="tel" required /></label>
 
-            <div class="field">
-              <label>Years In Business</label>
-              <input name="Years In Business" placeholder="Example: 2" />
-            </div>
+          <label>Business Legal Name (Required)<input name="business_name" required /></label>
 
-            <div class="field">
-              <label>Monthly Revenue</label>
-              <input name="Monthly Revenue" placeholder="$" />
-            </div>
-
-            <div class="field">
-              <label>Industry</label>
-              <input name="Industry" placeholder="Example: Construction" />
-            </div>
+          <div class="row2">
+            <div><label>Business Address (Required)<input name="business_address" required /></label></div>
+            <div><label>City / State (Required)<input name="business_city_state" required placeholder="Orlando, FL" /></label></div>
           </div>
 
-          <div class="noteBox">
-            <strong>Note:</strong> Some business programs may require a personal guarantee. If needed, we will request it after review.
+          <label>Business Type / Industry (Required)<input name="industry" required placeholder="Trucking, Retail, Cleaning, etc." /></label>
+
+          <label>Time in Business (Required)
+            <select name="time_in_business" required>
+              <option value="" selected disabled>Select</option>
+              <option>Startup (0–6 months)</option>
+              <option>6–12 months</option>
+              <option>1–2 years</option>
+              <option>2–5 years</option>
+              <option>5+ years</option>
+            </select>
+          </label>
+
+          <label>How much funding are you seeking? (Required)
+            <select name="funding_amount" required>
+              <option value="" selected disabled>Select</option>
+              <option>$10,000 – $25,000</option>
+              <option>$25,000 – $50,000</option>
+              <option>$50,000 – $100,000</option>
+              <option>$100,000 – $250,000</option>
+              <option>$250,000+</option>
+            </select>
+          </label>
+
+          <label>Monthly Revenue (Required)
+            <select name="monthly_revenue" required>
+              <option value="" selected disabled>Select</option>
+              <option>$0 – $5,000</option>
+              <option>$5,001 – $15,000</option>
+              <option>$15,001 – $30,000</option>
+              <option>$30,001 – $75,000</option>
+              <option>$75,000+</option>
+            </select>
+          </label>
+
+          <div class="row2">
+            <div><label>Revenue last 3 months (Optional)<input name="rev_3mo" placeholder="$" /></label></div>
+            <div><label>Revenue last 6 months (Optional)<input name="rev_6mo" placeholder="$" /></label></div>
           </div>
-        </div>
 
-        <div class="divider"></div>
+          <label>Revenue last 12 months (Optional)<input name="rev_12mo" placeholder="$" /></label>
 
-        <div class="formActions">
-          <button class="btn" type="submit">Submit Application</button>
-        </div>
-      </form>
+          <label>Estimated Owner Credit Score Range (Required)
+            <select name="owner_score_range" required>
+              <option value="" selected disabled>Select</option>
+              <option>500–579</option>
+              <option>580–639</option>
+              <option>640–699</option>
+              <option>700+</option>
+              <option>Not Sure</option>
+            </select>
+          </label>
 
-    </section>
-  </main>
+          <label>Purpose of Funding (Required)
+            <select name="purpose" required>
+              <option value="" selected disabled>Select</option>
+              <option>Working Capital</option>
+              <option>Equipment / Vehicles</option>
+              <option>Inventory</option>
+              <option>Expansion</option>
+              <option>Refinance / Consolidation</option>
+              <option>Other</option>
+            </select>
+          </label>
 
-  <footer class="footer">
-    <div>© Vaultara Capital • TitanCore Network</div>
-  </footer>
+          <label>Notes / Details (Required)
+            <textarea name="notes" required placeholder="Explain what the funding is for and any important details."></textarea>
+          </label>
+
+          <label style="margin-top:14px;font-weight:700;color:rgba(207,211,216,.90);">
+            <input type="checkbox" name="consent" required style="width:auto;margin-right:8px;" />
+            I confirm the information is accurate and I agree to be contacted by email.
+          </label>
+
+          <button class="btn" type="submit">SUBMIT BUSINESS FUNDING</button>
+          <div class="fine" id="statusBusiness"></div>
+        </form>
+
+        <!-- PERSONAL FUNDING FORM -->
+        <form id="personalFundingForm" class="hidden" name="Vaultara-Personal-Funding" method="POST"
+              data-netlify="true" netlify-honeypot="bot-field-personal">
+          <input type="hidden" name="form-name" value="Vaultara-Personal-Funding" />
+          <p class="hidden"><label>Don’t fill this out: <input name="bot-field-personal" /></label></p>
+
+          <input type="hidden" name="funding_type" value="Personal Funding" />
+
+          <label>Full Name (Required)<input name="full_name" required /></label>
+          <label>Email (Required)<input name="email" type="email" required /></label>
+          <label>Phone (Required)<input name="phone" type="tel" required /></label>
+
+          <div class="row2">
+            <div><label>City (Required)<input name="city" required /></label></div>
+            <div><label>State (Required)<input name="state" required /></label></div>
+          </div>
+
+          <label>Funding Goal (Required)
+            <select name="funding_goal" required>
+              <option value="" selected disabled>Select</option>
+              <option>Home Purchase</option>
+              <option>Auto Purchase</option>
+              <option>Refinance</option>
+              <option>Debt Consolidation</option>
+              <option>Personal Loan</option>
+              <option>Other</option>
+            </select>
+          </label>
+
+          <label>How much funding are you seeking? (Required)
+            <select name="funding_amount" required>
+              <option value="" selected disabled>Select</option>
+              <option>$5,000 – $15,000</option>
+              <option>$15,001 – $30,000</option>
+              <option>$30,001 – $60,000</option>
+              <option>$60,001 – $100,000</option>
+              <option>$100,000+</option>
+            </select>
+          </label>
+
+          <label>Estimated Credit Score Range (Required)
+            <select name="score_range" required>
+              <option value="" selected disabled>Select</option>
+              <option>500–579</option>
+              <option>580–639</option>
+              <option>640–699</option>
+              <option>700+</option>
+              <option>Not Sure</option>
+            </select>
+          </label>
+
+          <label>Monthly Income Range (Required)
+            <select name="income_range" required>
+              <option value="" selected disabled>Select</option>
+              <option>$0 – $2,500</option>
+              <option>$2,501 – $5,000</option>
+              <option>$5,001 – $8,000</option>
+              <option>$8,001 – $12,000</option>
+              <option>$12,000+</option>
+            </select>
+          </label>
+
+          <label>Employment Status (Required)
+            <select name="employment_status" required>
+              <option value="" selected disabled>Select</option>
+              <option>Employed</option>
+              <option>Self-Employed</option>
+              <option>Contractor</option>
+              <option>Other</option>
+            </select>
+          </label>
+
+          <label>Notes / Details (Required)
+            <textarea name="notes" required placeholder="Explain what you need and any important details."></textarea>
+          </label>
+
+          <label style="margin-top:14px;font-weight:700;color:rgba(207,211,216,.90);">
+            <input type="checkbox" name="consent" required style="width:auto;margin-right:8px;" />
+            I confirm the information is accurate and I agree to be contacted by email.
+          </label>
+
+          <button class="btn" type="submit">SUBMIT PERSONAL FUNDING</button>
+          <div class="fine" id="statusPersonal"></div>
+        </form>
+
+      </div>
+
+      <!-- THANK YOU (INSIDE PAGE) -->
+      <div class="section hidden" id="thanksSection">
+        <div class="bigThanks">Thank You</div>
+        <div>We received your application. We will contact you by email as soon as possible.</div>
+      </div>
+
+      <div class="footer">
+        <div><strong>Phone (Main):</strong> (800) 827-9016</div>
+        <div><strong>Email:</strong> contact@vaultaracapital.com</div>
+        <div class="fine">© Vaultara Capital. All rights reserved.</div>
+      </div>
+
+    </div>
+  </div>
 
   <script>
-    function applyFundingType(type){
-      // Save selection so it stays on their choice
-      localStorage.setItem("vaultaraFundingType", type);
+    (function(){
+      const pickBusiness = document.getElementById("pickBusiness");
+      const pickPersonal = document.getElementById("pickPersonal");
+      const businessForm = document.getElementById("businessFundingForm");
+      const personalForm = document.getElementById("personalFundingForm");
 
-      // Set hidden field for submission
-      document.getElementById("fundingType").value = type;
+      const formSection = document.getElementById("formSection");
+      const thanksSection = document.getElementById("thanksSection");
 
-      // Show/Hide sections
-      document.getElementById("personalFields").style.display = (type === "personal") ? "block" : "none";
-      document.getElementById("businessFields").style.display = (type === "business") ? "block" : "none";
+      const statusBusiness = document.getElementById("statusBusiness");
+      const statusPersonal = document.getElementById("statusPersonal");
 
-      // Active button styling
-      const btnPersonal = document.getElementById("btnPersonal");
-      const btnBusiness = document.getElementById("btnBusiness");
-
-      if(type === "personal"){
-        btnPersonal.classList.add("activeBtn");
-        btnBusiness.classList.remove("activeBtn");
-      } else {
-        btnBusiness.classList.add("activeBtn");
-        btnPersonal.classList.remove("activeBtn");
+      function encode(data){
+        const params = new URLSearchParams();
+        for (const pair of data.entries()) params.append(pair[0], pair[1]);
+        return params.toString();
       }
-    }
 
-    // Set initial mode when the page opens
-    document.addEventListener("DOMContentLoaded", () => {
-      const saved = localStorage.getItem("vaultaraFundingType");
-      applyFundingType(saved === "business" ? "business" : "personal");
+      function showBusiness(){
+        pickBusiness.classList.add("active");
+        pickPersonal.classList.remove("active");
+        businessForm.classList.remove("hidden");
+        personalForm.classList.add("hidden");
+      }
+      function showPersonal(){
+        pickPersonal.classList.add("active");
+        pickBusiness.classList.remove("active");
+        personalForm.classList.remove("hidden");
+        businessForm.classList.add("hidden");
+      }
 
-      document.getElementById("btnPersonal").addEventListener("click", () => applyFundingType("personal"));
-      document.getElementById("btnBusiness").addEventListener("click", () => applyFundingType("business"));
-    });
+      pickBusiness.addEventListener("click", showBusiness);
+      pickPersonal.addEventListener("click", showPersonal);
 
-    // Submit -> show thank-you INSIDE same page (Netlify AJAX)
-    document.getElementById("fundingForm").addEventListener("submit", async (e) => {
-      e.preventDefault();
-      const form = e.target;
-      const data = new FormData(form);
+      function wireSubmit(formEl, statusEl){
+        formEl.addEventListener("submit", function(e){
+          e.preventDefault();
+          statusEl.textContent = "Submitting…";
+          const data = new FormData(formEl);
 
-      try{
-        const res = await fetch("/", {
-          method: "POST",
-          headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: new URLSearchParams(data).toString()
+          fetch("/", {
+            method:"POST",
+            headers:{ "Content-Type":"application/x-www-form-urlencoded" },
+            body: encode(data)
+          })
+          .then(()=>{
+            formSection.classList.add("hidden");
+            thanksSection.classList.remove("hidden");
+            window.scrollTo({top:0, behavior:"smooth"});
+          })
+          .catch(()=> statusEl.textContent = "Submission failed. Please try again.");
         });
-
-        if(res.ok){
-          form.style.display = "none";
-          document.getElementById("thankYouBox").style.display = "block";
-          window.scrollTo({ top: 0, behavior: "smooth" });
-        } else {
-          alert("Submission failed. Please try again.");
-        }
-      } catch(err){
-        alert("Network error. Please try again.");
       }
-    });
-  </script>
 
+      wireSubmit(businessForm, statusBusiness);
+      wireSubmit(personalForm, statusPersonal);
+    })();
+  </script>
 </body>
 </html>
