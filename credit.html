@@ -4,144 +4,56 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Vaultara Capital — Credit Application</title>
-  <meta name="description" content="Credit application intake for Vaultara Capital." />
 
   <style>
-    :root{
-      --blue:#0b3a88;
-      --blue2:#0a2f6b;
-      --gray:#cfd3da;
-      --gray2:#e6e9ef;
-      --text:#0a0a0a;
-      --white:#ffffff;
-    }
+    :root{ --blue:#0b4ea2; --blue2:#073a78; --gray:#c9cdd3; --gray2:#e3e6ea; }
     *{box-sizing:border-box}
     body{ margin:0; font-family: Arial, Helvetica, sans-serif; background: var(--blue); color: var(--gray); }
-    .wrap{ max-width: 620px; margin:0 auto; padding: 22px 14px 40px; }
-    .panel{
-      background: radial-gradient(120% 120% at 10% 10%, #144aa6 0%, var(--blue2) 60%, #071f46 100%);
-      border-radius: 22px;
-      padding: 18px 16px;
-      box-shadow: 0 14px 45px rgba(0,0,0,.35);
-      border: 1px solid rgba(255,255,255,.10);
-      position:relative;
-      overflow:hidden;
+    .wrap{ max-width: 640px; margin:0 auto; padding: 18px 14px 42px; }
+    .panel{ border:1px solid rgba(201,205,211,.55); border-radius:22px; padding:18px 16px;
+      background: linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      box-shadow: 0 18px 40px rgba(0,0,0,.18);
     }
-    .panel:before{
-      content:"";
-      position:absolute;
-      inset:10px;
-      border-radius: 16px;
-      border: 1px solid rgba(255,255,255,.08);
-      pointer-events:none;
+    .head{ display:flex; align-items:center; gap:12px; padding: 6px 2px 2px; }
+    .mark{ width:56px;height:56px;border-radius:16px;background:linear-gradient(180deg, rgba(227,230,234,.18), rgba(0,0,0,.10));
+      border:1px solid rgba(201,205,211,.55);display:flex;align-items:center;justify-content:center;
+      font-weight:900;letter-spacing:.6px;color:var(--gray2);
     }
+    .titles h1{ margin:0; font-size:20px; color:var(--gray2); font-weight:900; text-transform:uppercase; }
+    .titles p{ margin:6px 0 0; font-size:13px; color:rgba(201,205,211,.92); font-weight:800; }
 
-    .head{ display:flex; align-items:center; gap:12px; padding: 6px 4px 10px; }
-    .logo{
-      width:54px;height:54px;border-radius:16px;
-      background: linear-gradient(180deg, rgba(255,255,255,.15), rgba(0,0,0,.25));
-      border: 1px solid rgba(255,255,255,.14);
-      display:flex;align-items:center;justify-content:center;
-      color: var(--gray2); font-weight:900; letter-spacing:.5px;
-    }
-    .titleblock h1{
-      margin:0;
-      font-size: 22px;
-      line-height: 1.1;
-      color: var(--gray);
-      font-weight: 900;
-      letter-spacing: .4px;
-      text-transform: uppercase;
-    }
-    .titleblock p{
-      margin:6px 0 0;
-      color: rgba(230,233,239,.78);
-      font-size: 13px;
-      line-height: 1.35;
-    }
+    .section{ margin-top:14px; padding:14px; border-radius:18px; border:1px solid rgba(201,205,211,.45); background: rgba(255,255,255,.05); }
+    .section h2{ margin:0 0 8px; font-size:14px; color:var(--gray2); font-weight:900; text-transform:uppercase; letter-spacing:.25px; }
+    .section p{ margin:0; color:rgba(201,205,211,.92); font-size:13.4px; line-height:1.6; }
 
-    .section{
-      margin-top: 14px;
-      padding: 14px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.06);
+    label{ display:block; margin-top:12px; font-weight:900; font-size:12.5px; color:rgba(227,230,234,.95); letter-spacing:.2px; }
+    input, select, textarea{ width:100%; margin-top:6px; padding:12px 12px; border-radius:14px;
+      border:1px solid rgba(201,205,211,.45); background: rgba(255,255,255,.07); color: rgba(255,255,255,.94); outline:none;
     }
-    .section h2{
-      margin:0 0 10px;
-      font-size: 15px;
-      letter-spacing:.35px;
-      text-transform: uppercase;
-      color: var(--gray2);
-      font-weight: 900;
-    }
-    .section p{ margin:0; color: rgba(230,233,239,.82); font-size: 13.5px; line-height: 1.55; }
+    textarea{ min-height:96px; resize:vertical; }
+    input::placeholder, textarea::placeholder{ color:rgba(227,230,234,.55); }
 
-    .btn{
-      display:block;
-      width:100%;
-      text-decoration:none;
-      border-radius: 16px;
-      padding: 14px 14px;
-      margin-top: 10px;
-      border: 1px solid rgba(0,0,0,.10);
-      font-weight: 900;
-      letter-spacing: .3px;
-      text-align:center;
-      background: linear-gradient(180deg, var(--gray2), var(--gray));
-      color: var(--blue);
-      box-shadow: 0 8px 18px rgba(0,0,0,.25);
-      transition: transform .08s ease, filter .15s ease, background .15s ease, color .15s ease;
-      user-select:none;
-      -webkit-tap-highlight-color: transparent;
-      cursor:pointer;
+    .btn{ width:100%; margin-top:14px; padding:14px; border-radius:18px; border:1px solid rgba(201,205,211,.55);
+      background: linear-gradient(180deg, var(--gray2), var(--gray)); color: var(--blue);
+      font-weight:900; letter-spacing:.2px; cursor:pointer; box-shadow: 0 10px 22px rgba(0,0,0,.16);
+      transition: transform .08s ease, background .15s ease, color .15s ease;
     }
-    .btn:hover,.btn:focus,.btn:active{
-      background: linear-gradient(180deg, #2b6cff, var(--blue));
-      color:#fff;
-      filter: brightness(1.03);
-    }
+    .btn:hover,.btn:active,.btn:focus{ background: linear-gradient(180deg, #0c5cc2, var(--blue2)); color:#fff; }
     .btn:active{ transform: translateY(1px); }
 
-    .choiceRow{ display:flex; gap:10px; flex-wrap:wrap; }
-    .choiceRow .btn{ flex:1 1 160px; }
+    .row2{ display:flex; gap:10px; flex-wrap:wrap; }
+    .row2 > div{ flex:1 1 160px; }
 
-    label{ display:block; margin-top:12px; color: rgba(230,233,239,.92); font-weight:800; font-size: 12.5px; letter-spacing:.2px; }
-    input, select, textarea{
-      width:100%;
-      margin-top:6px;
-      padding: 12px 12px;
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,.12);
-      background: rgba(255,255,255,.08);
-      color: rgba(255,255,255,.92);
-      outline:none;
+    .legal{ margin-top:10px; padding:10px 12px; border-radius:14px; border:1px solid rgba(201,205,211,.35);
+      background: rgba(0,0,0,.10); color: rgba(201,205,211,.86); font-size:12.5px; line-height:1.55;
     }
-    textarea{ min-height: 96px; resize: vertical; }
-    input::placeholder, textarea::placeholder{ color: rgba(255,255,255,.55); }
 
-    .fine{ margin-top: 10px; font-size: 12px; color: rgba(230,233,239,.62); }
-    .hidden{ display:none !important; }
-
-    .footer{
-      margin-top: 14px;
-      padding: 12px 14px;
-      border-radius: 18px;
-      border: 1px solid rgba(255,255,255,.10);
-      background: rgba(255,255,255,.06);
-      color: rgba(230,233,239,.82);
-      font-size: 13px;
-      line-height: 1.6;
-      text-align:center;
+    .footer{ margin-top:14px; padding:12px 14px; border-radius:18px; border:1px solid rgba(201,205,211,.45);
+      background: rgba(255,255,255,.05); text-align:center; color:rgba(201,205,211,.92); font-size:13px; line-height:1.6;
     }
     .footer strong{ color: var(--gray2); }
-
-    .status{
-      margin-top:10px;
-      color: rgba(230,233,239,.88);
-      font-size: 13px;
-      line-height: 1.5;
-    }
+    .hidden{ display:none !important; }
+    .status{ margin-top:10px; color: rgba(227,230,234,.95); font-size: 13px; line-height:1.5; }
   </style>
 </head>
 
@@ -149,289 +61,252 @@
   <div class="wrap">
     <div class="panel">
 
-      <!-- HEADER -->
       <div class="head">
-        <div class="logo">VC</div>
-        <div class="titleblock">
-          <h1>Vaultara Capital</h1>
-          <p>Credit Intake • Business or Personal • Response by Email</p>
+        <div class="mark">V</div>
+        <div class="titles">
+          <h1>Credit Application</h1>
+          <p>Vaultara Capital • Business or Personal Credit Intake</p>
         </div>
       </div>
 
-      <!-- DESCRIPTION (shows BEFORE they choose anything) -->
-      <div class="section" id="introSection">
-        <h2>What this is</h2>
+      <div class="section">
+        <h2>Before You Submit</h2>
         <p>
-          Vaultara Capital collects your information to evaluate credit readiness and next-step options.
-          This page is an intake only — we review and respond by email with guidance and next actions.
+          This intake helps Vaultara understand your situation and your target outcome. Submit full information so we can respond by email faster.
         </p>
-        <div class="fine" style="margin-top:10px;">
-          Disclaimer: Vaultara Capital is not a law firm and does not provide legal advice.
+        <div class="legal">
+          <b>Notice:</b> Vaultara Capital is not a law firm and does not provide legal advice.
         </div>
       </div>
 
-      <!-- CHOOSE TYPE -->
-      <div class="section" id="chooseSection">
-        <h2>Choose credit type</h2>
-        <div class="choiceRow">
-          <button class="btn" type="button" id="btnBusinessCredit">Business Credit</button>
-          <button class="btn" type="button" id="btnPersonalCredit">Personal Credit</button>
-        </div>
-        <div class="fine">
-          Choose one. The form below will switch to match your selection.
-        </div>
-      </div>
+      <div class="section" id="formSection">
+        <h2>Application Form</h2>
 
-      <!-- FORM -->
-      <div class="section hidden" id="formSection">
-        <h2 id="formTitle">Credit Application</h2>
-
-        <!-- Netlify Form (Saved in Netlify) -->
-        <form id="creditForm"
-              name="Vaultara-Credit-Application"
-              method="POST"
-              data-netlify="true"
-              netlify-honeypot="bot-field">
-
+        <form id="creditForm" name="Vaultara-Credit-Application" method="POST" data-netlify="true" netlify-honeypot="bot-field">
           <input type="hidden" name="form-name" value="Vaultara-Credit-Application" />
-          <input type="hidden" name="credit_type" id="creditType" value="" />
-
           <p class="hidden">
             <label>Don’t fill this out: <input name="bot-field" /></label>
           </p>
 
-          <!-- COMMON -->
+          <label>Credit Type (Required)
+            <select name="credit_type" id="creditType" required>
+              <option value="" selected disabled>Select one</option>
+              <option value="business">Business Credit</option>
+              <option value="personal">Personal Credit</option>
+            </select>
+          </label>
+
           <label>Full Name (Required)
             <input name="full_name" type="text" placeholder="Your full name" required />
           </label>
 
-          <label>Email (Required)
-            <input name="email" type="email" placeholder="name@domain.com" required />
-          </label>
+          <div class="row2">
+            <div>
+              <label>Email (Required)
+                <input name="email" type="email" placeholder="name@domain.com" required />
+              </label>
+            </div>
+            <div>
+              <label>Phone (Required)
+                <input name="phone" type="tel" placeholder="(000) 000-0000" required />
+              </label>
+            </div>
+          </div>
 
-          <label>Phone (Required)
-            <input name="phone" type="tel" placeholder="(000) 000-0000" required />
-          </label>
+          <div class="row2">
+            <div>
+              <label>State (Required)
+                <input name="state" type="text" placeholder="State" required />
+              </label>
+            </div>
+            <div>
+              <label>Current Credit Range (Required)
+                <select name="credit_range" required>
+                  <option value="" selected disabled>Select range</option>
+                  <option>Below 580</option>
+                  <option>580–639</option>
+                  <option>640–699</option>
+                  <option>700–739</option>
+                  <option>740+</option>
+                  <option>Not sure</option>
+                </select>
+              </label>
+            </div>
+          </div>
 
-          <label>Address (Required)
-            <input name="address" type="text" placeholder="Street address" required />
-          </label>
-
-          <label>City / State / ZIP (Required)
-            <input name="location" type="text" placeholder="City, State, ZIP" required />
-          </label>
-
-          <!-- BUSINESS CREDIT ONLY -->
+          <!-- BUSINESS CREDIT BLOCK -->
           <div id="businessBlock" class="hidden">
-            <label>Business Legal Name (Required)
-              <input name="business_name" type="text" placeholder="Business legal name" />
+            <label>Business Name (Required)
+              <input name="business_name" id="businessName" type="text" placeholder="Registered business name" />
             </label>
 
-            <label>Business Type (Required)
-              <select name="business_type">
-                <option value="" selected disabled>Select</option>
-                <option>LLC</option>
-                <option>Corporation</option>
-                <option>Sole Proprietor</option>
-                <option>Partnership</option>
-                <option>Other</option>
-              </select>
-            </label>
+            <div class="row2">
+              <div>
+                <label>Years in Business
+                  <select name="years_in_business">
+                    <option value="" selected disabled>Select</option>
+                    <option>Not started yet</option>
+                    <option>0–6 months</option>
+                    <option>6–12 months</option>
+                    <option>1–2 years</option>
+                    <option>2–5 years</option>
+                    <option>5+ years</option>
+                  </select>
+                </label>
+              </div>
+              <div>
+                <label>Business Credit Goal (Required)
+                  <select name="business_credit_goal">
+                    <option value="" selected disabled>Select</option>
+                    <option>Vendor Accounts / Starter Tradelines</option>
+                    <option>Business Credit Cards</option>
+                    <option>Lines of Credit</option>
+                    <option>Funding Readiness</option>
+                    <option>All of the Above</option>
+                  </select>
+                </label>
+              </div>
+            </div>
 
-            <label>Time in Business (Required)
-              <select name="time_in_business">
+            <label>Do you currently have business tradelines?
+              <select name="has_tradelines">
                 <option value="" selected disabled>Select</option>
-                <option>Not formed yet</option>
-                <option>0–6 months</option>
-                <option>6–12 months</option>
-                <option>1–2 years</option>
-                <option>2–5 years</option>
-                <option>5+ years</option>
-              </select>
-            </label>
-
-            <label>Do you have an EIN?
-              <select name="ein_status">
-                <option value="" selected disabled>Select</option>
-                <option>Yes</option>
                 <option>No</option>
+                <option>Yes — 1 to 3</option>
+                <option>Yes — 4 to 7</option>
+                <option>Yes — 8+</option>
+                <option>Not sure</option>
               </select>
             </label>
 
-            <label>Current Business Credit Status
-              <select name="business_credit_status">
+            <label>Obstacles (Select the closest)
+              <select name="business_obstacle">
                 <option value="" selected disabled>Select</option>
-                <option>No established business credit</option>
-                <option>Some trade lines / starter credit</option>
-                <option>Established credit profile</option>
-                <option>Unsure</option>
-              </select>
-            </label>
-
-            <label>What business credit are you seeking?
-              <select name="business_credit_goal">
-                <option value="" selected disabled>Select</option>
-                <option>Vendor / Net-30</option>
-                <option>Business credit cards</option>
-                <option>Lines of credit</option>
-                <option>Equipment / vehicle credit</option>
+                <option>Business is new / not structured</option>
+                <option>No EIN / no business bank</option>
+                <option>Personal credit is holding it back</option>
+                <option>Negative items / collections</option>
                 <option>Not sure</option>
               </select>
             </label>
           </div>
 
-          <!-- PERSONAL CREDIT ONLY -->
+          <!-- PERSONAL CREDIT BLOCK -->
           <div id="personalBlock" class="hidden">
-            <label>Primary Goal
-              <select name="personal_credit_goal">
+            <label>Primary Goal (Required)
+              <select name="personal_goal">
                 <option value="" selected disabled>Select</option>
-                <option>Improve score / profile</option>
-                <option>Prepare for financing</option>
-                <option>Resolve errors / disputes</option>
+                <option>Improve score / remove obstacles</option>
+                <option>Prepare for home approval</option>
+                <option>Prepare for auto approval</option>
+                <option>Prepare for funding readiness</option>
+              </select>
+            </label>
+
+            <label>Late Payments (Last 24 Months)?
+              <select name="late_payments">
+                <option value="" selected disabled>Select</option>
+                <option>No</option>
+                <option>Yes</option>
                 <option>Not sure</option>
               </select>
             </label>
 
-            <label>Current Credit Situation
-              <select name="personal_credit_status">
+            <label>Collections / Charge-offs?
+              <select name="collections">
                 <option value="" selected disabled>Select</option>
-                <option>Excellent</option>
-                <option>Good</option>
-                <option>Fair</option>
-                <option>Poor</option>
+                <option>No</option>
+                <option>Yes</option>
                 <option>Not sure</option>
               </select>
             </label>
 
-            <label>Any recent negative items? (Optional)
-              <select name="negative_items">
+            <label>Bankruptcy History?
+              <select name="bankruptcy">
                 <option value="" selected disabled>Select</option>
-                <option>Late payments</option>
-                <option>Collections</option>
-                <option>Charge-offs</option>
-                <option>Bankruptcy</option>
-                <option>None / Unsure</option>
+                <option>No</option>
+                <option>Yes</option>
+                <option>Not sure</option>
               </select>
             </label>
           </div>
 
-          <!-- MORE DETAILS -->
-          <label>Tell us what you need (Required)
-            <textarea name="details" placeholder="Explain your situation and what you want to accomplish" required></textarea>
+          <label>Describe what you need (Optional)
+            <textarea name="notes" placeholder="Explain your situation and what you want to accomplish."></textarea>
           </label>
 
-          <label style="margin-top:14px; font-weight:700; color: rgba(230,233,239,.86);">
+          <label style="margin-top:14px; font-weight:800; color: rgba(227,230,234,.95);">
             <input type="checkbox" name="consent" required style="width:auto; margin-right:8px;" />
-            I confirm the information is accurate and I agree to be contacted by email.
+            I confirm the information provided is accurate and I agree to be contacted by email.
           </label>
 
           <button class="btn" type="submit">SUBMIT APPLICATION</button>
-
           <div class="status" id="statusText"></div>
-          <div class="fine">
-            Vaultara Capital Email: contact@vaultaracapital.com • Main (800): (800) 827-9016
-          </div>
         </form>
       </div>
 
-      <!-- THANK YOU (SIMPLE ONLY) -->
+      <!-- THANK YOU (simple only) -->
       <div class="section hidden" id="thanksSection">
-        <h2 style="font-size:18px;">Thank You</h2>
+        <h2>Thank You</h2>
         <p>
-          We received your application. Vaultara Capital will review it and contact you by email as soon as possible.
+          We received your application. Vaultara Capital will review it and contact you by email shortly.
         </p>
       </div>
 
       <div class="footer">
-        <div><strong>Main (800):</strong> (800) 827-9016</div>
-        <div><strong>Email:</strong> contact@vaultaracapital.com</div>
-        <div class="fine">© Vaultara Capital. All rights reserved.</div>
+        <div><strong>TitanCore Main (800):</strong> (800) 827-9016</div>
+        <div><strong>Vaultara Email:</strong> contact@vaultaracapital.com</div>
+        <div style="opacity:.85;margin-top:6px;">© Vaultara Capital. All rights reserved.</div>
       </div>
 
     </div>
   </div>
 
   <script>
-    // ===== helpers =====
-    function show(el){ el.classList.remove("hidden"); }
-    function hide(el){ el.classList.add("hidden"); }
+    (function(){
+      const typeSel = document.getElementById("creditType");
+      const businessBlock = document.getElementById("businessBlock");
+      const personalBlock = document.getElementById("personalBlock");
+      const businessName = document.getElementById("businessName");
 
-    function encodeForm(form){
-      const data = new FormData(form);
-      const params = new URLSearchParams();
-      for (const pair of data.entries()) params.append(pair[0], pair[1]);
-      return params.toString();
-    }
-
-    function showThankYouOnly(){
-      hide(document.getElementById("introSection"));
-      hide(document.getElementById("chooseSection"));
-      hide(document.getElementById("formSection"));
-      show(document.getElementById("thanksSection"));
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    // ===== page logic =====
-    const btnBusinessCredit = document.getElementById("btnBusinessCredit");
-    const btnPersonalCredit = document.getElementById("btnPersonalCredit");
-
-    const formSection = document.getElementById("formSection");
-    const businessBlock = document.getElementById("businessBlock");
-    const personalBlock = document.getElementById("personalBlock");
-
-    const formTitle = document.getElementById("formTitle");
-    const creditType = document.getElementById("creditType");
-
-    const form = document.getElementById("creditForm");
-    const status = document.getElementById("statusText");
-
-    function setType(type){
-      show(formSection);
-      if(type === "Business Credit"){
-        creditType.value = "Business Credit";
-        formTitle.textContent = "Business Credit Application";
-        show(businessBlock); hide(personalBlock);
-
-        // enforce required on business-only fields
-        businessBlock.querySelectorAll("input,select,textarea").forEach(i => i.required = true);
-        personalBlock.querySelectorAll("input,select,textarea").forEach(i => i.required = false);
-      }else{
-        creditType.value = "Personal Credit";
-        formTitle.textContent = "Personal Credit Application";
-        show(personalBlock); hide(businessBlock);
-
-        personalBlock.querySelectorAll("input,select,textarea").forEach(i => i.required = true);
-        businessBlock.querySelectorAll("input,select,textarea").forEach(i => i.required = false);
-
-        // personal block has some selects that are optional, keep them optional:
-        const optional = ["negative_items"];
-        optional.forEach(name=>{
-          const el = personalBlock.querySelector(`[name="${name}"]`);
-          if(el) el.required = false;
-        });
+      function syncBlocks(){
+        const v = typeSel.value;
+        businessBlock.classList.toggle("hidden", v !== "business");
+        personalBlock.classList.toggle("hidden", v !== "personal");
+        businessName.required = (v === "business");
       }
-      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" });
-    }
+      typeSel.addEventListener("change", syncBlocks);
 
-    btnBusinessCredit.addEventListener("click", ()=> setType("Business Credit"));
-    btnPersonalCredit.addEventListener("click", ()=> setType("Personal Credit"));
+      const form = document.getElementById("creditForm");
+      const status = document.getElementById("statusText");
+      const formSection = document.getElementById("formSection");
+      const thanksSection = document.getElementById("thanksSection");
 
-    // ===== Netlify submit + simple thank you =====
-    form.addEventListener("submit", async function(e){
-      e.preventDefault();
-      status.textContent = "Submitting…";
+      function encode(data){
+        const params = new URLSearchParams();
+        for (const pair of data.entries()) params.append(pair[0], pair[1]);
+        return params.toString();
+      }
 
-      try{
-        await fetch("/", {
+      form.addEventListener("submit", function(e){
+        e.preventDefault();
+        status.textContent = "Submitting…";
+        const formData = new FormData(form);
+
+        fetch("/", {
           method: "POST",
           headers: { "Content-Type": "application/x-www-form-urlencoded" },
-          body: encodeForm(form)
-        });
-        showThankYouOnly();
-      }catch(err){
-        status.textContent = "Submission failed. Please try again.";
-      }
-    });
+          body: encode(formData)
+        })
+        .then(() => {
+          formSection.classList.add("hidden");
+          thanksSection.classList.remove("hidden");
+        })
+        .catch(() => status.textContent = "Submission failed. Please try again.");
+      });
+
+      syncBlocks();
+    })();
   </script>
 </body>
 </html>
