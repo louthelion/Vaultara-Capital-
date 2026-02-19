@@ -237,3 +237,41 @@ input::placeholder, textarea::placeholder{ color: rgba(230,233,239,.55); }
   .titleblock h1{font-size:20px}
   .logo{width:50px;height:50px}
 }
+.thanksScreen{
+  position: fixed;
+  inset: 0;
+  background: var(--blue);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 18px;
+  z-index: 9999;
+}
+
+.thanksBox{
+  width: 100%;
+  max-width: 520px;
+  border: 1px solid rgba(201,205,211,.55);
+  border-radius: 22px;
+  padding: 22px 18px;
+  background: rgba(255,255,255,.05);
+  box-shadow: 0 18px 40px rgba(0,0,0,.18);
+  text-align: center;
+}
+
+.thanksTitle{
+  font-weight: 900;
+  letter-spacing: .6px;
+  font-size: 28px;
+  color: var(--gray2);
+  text-transform: uppercase;
+  margin-bottom: 12px;
+}
+
+.thanksMsg{
+  font-size: 14px;
+  line-height: 1.6;
+  color: rgba(201,205,211,.92);
+}
+
+.hidden{ display:none !important; }
