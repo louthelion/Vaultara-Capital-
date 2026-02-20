@@ -4,178 +4,280 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Vaultara Capital — Business Formation Intake</title>
+  <meta name="description" content="Business formation intake for Vaultara Capital." />
+
   <style>
     :root{
-      --blue:#0f4fa8;
-      --blue2:#0b3f87;
-      --silver:#d7dbe0;
-      --silver2:rgba(215,219,224,.88);
-      --card:rgba(255,255,255,.08);
-      --border:rgba(215,219,224,.45);
-      --shadow:0 18px 55px rgba(0,0,0,.25);
-      --field:rgba(255,255,255,.10);
+      --bgBlue:#0b3a7a;
+      --bgBlue2:#072a58;
+      --gray:#c9cdd6;
+      --gray2:#aeb3bf;
+      --btnText:#0b3a7a;
     }
     *{box-sizing:border-box}
-    body{margin:0;font-family:Arial,Helvetica,sans-serif;background:var(--blue);color:var(--silver)}
-    .wrap{max-width:560px;margin:0 auto;padding:22px 14px 40px}
-    .panel{background:linear-gradient(180deg, rgba(255,255,255,.10), rgba(255,255,255,.06));border:1px solid var(--border);border-radius:26px;padding:18px 16px;box-shadow:var(--shadow)}
-    .head{display:flex;align-items:center;gap:12px;margin-bottom:10px}
-    .logo{width:56px;height:56px;border-radius:18px;background:linear-gradient(180deg, rgba(255,255,255,.14), rgba(255,255,255,.06));border:1px solid var(--border);display:flex;align-items:center;justify-content:center;font-weight:900;letter-spacing:.5px;color:var(--silver)}
-    .title h1{margin:0;font-size:24px;font-weight:900;letter-spacing:.6px;text-transform:uppercase}
-    .title p{margin:6px 0 0;color:var(--silver2);font-size:13px;line-height:1.35}
-    .section{margin-top:14px;padding:14px;border-radius:20px;border:1px solid var(--border);background:var(--card)}
-    .section h2{margin:0 0 8px;font-size:16px;font-weight:900;letter-spacing:.4px;text-transform:uppercase}
-    .section p{margin:0;color:var(--silver2);font-size:13.5px;line-height:1.6}
-    .notice{margin-top:10px;font-size:12.5px;color:rgba(215,219,224,.75)}
-    .btn{display:block;width:100%;margin-top:12px;padding:14px 14px;border-radius:18px;border:1px solid rgba(255,255,255,.20);background:rgba(215,219,224,.92);color:var(--blue);text-decoration:none;font-weight:900;letter-spacing:.4px;text-transform:uppercase;text-align:center;box-shadow:0 10px 22px rgba(0,0,0,.18);-webkit-tap-highlight-color:transparent;transition:transform .08s ease, filter .12s ease}
-    .btn:active,.btn:focus{background:var(--blue2);color:#fff;outline:none;transform:translateY(1px);filter:brightness(1.05)}
-    .btn.secondary{background:rgba(215,219,224,.82)}
-    .btnrow{display:flex;gap:10px}
-    .btnrow .btn{margin-top:0}
-    form{margin-top:14px}
-    label{display:block;margin:12px 0 6px;font-weight:800;letter-spacing:.2px}
-    input, select, textarea{width:100%;padding:12px 12px;border-radius:16px;border:1px solid rgba(215,219,224,.35);background:var(--field);color:var(--silver);outline:none;font-size:14px}
-    textarea{min-height:100px;resize:vertical}
-    .grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-    @media(max-width:520px){.grid{grid-template-columns:1fr}}
-    .footer{margin-top:14px;padding:12px 14px;border-radius:18px;border:1px solid var(--border);background:rgba(255,255,255,.06);color:rgba(215,219,224,.85);text-align:center;font-size:13px;line-height:1.55}
-    .footer strong{color:#fff}
-    .fine{margin-top:8px;font-size:12px;color:rgba(215,219,224,.65)}
-    a{color:inherit}
+    body{ margin:0; font-family: Arial, Helvetica, sans-serif; background:var(--bgBlue); color:var(--gray); }
+    .wrap{ max-width: 680px; margin:0 auto; padding: 22px 14px 40px; }
+    .panel{
+      background: radial-gradient(120% 120% at 10% 10%, #164a92 0%, var(--bgBlue2) 55%, #041a38 100%);
+      border-radius: 26px;
+      padding: 18px 16px 18px;
+      border: 1px solid rgba(201,205,214,.25);
+      box-shadow: 0 12px 40px rgba(0,0,0,.35);
+      position:relative; overflow:hidden;
+    }
+    .head{ display:flex; align-items:center; gap:12px; margin-bottom: 10px; padding: 6px 4px 2px; }
+    .logo{
+      width:54px;height:54px;border-radius:16px;
+      background: linear-gradient(180deg, rgba(201,205,214,.22), rgba(0,0,0,.25));
+      border: 1px solid rgba(201,205,214,.35);
+      display:flex;align-items:center;justify-content:center;
+      color: var(--gray); font-weight: 900; letter-spacing:.6px;
+      user-select:none;
+    }
+    .titleblock h1{ margin:0; font-size: 20px; line-height:1.1; color: var(--gray); font-weight: 900; letter-spacing:.6px; text-transform: uppercase;}
+    .titleblock p{ margin:6px 0 0; color: rgba(255,255,255,.78); font-size: 13px; line-height: 1.35; }
 
-    #vcThankYou{position:fixed;inset:0;background:var(--blue);z-index:99999;display:none;align-items:center;justify-content:center;padding:18px}
-    .vcThanksBox{width:100%;max-width:520px;background:rgba(255,255,255,.08);border:1px solid rgba(215,219,224,.55);border-radius:22px;padding:26px 18px;text-align:center;box-shadow:0 18px 50px rgba(0,0,0,.25)}
-    .vcThanksTitle{font-size:32px;font-weight:900;letter-spacing:1px;text-transform:uppercase;color:var(--silver);margin-bottom:14px}
-    .vcThanksMsg{font-size:14px;line-height:1.65;color:rgba(215,219,224,.95)}
+    .section{
+      margin-top: 14px; padding: 14px; border-radius: 18px;
+      border: 1px solid rgba(201,205,214,.22);
+      background: rgba(0,0,0,.22);
+    }
+    .section h2{ margin:0 0 8px; font-size: 15px; letter-spacing:.4px; text-transform: uppercase; color: var(--gray); font-weight: 900; }
+    .section p{ margin:0; color: rgba(255,255,255,.82); font-size: 13.5px; line-height: 1.6; }
+
+    .btn{
+      display:block; width:100%;
+      border-radius: 18px; padding: 14px 14px; margin-top: 14px;
+      border: 1px solid rgba(201,205,214,.35);
+      font-weight: 900; letter-spacing: .3px; text-align:center;
+      background: linear-gradient(180deg, var(--gray), var(--gray2));
+      color: var(--btnText);
+      box-shadow: 0 8px 18px rgba(0,0,0,.25);
+      transition: transform .08s ease, filter .15s ease, background .15s ease, color .15s ease;
+      user-select:none; -webkit-tap-highlight-color: transparent;
+      cursor:pointer;
+    }
+    .btn:hover,.btn:active,.btn:focus{ background: linear-gradient(180deg, #1c63c7, #0b3a7a); color:#fff; filter: brightness(1.03); }
+    .btn:active{ transform: translateY(1px); }
+
+    label{ display:block; margin-top:12px; color: rgba(255,255,255,.90); font-weight:800; font-size: 12.5px; letter-spacing:.2px; }
+    input, select, textarea{
+      width:100%; margin-top:6px; padding: 12px 12px;
+      border-radius: 14px; border: 1px solid rgba(201,205,214,.25);
+      background: rgba(255,255,255,.08);
+      color: rgba(255,255,255,.92);
+      outline:none;
+    }
+    textarea{ min-height: 96px; resize: vertical; }
+    input::placeholder, textarea::placeholder{ color: rgba(255,255,255,.55); }
+    .row{ display:flex; gap:10px; flex-wrap:wrap; }
+    .row > div{ flex: 1 1 180px; }
+
+    .fine{ margin-top: 10px; font-size: 12px; color: rgba(255,255,255,.60); line-height:1.5; }
+    .hidden{ display:none !important; }
+
+    .footer{
+      margin-top: 14px; padding: 12px 14px; border-radius: 18px;
+      border: 1px solid rgba(201,205,214,.22);
+      background: rgba(0,0,0,.22);
+      color: rgba(255,255,255,.82);
+      font-size: 13px; line-height: 1.6; text-align:center;
+    }
+    .footer strong{ color:#fff; }
+
+    .bigThanks{
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      color: var(--gray);
+      margin: 0 0 8px;
+      text-align:center;
+    }
+    .thanksMsg{ text-align:center; color: rgba(255,255,255,.86); font-size: 14px; line-height:1.6; margin:0; }
   </style>
 </head>
+
 <body>
   <div class="wrap">
     <div class="panel">
+
       <div class="head">
         <div class="logo">VC</div>
-        <div class="title">
+        <div class="titleblock">
           <h1>Business Formation</h1>
-          <p>Vaultara Capital • Formation Intake (Administrative Support)</p>
+          <p>Vaultara Capital • Formation Intake</p>
         </div>
       </div>
 
-      <div class="section">
+      <div class="section" id="introSection">
         <h2>Before You Submit</h2>
         <p>
-          This intake helps Vaultara understand what you want to build and what setup you need
-          (entity type, EIN readiness, domain, banking readiness).
+          This intake helps us understand what you are building and what support you need for formation and setup.
+          After review, we respond by email with next steps.
         </p>
-        <div class="notice">
-          Notice: Vaultara Capital is not a law firm and does not provide legal advice.
-          Formation support is administrative guidance and workflow support only.
+        <div class="fine">
+          Important: Vaultara Capital is not a law firm and does not provide legal advice. For legal matters, consult a licensed attorney.
         </div>
       </div>
 
-      <form id="vaultaraFormationForm" name="vaultara-formation" method="POST" data-netlify="true">
-        <input type="hidden" name="form-name" value="vaultara-formation" />
+      <div class="section" id="formSection">
+        <h2>Formation Intake Form</h2>
 
-        <div class="section" style="margin-top:14px">
-          <h2>Formation Application</h2>
+        <form id="formationForm" name="Vaultara-Business-Formation" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="Vaultara-Business-Formation" />
+          <p class="hidden"><label>Don’t fill this out: <input name="bot-field" /></label></p>
 
-          <label>Full Name (Required)</label>
-          <input name="full_name" required placeholder="Your full name" />
-
-          <label>Email (Required)</label>
-          <input name="email" type="email" required placeholder="you@email.com" />
-
-          <label>Phone (Required)</label>
-          <input name="phone" required placeholder="(xxx) xxx-xxxx" />
-
-          <label>State of Formation</label>
-          <input name="state" placeholder="State" />
-
-          <label>Entity Type Needed</label>
-          <select name="entity_type">
-            <option value="">Select</option>
-            <option>LLC</option>
-            <option>C-Corporation</option>
-            <option>S-Corporation</option>
-            <option>Nonprofit</option>
-            <option>Not sure</option>
-          </select>
-
-          <label>Desired Business Name</label>
-          <input name="desired_business_name" placeholder="Name you want to register" />
-
-          <label>Do you already have an EIN?</label>
-          <select name="has_ein">
-            <option value="">Select</option>
-            <option>Yes</option>
-            <option>No</option>
-            <option>In progress</option>
-          </select>
-
-          <label>Do you need a domain/website?</label>
-          <select name="need_website">
-            <option value="">Select</option>
-            <option>Yes</option>
-            <option>No</option>
-            <option>Not sure</option>
-          </select>
-
-          <label>Do you need a business bank account setup guidance?</label>
-          <select name="banking_guidance">
-            <option value="">Select</option>
-            <option>Yes</option>
-            <option>No</option>
-            <option>Not sure</option>
-          </select>
-
-          <label>Business Description (What will the business do?)</label>
-          <textarea name="business_description" placeholder="Explain your business in detail."></textarea>
-
-          <label>Anything else we should know?</label>
-          <textarea name="additional_notes" placeholder="Any extra details that help us prepare your formation workflow."></textarea>
-
-          <div class="btnrow" style="margin-top:12px">
-            <button class="btn" type="submit">Submit Formation Intake</button>
-            <a class="btn secondary" href="index.html">Cancel</a>
+          <div class="row">
+            <div>
+              <label>Full Name (Required)
+                <input name="full_name" type="text" required placeholder="Your full name" />
+              </label>
+            </div>
+            <div>
+              <label>Email (Required)
+                <input name="email" type="email" required placeholder="name@domain.com" />
+              </label>
+            </div>
           </div>
+
+          <div class="row">
+            <div>
+              <label>Phone (Required)
+                <input name="phone" type="tel" required placeholder="(000) 000-0000" />
+              </label>
+            </div>
+            <div>
+              <label>State to Form In (Required)
+                <input name="state" type="text" required placeholder="State" />
+              </label>
+            </div>
+          </div>
+
+          <label>Business Name Idea (Required)
+            <input name="business_name" type="text" required placeholder="Proposed business name" />
+          </label>
+
+          <label>Industry / Business Type (Required)
+            <input name="industry" type="text" required placeholder="What does the business do?" />
+          </label>
+
+          <label>Preferred Entity Type (Required)
+            <select name="entity_type" required>
+              <option value="" selected disabled>Select one</option>
+              <option>LLC</option>
+              <option>C-Corp</option>
+              <option>S-Corp</option>
+              <option>Not sure (Need guidance)</option>
+            </select>
+          </label>
+
+          <div class="row">
+            <div>
+              <label>Owners / Partners? (Required)
+                <select name="owners" required>
+                  <option value="" selected disabled>Select one</option>
+                  <option>1 Owner</option>
+                  <option>2 Owners</option>
+                  <option>3+ Owners</option>
+                </select>
+              </label>
+            </div>
+            <div>
+              <label>Do you need a domain name? (Required)
+                <select name="domain_help" required>
+                  <option value="" selected disabled>Select one</option>
+                  <option>Yes</option>
+                  <option>No</option>
+                  <option>Not sure</option>
+                </select>
+              </label>
+            </div>
+          </div>
+
+          <label>Business Address Plan (Required)
+            <select name="address_plan" required>
+              <option value="" selected disabled>Select one</option>
+              <option>Home Address</option>
+              <option>Commercial Address</option>
+              <option>Virtual/Registered Address</option>
+              <option>Not sure</option>
+            </select>
+          </label>
+
+          <label>Timeline (Required)
+            <select name="timeline" required>
+              <option value="" selected disabled>Select one</option>
+              <option>Immediately (0–7 days)</option>
+              <option>Within 2–4 weeks</option>
+              <option>Within 1–3 months</option>
+              <option>Not sure</option>
+            </select>
+          </label>
+
+          <label>Details (Required)
+            <textarea name="details" required placeholder="Tell us what you need help with (formation steps, setup, compliance basics, domain)."></textarea>
+          </label>
+
+          <label style="margin-top:14px; font-weight:700; color: rgba(255,255,255,.82);">
+            <input type="checkbox" name="consent" required style="width:auto; margin-right:8px;" />
+            I confirm the information is accurate and I agree to be contacted by email.
+          </label>
+
+          <button class="btn" type="submit">SUBMIT</button>
+
+          <div class="fine">
+            Central Line: (800) 827-9016 • Email: contact@vaultaracapital.com
+          </div>
+        </form>
+      </div>
+
+      <!-- THANK YOU -->
+      <div class="section hidden" id="thanksSection">
+        <div class="bigThanks">THANK YOU</div>
+        <p class="thanksMsg">
+          We received your application. Our team will review it and contact you by email as soon as possible.
+        </p>
+        <div class="fine" style="text-align:center;margin-top:10px;">
+          Vaultara Capital • (800) 827-9016 • contact@vaultaracapital.com
         </div>
-      </form>
+      </div>
 
       <div class="footer">
-        <div><strong>Phone (Main):</strong> <a href="tel:18008279016">(800) 827-9016</a></div>
-        <div><strong>Email:</strong> <a href="mailto:contact@vaultaracapital.com">contact@vaultaracapital.com</a></div>
-        <div class="fine">© Vaultara Capital. All rights reserved.</div>
+        <div><strong>Central Line:</strong> (800) 827-9016</div>
+        <div><strong>Email:</strong> contact@vaultaracapital.com</div>
       </div>
-    </div>
-  </div>
 
-  <div id="vcThankYou">
-    <div class="vcThanksBox">
-      <div class="vcThanksTitle">THANK YOU</div>
-      <div class="vcThanksMsg">
-        Thank you for your interest in Vaultara Capital.<br><br>
-        We received your application. Our team will review it and contact you by email as soon as possible.
-        If we need more information, we will email you. After review, we will send you the available packages.
-      </div>
     </div>
   </div>
 
   <script>
-    function showThankYouOnly(){
-      document.getElementById("vcThankYou").style.display = "flex";
-      window.scrollTo(0,0);
-    }
+    (function(){
+      const intro = document.getElementById("introSection");
+      const formSection = document.getElementById("formSection");
+      const thanks = document.getElementById("thanksSection");
+      const form = document.getElementById("formationForm");
 
-    const form = document.getElementById("vaultaraFormationForm");
-    form.addEventListener("submit", async (e) => {
-      e.preventDefault();
-      try{
+      function encode(form){
         const data = new FormData(form);
-        await fetch("/", { method:"POST", body:data });
-        showThankYouOnly();
-      }catch(err){
-        showThankYouOnly();
+        const params = new URLSearchParams();
+        for (const pair of data.entries()) params.append(pair[0], pair[1]);
+        return params.toString();
       }
-    });
+
+      form.addEventListener("submit", function(e){
+        e.preventDefault();
+        fetch("/", {
+          method: "POST",
+          headers: { "Content-Type":"application/x-www-form-urlencoded" },
+          body: encode(form)
+        }).then(() => {
+          intro.classList.add("hidden");
+          formSection.classList.add("hidden");
+          thanks.classList.remove("hidden");
+        }).catch(() => alert("Submission failed. Please try again."));
+      });
+    })();
   </script>
 </body>
 </html>
