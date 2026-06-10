@@ -1,43 +1,33 @@
-const nodemailer = require("nodemailer");
-const querystring = require("querystring");
+const menuButton = document.querySelector('.menu-toggle');
+const mobileNav = document.querySelector('#mobile-nav');
 
-exports.handler = async (event) => {
-  try {
-    const data = querystring.parse(event.body || "");
-    const to = data.email;
-    const name = data.full_name || "there";
+function closeMenu() {
+  if (!menuButton || !mobileNav) return;
+  menuButton.setAttribute('aria-expanded', 'false');
+  menuButton.setAttribute('aria-label', 'Open navigation');
+  mobileNav.hidden = true;
+  document.body.classList.remove('nav-open');
+}
 
-    if (!to) return { statusCode: 400, body: "Missing email" };
+if (menuButton && mobileNav) {
+  menuButton.addEventListener('click', () => {
+    const willOpen = menuButton.getAttribute('aria-expanded') !== 'true';
+    menuButton.setAttribute('aria-expanded', String(willOpen));
+    menuButton.setAttribute('aria-label', willOpen ? 'Close navigation' : 'Open navigation');
+    mobileNav.hidden = !willOpen;
+    document.body.classList.toggle('nav-open', willOpen);
+  });
 
-    const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,      // mail.privateemail.com
-      port: Number(process.env.SMTP_PORT || 587),
-      secure: false,
-      auth: {
-        user: process.env.SMTP_USER,    // contact@vaultaracapital.com
-        pass: process.env.SMTP_PASS
-      }
-    });
+  mobileNav.querySelectorAll('a').forEach((link) => link.addEventListener('click', closeMenu));
 
-    await transporter.sendMail({
-      from: `Vaultara Capital <${process.env.SMTP_USER}>`,
-      to,
-      subject: "Application Received – Vaultara Capital",
-      text: `Hello ${name},
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 980) closeMenu();
+  });
 
-We received your application. Vaultara Capital will review it and contact you by email as soon as possible.
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape') closeMenu();
+  });
+}
 
-Vaultara Capital
-(800) 827-9016
-contact@vaultaracapital.com`
-    });
-
-    return {
-      statusCode: 302,
-      headers: { Location: "/#apply" },
-      body: ""
-    };
-  } catch (e) {
-    return { statusCode: 500, body: "Email failed: " + e.message };
-  }
-};
+const year = document.querySelector('#year');
+if (year) year.textContent = new Date().getFullYear();
