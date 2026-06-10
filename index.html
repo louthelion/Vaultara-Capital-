@@ -552,22 +552,198 @@
       font-weight: 900;
     }
 
-    .application-layout {
+    .private-intake {
+      position: relative;
+      overflow: hidden;
+      border: 1px solid var(--gray-border);
+      border-radius: 30px;
+      background:
+        radial-gradient(circle at 88% 12%, rgba(22, 113, 217, 0.26), transparent 34%),
+        linear-gradient(135deg, rgba(8, 43, 85, 0.96), rgba(3, 20, 38, 0.96));
+      box-shadow: 0 28px 70px var(--shadow);
+      padding: clamp(34px, 6vw, 72px);
+    }
+
+    .private-intake::after {
+      content: "VC";
+      position: absolute;
+      right: -24px;
+      bottom: -80px;
+      color: rgba(199, 211, 223, 0.035);
+      font-family: Georgia, serif;
+      font-size: clamp(180px, 28vw, 360px);
+      font-weight: 900;
+      line-height: 1;
+      pointer-events: none;
+    }
+
+    .intake-intro {
+      position: relative;
+      z-index: 1;
+      max-width: 760px;
+    }
+
+    .intake-intro h2 {
+      margin-bottom: 18px;
+      color: var(--gray-main);
+      font-family: Georgia, serif;
+      font-size: clamp(38px, 5vw, 62px);
+      line-height: 1.02;
+    }
+
+    .intake-intro > p {
+      color: var(--gray-soft);
+      font-size: 18px;
+    }
+
+    .intake-steps {
+      position: relative;
+      z-index: 1;
       display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 24px;
-      align-items: stretch;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px;
+      margin: 38px 0 34px;
+    }
+
+    .intake-step {
+      padding: 25px;
+      border: 1px solid rgba(199, 211, 223, 0.22);
+      border-radius: 20px;
+      background: rgba(3, 20, 38, 0.56);
+      backdrop-filter: blur(8px);
+    }
+
+    .intake-step-number {
+      display: inline-block;
+      margin-bottom: 22px;
+      color: var(--gray-soft);
+      font-size: 13px;
+      font-weight: 900;
+      letter-spacing: 3px;
+    }
+
+    .intake-step h3 {
+      margin-bottom: 8px;
+      color: var(--gray-main);
+      font-family: Georgia, serif;
+      font-size: 22px;
+    }
+
+    .intake-step p {
+      color: var(--gray-soft);
+      font-size: 15px;
+    }
+
+    .intake-cta {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .intake-assurance {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      color: var(--gray-soft);
+      font-size: 14px;
+    }
+
+    .intake-assurance::before {
+      content: "✓";
+      display: grid;
+      width: 24px;
+      height: 24px;
+      place-items: center;
+      border: 1px solid var(--gray-border);
+      border-radius: 50%;
+      color: var(--gray-main);
+      font-weight: 900;
+    }
+
+    .intake-modal[hidden] {
+      display: none;
+    }
+
+    .intake-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1000;
+      display: grid;
+      place-items: center;
+      padding: 24px;
+    }
+
+    .modal-backdrop {
+      position: absolute;
+      inset: 0;
+      border: 0;
+      background: rgba(1, 10, 20, 0.86);
+      backdrop-filter: blur(12px);
+      cursor: pointer;
+    }
+
+    .modal-dialog {
+      position: relative;
+      z-index: 1;
+      width: min(820px, 100%);
+      max-height: calc(100vh - 48px);
+      overflow-y: auto;
+      border: 1px solid var(--gray-border);
+      border-radius: 26px;
+      background: linear-gradient(145deg, #082b55, #031426 72%);
+      box-shadow: 0 40px 100px rgba(0, 0, 0, 0.65);
     }
 
     .form-panel {
-      padding: 34px;
+      padding: clamp(28px, 5vw, 48px);
+    }
+
+    .modal-header {
+      padding-right: 48px;
+    }
+
+    .modal-header h2 {
+      margin-bottom: 10px;
+      color: var(--gray-main);
+      font-family: Georgia, serif;
+      font-size: clamp(34px, 5vw, 48px);
+      line-height: 1.05;
+    }
+
+    .modal-header p {
+      color: var(--gray-soft);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 20px;
+      right: 20px;
+      z-index: 2;
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--gray-border);
+      border-radius: 50%;
+      background: rgba(3, 20, 38, 0.82);
+      color: var(--gray-main);
+      font-size: 25px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .modal-close:hover,
+    .modal-close:focus-visible {
+      border-color: var(--blue-bright);
+      background: var(--blue-soft);
     }
 
     .form-grid {
       display: grid;
       grid-template-columns: 1fr 1fr;
       gap: 14px;
-      margin-top: 22px;
+      margin-top: 28px;
     }
 
     .form-field.full-width {
@@ -595,8 +771,15 @@
       outline: none;
     }
 
+    input:focus,
+    select:focus,
+    textarea:focus {
+      border-color: var(--blue-bright);
+      box-shadow: 0 0 0 3px rgba(22, 113, 217, 0.18);
+    }
+
     textarea {
-      min-height: 140px;
+      min-height: 130px;
       resize: vertical;
     }
 
@@ -609,34 +792,8 @@
       grid-column: 1 / -1;
     }
 
-    .application-picture {
-      min-height: 610px;
-      border: 1px solid var(--gray-border);
-      border-radius: 24px;
-      background:
-        linear-gradient(rgba(6, 31, 63, 0.08), rgba(6, 31, 63, 0.82)),
-        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=80");
-      background-size: cover;
-      background-position: center;
-      display: flex;
-      align-items: flex-end;
-      padding: 28px;
-      box-shadow: 0 24px 50px var(--shadow);
-    }
-
-    .secure-box {
-      width: 100%;
-      padding: 24px;
-      border-radius: 20px;
-      border: 1px solid var(--gray-border);
-      background: rgba(3, 20, 38, 0.82);
-    }
-
-    .secure-box h3 {
-      color: var(--gray-main);
-      font-family: Georgia, serif;
-      font-size: 28px;
-      margin-bottom: 8px;
+    body.modal-open {
+      overflow: hidden;
     }
 
     .contact-grid {
@@ -747,7 +904,6 @@
 
       .hero,
       .feature-split,
-      .application-layout,
       .contact-grid {
         grid-template-columns: 1fr;
       }
@@ -756,11 +912,11 @@
       .packages-grid,
       .process-grid,
       .articles-grid,
-      .stats-band {
+      .stats-band,
+      .intake-steps {
         grid-template-columns: 1fr 1fr;
       }
 
-      .application-picture,
       .picture-panel {
         min-height: 420px;
       }
@@ -803,6 +959,7 @@
       .process-grid,
       .articles-grid,
       .stats-band,
+      .intake-steps,
       .form-grid {
         grid-template-columns: 1fr;
       }
@@ -817,9 +974,25 @@
       }
 
       .panel,
-      .form-panel,
       .contact-panel {
         padding: 26px;
+      }
+
+      .private-intake {
+        border-radius: 24px;
+      }
+
+      .intake-modal {
+        padding: 10px;
+      }
+
+      .modal-dialog {
+        max-height: calc(100vh - 20px);
+        border-radius: 20px;
+      }
+
+      .modal-header {
+        padding-right: 30px;
       }
     }
   </style>
@@ -860,7 +1033,7 @@
 
           <div class="hero-actions">
             <a href="#services" class="btn primary">Explore Services</a>
-            <a href="#apply" class="btn">Start Application</a>
+            <button class="btn js-open-intake" type="button">Start Application</button>
           </div>
 
           <div class="stats-band">
@@ -969,7 +1142,7 @@
                 For clients who need basic education, credit readiness guidance,
                 and help understanding the next steps.
               </p>
-              <a href="#apply" class="btn">Request Package Details</a>
+              <button class="btn js-open-intake" type="button">Request Package Details</button>
             </div>
 
             <div class="package-card featured">
@@ -979,7 +1152,7 @@
                 For clients who need deeper preparation for funding, business credit,
                 or business formation.
               </p>
-              <a href="#apply" class="btn primary">Start Application</a>
+              <button class="btn primary js-open-intake" type="button">Start Application</button>
             </div>
 
             <div class="package-card">
@@ -1104,88 +1277,40 @@
       </section>
 
       <section id="apply">
-        <div class="container application-layout">
-          <div class="form-panel">
-            <div class="eyebrow">Vaultara Intake Form</div>
-            <h3>Start Your Application</h3>
-            <p>
-              Complete the intake form. Vaultara will review the information and recommend package details privately.
-            </p>
-
-            <form id="vaultaraForm" name="Vaultara-General-Intake" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-              <input type="hidden" name="form-name" value="Vaultara-General-Intake" />
-              <p style="display:none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
-              <div class="form-grid">
-                <div class="form-field">
-                  <label>Full Name</label>
-                  <input type="text" name="fullName" placeholder="Enter full name" required />
-                </div>
-
-                <div class="form-field">
-                  <label>Email Address</label>
-                  <input type="email" name="email" placeholder="Enter email address" required />
-                </div>
-
-                <div class="form-field">
-                  <label>Phone Number</label>
-                  <input type="tel" name="phone" placeholder="Enter phone number" />
-                </div>
-
-                <div class="form-field">
-                  <label>Business Name</label>
-                  <input type="text" name="businessName" placeholder="Business name, if any" />
-                </div>
-
-                <div class="form-field">
-                  <label>Service Needed</label>
-                  <select name="serviceNeeded" required>
-                    <option value="">Select a service</option>
-                    <option>Credit Education & Tracking</option>
-                    <option>Credit Preparation</option>
-                    <option>Personal Loan Guidance</option>
-                    <option>Business Loan Preparation</option>
-                    <option>Business Formation</option>
-                    <option>Business Credit Setup</option>
-                    <option>Startup Funding Readiness</option>
-                    <option>Existing Business Funding</option>
-                    <option>Government-Backed Program Guidance</option>
-                  </select>
-                </div>
-
-                <div class="form-field">
-                  <label>Client Type</label>
-                  <select name="clientType">
-                    <option value="">Select one</option>
-                    <option>Personal</option>
-                    <option>Business</option>
-                    <option>Startup</option>
-                    <option>Existing Business</option>
-                  </select>
-                </div>
-
-                <div class="form-field full-width">
-                  <label>Tell Vaultara What You Need</label>
-                  <textarea name="message" placeholder="Explain your goals, credit needs, funding needs, or business formation needs."></textarea>
-                </div>
-
-                <div class="form-submit">
-                  <button class="btn primary" type="submit" style="width: 100%;">Submit Intake →</button>
-                </div>
-              </div>
-
-              <div class="success-message" id="successMessage" role="status" aria-live="polite">
-                Thank you. Vaultara Capital received your intake request. Package details will be recommended privately after review.
-              </div>
-            </form>
-          </div>
-
-          <div class="application-picture">
-            <div class="secure-box">
-              <h3>Secure. Private. Professional.</h3>
+        <div class="container">
+          <div class="private-intake">
+            <div class="intake-intro">
+              <div class="eyebrow">Private &amp; Confidential</div>
+              <h2>Private Intake Process</h2>
               <p>
-                Your information is used to understand your goals and guide the next step.
-                Public package pricing is not displayed on this website.
+                Begin with a focused, confidential intake—not a public application page. Share a few details about
+                your goals, and Vaultara Capital will review your needs before recommending the most relevant next step.
               </p>
+            </div>
+
+            <div class="intake-steps">
+              <div class="intake-step">
+                <span class="intake-step-number">01 / BEGIN</span>
+                <h3>Tell Us Your Goals</h3>
+                <p>Open the private intake and share the service, funding, credit, or business outcome you are pursuing.</p>
+              </div>
+
+              <div class="intake-step">
+                <span class="intake-step-number">02 / REVIEW</span>
+                <h3>We Review Privately</h3>
+                <p>Vaultara evaluates your request to understand your priorities, readiness, and most appropriate path.</p>
+              </div>
+
+              <div class="intake-step">
+                <span class="intake-step-number">03 / CONNECT</span>
+                <h3>Receive Next Steps</h3>
+                <p>You receive a private response with relevant guidance and package details tailored to your request.</p>
+              </div>
+            </div>
+
+            <div class="intake-cta">
+              <button class="btn primary js-open-intake" type="button">Begin Private Intake →</button>
+              <span class="intake-assurance">Your information is handled with discretion.</span>
             </div>
           </div>
         </div>
@@ -1202,7 +1327,7 @@
               through the official contact page.
             </p>
             <div class="button-row" style="margin-top: 24px;">
-              <a class="btn primary" href="#apply">Get In Touch ›</a>
+              <button class="btn primary js-open-intake" type="button">Begin Private Intake ›</button>
               <a class="btn" href="#insights">Read Blogs</a>
             </div>
           </div>
@@ -1253,11 +1378,126 @@
     </footer>
   </div>
 
+  <div class="intake-modal" id="intakeModal" hidden>
+    <button class="modal-backdrop" type="button" data-close-intake aria-label="Close intake form"></button>
+    <div class="modal-dialog" role="dialog" aria-modal="true" aria-labelledby="intakeModalTitle" aria-describedby="intakeModalDescription">
+      <button class="modal-close" type="button" data-close-intake aria-label="Close intake form">×</button>
+      <div class="form-panel">
+        <div class="modal-header">
+          <div class="eyebrow">Confidential Client Intake</div>
+          <h2 id="intakeModalTitle">Start Your Application</h2>
+          <p id="intakeModalDescription">
+            Share your goals below. Vaultara Capital will review your information and follow up privately with the appropriate next steps.
+          </p>
+        </div>
+
+        <form id="vaultaraForm" name="Vaultara-General-Intake" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="Vaultara-General-Intake" />
+          <p style="display:none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+          <div class="form-grid">
+            <div class="form-field">
+              <label for="fullName">Full Name</label>
+              <input id="fullName" type="text" name="fullName" placeholder="Enter full name" required />
+            </div>
+
+            <div class="form-field">
+              <label for="email">Email Address</label>
+              <input id="email" type="email" name="email" placeholder="Enter email address" required />
+            </div>
+
+            <div class="form-field">
+              <label for="phone">Phone Number</label>
+              <input id="phone" type="tel" name="phone" placeholder="Enter phone number" />
+            </div>
+
+            <div class="form-field">
+              <label for="businessName">Business Name</label>
+              <input id="businessName" type="text" name="businessName" placeholder="Business name, if any" />
+            </div>
+
+            <div class="form-field">
+              <label for="serviceNeeded">Service Needed</label>
+              <select id="serviceNeeded" name="serviceNeeded" required>
+                <option value="">Select a service</option>
+                <option>Credit Education &amp; Tracking</option>
+                <option>Credit Preparation</option>
+                <option>Personal Loan Guidance</option>
+                <option>Business Loan Preparation</option>
+                <option>Business Formation</option>
+                <option>Business Credit Setup</option>
+                <option>Startup Funding Readiness</option>
+                <option>Existing Business Funding</option>
+                <option>Government-Backed Program Guidance</option>
+              </select>
+            </div>
+
+            <div class="form-field">
+              <label for="clientType">Client Type</label>
+              <select id="clientType" name="clientType">
+                <option value="">Select one</option>
+                <option>Personal</option>
+                <option>Business</option>
+                <option>Startup</option>
+                <option>Existing Business</option>
+              </select>
+            </div>
+
+            <div class="form-field full-width">
+              <label for="message">Tell Vaultara What You Need</label>
+              <textarea id="message" name="message" placeholder="Explain your goals, credit needs, funding needs, or business formation needs."></textarea>
+            </div>
+
+            <div class="form-submit">
+              <button class="btn primary" type="submit" style="width: 100%;">Submit Intake →</button>
+            </div>
+          </div>
+
+          <div class="success-message" id="successMessage" role="status" aria-live="polite">
+            Thank you. Vaultara Capital received your intake request. Package details will be recommended privately after review.
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
   <script>
     const menuBtn = document.getElementById("menuBtn");
     const navLinks = document.getElementById("navLinks");
     const vaultaraForm = document.getElementById("vaultaraForm");
     const successMessage = document.getElementById("successMessage");
+    const intakeModal = document.getElementById("intakeModal");
+    const intakeTriggers = document.querySelectorAll(".js-open-intake");
+    const intakeClosers = document.querySelectorAll("[data-close-intake]");
+    let lastFocusedElement = null;
+
+    function openIntakeModal() {
+      if (!intakeModal) return;
+      lastFocusedElement = document.activeElement;
+      intakeModal.hidden = false;
+      document.body.classList.add("modal-open");
+      intakeModal.querySelector("input:not([type='hidden'])")?.focus();
+    }
+
+    function closeIntakeModal() {
+      if (!intakeModal) return;
+      intakeModal.hidden = true;
+      document.body.classList.remove("modal-open");
+      lastFocusedElement?.focus();
+    }
+
+    intakeTriggers.forEach(function (trigger) {
+      trigger.addEventListener("click", openIntakeModal);
+    });
+
+    intakeClosers.forEach(function (closer) {
+      closer.addEventListener("click", closeIntakeModal);
+    });
+
+    document.addEventListener("keydown", function (event) {
+      if (event.key === "Escape" && intakeModal && !intakeModal.hidden) {
+        closeIntakeModal();
+      }
+    });
 
     if (menuBtn && navLinks) {
       menuBtn.addEventListener("click", function () {
