@@ -103,26 +103,26 @@
     </section>
 
     <section class="funding-intake" id="funding-intake">
-      <div class="shell">
-        <div class="intake-heading" id="intakeHeading">
+      <div class="shell" data-intake-root>
+        <div class="intake-heading" id="intakeHeading" data-intake-hide>
           <p class="eyebrow"><span></span> Private intake</p>
           <h2>Start your funding review.</h2>
           <p>Choose the intake that fits your goal. Complete information helps us understand your situation, but submitting does not guarantee approval, financing, or a specific result.</p>
         </div>
 
-        <div class="funding-form-card" id="formSection">
+        <div class="funding-form-card" id="formSection" data-intake-hide>
           <h3 class="form-section-title">Choose your funding type</h3>
           <p class="form-section-intro">The correct form will appear after you make a selection.</p>
           <label class="funding-type-label">What type of funding are you seeking? <span aria-hidden="true">*</span>
-            <select id="fundingType" name="funding_type_selector" required>
+            <select id="fundingType" name="funding_type_selector" data-intake-selector required>
               <option value="" selected disabled>Select one</option>
-              <option value="business">Business funding</option>
-              <option value="personal">Personal funding</option>
+              <option value="businessBlock">Business funding</option>
+              <option value="personalBlock">Personal funding</option>
             </select>
           </label>
 
-          <div id="businessBlock" class="hidden">
-            <form class="funding-form" id="businessFundingForm" name="Vaultara-Business-Funding" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <div id="businessBlock" class="hidden" data-intake-block>
+            <form class="funding-form js-intake-form" id="businessFundingForm" name="Vaultara-Business-Funding" method="POST" data-netlify="true" netlify-honeypot="bot-field">
               <input type="hidden" name="form-name" value="Vaultara-Business-Funding" />
               <p class="hidden"><label>Do not fill this out: <input name="bot-field" /></label></p>
               <h3>Business funding intake</h3>
@@ -149,14 +149,14 @@
                 <label>Any open collections / late payments? *<select name="collections" required><option value="" selected disabled>Select one</option><option>No</option><option>Yes (Explain Below)</option></select></label>
               </div>
               <label>Additional details *<textarea name="details" required placeholder="Explain what you need, timing, and anything important (revenue trend, contracts, challenges, etc.)."></textarea></label>
-              <label class="funding-consent"><input type="checkbox" name="consent" required /><span>I confirm the information is accurate and agree that Vaultara Capital may contact me about this request.</span></label>
+              <label class="funding-consent"><input type="checkbox" name="consent" required /><span>I confirm the information is accurate and agree that Vaultara Capital may contact me about this request. I have reviewed the <a href="privacy.html">Privacy Policy</a>.</span></label>
               <p class="form-status" aria-live="polite"></p>
               <button class="button" type="submit">Submit business review <span aria-hidden="true">→</span></button>
             </form>
           </div>
 
-          <div id="personalBlock" class="hidden">
-            <form class="funding-form" id="personalFundingForm" name="Vaultara-Personal-Funding" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <div id="personalBlock" class="hidden" data-intake-block>
+            <form class="funding-form js-intake-form" id="personalFundingForm" name="Vaultara-Personal-Funding" method="POST" data-netlify="true" netlify-honeypot="bot-field">
               <input type="hidden" name="form-name" value="Vaultara-Personal-Funding" />
               <p class="hidden"><label>Do not fill this out: <input name="bot-field" /></label></p>
               <h3>Personal funding intake</h3>
@@ -174,7 +174,7 @@
               </div>
               <label>Employment status *<select name="employment" required><option value="" selected disabled>Select one</option><option>Employed</option><option>Self-Employed</option><option>Retired</option><option>Other</option></select></label>
               <label>Additional details *<textarea name="details" required placeholder="Explain your goal, timing, and anything important."></textarea></label>
-              <label class="funding-consent"><input type="checkbox" name="consent" required /><span>I confirm the information is accurate and agree that Vaultara Capital may contact me about this request.</span></label>
+              <label class="funding-consent"><input type="checkbox" name="consent" required /><span>I confirm the information is accurate and agree that Vaultara Capital may contact me about this request. I have reviewed the <a href="privacy.html">Privacy Policy</a>.</span></label>
               <p class="form-status" aria-live="polite"></p>
               <button class="button" type="submit">Submit personal review <span aria-hidden="true">→</span></button>
             </form>
@@ -183,7 +183,7 @@
           <p class="form-note">Vaultara Capital provides education, preparation, and guidance. We do not guarantee approval, financing, rates, terms, or any specific result. Questions? Call <a href="tel:+18008279016">(800) 827-9016</a> or email <a href="mailto:contact@vaultaracapital.com">contact@vaultaracapital.com</a>.</p>
         </div>
 
-        <div class="funding-success hidden" id="thanksSection" tabindex="-1">
+        <div class="funding-success hidden" id="thanksSection" data-intake-success tabindex="-1">
           <div class="funding-success-icon" aria-hidden="true">✓</div>
           <h2>Thank you.</h2>
           <p>We received your funding intake. A Vaultara Capital representative can review the information and follow up using the contact details you provided.</p>
@@ -197,64 +197,12 @@
     <div class="shell footer-grid">
       <div class="footer-brand"><a class="wordmark wordmark-footer" href="/"><span class="wordmark-mark">V</span><span><strong>Vaultara</strong><small>Capital</small></span></a><p>Helping people and businesses move forward with clarity, preparation, and a stronger foundation.</p></div>
       <div class="footer-links"><strong>Services</strong><a href="funding.html">Funding guidance</a><a href="credit.html">Credit readiness</a><a href="formation.html">Business formation</a></div>
-      <div class="footer-links"><strong>Contact</strong><a href="tel:+18008279016">(800) 827-9016</a><a href="mailto:contact@vaultaracapital.com">contact@vaultaracapital.com</a><a href="/">Vaultara Capital home</a></div>
+      <div class="footer-links"><strong>Company</strong><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms of use</a><a href="mailto:contact@vaultaracapital.com">Contact</a></div>
       <div class="footer-cta"><strong>Not sure where to begin?</strong><a class="button button-light" href="/#apply">See my options</a></div>
     </div>
     <div class="shell legal-row"><p>© <span id="year">2026</span> Vaultara Capital. All rights reserved.</p><p>Guidance only. Approval, funding, rates, terms, and outcomes are not guaranteed.</p></div>
   </footer>
 
   <script src="script.js"></script>
-  <script>
-    (() => {
-      const typeSelect = document.querySelector('#fundingType');
-      const businessBlock = document.querySelector('#businessBlock');
-      const personalBlock = document.querySelector('#personalBlock');
-      const formSection = document.querySelector('#formSection');
-      const intakeHeading = document.querySelector('#intakeHeading');
-      const thanksSection = document.querySelector('#thanksSection');
-
-      typeSelect.addEventListener('change', () => {
-        businessBlock.classList.toggle('hidden', typeSelect.value !== 'business');
-        personalBlock.classList.toggle('hidden', typeSelect.value !== 'personal');
-      });
-
-      function encode(form) {
-        return new URLSearchParams(new FormData(form)).toString();
-      }
-
-      function wireForm(formId) {
-        const form = document.querySelector(`#${formId}`);
-        const status = form.querySelector('.form-status');
-        const submitButton = form.querySelector('button[type="submit"]');
-
-        form.addEventListener('submit', async (event) => {
-          event.preventDefault();
-          status.textContent = '';
-          submitButton.disabled = true;
-          submitButton.textContent = 'Submitting…';
-
-          try {
-            const response = await fetch('/', {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-              body: encode(form)
-            });
-            if (!response.ok) throw new Error('Submission failed');
-            formSection.classList.add('hidden');
-            intakeHeading.classList.add('hidden');
-            thanksSection.classList.remove('hidden');
-            thanksSection.focus();
-          } catch (error) {
-            status.textContent = 'We could not submit your intake. Please try again or contact us directly.';
-            submitButton.disabled = false;
-            submitButton.innerHTML = 'Try submission again <span aria-hidden="true">→</span>';
-          }
-        });
-      }
-
-      wireForm('businessFundingForm');
-      wireForm('personalFundingForm');
-    })();
-  </script>
 </body>
 </html>

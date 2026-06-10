@@ -2,408 +2,119 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Vaultara Capital — Credit Intake</title>
-  <meta name="description" content="Credit intake for Vaultara Capital. Business or personal credit strategy (as it supports funding and business goals)." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#061a3a" />
+  <meta name="description" content="Review business or personal credit readiness with clear, practical guidance tied to your funding and business goals." />
+  <title>Credit Readiness | Vaultara Capital</title>
   <link rel="canonical" href="https://vaultaracapital.com/credit.html" />
-
-  <style>
-    :root{
-      --bgBlue:#0b3a7a;
-      --bgBlue2:#072a58;
-      --gray:#c9cdd6;
-      --gray2:#aeb3bf;
-      --btnText:#0b3a7a;
-    }
-    *{box-sizing:border-box}
-    body{ margin:0; font-family: Arial, Helvetica, sans-serif; background:var(--bgBlue); color:var(--gray); }
-    .wrap{ max-width: 660px; margin:0 auto; padding: 22px 14px 40px; }
-    .panel{
-      background: radial-gradient(120% 120% at 10% 10%, #164a92 0%, var(--bgBlue2) 55%, #041a38 100%);
-      border-radius: 26px;
-      padding: 18px 16px 18px;
-      border: 1px solid rgba(201,205,214,.25);
-      box-shadow: 0 12px 40px rgba(0,0,0,.35);
-      position:relative; overflow:hidden;
-    }
-    .head{ display:flex; align-items:center; gap:12px; margin-bottom: 10px; padding: 6px 4px 2px; }
-    .logo{
-      width:54px;height:54px;border-radius:16px;
-      background: linear-gradient(180deg, rgba(201,205,214,.22), rgba(0,0,0,.25));
-      border: 1px solid rgba(201,205,214,.35);
-      display:flex;align-items:center;justify-content:center;
-      color: var(--gray); font-weight: 900; letter-spacing:.6px;
-      user-select:none;
-    }
-    .titleblock h1{ margin:0; font-size: 20px; line-height:1.1; color: var(--gray); font-weight: 900; letter-spacing:.6px; text-transform: uppercase;}
-    .titleblock p{ margin:6px 0 0; color: rgba(255,255,255,.78); font-size: 13px; line-height: 1.35; }
-
-    .section{
-      margin-top: 14px; padding: 14px; border-radius: 18px;
-      border: 1px solid rgba(201,205,214,.22);
-      background: rgba(0,0,0,.22);
-    }
-    .section h2{ margin:0 0 8px; font-size: 15px; letter-spacing:.4px; text-transform: uppercase; color: var(--gray); font-weight: 900; }
-    .section p{ margin:0; color: rgba(255,255,255,.82); font-size: 13.5px; line-height: 1.6; }
-
-    .btn{
-      display:block; width:100%;
-      border-radius: 18px; padding: 14px 14px; margin-top: 10px;
-      border: 1px solid rgba(201,205,214,.35);
-      font-weight: 900; letter-spacing: .3px; text-align:center;
-      background: linear-gradient(180deg, var(--gray), var(--gray2));
-      color: var(--btnText);
-      box-shadow: 0 8px 18px rgba(0,0,0,.25);
-      transition: transform .08s ease, filter .15s ease, background .15s ease, color .15s ease;
-      user-select:none; -webkit-tap-highlight-color: transparent;
-      cursor:pointer;
-    }
-    .btn:hover,.btn:active,.btn:focus{ background: linear-gradient(180deg, #1c63c7, #0b3a7a); color:#fff; filter: brightness(1.03); }
-    .btn:active{ transform: translateY(1px); }
-
-    label{ display:block; margin-top:12px; color: rgba(255,255,255,.90); font-weight:800; font-size: 12.5px; letter-spacing:.2px; }
-    input, select, textarea{
-      width:100%; margin-top:6px; padding: 12px 12px;
-      border-radius: 14px; border: 1px solid rgba(201,205,214,.25);
-      background: rgba(255,255,255,.08);
-      color: rgba(255,255,255,.92);
-      outline:none;
-    }
-    textarea{ min-height: 96px; resize: vertical; }
-    input::placeholder, textarea::placeholder{ color: rgba(255,255,255,.55); }
-    .row{ display:flex; gap:10px; flex-wrap:wrap; }
-    .row > div{ flex: 1 1 180px; }
-
-    .fine{ margin-top: 10px; font-size: 12px; color: rgba(255,255,255,.60); line-height:1.5; }
-    .hidden{ display:none !important; }
-
-    .footer{
-      margin-top: 14px; padding: 12px 14px; border-radius: 18px;
-      border: 1px solid rgba(201,205,214,.22);
-      background: rgba(0,0,0,.22);
-      color: rgba(255,255,255,.82);
-      font-size: 13px; line-height: 1.6; text-align:center;
-    }
-    .footer strong{ color:#fff; }
-
-    .bigThanks{
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--gray);
-      margin: 0 0 8px;
-      text-align:center;
-    }
-    .thanksMsg{ text-align:center; color: rgba(255,255,255,.86); font-size: 14px; line-height:1.6; margin:0; }
-  </style>
+  <meta property="og:title" content="Credit Readiness | Vaultara Capital" />
+  <meta property="og:description" content="Understand what may be helping or limiting your credit readiness and identify a clearer next step." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vaultaracapital.com/credit.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
 </head>
-
 <body>
-  <div class="wrap">
-    <div class="panel">
-
-      <div class="head">
-        <div class="logo">VC</div>
-        <div class="titleblock">
-          <h1>Credit Intake</h1>
-          <p>Vaultara Capital • Business or Personal Credit Strategy</p>
-        </div>
-      </div>
-
-      <div class="section" id="introSection">
-        <h2>Before You Submit</h2>
-        <p>
-          Select the credit type below and complete the form with as much detail as possible.
-          We use the information to evaluate readiness and reply by email with next steps.
-        </p>
-        <div class="fine">
-          Vaultara Capital is not a law firm and does not provide legal advice. For legal matters, consult a licensed attorney.
-        </div>
-      </div>
-
-      <div class="section" id="formSection">
-        <h2>Credit Type</h2>
-
-        <label>What type of credit support do you need? (Required)
-          <select id="creditType" required>
-            <option value="" selected disabled>Select one</option>
-            <option value="business">Business Credit</option>
-            <option value="personal">Personal Credit (as it supports funding/business goals)</option>
-          </select>
-        </label>
-
-        <!-- BUSINESS CREDIT -->
-        <div id="businessBlock" class="hidden">
-          <h2 style="margin-top:14px;">Business Credit Form</h2>
-
-          <form id="businessCreditForm" name="Vaultara-Business-Credit" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="Vaultara-Business-Credit" />
-            <p class="hidden"><label>Don’t fill this out: <input name="bot-field" /></label></p>
-
-            <div class="row">
-              <div>
-                <label>Full Name (Required)
-                  <input name="full_name" type="text" required placeholder="Your full name" />
-                </label>
-              </div>
-              <div>
-                <label>Email (Required)
-                  <input name="email" type="email" required placeholder="name@domain.com" />
-                </label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div>
-                <label>Phone (Required)
-                  <input name="phone" type="tel" required placeholder="(000) 000-0000" />
-                </label>
-              </div>
-              <div>
-                <label>Business Legal Name (Required)
-                  <input name="business_name" type="text" required placeholder="Business name" />
-                </label>
-              </div>
-            </div>
-
-            <label>Business Entity Type (Required)
-              <select name="entity_type" required>
-                <option value="" selected disabled>Select one</option>
-                <option>LLC</option>
-                <option>Corporation (C-Corp)</option>
-                <option>Corporation (S-Corp)</option>
-                <option>Sole Proprietor</option>
-                <option>Partnership</option>
-                <option>Not sure</option>
-              </select>
-            </label>
-
-            <label>Time in Business (Required)
-              <select name="time_in_business" required>
-                <option value="" selected disabled>Select one</option>
-                <option>0–6 months</option>
-                <option>6–12 months</option>
-                <option>1–2 years</option>
-                <option>2–5 years</option>
-                <option>5+ years</option>
-              </select>
-            </label>
-
-            <label>Primary Goal (Required)
-              <select name="goal" required>
-                <option value="" selected disabled>Select one</option>
-                <option>Build business credit profile</option>
-                <option>Improve approvals / limits</option>
-                <option>Prepare for funding</option>
-                <option>Separate business and personal credit exposure</option>
-                <option>Other (Explain Below)</option>
-              </select>
-            </label>
-
-            <label>Owner/Guarantor Credit Range (Required)
-              <select name="owner_credit_range" required>
-                <option value="" selected disabled>Select one</option>
-                <option>Below 580</option>
-                <option>580 – 619</option>
-                <option>620 – 659</option>
-                <option>660 – 719</option>
-                <option>720+</option>
-              </select>
-            </label>
-
-            <label>Does the business have existing credit? (Required)
-              <select name="existing_business_credit" required>
-                <option value="" selected disabled>Select one</option>
-                <option>No</option>
-                <option>Yes (Vendors)</option>
-                <option>Yes (Credit Cards / Lines)</option>
-                <option>Not sure</option>
-              </select>
-            </label>
-
-            <label>Any major challenges? (Required)
-              <select name="challenges" required>
-                <option value="" selected disabled>Select one</option>
-                <option>Late payments / collections</option>
-                <option>High utilization</option>
-                <option>Thin credit profile</option>
-                <option>Business is too new</option>
-                <option>No major issues</option>
-                <option>Other (Explain Below)</option>
-              </select>
-            </label>
-
-            <label>Details (Required)
-              <textarea name="details" required placeholder="Describe your goal, timeline, and current situation. Include what you’ve tried so far."></textarea>
-            </label>
-
-            <label style="margin-top:14px; font-weight:700; color: rgba(255,255,255,.82);">
-              <input type="checkbox" name="consent" required style="width:auto; margin-right:8px;" />
-              I confirm the information is accurate and I agree to be contacted by email.
-            </label>
-
-            <button class="btn" type="submit">SUBMIT</button>
-          </form>
-        </div>
-
-        <!-- PERSONAL CREDIT -->
-        <div id="personalBlock" class="hidden">
-          <h2 style="margin-top:14px;">Personal Credit Form</h2>
-
-          <form id="personalCreditForm" name="Vaultara-Personal-Credit" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-            <input type="hidden" name="form-name" value="Vaultara-Personal-Credit" />
-            <p class="hidden"><label>Don’t fill this out: <input name="bot-field" /></label></p>
-
-            <div class="row">
-              <div>
-                <label>Full Name (Required)
-                  <input name="full_name" type="text" required placeholder="Your full name" />
-                </label>
-              </div>
-              <div>
-                <label>Email (Required)
-                  <input name="email" type="email" required placeholder="name@domain.com" />
-                </label>
-              </div>
-            </div>
-
-            <div class="row">
-              <div>
-                <label>Phone (Required)
-                  <input name="phone" type="tel" required placeholder="(000) 000-0000" />
-                </label>
-              </div>
-              <div>
-                <label>State of Residence (Required)
-                  <input name="state" type="text" required placeholder="State" />
-                </label>
-              </div>
-            </div>
-
-            <label>Primary Goal (Required)
-              <select name="goal" required>
-                <option value="" selected disabled>Select one</option>
-                <option>Prepare for funding / loan eligibility</option>
-                <option>Improve score / profile strength</option>
-                <option>Address negative items</option>
-                <option>Other (Explain Below)</option>
-              </select>
-            </label>
-
-            <div class="row">
-              <div>
-                <label>Estimated Credit Range (Required)
-                  <select name="credit_range" required>
-                    <option value="" selected disabled>Select one</option>
-                    <option>Below 580</option>
-                    <option>580 – 619</option>
-                    <option>620 – 659</option>
-                    <option>660 – 719</option>
-                    <option>720+</option>
-                  </select>
-                </label>
-              </div>
-              <div>
-                <label>Any Collections / Charge-offs? (Required)
-                  <select name="collections" required>
-                    <option value="" selected disabled>Select one</option>
-                    <option>No</option>
-                    <option>Yes</option>
-                    <option>Not sure</option>
-                  </select>
-                </label>
-              </div>
-            </div>
-
-            <label>What are you trying to qualify for? (Required)
-              <select name="qualify_for" required>
-                <option value="" selected disabled>Select one</option>
-                <option>Business funding</option>
-                <option>Vehicle</option>
-                <option>Home</option>
-                <option>Personal loan</option>
-                <option>Other (Explain Below)</option>
-              </select>
-            </label>
-
-            <label>Details (Required)
-              <textarea name="details" required placeholder="Describe your goal, timeline, and current situation."></textarea>
-            </label>
-
-            <label style="margin-top:14px; font-weight:700; color: rgba(255,255,255,.82);">
-              <input type="checkbox" name="consent" required style="width:auto; margin-right:8px;" />
-              I confirm the information is accurate and I agree to be contacted by email.
-            </label>
-
-            <button class="btn" type="submit">SUBMIT</button>
-          </form>
-        </div>
-
-        <div class="fine">
-          Central Line: (800) 827-9016 • Email: contact@vaultaracapital.com
-        </div>
-      </div>
-
-      <!-- THANK YOU (ONLY THANK YOU) -->
-      <div class="section hidden" id="thanksSection">
-        <div class="bigThanks">THANK YOU</div>
-        <p class="thanksMsg">
-          We received your application. Our team will review it and contact you by email as soon as possible.
-        </p>
-      </div>
-
-      <div class="footer">
-        <div><strong>Central Line:</strong> (800) 827-9016</div>
-        <div><strong>Email:</strong> contact@vaultaracapital.com</div>
-        <div><a href="/" style="color:inherit">← Vaultara Capital Home</a></div>
-      </div>
-
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header" id="top">
+    <div class="header-inner shell">
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation"><span></span><span></span><span></span></button>
+      <a class="wordmark" href="/" aria-label="Vaultara Capital home"><span class="wordmark-mark" aria-hidden="true">V</span><span><strong>Vaultara</strong><small>Capital</small></span></a>
+      <nav class="desktop-nav" aria-label="Primary navigation">
+        <a href="funding.html">Funding</a><a class="service-nav-current" href="credit.html" aria-current="page">Credit readiness</a><a href="formation.html">Formation</a><a href="#how-it-works">How it works</a>
+      </nav>
+      <a class="button button-small" href="#credit-intake">Start my review</a>
     </div>
-  </div>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
+      <a href="funding.html">Funding</a><a href="credit.html" aria-current="page">Credit readiness</a><a href="formation.html">Formation</a><a href="#how-it-works">How it works</a><a href="#credit-intake">Start my review</a>
+    </nav>
+  </header>
 
-  <script>
-    (function(){
-      const typeSel = document.getElementById("creditType");
-      const businessBlock = document.getElementById("businessBlock");
-      const personalBlock = document.getElementById("personalBlock");
+  <main id="main-content">
+    <section class="service-hero service-hero-credit">
+      <div class="shell service-hero-grid">
+        <div>
+          <a class="service-breadcrumb" href="/">← Back to Vaultara Capital</a>
+          <p class="eyebrow light"><span></span> Credit readiness</p>
+          <h1>Build clarity around your <em>credit profile.</em></h1>
+          <p class="service-hero-lead">Review the factors that may affect your readiness, connect your credit goals to the bigger financial picture, and leave with a more practical next step.</p>
+          <a class="button button-light" href="#credit-intake">Start your credit review <span aria-hidden="true">→</span></a>
+        </div>
+        <aside class="service-hero-card" aria-label="What your review includes">
+          <p>Credit review</p><h2>A focused look at where you stand.</h2>
+          <ul><li>Business or personal path</li><li>Goal and timeline review</li><li>Current challenge identification</li><li>Practical next-step guidance</li></ul>
+          <div class="service-card-note"><span aria-hidden="true">✓</span> Private intake. No guaranteed outcome.</div>
+        </aside>
+      </div>
+    </section>
 
-      const intro = document.getElementById("introSection");
-      const formSection = document.getElementById("formSection");
-      const thanks = document.getElementById("thanksSection");
+    <section class="service-overview">
+      <div class="shell service-overview-grid">
+        <div class="service-overview-copy"><p class="eyebrow"><span></span> Start with understanding</p><h2>Credit readiness is more than a score.</h2><p>Your profile, utilization, payment history, business age, existing accounts, and goal can all shape the right strategy. We help organize that information so you can focus on realistic priorities rather than guesswork.</p></div>
+        <div class="purpose-grid">
+          <article class="purpose-card"><div class="purpose-icon" aria-hidden="true">◎</div><h3>Know your position</h3><p>Identify the broad strengths and challenges that may affect your current readiness.</p></article>
+          <article class="purpose-card"><div class="purpose-icon" aria-hidden="true">↗</div><h3>Connect the goal</h3><p>Frame credit work around the business, funding, vehicle, home, or personal objective behind it.</p></article>
+          <article class="purpose-card"><div class="purpose-icon" aria-hidden="true">◇</div><h3>Prioritize next steps</h3><p>Turn a complicated profile into a more manageable sequence of actions and questions.</p></article>
+          <article class="purpose-card"><div class="purpose-icon" aria-hidden="true">✓</div><h3>Prepare responsibly</h3><p>Understand that improvement, approval, limits, and timing depend on many outside factors.</p></article>
+        </div>
+      </div>
+    </section>
 
-      function encode(form){
-        const data = new FormData(form);
-        const params = new URLSearchParams();
-        for (const pair of data.entries()) params.append(pair[0], pair[1]);
-        return params.toString();
-      }
+    <section class="service-process" id="how-it-works">
+      <div class="shell"><div class="section-heading"><p class="eyebrow"><span></span> How it works</p><h2>A clear, private starting point.</h2></div>
+        <ol class="service-steps"><li><h3>Choose your path</h3><p>Select business or personal credit support so the intake matches your goal.</p></li><li><h3>Share the essentials</h3><p>Tell us about your timeline, estimated range, existing credit, and current challenges.</p></li><li><h3>Review the next move</h3><p>A representative can follow up to discuss preparation and potential next steps.</p></li></ol>
+      </div>
+    </section>
 
-      typeSel.addEventListener("change", function(){
-        const v = typeSel.value;
-        businessBlock.classList.toggle("hidden", v !== "business");
-        personalBlock.classList.toggle("hidden", v !== "personal");
-      });
+    <section class="readiness-band"><div class="shell readiness-grid"><h2>Helpful context for a <em>stronger review.</em></h2><ul class="readiness-list"><li>Your primary credit goal</li><li>Estimated credit range</li><li>Known collections or late payments</li><li>Existing business credit</li><li>Expected timeline</li><li>What you have already tried</li></ul></div></section>
 
-      function wire(formId){
-        const form = document.getElementById(formId);
-        form.addEventListener("submit", function(e){
-          e.preventDefault();
-          fetch("/", {
-            method: "POST",
-            headers: { "Content-Type":"application/x-www-form-urlencoded" },
-            body: encode(form)
-          }).then(() => {
-            intro.classList.add("hidden");
-            formSection.classList.add("hidden");
-            thanks.classList.remove("hidden");
-          }).catch(() => alert("Submission failed. Please try again."));
-        });
-      }
+    <section class="funding-intake" id="credit-intake">
+      <div class="shell" data-intake-root>
+        <div class="intake-heading" data-intake-hide><p class="eyebrow"><span></span> Private intake</p><h2>Start your credit review.</h2><p>Choose the intake that fits your goal. Please do not submit Social Security numbers, account numbers, passwords, or copies of identity documents through this form.</p></div>
+        <div class="funding-form-card" data-intake-hide>
+          <h3 class="form-section-title">Choose your credit path</h3><p class="form-section-intro">The appropriate form will appear after you make a selection.</p>
+          <label class="funding-type-label">What type of credit support do you need? <span aria-hidden="true">*</span>
+            <select data-intake-selector required><option value="" selected disabled>Select one</option><option value="businessCreditBlock">Business credit</option><option value="personalCreditBlock">Personal credit</option></select>
+          </label>
 
-      wire("businessCreditForm");
-      wire("personalCreditForm");
-    })();
-  </script>
+          <div id="businessCreditBlock" class="hidden" data-intake-block>
+            <form class="funding-form js-intake-form" name="Vaultara-Business-Credit" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+              <input type="hidden" name="form-name" value="Vaultara-Business-Credit" /><p class="hidden"><label>Do not fill this out: <input name="bot-field" /></label></p>
+              <h3>Business credit intake</h3>
+              <div class="funding-form-grid"><label>Full name *<input name="full_name" type="text" autocomplete="name" required /></label><label>Email *<input name="email" type="email" autocomplete="email" required /></label><label>Phone *<input name="phone" type="tel" autocomplete="tel" required /></label><label>Business legal name *<input name="business_name" type="text" required /></label></div>
+              <div class="funding-form-grid"><label>Business entity type *<select name="entity_type" required><option value="">Select one</option><option>LLC</option><option>Corporation (C-Corp)</option><option>Corporation (S-Corp)</option><option>Sole proprietor</option><option>Partnership</option><option>Not sure</option></select></label><label>Time in business *<select name="time_in_business" required><option value="">Select one</option><option>0–6 months</option><option>6–12 months</option><option>1–2 years</option><option>2–5 years</option><option>5+ years</option></select></label></div>
+              <label>Primary goal *<select name="goal" required><option value="">Select one</option><option>Build business credit profile</option><option>Improve approvals or limits</option><option>Prepare for funding</option><option>Separate business and personal credit exposure</option><option>Other</option></select></label>
+              <div class="funding-form-grid"><label>Owner or guarantor credit range *<select name="owner_credit_range" required><option value="">Select one</option><option>Below 580</option><option>580–619</option><option>620–659</option><option>660–719</option><option>720+</option></select></label><label>Existing business credit? *<select name="existing_business_credit" required><option value="">Select one</option><option>No</option><option>Yes — vendors</option><option>Yes — cards or lines</option><option>Not sure</option></select></label></div>
+              <label>Current challenge *<select name="challenges" required><option value="">Select one</option><option>Late payments or collections</option><option>High utilization</option><option>Thin credit profile</option><option>Business is too new</option><option>No major issues</option><option>Other</option></select></label>
+              <label>Details *<textarea name="details" required placeholder="Describe your goal, timeline, current situation, and what you have tried so far."></textarea></label>
+              <label class="funding-consent"><input type="checkbox" name="consent" required /><span>I confirm the information is accurate and agree that Vaultara Capital may contact me about this request. I have reviewed the <a href="privacy.html">Privacy Policy</a>.</span></label>
+              <button class="button" type="submit">Submit business credit intake <span aria-hidden="true">→</span></button><p class="form-status" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+
+          <div id="personalCreditBlock" class="hidden" data-intake-block>
+            <form class="funding-form js-intake-form" name="Vaultara-Personal-Credit" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+              <input type="hidden" name="form-name" value="Vaultara-Personal-Credit" /><p class="hidden"><label>Do not fill this out: <input name="bot-field" /></label></p>
+              <h3>Personal credit intake</h3>
+              <div class="funding-form-grid"><label>Full name *<input name="full_name" type="text" autocomplete="name" required /></label><label>Email *<input name="email" type="email" autocomplete="email" required /></label><label>Phone *<input name="phone" type="tel" autocomplete="tel" required /></label><label>State of residence *<input name="state" type="text" autocomplete="address-level1" required /></label></div>
+              <label>Primary goal *<select name="goal" required><option value="">Select one</option><option>Prepare for funding or loan eligibility</option><option>Improve score or profile strength</option><option>Address negative items</option><option>Other</option></select></label>
+              <div class="funding-form-grid"><label>Estimated credit range *<select name="credit_range" required><option value="">Select one</option><option>Below 580</option><option>580–619</option><option>620–659</option><option>660–719</option><option>720+</option></select></label><label>Collections or charge-offs? *<select name="collections" required><option value="">Select one</option><option>No</option><option>Yes</option><option>Not sure</option></select></label></div>
+              <label>What are you trying to qualify for? *<select name="qualify_for" required><option value="">Select one</option><option>Business funding</option><option>Vehicle</option><option>Home</option><option>Personal loan</option><option>Other</option></select></label>
+              <label>Details *<textarea name="details" required placeholder="Describe your goal, timeline, and current situation."></textarea></label>
+              <label class="funding-consent"><input type="checkbox" name="consent" required /><span>I confirm the information is accurate and agree that Vaultara Capital may contact me about this request. I have reviewed the <a href="privacy.html">Privacy Policy</a>.</span></label>
+              <button class="button" type="submit">Submit personal credit intake <span aria-hidden="true">→</span></button><p class="form-status" role="status" aria-live="polite"></p>
+            </form>
+          </div>
+          <p class="form-note">Vaultara Capital provides education and guidance and does not guarantee credit improvement, score changes, approvals, limits, rates, terms, or timing. Questions? Call <a href="tel:+18008279016">(800) 827-9016</a>.</p>
+        </div>
+        <div class="funding-success hidden" data-intake-success tabindex="-1"><div class="funding-success-icon" aria-hidden="true">✓</div><h2>Thank you.</h2><p>We received your credit intake. A Vaultara Capital representative can review the information and follow up using the contact details you provided.</p><a class="button" href="/">Return to the homepage</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="shell footer-grid"><div class="footer-brand"><a class="wordmark wordmark-footer" href="/"><span class="wordmark-mark">V</span><span><strong>Vaultara</strong><small>Capital</small></span></a><p>Helping people and businesses move forward with clarity, preparation, and a stronger foundation.</p></div><div class="footer-links"><strong>Services</strong><a href="funding.html">Funding guidance</a><a href="credit.html">Credit readiness</a><a href="formation.html">Business formation</a></div><div class="footer-links"><strong>Company</strong><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms of use</a><a href="mailto:contact@vaultaracapital.com">Contact</a></div><div class="footer-cta"><strong>Ready for a clearer next step?</strong><a class="button button-light" href="#credit-intake">Start my review</a></div></div><div class="shell legal-row"><p>© <span id="year">2026</span> Vaultara Capital. All rights reserved.</p><p>Guidance only. Credit and financing outcomes are not guaranteed.</p></div></footer>
 </body>
 </html>
