@@ -2,282 +2,51 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Vaultara Capital — Business Formation Intake</title>
-  <meta name="description" content="Business formation intake for Vaultara Capital." />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="theme-color" content="#061a3a" />
+  <meta name="description" content="Organize your business formation goals and get clear guidance on practical setup questions and next steps." />
+  <title>Business Formation Guidance | Vaultara Capital</title>
   <link rel="canonical" href="https://vaultaracapital.com/formation.html" />
-
-  <style>
-    :root{
-      --bgBlue:#0b3a7a;
-      --bgBlue2:#072a58;
-      --gray:#c9cdd6;
-      --gray2:#aeb3bf;
-      --btnText:#0b3a7a;
-    }
-    *{box-sizing:border-box}
-    body{ margin:0; font-family: Arial, Helvetica, sans-serif; background:var(--bgBlue); color:var(--gray); }
-    .wrap{ max-width: 680px; margin:0 auto; padding: 22px 14px 40px; }
-    .panel{
-      background: radial-gradient(120% 120% at 10% 10%, #164a92 0%, var(--bgBlue2) 55%, #041a38 100%);
-      border-radius: 26px;
-      padding: 18px 16px 18px;
-      border: 1px solid rgba(201,205,214,.25);
-      box-shadow: 0 12px 40px rgba(0,0,0,.35);
-      position:relative; overflow:hidden;
-    }
-    .head{ display:flex; align-items:center; gap:12px; margin-bottom: 10px; padding: 6px 4px 2px; }
-    .logo{
-      width:54px;height:54px;border-radius:16px;
-      background: linear-gradient(180deg, rgba(201,205,214,.22), rgba(0,0,0,.25));
-      border: 1px solid rgba(201,205,214,.35);
-      display:flex;align-items:center;justify-content:center;
-      color: var(--gray); font-weight: 900; letter-spacing:.6px;
-      user-select:none;
-    }
-    .titleblock h1{ margin:0; font-size: 20px; line-height:1.1; color: var(--gray); font-weight: 900; letter-spacing:.6px; text-transform: uppercase;}
-    .titleblock p{ margin:6px 0 0; color: rgba(255,255,255,.78); font-size: 13px; line-height: 1.35; }
-
-    .section{
-      margin-top: 14px; padding: 14px; border-radius: 18px;
-      border: 1px solid rgba(201,205,214,.22);
-      background: rgba(0,0,0,.22);
-    }
-    .section h2{ margin:0 0 8px; font-size: 15px; letter-spacing:.4px; text-transform: uppercase; color: var(--gray); font-weight: 900; }
-    .section p{ margin:0; color: rgba(255,255,255,.82); font-size: 13.5px; line-height: 1.6; }
-
-    .btn{
-      display:block; width:100%;
-      border-radius: 18px; padding: 14px 14px; margin-top: 14px;
-      border: 1px solid rgba(201,205,214,.35);
-      font-weight: 900; letter-spacing: .3px; text-align:center;
-      background: linear-gradient(180deg, var(--gray), var(--gray2));
-      color: var(--btnText);
-      box-shadow: 0 8px 18px rgba(0,0,0,.25);
-      transition: transform .08s ease, filter .15s ease, background .15s ease, color .15s ease;
-      user-select:none; -webkit-tap-highlight-color: transparent;
-      cursor:pointer;
-    }
-    .btn:hover,.btn:active,.btn:focus{ background: linear-gradient(180deg, #1c63c7, #0b3a7a); color:#fff; filter: brightness(1.03); }
-    .btn:active{ transform: translateY(1px); }
-
-    label{ display:block; margin-top:12px; color: rgba(255,255,255,.90); font-weight:800; font-size: 12.5px; letter-spacing:.2px; }
-    input, select, textarea{
-      width:100%; margin-top:6px; padding: 12px 12px;
-      border-radius: 14px; border: 1px solid rgba(201,205,214,.25);
-      background: rgba(255,255,255,.08);
-      color: rgba(255,255,255,.92);
-      outline:none;
-    }
-    textarea{ min-height: 96px; resize: vertical; }
-    input::placeholder, textarea::placeholder{ color: rgba(255,255,255,.55); }
-    .row{ display:flex; gap:10px; flex-wrap:wrap; }
-    .row > div{ flex: 1 1 180px; }
-
-    .fine{ margin-top: 10px; font-size: 12px; color: rgba(255,255,255,.60); line-height:1.5; }
-    .hidden{ display:none !important; }
-
-    .footer{
-      margin-top: 14px; padding: 12px 14px; border-radius: 18px;
-      border: 1px solid rgba(201,205,214,.22);
-      background: rgba(0,0,0,.22);
-      color: rgba(255,255,255,.82);
-      font-size: 13px; line-height: 1.6; text-align:center;
-    }
-    .footer strong{ color:#fff; }
-
-    .bigThanks{
-      font-size: 28px;
-      font-weight: 900;
-      letter-spacing: 1px;
-      text-transform: uppercase;
-      color: var(--gray);
-      margin: 0 0 8px;
-      text-align:center;
-    }
-    .thanksMsg{ text-align:center; color: rgba(255,255,255,.86); font-size: 14px; line-height:1.6; margin:0; }
-  </style>
+  <meta property="og:title" content="Business Formation Guidance | Vaultara Capital" />
+  <meta property="og:description" content="Start your business with a clearer view of entity, ownership, address, timing, and setup needs." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vaultaracapital.com/formation.html" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" /><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" /><script src="script.js" defer></script>
 </head>
-
 <body>
-  <div class="wrap">
-    <div class="panel">
+  <a class="skip-link" href="#main-content">Skip to content</a>
+  <header class="site-header" id="top"><div class="header-inner shell"><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation"><span></span><span></span><span></span></button><a class="wordmark" href="/" aria-label="Vaultara Capital home"><span class="wordmark-mark" aria-hidden="true">V</span><span><strong>Vaultara</strong><small>Capital</small></span></a><nav class="desktop-nav" aria-label="Primary navigation"><a href="funding.html">Funding</a><a href="credit.html">Credit readiness</a><a class="service-nav-current" href="formation.html" aria-current="page">Formation</a><a href="#how-it-works">How it works</a></nav><a class="button button-small" href="#formation-intake">Start my intake</a></div><nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><a href="funding.html">Funding</a><a href="credit.html">Credit readiness</a><a href="formation.html" aria-current="page">Formation</a><a href="#how-it-works">How it works</a><a href="#formation-intake">Start my intake</a></nav></header>
 
-      <div class="head">
-        <div class="logo">VC</div>
-        <div class="titleblock">
-          <h1>Business Formation</h1>
-          <p>Vaultara Capital • Formation Intake</p>
-        </div>
-      </div>
+  <main id="main-content">
+    <section class="service-hero service-hero-formation"><div class="shell service-hero-grid"><div><a class="service-breadcrumb" href="/">← Back to Vaultara Capital</a><p class="eyebrow light"><span></span> Business formation</p><h1>Start with a <em>stronger foundation.</em></h1><p class="service-hero-lead">Organize the decisions behind your new business—from ownership and entity questions to address, timing, and basic setup needs.</p><a class="button button-light" href="#formation-intake">Start your formation intake <span aria-hidden="true">→</span></a></div><aside class="service-hero-card" aria-label="What your intake covers"><p>Formation intake</p><h2>Bring the right questions into focus.</h2><ul><li>Business and industry overview</li><li>Ownership and entity preferences</li><li>State, address, and timeline</li><li>Domain and setup needs</li></ul><div class="service-card-note"><span aria-hidden="true">✓</span> Guidance is educational, not legal or tax advice.</div></aside></div></section>
 
-      <div class="section" id="introSection">
-        <h2>Before You Submit</h2>
-        <p>
-          This intake helps us understand what you are building and what support you need for formation and setup.
-          After review, we respond by email with next steps.
-        </p>
-        <div class="fine">
-          Important: Vaultara Capital is not a law firm and does not provide legal advice. For legal matters, consult a licensed attorney.
-        </div>
-      </div>
+    <section class="service-overview"><div class="shell service-overview-grid"><div class="service-overview-copy"><p class="eyebrow"><span></span> Prepare before filing</p><h2>Good formation begins with clear decisions.</h2><p>A filing is only one part of establishing a business. We help you organize the operational questions around the entity so you can have more productive conversations with the appropriate legal, tax, banking, and insurance professionals.</p></div><div class="purpose-grid"><article class="purpose-card"><div class="purpose-icon" aria-hidden="true">◇</div><h3>Entity direction</h3><p>Clarify your current preference and identify where professional legal or tax input may be needed.</p></article><article class="purpose-card"><div class="purpose-icon" aria-hidden="true">◎</div><h3>Ownership basics</h3><p>Capture the number of owners and foundational questions that should be resolved early.</p></article><article class="purpose-card"><div class="purpose-icon" aria-hidden="true">⌂</div><h3>Business presence</h3><p>Think through the state, address, domain, and customer-facing identity of the business.</p></article><article class="purpose-card"><div class="purpose-icon" aria-hidden="true">→</div><h3>Practical sequence</h3><p>Organize next steps so formation, banking, records, and operations support one another.</p></article></div></div></section>
 
-      <div class="section" id="formSection">
-        <h2>Formation Intake Form</h2>
+    <section class="service-process" id="how-it-works"><div class="shell"><div class="section-heading"><p class="eyebrow"><span></span> How it works</p><h2>A thoughtful path from idea to setup.</h2></div><ol class="service-steps"><li><h3>Describe the business</h3><p>Share the proposed name, industry, location, ownership, and expected timeline.</p></li><li><h3>Identify open decisions</h3><p>Flag questions involving entity choice, business address, domain, and setup priorities.</p></li><li><h3>Plan the next steps</h3><p>A representative can follow up with educational guidance and appropriate referrals.</p></li></ol></div></section>
 
-        <form id="formationForm" name="Vaultara-Business-Formation" method="POST" data-netlify="true" netlify-honeypot="bot-field">
-          <input type="hidden" name="form-name" value="Vaultara-Business-Formation" />
-          <p class="hidden"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+    <section class="readiness-band"><div class="shell readiness-grid"><h2>Useful details for a <em>formation conversation.</em></h2><ul class="readiness-list"><li>Proposed business name</li><li>Primary industry or activity</li><li>State of formation</li><li>Number of owners</li><li>Business address plan</li><li>Desired launch timeline</li></ul></div></section>
 
-          <div class="row">
-            <div>
-              <label>Full Name (Required)
-                <input name="full_name" type="text" required placeholder="Your full name" />
-              </label>
-            </div>
-            <div>
-              <label>Email (Required)
-                <input name="email" type="email" required placeholder="name@domain.com" />
-              </label>
-            </div>
-          </div>
-
-          <div class="row">
-            <div>
-              <label>Phone (Required)
-                <input name="phone" type="tel" required placeholder="(000) 000-0000" />
-              </label>
-            </div>
-            <div>
-              <label>State to Form In (Required)
-                <input name="state" type="text" required placeholder="State" />
-              </label>
-            </div>
-          </div>
-
-          <label>Business Name Idea (Required)
-            <input name="business_name" type="text" required placeholder="Proposed business name" />
-          </label>
-
-          <label>Industry / Business Type (Required)
-            <input name="industry" type="text" required placeholder="What does the business do?" />
-          </label>
-
-          <label>Preferred Entity Type (Required)
-            <select name="entity_type" required>
-              <option value="" selected disabled>Select one</option>
-              <option>LLC</option>
-              <option>C-Corp</option>
-              <option>S-Corp</option>
-              <option>Not sure (Need guidance)</option>
-            </select>
-          </label>
-
-          <div class="row">
-            <div>
-              <label>Owners / Partners? (Required)
-                <select name="owners" required>
-                  <option value="" selected disabled>Select one</option>
-                  <option>1 Owner</option>
-                  <option>2 Owners</option>
-                  <option>3+ Owners</option>
-                </select>
-              </label>
-            </div>
-            <div>
-              <label>Do you need a domain name? (Required)
-                <select name="domain_help" required>
-                  <option value="" selected disabled>Select one</option>
-                  <option>Yes</option>
-                  <option>No</option>
-                  <option>Not sure</option>
-                </select>
-              </label>
-            </div>
-          </div>
-
-          <label>Business Address Plan (Required)
-            <select name="address_plan" required>
-              <option value="" selected disabled>Select one</option>
-              <option>Home Address</option>
-              <option>Commercial Address</option>
-              <option>Virtual/Registered Address</option>
-              <option>Not sure</option>
-            </select>
-          </label>
-
-          <label>Timeline (Required)
-            <select name="timeline" required>
-              <option value="" selected disabled>Select one</option>
-              <option>Immediately (0–7 days)</option>
-              <option>Within 2–4 weeks</option>
-              <option>Within 1–3 months</option>
-              <option>Not sure</option>
-            </select>
-          </label>
-
-          <label>Details (Required)
-            <textarea name="details" required placeholder="Tell us what you need help with (formation steps, setup, compliance basics, domain)."></textarea>
-          </label>
-
-          <label style="margin-top:14px; font-weight:700; color: rgba(255,255,255,.82);">
-            <input type="checkbox" name="consent" required style="width:auto; margin-right:8px;" />
-            I confirm the information is accurate and I agree to be contacted by email.
-          </label>
-
-          <button class="btn" type="submit">SUBMIT</button>
-
-          <div class="fine">
-            Central Line: (800) 827-9016 • Email: contact@vaultaracapital.com
-          </div>
+    <section class="funding-intake" id="formation-intake"><div class="shell" data-intake-root><div class="intake-heading" data-intake-hide><p class="eyebrow"><span></span> Private intake</p><h2>Tell us what you are building.</h2><p>Share the essentials behind your business idea. Do not submit Social Security numbers, tax identification numbers, account numbers, passwords, or identity documents through this form.</p></div>
+      <div class="funding-form-card" data-intake-hide><h3 class="form-section-title">Business formation intake</h3><p class="form-section-intro">Complete the fields below so we can understand your goals and open questions.</p>
+        <form class="funding-form js-intake-form" name="Vaultara-Business-Formation" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+          <input type="hidden" name="form-name" value="Vaultara-Business-Formation" /><p class="hidden"><label>Do not fill this out: <input name="bot-field" /></label></p>
+          <div class="funding-form-grid"><label>Full name *<input name="full_name" type="text" autocomplete="name" required /></label><label>Email *<input name="email" type="email" autocomplete="email" required /></label><label>Phone *<input name="phone" type="tel" autocomplete="tel" required /></label><label>State to form in *<input name="state" type="text" autocomplete="address-level1" required /></label></div>
+          <div class="funding-form-grid"><label>Proposed business name *<input name="business_name" type="text" required /></label><label>Industry or business type *<input name="industry" type="text" required /></label></div>
+          <label>Preferred entity type *<select name="entity_type" required><option value="">Select one</option><option>LLC</option><option>C-Corp</option><option>S-Corp</option><option>Not sure — need guidance</option></select></label>
+          <div class="funding-form-grid"><label>Owners or partners *<select name="owners" required><option value="">Select one</option><option>1 owner</option><option>2 owners</option><option>3+ owners</option></select></label><label>Do you need a domain name? *<select name="domain_help" required><option value="">Select one</option><option>Yes</option><option>No</option><option>Not sure</option></select></label></div>
+          <div class="funding-form-grid"><label>Business address plan *<select name="address_plan" required><option value="">Select one</option><option>Home address</option><option>Commercial address</option><option>Virtual or registered address</option><option>Not sure</option></select></label><label>Timeline *<select name="timeline" required><option value="">Select one</option><option>Immediately — 0–7 days</option><option>Within 2–4 weeks</option><option>Within 1–3 months</option><option>Not sure</option></select></label></div>
+          <label>Details *<textarea name="details" required placeholder="Tell us about the business, your setup questions, and the type of guidance you need."></textarea></label>
+          <label class="funding-consent"><input type="checkbox" name="consent" required /><span>I confirm the information is accurate and agree that Vaultara Capital may contact me about this request. I have reviewed the <a href="privacy.html">Privacy Policy</a>.</span></label>
+          <button class="button" type="submit">Submit formation intake <span aria-hidden="true">→</span></button><p class="form-status" role="status" aria-live="polite"></p>
         </form>
+        <p class="form-note">Vaultara Capital provides general education and administrative guidance. We are not a law firm or accounting firm, and this service is not legal, tax, or accounting advice. Consult qualified professionals before making entity or tax elections.</p>
       </div>
+      <div class="funding-success hidden" data-intake-success tabindex="-1"><div class="funding-success-icon" aria-hidden="true">✓</div><h2>Thank you.</h2><p>We received your formation intake. A Vaultara Capital representative can review the information and follow up using the contact details you provided.</p><a class="button" href="/">Return to the homepage</a></div>
+    </div></section>
+  </main>
 
-      <!-- THANK YOU -->
-      <div class="section hidden" id="thanksSection">
-        <div class="bigThanks">THANK YOU</div>
-        <p class="thanksMsg">
-          We received your application. Our team will review it and contact you by email as soon as possible.
-        </p>
-        </div>
-      </div>
-
-      <div class="footer">
-        <div><strong>Central Line:</strong> (800) 827-9016</div>
-        <div><strong>Email:</strong> contact@vaultaracapital.com</div>
-        <div><a href="/" style="color:inherit">← Vaultara Capital Home</a></div>
-      </div>
-
-    </div>
-  </div>
-
-  <script>
-    (function(){
-      const intro = document.getElementById("introSection");
-      const formSection = document.getElementById("formSection");
-      const thanks = document.getElementById("thanksSection");
-      const form = document.getElementById("formationForm");
-
-      function encode(form){
-        const data = new FormData(form);
-        const params = new URLSearchParams();
-        for (const pair of data.entries()) params.append(pair[0], pair[1]);
-        return params.toString();
-      }
-
-      form.addEventListener("submit", function(e){
-        e.preventDefault();
-        fetch("/", {
-          method: "POST",
-          headers: { "Content-Type":"application/x-www-form-urlencoded" },
-          body: encode(form)
-        }).then(() => {
-          intro.classList.add("hidden");
-          formSection.classList.add("hidden");
-          thanks.classList.remove("hidden");
-        }).catch(() => alert("Submission failed. Please try again."));
-      });
-    })();
-  </script>
+  <footer class="site-footer"><div class="shell footer-grid"><div class="footer-brand"><a class="wordmark wordmark-footer" href="/"><span class="wordmark-mark">V</span><span><strong>Vaultara</strong><small>Capital</small></span></a><p>Helping people and businesses move forward with clarity, preparation, and a stronger foundation.</p></div><div class="footer-links"><strong>Services</strong><a href="funding.html">Funding guidance</a><a href="credit.html">Credit readiness</a><a href="formation.html">Business formation</a></div><div class="footer-links"><strong>Company</strong><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms of use</a><a href="mailto:contact@vaultaracapital.com">Contact</a></div><div class="footer-cta"><strong>Ready to organize your next step?</strong><a class="button button-light" href="#formation-intake">Start my intake</a></div></div><div class="shell legal-row"><p>© <span id="year">2026</span> Vaultara Capital. All rights reserved.</p><p>Educational guidance only. Legal and tax advice are not provided.</p></div></footer>
 </body>
 </html>

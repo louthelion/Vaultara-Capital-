@@ -369,3 +369,28 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .purpose-card { min-height: 0; }
   .funding-form-card, .funding-success { padding: 28px 20px; border-radius: 22px; }
 }
+
+/* Shared service and legal refinements */
+.service-hero-credit { background: radial-gradient(circle at 84% 18%, rgba(71,200,166,.26), transparent 30%), radial-gradient(circle at 8% 82%, rgba(10,104,232,.34), transparent 34%), linear-gradient(125deg, var(--navy-deep), var(--navy) 60%, #064870); }
+.service-hero-formation { background: radial-gradient(circle at 82% 20%, rgba(240,190,78,.18), transparent 31%), radial-gradient(circle at 10% 86%, rgba(71,200,166,.2), transparent 33%), linear-gradient(125deg, var(--navy-deep), var(--navy) 60%, #173f70); }
+.service-nav-current { color: var(--blue); }
+.funding-form a, .funding-consent a, .form-note a, .consent a { color: var(--blue-dark); text-decoration: underline; text-underline-offset: 3px; }
+.funding-form button:disabled { cursor: wait; opacity: .7; transform: none; }
+.legal-page { min-height: 70vh; padding: 84px 0 110px; background: var(--soft); }
+.legal-document { max-width: 860px; padding: clamp(30px, 6vw, 70px); border: 1px solid var(--line); border-radius: 30px; background: white; box-shadow: 0 24px 65px rgba(6,26,58,.08); }
+.legal-document .service-breadcrumb { color: var(--blue-dark); }
+.legal-document .eyebrow { margin-top: 42px; }
+.legal-document h1 { margin: 0; color: var(--navy); font-family: Georgia, "Times New Roman", serif; font-size: clamp(46px, 7vw, 72px); letter-spacing: -2.8px; line-height: 1; }
+.legal-document h2 { margin: 42px 0 12px; color: var(--navy); font-family: Georgia, "Times New Roman", serif; font-size: 28px; letter-spacing: -.8px; }
+.legal-document p, .legal-document li { color: var(--muted); line-height: 1.8; }
+.legal-document a { color: var(--blue-dark); text-decoration: underline; text-underline-offset: 3px; }
+.legal-updated { margin: 14px 0 34px; font-size: 13px; font-weight: 800; text-transform: uppercase; letter-spacing: 1.4px; }
+.legal-callout { margin: 34px 0; padding: 22px 24px; border-left: 4px solid var(--blue); border-radius: 0 14px 14px 0; background: var(--pale-blue); color: var(--navy); }
+.legal-callout p { margin: 7px 0 0; }
+.site-footer .legal-row a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }
+
+@media (max-width: 680px) {
+  .legal-page { padding: 48px 0 70px; }
+  .legal-document { border-radius: 22px; }
+  .legal-document .eyebrow { margin-top: 32px; }
+}
