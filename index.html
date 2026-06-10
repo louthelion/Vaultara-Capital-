@@ -424,10 +424,18 @@
       font-size: 27px;
     }
 
-    .package-card p {
-      min-height: 135px;
-      margin: 20px 0 24px;
+    .package-description {
+      min-height: 108px;
+      margin: 20px 0 18px;
       font-size: 16px;
+    }
+
+    .package-card .package-details {
+      margin: 0;
+      color: var(--gray-main);
+      font-size: 14px;
+      font-weight: 800;
+      letter-spacing: 0.3px;
     }
 
     .package-note {
@@ -1138,30 +1146,30 @@
           <div class="grid packages-grid">
             <div class="package-card">
               <h3>Starter Guidance</h3>
-              <p>
+              <p class="package-description">
                 For clients who need basic education, credit readiness guidance,
                 and help understanding the next steps.
               </p>
-              <button class="btn js-open-intake" type="button">Request Package Details</button>
+              <p class="package-details">Details provided after intake review.</p>
             </div>
 
             <div class="package-card featured">
               <div class="badge">Most Popular</div>
               <h3>Growth Support</h3>
-              <p>
+              <p class="package-description">
                 For clients who need deeper preparation for funding, business credit,
                 or business formation.
               </p>
-              <button class="btn primary js-open-intake" type="button">Start Application</button>
+              <p class="package-details">Details provided after intake review.</p>
             </div>
 
             <div class="package-card">
               <h3>Premium Strategy</h3>
-              <p>
+              <p class="package-description">
                 For clients who need a more complete funding-readiness or
                 business-growth support plan.
               </p>
-              <a href="#contact" class="btn">Speak With Vaultara</a>
+              <p class="package-details">Details provided after intake review.</p>
             </div>
           </div>
 
@@ -1309,7 +1317,6 @@
             </div>
 
             <div class="intake-cta">
-              <button class="btn primary js-open-intake" type="button">Begin Private Intake →</button>
               <span class="intake-assurance">Your information is handled with discretion.</span>
             </div>
           </div>
@@ -1327,7 +1334,6 @@
               through the official contact page.
             </p>
             <div class="button-row" style="margin-top: 24px;">
-              <button class="btn primary js-open-intake" type="button">Begin Private Intake ›</button>
               <a class="btn" href="#insights">Read Blogs</a>
             </div>
           </div>
