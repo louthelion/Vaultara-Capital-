@@ -34,6 +34,7 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 125px;
     }
 
     body {
@@ -256,30 +257,9 @@
       margin-bottom: 6px;
     }
 
-    .stats-band {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: 16px;
-      margin-top: 35px;
-    }
-
-    .stat {
-      padding: 20px;
-      border: 1px solid var(--gray-border);
-      border-radius: 18px;
-      background: rgba(8, 43, 85, 0.74);
-      text-align: center;
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 30px;
-      font-family: Georgia, serif;
-      color: var(--gray-main);
-    }
-
     section {
       padding: 70px 0;
+      scroll-margin-top: 125px;
     }
 
     .section-title {
@@ -344,6 +324,13 @@
       transform: translateY(-4px);
       border-color: var(--blue-bright);
       background: rgba(13, 67, 132, 0.9);
+    }
+
+    .open-service {
+      display: inline-block;
+      margin-top: 18px;
+      color: var(--gray-main);
+      font-weight: 900;
     }
 
     .icon {
@@ -921,7 +908,6 @@
       .packages-grid,
       .process-grid,
       .articles-grid,
-      .stats-band,
       .intake-steps {
         grid-template-columns: 1fr 1fr;
       }
@@ -932,6 +918,14 @@
     }
 
     @media (max-width: 640px) {
+      html {
+        scroll-padding-top: 106px;
+      }
+
+      section {
+        scroll-margin-top: 106px;
+      }
+
       .nav {
         min-height: 82px;
       }
@@ -967,7 +961,6 @@
       .packages-grid,
       .process-grid,
       .articles-grid,
-      .stats-band,
       .intake-steps,
       .form-grid {
         grid-template-columns: 1fr;
@@ -1044,13 +1037,6 @@
             <a href="#services" class="btn primary">Explore Services</a>
             <button class="btn js-open-intake" type="button">Start Application</button>
           </div>
-
-          <div class="stats-band">
-            <div class="stat"><strong>01</strong><span>Choose Service</span></div>
-            <div class="stat"><strong>02</strong><span>Submit Intake</span></div>
-            <div class="stat"><strong>03</strong><span>Review Goals</span></div>
-            <div class="stat"><strong>04</strong><span>Private Package</span></div>
-          </div>
         </div>
 
         <div class="hero-media">
@@ -1080,55 +1066,64 @@
               <div class="icon">◴</div>
               <h3>Credit Education & Tracking</h3>
               <p>Learn how to understand and monitor the areas that may affect credit readiness.</p>
+              <span class="open-service">Open Credit Services →</span>
             </a>
 
             <a class="card" href="credit.html">
               <div class="icon">☑</div>
               <h3>Credit Preparation</h3>
               <p>Prepare your credit profile before seeking personal or business funding options.</p>
+              <span class="open-service">Open Credit Services →</span>
             </a>
 
             <a class="card" href="funding.html">
               <div class="icon">☉</div>
               <h3>Personal Loan Guidance</h3>
               <p>Understand what lenders may review before a personal funding application.</p>
+              <span class="open-service">Open Funding Services →</span>
             </a>
 
             <a class="card" href="funding.html">
               <div class="icon">▣</div>
               <h3>Business Loan Preparation</h3>
               <p>Organize business documents, readiness steps, and funding preparation information.</p>
+              <span class="open-service">Open Funding Services →</span>
             </a>
 
             <a class="card" href="formation.html">
               <div class="icon">▥</div>
               <h3>Business Formation</h3>
               <p>Get guided through formation planning, structure education, and next steps.</p>
+              <span class="open-service">Open Formation Services →</span>
             </a>
 
             <a class="card" href="credit.html">
               <div class="icon">▤</div>
               <h3>Business Credit Setup</h3>
               <p>Build a stronger foundation for business credit setup and future funding readiness.</p>
+              <span class="open-service">Open Credit Services →</span>
             </a>
 
             <a class="card" href="funding.html">
               <div class="icon">◇</div>
               <h3>Startup Funding Readiness</h3>
               <p>Prepare startup information, business direction, and funding-readiness documents.</p>
+              <span class="open-service">Open Funding Services →</span>
             </a>
 
             <a class="card" href="funding.html">
               <div class="icon">↗</div>
               <h3>Existing Business Funding</h3>
               <p>Review growth goals and prepare existing business information for funding review.</p>
+              <span class="open-service">Open Funding Services →</span>
             </a>
 
-            <div class="card">
+            <a class="card" href="funding.html">
               <div class="icon">▦</div>
               <h3>Government-Backed Program Guidance</h3>
               <p>Learn about program requirements and guidance without promises or guarantees.</p>
-            </div>
+              <span class="open-service">Open Funding Services →</span>
+            </a>
           </div>
         </div>
       </section>
