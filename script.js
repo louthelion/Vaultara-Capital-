@@ -34,7 +34,7 @@ contact@vaultaracapital.com`
 
     return {
       statusCode: 302,
-      headers: { Location: "/thankyou.html" },
+      headers: { Location: "/#apply" },
       body: ""
     };
   } catch (e) {

@@ -314,6 +314,7 @@
     }
 
     .card {
+      display: block;
       padding: 28px;
       min-height: 190px;
       transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
@@ -510,7 +511,16 @@
     }
 
     .article-card {
+      display: block;
       overflow: hidden;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    a.article-card:hover,
+    a.article-card:focus-visible {
+      transform: translateY(-4px);
+      border-color: var(--blue-bright);
+      background: rgba(13, 67, 132, 0.9);
     }
 
     .article-image {
@@ -537,11 +547,23 @@
         url("https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1000&q=80");
     }
 
+    .article-four {
+      background-image:
+        linear-gradient(rgba(6, 31, 63, 0.05), rgba(6, 31, 63, 0.4)),
+        url("https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?auto=format&fit=crop&w=1000&q=80");
+    }
+
+    .article-five {
+      background-image:
+        linear-gradient(rgba(6, 31, 63, 0.05), rgba(6, 31, 63, 0.4)),
+        url("https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1000&q=80");
+    }
+
     .article-content {
       padding: 24px;
     }
 
-    .article-content a {
+    .article-link {
       display: inline-block;
       margin-top: 16px;
       color: var(--gray-main);
@@ -1076,6 +1098,13 @@
               <span class="open-service">Open Credit Services →</span>
             </a>
 
+            <a class="card" href="credit.html">
+              <div class="icon">▤</div>
+              <h3>Business Credit Setup</h3>
+              <p>Build a stronger foundation for business credit setup and future funding readiness.</p>
+              <span class="open-service">Open Credit Services →</span>
+            </a>
+
             <a class="card" href="funding.html">
               <div class="icon">☉</div>
               <h3>Personal Loan Guidance</h3>
@@ -1088,20 +1117,6 @@
               <h3>Business Loan Preparation</h3>
               <p>Organize business documents, readiness steps, and funding preparation information.</p>
               <span class="open-service">Open Funding Services →</span>
-            </a>
-
-            <a class="card" href="formation.html">
-              <div class="icon">▥</div>
-              <h3>Business Formation</h3>
-              <p>Get guided through formation planning, structure education, and next steps.</p>
-              <span class="open-service">Open Formation Services →</span>
-            </a>
-
-            <a class="card" href="credit.html">
-              <div class="icon">▤</div>
-              <h3>Business Credit Setup</h3>
-              <p>Build a stronger foundation for business credit setup and future funding readiness.</p>
-              <span class="open-service">Open Credit Services →</span>
             </a>
 
             <a class="card" href="funding.html">
@@ -1123,6 +1138,13 @@
               <h3>Government-Backed Program Guidance</h3>
               <p>Learn about program requirements and guidance without promises or guarantees.</p>
               <span class="open-service">Open Funding Services →</span>
+            </a>
+
+            <a class="card" href="formation.html">
+              <div class="icon">▥</div>
+              <h3>Business Formation</h3>
+              <p>Get guided through formation planning, structure education, and next steps.</p>
+              <span class="open-service">Open Formation Services →</span>
             </a>
           </div>
         </div>
@@ -1250,32 +1272,50 @@
           </div>
 
           <div class="grid articles-grid">
-            <article class="article-card">
+            <a class="article-card" href="credit.html" aria-label="Understanding Credit Readiness — open credit services">
               <div class="article-image article-one"></div>
               <div class="article-content">
                 <h3>Understanding Credit Readiness</h3>
                 <p>Learn how credit readiness can affect personal and business funding preparation.</p>
-                <a href="credit.html">Explore Credit Services →</a>
+                <span class="article-link">Explore Credit Services →</span>
               </div>
-            </article>
+            </a>
 
-            <article class="article-card">
+            <a class="article-card" href="funding.html" aria-label="Preparing for Business Funding — open funding services">
               <div class="article-image article-two"></div>
               <div class="article-content">
                 <h3>Preparing for Business Funding</h3>
                 <p>Review the documents, structure, and information a business may need before applying.</p>
-                <a href="funding.html">Explore Funding Services →</a>
+                <span class="article-link">Explore Funding Services →</span>
               </div>
-            </article>
+            </a>
 
-            <article class="article-card">
+            <a class="article-card" href="funding.html" aria-label="Government-Backed Programs Explained — open funding services">
               <div class="article-image article-three"></div>
               <div class="article-content">
                 <h3>Government-Backed Programs Explained</h3>
                 <p>Understand program guidance, requirements, and preparation without promises or guarantees.</p>
-                <a href="funding.html">Explore Program Guidance →</a>
+                <span class="article-link">Explore Program Guidance →</span>
               </div>
-            </article>
+            </a>
+
+            <a class="article-card" href="formation.html" aria-label="Business Formation Basics — open formation services">
+              <div class="article-image article-four"></div>
+              <div class="article-content">
+                <h3>Business Formation Basics</h3>
+                <p>Review foundational considerations for choosing and preparing a business structure.</p>
+                <span class="article-link">Explore Formation Services →</span>
+              </div>
+            </a>
+
+            <a class="article-card" href="credit.html" aria-label="Business Credit Setup Guide — open credit services">
+              <div class="article-image article-five"></div>
+              <div class="article-content">
+                <h3>Business Credit Setup Guide</h3>
+                <p>Learn the foundational steps that support a business credit profile and future readiness.</p>
+                <span class="article-link">Explore Credit Services →</span>
+              </div>
+            </a>
           </div>
         </div>
       </section>
@@ -1357,16 +1397,16 @@
         <p>© 2026 Vaultara Capital • All rights reserved</p>
 
         <div class="footer-buttons">
-          <a href="#" class="btn">Privacy Policy</a>
-          <a href="#" class="btn">Terms of Use</a>
+          <span class="btn" aria-disabled="true">Privacy Policy</span>
+          <span class="btn" aria-disabled="true">Terms of Use</span>
           <a href="#insights" class="btn">Blogs</a>
           <a href="#contact" class="btn">Feedback</a>
         </div>
 
         <div class="socials">
-          <a href="#" class="social">f</a>
-          <a href="#" class="social">◎</a>
-          <a href="#" class="social">in</a>
+          <span class="social" aria-hidden="true">f</span>
+          <span class="social" aria-hidden="true">◎</span>
+          <span class="social" aria-hidden="true">in</span>
         </div>
 
         <div class="footer-links">
