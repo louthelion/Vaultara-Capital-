@@ -1,0 +1,1310 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <title>Vaultara Capital | Credit, Funding & Business Formation</title>
+  <meta name="description" content="Vaultara Capital provides credit readiness education, funding guidance, and business formation support for individuals, startups, and established businesses." />
+  <link rel="canonical" href="https://vaultaracapital.com/" />
+  <meta property="og:title" content="Vaultara Capital" />
+  <meta property="og:description" content="Strategic funding guidance, credit readiness education, and business formation support." />
+  <meta property="og:type" content="website" />
+  <meta property="og:url" content="https://vaultaracapital.com/" />
+
+  <style>
+    :root {
+      --blue-main: #061f3f;
+      --blue-deep: #031426;
+      --blue-card: #082b55;
+      --blue-soft: #0d4384;
+      --blue-bright: #1671d9;
+      --gray-main: #c7d3df;
+      --gray-soft: #9fb2c7;
+      --gray-border: rgba(199, 211, 223, 0.35);
+      --shadow: rgba(0, 0, 0, 0.34);
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--blue-deep);
+      color: var(--gray-main);
+      line-height: 1.6;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      min-height: 100vh;
+      background:
+        linear-gradient(rgba(3, 20, 38, 0.75), rgba(3, 20, 38, 0.98)),
+        url("https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1800&q=80");
+      background-size: cover;
+      background-position: center top;
+      background-attachment: fixed;
+    }
+
+    .container {
+      width: min(1220px, 92%);
+      margin: 0 auto;
+    }
+
+    .top-header {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      background: rgba(3, 20, 38, 0.9);
+      border-bottom: 1px solid var(--gray-border);
+      backdrop-filter: blur(12px);
+    }
+
+    .nav {
+      min-height: 94px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .vc-logo {
+      width: 68px;
+      height: 68px;
+      border-radius: 20px;
+      border: 2px solid var(--gray-soft);
+      background: linear-gradient(145deg, var(--blue-soft), var(--blue-main));
+      color: var(--gray-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 28px;
+      font-weight: 900;
+      letter-spacing: -1px;
+      box-shadow: 0 0 28px rgba(22, 113, 217, 0.35);
+    }
+
+    .brand-title {
+      font-family: Georgia, serif;
+      font-size: 30px;
+      line-height: 1.04;
+      letter-spacing: 2px;
+      color: var(--gray-main);
+      font-weight: 900;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 24px;
+      font-size: 15px;
+      color: var(--gray-main);
+    }
+
+    .nav-links a {
+      opacity: 0.88;
+    }
+
+    .nav-links a:hover {
+      opacity: 1;
+      color: var(--gray-main);
+    }
+
+    .menu-btn {
+      display: none;
+      border: 1px solid var(--gray-border);
+      background: rgba(8, 43, 85, 0.9);
+      color: var(--gray-main);
+      border-radius: 14px;
+      padding: 9px 14px;
+      font-size: 28px;
+      cursor: pointer;
+    }
+
+    .hero {
+      padding: 90px 0 70px;
+      display: grid;
+      grid-template-columns: 1.08fr 0.92fr;
+      gap: 42px;
+      align-items: center;
+    }
+
+    .eyebrow {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--gray-soft);
+      font-size: 14px;
+      font-weight: 800;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-family: Georgia, serif;
+      color: var(--gray-main);
+      font-size: clamp(48px, 6vw, 86px);
+      line-height: 0.98;
+      letter-spacing: -2px;
+      margin-bottom: 26px;
+      font-weight: 900;
+    }
+
+    .hero p {
+      font-size: 20px;
+      color: var(--gray-main);
+      max-width: 680px;
+      margin-bottom: 30px;
+    }
+
+    .hero-actions,
+    .button-row {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-height: 50px;
+      padding: 14px 24px;
+      border-radius: 14px;
+      border: 1px solid var(--gray-border);
+      background: rgba(8, 43, 85, 0.82);
+      color: var(--gray-main);
+      font-weight: 900;
+      cursor: pointer;
+      transition: 0.25s ease;
+    }
+
+    .btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 14px 30px var(--shadow);
+    }
+
+    .btn.primary {
+      background: linear-gradient(135deg, var(--blue-bright), var(--blue-soft));
+      border-color: rgba(199, 211, 223, 0.45);
+      color: var(--gray-main);
+    }
+
+    .hero-media {
+      border-radius: 28px;
+      overflow: hidden;
+      border: 1px solid var(--gray-border);
+      background: rgba(8, 43, 85, 0.84);
+      box-shadow: 0 28px 60px var(--shadow);
+    }
+
+    .hero-image {
+      min-height: 360px;
+      background:
+        linear-gradient(rgba(6, 31, 63, 0.1), rgba(6, 31, 63, 0.68)),
+        url("https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=1400&q=80");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .play-button {
+      width: 92px;
+      height: 92px;
+      border-radius: 50%;
+      border: 3px solid var(--gray-main);
+      background: rgba(3, 20, 38, 0.55);
+      color: var(--gray-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 38px;
+      padding-left: 5px;
+    }
+
+    .hero-media-content {
+      padding: 26px;
+    }
+
+    .hero-media-content h3 {
+      font-family: Georgia, serif;
+      color: var(--gray-main);
+      font-size: 26px;
+      margin-bottom: 6px;
+    }
+
+    .stats-band {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-top: 35px;
+    }
+
+    .stat {
+      padding: 20px;
+      border: 1px solid var(--gray-border);
+      border-radius: 18px;
+      background: rgba(8, 43, 85, 0.74);
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 30px;
+      font-family: Georgia, serif;
+      color: var(--gray-main);
+    }
+
+    section {
+      padding: 70px 0;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 38px;
+    }
+
+    .section-title .small {
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: var(--gray-soft);
+      font-size: 13px;
+      font-weight: 900;
+      margin-bottom: 10px;
+    }
+
+    .section-title h2 {
+      font-family: Georgia, serif;
+      color: var(--gray-main);
+      font-size: clamp(34px, 4vw, 54px);
+      line-height: 1.05;
+      font-weight: 900;
+    }
+
+    .section-title p {
+      max-width: 760px;
+      margin: 16px auto 0;
+      color: var(--gray-soft);
+      font-size: 18px;
+    }
+
+    .grid {
+      display: grid;
+      gap: 18px;
+    }
+
+    .services-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .card,
+    .package-card,
+    .panel,
+    .article-card,
+    .form-panel,
+    .contact-panel,
+    .feature-box {
+      border: 1px solid var(--gray-border);
+      background: rgba(8, 43, 85, 0.83);
+      border-radius: 22px;
+      box-shadow: 0 24px 50px var(--shadow);
+    }
+
+    .card {
+      padding: 28px;
+      min-height: 190px;
+      transition: transform 0.2s ease, border-color 0.2s ease, background 0.2s ease;
+    }
+
+    a.card:hover,
+    a.card:focus-visible {
+      transform: translateY(-4px);
+      border-color: var(--blue-bright);
+      background: rgba(13, 67, 132, 0.9);
+    }
+
+    .icon {
+      width: 52px;
+      height: 52px;
+      border-radius: 16px;
+      background: rgba(22, 113, 217, 0.28);
+      border: 1px solid var(--gray-border);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 26px;
+      margin-bottom: 16px;
+      color: var(--gray-main);
+    }
+
+    .card h3,
+    .package-card h3,
+    .panel h3,
+    .article-card h3,
+    .form-panel h3,
+    .contact-panel h3,
+    .feature-box h3 {
+      color: var(--gray-main);
+      font-family: Georgia, serif;
+      font-size: 25px;
+      line-height: 1.1;
+      margin-bottom: 10px;
+    }
+
+    .card p,
+    .package-card p,
+    .panel p,
+    .article-card p,
+    .form-panel p,
+    .contact-panel p,
+    .feature-box p {
+      color: var(--gray-soft);
+    }
+
+    .packages-grid {
+      grid-template-columns: repeat(3, 1fr);
+      align-items: stretch;
+    }
+
+    .package-card {
+      padding: 34px 28px;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .package-card.featured {
+      border-color: rgba(22, 113, 217, 0.85);
+      box-shadow: 0 0 0 2px rgba(22, 113, 217, 0.32), 0 24px 50px var(--shadow);
+    }
+
+    .badge {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      padding: 10px;
+      background: var(--blue-bright);
+      color: var(--gray-main);
+      font-size: 13px;
+      letter-spacing: 2px;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .package-card.featured h3 {
+      margin-top: 30px;
+    }
+
+    .package-card h3 {
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      font-size: 27px;
+    }
+
+    .package-card p {
+      min-height: 135px;
+      margin: 20px 0 24px;
+      font-size: 16px;
+    }
+
+    .package-note {
+      max-width: 780px;
+      margin: 22px auto 0;
+      color: var(--gray-soft);
+      text-align: center;
+      font-size: 15px;
+    }
+
+    .feature-split {
+      display: grid;
+      grid-template-columns: 1fr 1.1fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .picture-panel {
+      min-height: 470px;
+      border-radius: 24px;
+      border: 1px solid var(--gray-border);
+      background:
+        linear-gradient(rgba(6, 31, 63, 0.08), rgba(6, 31, 63, 0.78)),
+        url("https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1400&q=80");
+      background-size: cover;
+      background-position: center;
+      box-shadow: 0 24px 50px var(--shadow);
+    }
+
+    .panel {
+      padding: 38px;
+    }
+
+    .mini-grid {
+      display: grid;
+      gap: 16px;
+      margin-top: 24px;
+    }
+
+    .mini-card {
+      border: 1px solid var(--gray-border);
+      background: rgba(3, 20, 38, 0.58);
+      border-radius: 18px;
+      padding: 20px;
+    }
+
+    .mini-card h4 {
+      color: var(--gray-main);
+      font-size: 18px;
+      margin-bottom: 6px;
+    }
+
+    .legal-note {
+      font-size: 14px;
+      margin-top: 20px;
+      color: var(--gray-soft);
+    }
+
+    .process-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .feature-box {
+      padding: 28px;
+      text-align: center;
+    }
+
+    .step-number {
+      width: 46px;
+      height: 46px;
+      margin: 0 auto 14px;
+      border-radius: 50%;
+      background: var(--blue-bright);
+      color: var(--gray-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 20px;
+    }
+
+    .articles-grid {
+      grid-template-columns: repeat(3, 1fr);
+    }
+
+    .article-card {
+      overflow: hidden;
+    }
+
+    .article-image {
+      height: 210px;
+      background-size: cover;
+      background-position: center;
+    }
+
+    .article-one {
+      background-image:
+        linear-gradient(rgba(6, 31, 63, 0.05), rgba(6, 31, 63, 0.4)),
+        url("https://images.unsplash.com/photo-1554224154-26032fced8bd?auto=format&fit=crop&w=1000&q=80");
+    }
+
+    .article-two {
+      background-image:
+        linear-gradient(rgba(6, 31, 63, 0.05), rgba(6, 31, 63, 0.4)),
+        url("https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=1000&q=80");
+    }
+
+    .article-three {
+      background-image:
+        linear-gradient(rgba(6, 31, 63, 0.05), rgba(6, 31, 63, 0.4)),
+        url("https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=1000&q=80");
+    }
+
+    .article-content {
+      padding: 24px;
+    }
+
+    .article-content a {
+      display: inline-block;
+      margin-top: 16px;
+      color: var(--gray-main);
+      font-weight: 900;
+    }
+
+    .application-layout {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .form-panel {
+      padding: 34px;
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+      margin-top: 22px;
+    }
+
+    .form-field.full-width {
+      grid-column: 1 / -1;
+    }
+
+    label {
+      display: block;
+      margin-bottom: 8px;
+      color: var(--gray-main);
+      font-weight: 800;
+      font-size: 14px;
+    }
+
+    input,
+    select,
+    textarea {
+      width: 100%;
+      padding: 15px 14px;
+      border-radius: 12px;
+      border: 1px solid var(--gray-border);
+      background: rgba(3, 20, 38, 0.78);
+      color: var(--gray-main);
+      font-size: 15px;
+      outline: none;
+    }
+
+    textarea {
+      min-height: 140px;
+      resize: vertical;
+    }
+
+    input::placeholder,
+    textarea::placeholder {
+      color: var(--gray-soft);
+    }
+
+    .form-submit {
+      grid-column: 1 / -1;
+    }
+
+    .application-picture {
+      min-height: 610px;
+      border: 1px solid var(--gray-border);
+      border-radius: 24px;
+      background:
+        linear-gradient(rgba(6, 31, 63, 0.08), rgba(6, 31, 63, 0.82)),
+        url("https://images.unsplash.com/photo-1497366754035-f200968a6e72?auto=format&fit=crop&w=1400&q=80");
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: flex-end;
+      padding: 28px;
+      box-shadow: 0 24px 50px var(--shadow);
+    }
+
+    .secure-box {
+      width: 100%;
+      padding: 24px;
+      border-radius: 20px;
+      border: 1px solid var(--gray-border);
+      background: rgba(3, 20, 38, 0.82);
+    }
+
+    .secure-box h3 {
+      color: var(--gray-main);
+      font-family: Georgia, serif;
+      font-size: 28px;
+      margin-bottom: 8px;
+    }
+
+    .contact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px;
+    }
+
+    .contact-panel {
+      padding: 34px;
+    }
+
+    footer {
+      padding: 65px 0 40px;
+      background: rgba(3, 20, 38, 0.96);
+      border-top: 1px solid var(--gray-border);
+    }
+
+    .footer-brand {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+      margin-bottom: 20px;
+    }
+
+    .footer-brand h2 {
+      font-family: Georgia, serif;
+      color: var(--gray-main);
+      font-size: 32px;
+      line-height: 1.04;
+      letter-spacing: 2px;
+    }
+
+    .footer-center {
+      text-align: center;
+    }
+
+    .footer-buttons,
+    .socials {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 24px;
+    }
+
+    .social {
+      width: 58px;
+      height: 58px;
+      border-radius: 18px;
+      border: 1px solid var(--gray-border);
+      background: rgba(8, 43, 85, 0.84);
+      color: var(--gray-main);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 900;
+      font-size: 19px;
+    }
+
+    .footer-links {
+      margin-top: 34px;
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      flex-wrap: wrap;
+      color: var(--gray-soft);
+      font-size: 15px;
+    }
+
+    .success-message {
+      display: none;
+      margin-top: 18px;
+      border: 1px solid var(--gray-border);
+      background: rgba(22, 113, 217, 0.18);
+      color: var(--gray-main);
+      padding: 16px;
+      border-radius: 14px;
+      font-weight: 800;
+    }
+
+    .success-message.show {
+      display: block;
+    }
+
+    @media (max-width: 980px) {
+      .menu-btn {
+        display: block;
+      }
+
+      .nav {
+        flex-wrap: wrap;
+      }
+
+      .nav-links {
+        display: none;
+        width: 100%;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 14px;
+        padding: 18px 0 6px;
+      }
+
+      .nav-links.open {
+        display: flex;
+      }
+
+      .hero,
+      .feature-split,
+      .application-layout,
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .services-grid,
+      .packages-grid,
+      .process-grid,
+      .articles-grid,
+      .stats-band {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .application-picture,
+      .picture-panel {
+        min-height: 420px;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav {
+        min-height: 82px;
+      }
+
+      .vc-logo {
+        width: 56px;
+        height: 56px;
+        font-size: 23px;
+        border-radius: 17px;
+      }
+
+      .brand-title {
+        font-size: 22px;
+      }
+
+      .hero {
+        padding: 64px 0 44px;
+      }
+
+      .hero h1 {
+        font-size: 44px;
+      }
+
+      .hero p {
+        font-size: 17px;
+      }
+
+      section {
+        padding: 54px 0;
+      }
+
+      .services-grid,
+      .packages-grid,
+      .process-grid,
+      .articles-grid,
+      .stats-band,
+      .form-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .form-field.full-width,
+      .form-submit {
+        grid-column: auto;
+      }
+
+      .section-title h2 {
+        font-size: 34px;
+      }
+
+      .panel,
+      .form-panel,
+      .contact-panel {
+        padding: 26px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page">
+    <header class="top-header">
+      <div class="container nav">
+        <a class="brand" href="/" aria-label="Vaultara Capital home">
+          <div class="vc-logo">VC</div>
+          <div class="brand-title">VAULTARA<br />CAPITAL</div>
+        </a>
+
+        <button class="menu-btn" id="menuBtn" aria-label="Open menu">☰</button>
+
+        <nav class="nav-links" id="navLinks">
+          <a href="/">Home</a>
+          <a href="#services">Services</a>
+          <a href="#packages">Packages</a>
+          <a href="#credit-help">Credit Help</a>
+          <a href="#insights">Insights</a>
+          <a href="#apply">Apply</a>
+          <a href="#contact">Contact</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero container" id="home">
+        <div>
+          <div class="eyebrow">Credit • Funding • Business Formation</div>
+          <h1>Strategic Funding.<br />Stronger Futures.</h1>
+          <p>
+            Vaultara Capital helps clients prepare for credit, funding, business formation,
+            and financial readiness with clear education, organized guidance, and a professional intake process.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#services" class="btn primary">Explore Services</a>
+            <a href="#apply" class="btn">Start Application</a>
+          </div>
+
+          <div class="stats-band">
+            <div class="stat"><strong>01</strong><span>Choose Service</span></div>
+            <div class="stat"><strong>02</strong><span>Submit Intake</span></div>
+            <div class="stat"><strong>03</strong><span>Review Goals</span></div>
+            <div class="stat"><strong>04</strong><span>Private Package</span></div>
+          </div>
+        </div>
+
+        <div class="hero-media">
+          <div class="hero-image">
+            <div class="play-button">▶</div>
+          </div>
+          <div class="hero-media-content">
+            <h3>Featured Video Section</h3>
+            <p>Add your Vaultara Capital introduction, credit education, funding guidance, or business formation video here.</p>
+          </div>
+        </div>
+      </section>
+
+      <section id="services">
+        <div class="container">
+          <div class="section-title">
+            <div class="small">Vaultara Service Hub</div>
+            <h2>Our Services</h2>
+            <p>
+              Every service page should stay inside Vaultara Capital, with Vaultara branding,
+              Vaultara articles, Vaultara forms, and Vaultara guidance.
+            </p>
+          </div>
+
+          <div class="grid services-grid">
+            <a class="card" href="credit.html">
+              <div class="icon">◴</div>
+              <h3>Credit Education & Tracking</h3>
+              <p>Learn how to understand and monitor the areas that may affect credit readiness.</p>
+            </a>
+
+            <a class="card" href="credit.html">
+              <div class="icon">☑</div>
+              <h3>Credit Preparation</h3>
+              <p>Prepare your credit profile before seeking personal or business funding options.</p>
+            </a>
+
+            <a class="card" href="funding.html">
+              <div class="icon">☉</div>
+              <h3>Personal Loan Guidance</h3>
+              <p>Understand what lenders may review before a personal funding application.</p>
+            </a>
+
+            <a class="card" href="funding.html">
+              <div class="icon">▣</div>
+              <h3>Business Loan Preparation</h3>
+              <p>Organize business documents, readiness steps, and funding preparation information.</p>
+            </a>
+
+            <a class="card" href="formation.html">
+              <div class="icon">▥</div>
+              <h3>Business Formation</h3>
+              <p>Get guided through formation planning, structure education, and next steps.</p>
+            </a>
+
+            <a class="card" href="credit.html">
+              <div class="icon">▤</div>
+              <h3>Business Credit Setup</h3>
+              <p>Build a stronger foundation for business credit setup and future funding readiness.</p>
+            </a>
+
+            <a class="card" href="funding.html">
+              <div class="icon">◇</div>
+              <h3>Startup Funding Readiness</h3>
+              <p>Prepare startup information, business direction, and funding-readiness documents.</p>
+            </a>
+
+            <a class="card" href="funding.html">
+              <div class="icon">↗</div>
+              <h3>Existing Business Funding</h3>
+              <p>Review growth goals and prepare existing business information for funding review.</p>
+            </a>
+
+            <div class="card">
+              <div class="icon">▦</div>
+              <h3>Government-Backed Program Guidance</h3>
+              <p>Learn about program requirements and guidance without promises or guarantees.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="packages">
+        <div class="container">
+          <div class="section-title">
+            <div class="small">No Public Pricing</div>
+            <h2>Our Packages</h2>
+            <p>
+              Packages can stay on the website, but pricing should not be public.
+              Package details are recommended privately after the intake review.
+            </p>
+          </div>
+
+          <div class="grid packages-grid">
+            <div class="package-card">
+              <h3>Starter Guidance</h3>
+              <p>
+                For clients who need basic education, credit readiness guidance,
+                and help understanding the next steps.
+              </p>
+              <a href="#apply" class="btn">Request Package Details</a>
+            </div>
+
+            <div class="package-card featured">
+              <div class="badge">Most Popular</div>
+              <h3>Growth Support</h3>
+              <p>
+                For clients who need deeper preparation for funding, business credit,
+                or business formation.
+              </p>
+              <a href="#apply" class="btn primary">Start Application</a>
+            </div>
+
+            <div class="package-card">
+              <h3>Premium Strategy</h3>
+              <p>
+                For clients who need a more complete funding-readiness or
+                business-growth support plan.
+              </p>
+              <a href="#contact" class="btn">Speak With Vaultara</a>
+            </div>
+          </div>
+
+          <p class="package-note">
+            Package details are recommended privately after Vaultara Capital reviews the application or intake form.
+          </p>
+        </div>
+      </section>
+
+      <section id="credit-help">
+        <div class="container feature-split">
+          <div class="picture-panel"></div>
+
+          <div class="panel">
+            <div class="eyebrow">Credit Review & Readiness Help</div>
+            <h3>Understand Your Credit Before You Move Forward</h3>
+            <p>
+              Vaultara Capital helps clients understand their credit profile, review what may be affecting
+              funding readiness, and prepare for the next step with clear education and guidance.
+            </p>
+
+            <div class="mini-grid">
+              <div class="mini-card">
+                <h4>Credit Profile Review</h4>
+                <p>Understand what lenders may look at before you apply.</p>
+              </div>
+
+              <div class="mini-card">
+                <h4>Readiness Guidance</h4>
+                <p>Learn what areas may need attention before seeking funding.</p>
+              </div>
+
+              <div class="mini-card">
+                <h4>Next-Step Support</h4>
+                <p>Get guided toward the service or package that fits your situation.</p>
+              </div>
+            </div>
+
+            <p class="legal-note">
+              Vaultara provides education, review, preparation, and guidance. Vaultara does not guarantee approval,
+              funding, credit repair, or removal of negative items.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section>
+        <div class="container">
+          <div class="section-title">
+            <div class="small">Simple Process</div>
+            <h2>How It Works</h2>
+          </div>
+
+          <div class="grid process-grid">
+            <div class="feature-box">
+              <div class="step-number">1</div>
+              <h3>Choose a Service</h3>
+              <p>Select the Vaultara service that fits your current personal or business goal.</p>
+            </div>
+
+            <div class="feature-box">
+              <div class="step-number">2</div>
+              <h3>Complete the Intake</h3>
+              <p>Use the form to share your goals, credit needs, funding needs, or business needs.</p>
+            </div>
+
+            <div class="feature-box">
+              <div class="step-number">3</div>
+              <h3>Receive Private Guidance</h3>
+              <p>Vaultara reviews the request and sends the appropriate package information privately.</p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="insights">
+        <div class="container">
+          <div class="section-title">
+            <div class="small">Articles & Learning</div>
+            <h2>Vaultara Insights</h2>
+            <p>Practical guidance from Vaultara Capital to help you prepare before taking the next financial or business step.</p>
+          </div>
+
+          <div class="grid articles-grid">
+            <article class="article-card">
+              <div class="article-image article-one"></div>
+              <div class="article-content">
+                <h3>Understanding Credit Readiness</h3>
+                <p>Learn how credit readiness can affect personal and business funding preparation.</p>
+                <a href="credit.html">Explore Credit Services →</a>
+              </div>
+            </article>
+
+            <article class="article-card">
+              <div class="article-image article-two"></div>
+              <div class="article-content">
+                <h3>Preparing for Business Funding</h3>
+                <p>Review the documents, structure, and information a business may need before applying.</p>
+                <a href="funding.html">Explore Funding Services →</a>
+              </div>
+            </article>
+
+            <article class="article-card">
+              <div class="article-image article-three"></div>
+              <div class="article-content">
+                <h3>Government-Backed Programs Explained</h3>
+                <p>Understand program guidance, requirements, and preparation without promises or guarantees.</p>
+                <a href="funding.html">Explore Program Guidance →</a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="apply">
+        <div class="container application-layout">
+          <div class="form-panel">
+            <div class="eyebrow">Vaultara Intake Form</div>
+            <h3>Start Your Application</h3>
+            <p>
+              Complete the intake form. Vaultara will review the information and recommend package details privately.
+            </p>
+
+            <form id="vaultaraForm" name="Vaultara-General-Intake" method="POST" data-netlify="true" netlify-honeypot="bot-field">
+              <input type="hidden" name="form-name" value="Vaultara-General-Intake" />
+              <p style="display:none"><label>Don’t fill this out: <input name="bot-field" /></label></p>
+              <div class="form-grid">
+                <div class="form-field">
+                  <label>Full Name</label>
+                  <input type="text" name="fullName" placeholder="Enter full name" required />
+                </div>
+
+                <div class="form-field">
+                  <label>Email Address</label>
+                  <input type="email" name="email" placeholder="Enter email address" required />
+                </div>
+
+                <div class="form-field">
+                  <label>Phone Number</label>
+                  <input type="tel" name="phone" placeholder="Enter phone number" />
+                </div>
+
+                <div class="form-field">
+                  <label>Business Name</label>
+                  <input type="text" name="businessName" placeholder="Business name, if any" />
+                </div>
+
+                <div class="form-field">
+                  <label>Service Needed</label>
+                  <select name="serviceNeeded" required>
+                    <option value="">Select a service</option>
+                    <option>Credit Education & Tracking</option>
+                    <option>Credit Preparation</option>
+                    <option>Personal Loan Guidance</option>
+                    <option>Business Loan Preparation</option>
+                    <option>Business Formation</option>
+                    <option>Business Credit Setup</option>
+                    <option>Startup Funding Readiness</option>
+                    <option>Existing Business Funding</option>
+                    <option>Government-Backed Program Guidance</option>
+                  </select>
+                </div>
+
+                <div class="form-field">
+                  <label>Client Type</label>
+                  <select name="clientType">
+                    <option value="">Select one</option>
+                    <option>Personal</option>
+                    <option>Business</option>
+                    <option>Startup</option>
+                    <option>Existing Business</option>
+                  </select>
+                </div>
+
+                <div class="form-field full-width">
+                  <label>Tell Vaultara What You Need</label>
+                  <textarea name="message" placeholder="Explain your goals, credit needs, funding needs, or business formation needs."></textarea>
+                </div>
+
+                <div class="form-submit">
+                  <button class="btn primary" type="submit" style="width: 100%;">Submit Intake →</button>
+                </div>
+              </div>
+
+              <div class="success-message" id="successMessage" role="status" aria-live="polite">
+                Thank you. Vaultara Capital received your intake request. Package details will be recommended privately after review.
+              </div>
+            </form>
+          </div>
+
+          <div class="application-picture">
+            <div class="secure-box">
+              <h3>Secure. Private. Professional.</h3>
+              <p>
+                Your information is used to understand your goals and guide the next step.
+                Public package pricing is not displayed on this website.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contact">
+        <div class="container contact-grid">
+          <div class="contact-panel">
+            <div class="eyebrow">Official Contact</div>
+            <h3>Contact Vaultara Capital</h3>
+            <p>
+              For general questions, service inquiries, credit-readiness questions, funding guidance,
+              business formation questions, feedback, or professional communication, contact Vaultara Capital
+              through the official contact page.
+            </p>
+            <div class="button-row" style="margin-top: 24px;">
+              <a class="btn primary" href="#apply">Get In Touch ›</a>
+              <a class="btn" href="#insights">Read Blogs</a>
+            </div>
+          </div>
+
+          <div class="contact-panel">
+            <div class="eyebrow">Website Pages</div>
+            <h3>Vaultara Page Structure</h3>
+            <p>
+              Home, Services, Packages, Credit Review, Credit Education, Funding Guidance,
+              Business Formation, Business Credit Setup, Articles, Apply, Contact, Privacy Policy,
+              Terms of Use, and Feedback should all stay branded for Vaultara Capital.
+            </p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <div class="container footer-center">
+        <div class="footer-brand">
+          <div class="vc-logo">VC</div>
+          <h2>VAULTARA<br />CAPITAL</h2>
+        </div>
+
+        <p>© 2026 Vaultara Capital • All rights reserved</p>
+
+        <div class="footer-buttons">
+          <a href="#" class="btn">Privacy Policy</a>
+          <a href="#" class="btn">Terms of Use</a>
+          <a href="#insights" class="btn">Blogs</a>
+          <a href="#contact" class="btn">Feedback</a>
+        </div>
+
+        <div class="socials">
+          <a href="#" class="social">f</a>
+          <a href="#" class="social">◎</a>
+          <a href="#" class="social">in</a>
+        </div>
+
+        <div class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#packages">Packages</a>
+          <a href="#credit-help">Credit Help</a>
+          <a href="#apply">Apply</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    const menuBtn = document.getElementById("menuBtn");
+    const navLinks = document.getElementById("navLinks");
+    const vaultaraForm = document.getElementById("vaultaraForm");
+    const successMessage = document.getElementById("successMessage");
+
+    if (menuBtn && navLinks) {
+      menuBtn.addEventListener("click", function () {
+        navLinks.classList.toggle("open");
+      });
+
+      navLinks.querySelectorAll("a").forEach(function (link) {
+        link.addEventListener("click", function () {
+          navLinks.classList.remove("open");
+        });
+      });
+    }
+
+    if (vaultaraForm && successMessage) {
+      vaultaraForm.addEventListener("submit", async function (event) {
+        event.preventDefault();
+
+        const submitButton = vaultaraForm.querySelector('button[type="submit"]');
+        const formData = new FormData(vaultaraForm);
+
+        submitButton.disabled = true;
+        submitButton.textContent = "Submitting…";
+
+        try {
+          const response = await fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData).toString()
+          });
+
+          if (!response.ok) {
+            throw new Error("Submission failed");
+          }
+
+          successMessage.textContent = "Thank you. Vaultara Capital received your intake request. Package details will be recommended privately after review.";
+          successMessage.classList.add("show");
+          vaultaraForm.reset();
+        } catch (error) {
+          successMessage.textContent = "We could not submit your request. Please email contact@vaultaracapital.com or call (800) 827-9016.";
+          successMessage.classList.add("show");
+        } finally {
+          submitButton.disabled = false;
+          submitButton.textContent = "Submit Intake →";
+          successMessage.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
+      });
+    }
+  </script>
+</body>
+</html>
