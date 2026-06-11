@@ -7,7 +7,9 @@ Independent public website for **Vaultara Capital**, serving credit readiness, f
 - Vaultara Capital: <https://vaultaracapital.com>
 - Parent company, TitanCore Holdings: <https://titancoreholdings.com>
 
-Vaultara identifies TitanCore Holdings as its parent network and links visitors to TitanCore's company directory. The TitanCore Holdings company directory must complete the connection in the other direction: its **Open Vaultara Page** link must use the absolute URL `https://vaultaracapital.com/`, not the internal `/vaultara` route.
+This repository is the standalone Vaultara website and must retain its funding, credit education, formation, intake, legal, and confirmation pages. Those pages must not be copied into the TitanCore Holdings website.
+
+Vaultara identifies TitanCore Holdings as its parent company with a small link to `https://titancoreholdings.com/`. TitanCore must complete the connection in the other direction with a subsidiary card whose **Open Vaultara Capital** link uses the absolute URL `https://vaultaracapital.com/`, not an internal `/vaultara` route.
 
 ```html
 <a href="https://vaultaracapital.com/">Open Vaultara Website</a>
