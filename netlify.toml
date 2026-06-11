@@ -20,7 +20,91 @@
   force = true
 
 [[redirects]]
+  from = "/Vaultara/*"
+  to = "https://vaultaracapital.com/"
+  status = 301
+  force = true
+
+[[redirects]]
   from = "/vaultara"
+  to = "https://vaultaracapital.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/vaultara/*"
+  to = "https://vaultaracapital.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Vaultara-Capital"
+  to = "https://vaultaracapital.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Vaultara-Capital/*"
+  to = "https://vaultaracapital.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/vaultara-capital"
+  to = "https://vaultaracapital.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/vaultara-capital/*"
+  to = "https://vaultaracapital.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Voltara"
+  to = "https://vaultaracapital.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Voltara/*"
+  to = "https://vaultaracapital.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/voltara"
+  to = "https://vaultaracapital.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/voltara/*"
+  to = "https://vaultaracapital.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Voltara-Capital"
+  to = "https://vaultaracapital.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Voltara-Capital/*"
+  to = "https://vaultaracapital.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/voltara-capital"
+  to = "https://vaultaracapital.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/voltara-capital/*"
   to = "https://vaultaracapital.com/"
   status = 301
   force = true

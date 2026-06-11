@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex" />
+  <title>Page not found | Vaultara Capital</title>
+  <script>
+    const vaultaraEntryPath = /^\/(?:vaultara|voltara)(?:[-_ ]?capital)?(?:\.html)?(?:\/.*)?$/i;
+
+    if (vaultaraEntryPath.test(window.location.pathname)) {
+      window.location.replace("https://vaultaracapital.com/");
+    }
+  </script>
+  <link rel="stylesheet" href="/style.css" />
+</head>
+<body>
+  <main id="main-content" class="legal-page">
+    <div class="shell legal-document">
+      <p class="eyebrow"><span></span> Page not found</p>
+      <h1>That page does not exist.</h1>
+      <p>The address may be outdated or incomplete. Return to the Vaultara Capital homepage to continue.</p>
+      <p><a class="button" href="/">Go to Vaultara Capital</a></p>
+    </div>
+  </main>
+</body>
+</html>
