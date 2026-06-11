@@ -7,8 +7,12 @@ Independent public website for **Vaultara Capital**, serving credit readiness, f
 - Vaultara Capital: <https://vaultaracapital.com>
 - Parent company, TitanCore Holdings: <https://titancoreholdings.com>
 
-The Vaultara Capital card or company-page link on TitanCore Holdings must use the absolute URL `https://vaultaracapital.com` so visitors leave the parent-company site and open this independent website. The root `index.html` is Vaultara Capital’s homepage; its services, forms, articles, and footer remain Vaultara-branded.
+Vaultara identifies TitanCore Holdings as its parent network and links visitors to TitanCore's company directory. The TitanCore Holdings company directory must complete the connection in the other direction: its **Open Vaultara Page** link must use the absolute URL `https://vaultaracapital.com/`, not the internal `/vaultara` route.
+
+```html
+<a href="https://vaultaracapital.com/">Open Vaultara Website</a>
+```
 
 ## Deployment
 
-This repository is deployable as a static site. `CNAME` declares the custom domain for GitHub Pages, while `netlify.toml` and `_redirects` support Netlify deployments. Every legacy `/Vaultara.html` entry point uses an absolute redirect to `https://vaultaracapital.com/`, ensuring links opened from TitanCore Holdings cannot remain on the parent company’s older Vaultara page.
+This repository is deployable as a static site. `CNAME` declares the custom domain for GitHub Pages, while `netlify.toml` and `_redirects` support Netlify deployments. Legacy `/Vaultara.html`, `/vaultara.html`, and `/vaultara` entry points all lead to `https://vaultaracapital.com/`, ensuring old TitanCore links and bookmarks open the independent website.

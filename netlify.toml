@@ -7,6 +7,24 @@
   status = 301
   force = true
 
+[[redirects]]
+  from = "/vaultara.html"
+  to = "https://vaultaracapital.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/Vaultara"
+  to = "https://vaultaracapital.com/"
+  status = 301
+  force = true
+
+[[redirects]]
+  from = "/vaultara"
+  to = "https://vaultaracapital.com/"
+  status = 301
+  force = true
+
 [[headers]]
   for = "/*"
   [headers.values]
