@@ -11,4 +11,4 @@ The Vaultara Capital card or company-page link on TitanCore Holdings must use th
 
 ## Deployment
 
-This repository is deployable as a static site. `CNAME` declares the custom domain for GitHub Pages, while `netlify.toml` and `_redirects` support Netlify deployments and preserve the former `/Vaultara.html` URL.
+This repository is deployable as a static site. `CNAME` declares the custom domain for GitHub Pages, while `netlify.toml` and `_redirects` support Netlify deployments. Every legacy `/Vaultara.html` entry point uses an absolute redirect to `https://vaultaracapital.com/`, ensuring links opened from TitanCore Holdings cannot remain on the parent company’s older Vaultara page.
