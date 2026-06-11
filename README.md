@@ -12,7 +12,7 @@ This repository is the standalone Vaultara website and must retain its funding, 
 Vaultara identifies TitanCore Holdings as its parent company with a small link to `https://titancoreholdings.com/`. TitanCore must complete the connection in the other direction with a subsidiary card whose **Open Vaultara Capital** link uses the absolute URL `https://vaultaracapital.com/`, not an internal `/vaultara` route.
 
 ```html
-<a href="https://vaultaracapital.com/">Open Vaultara Website</a>
+<a href="https://vaultaracapital.com/">Open Vaultara Page</a>
 ```
 
 ## Deployment
