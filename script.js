@@ -110,6 +110,7 @@ function injectVaultaraStylePolish() {
   const style = document.createElement('style');
   style.id = 'vaultara-polish-style';
   style.textContent = `
+    .network-bar { display: none !important; }
     .wordmark strong { font-size: clamp(20px, 2vw, 26px); letter-spacing: -0.7px; }
     .wordmark-footer strong { color: #fff; }
     .footer-social { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
