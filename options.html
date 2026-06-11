@@ -10,15 +10,8 @@
   <link rel="stylesheet" href="style.css" />
   <script src="script.js" defer></script>
   <style>
-    .options-hero{
-      color:white;
-      padding:92px 0 80px;
-      background:
-        radial-gradient(circle at 85% 14%, rgba(10,104,232,.72), transparent 32%),
-        radial-gradient(circle at 12% 92%, rgba(71,200,166,.22), transparent 34%),
-        linear-gradient(130deg, var(--navy-deep), var(--navy) 58%, #06397b);
-      overflow:hidden;
-    }
+    .options-hero{position:relative;isolation:isolate;color:white;padding:92px 0 80px;background:linear-gradient(130deg,var(--navy-deep),var(--navy));overflow:hidden;}
+    .options-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(115deg,rgba(3,17,39,.9),rgba(6,26,58,.72),rgba(10,104,232,.38)),url('https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1800&q=80');background-size:cover;background-position:center;}
     .options-hero-grid{display:grid;grid-template-columns:1.05fr .95fr;gap:66px;align-items:center;}
     .options-hero h1{margin:0;font-family:Georgia,"Times New Roman",serif;font-size:clamp(54px,6vw,86px);line-height:1;letter-spacing:-2.7px;}
     .options-hero h1 em{display:block;color:var(--mint);font-style:normal;}
@@ -64,7 +57,7 @@
       <nav class="desktop-nav" aria-label="Primary navigation">
         <a href="index.html#solutions">Solutions</a>
         <a href="options.html" aria-current="page">Options</a>
-        <a href="index.html#process">How it works</a>
+        <a href="learning-center.html">Learning</a>
         <a href="index.html#contact">Contact</a>
       </nav>
       <a class="button button-small" href="#options-list">Choose an option</a>
@@ -72,7 +65,7 @@
     <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden>
       <a href="index.html#solutions">Solutions</a>
       <a href="options.html" aria-current="page">Options</a>
-      <a href="index.html#process">How it works</a>
+      <a href="learning-center.html">Learning</a>
       <a href="index.html#contact">Contact</a>
     </nav>
   </header>
@@ -83,12 +76,12 @@
         <div>
           <p class="eyebrow light"><span></span> See my options</p>
           <h1>Choose the support that fits <em>your next move.</em></h1>
-          <p>Vaultara Capital keeps the first step simple. Review the options below, choose the path that fits your goal, and move to the right service page or private intake without guessing where to go.</p>
+          <p>Vaultara Capital now has dedicated service pages. Review the options below, choose the path that fits your goal, and open the full page for that service instead of staying only on the homepage.</p>
           <a class="button button-light" href="#options-list">View service options <span aria-hidden="true">↓</span></a>
         </div>
         <aside class="options-note">
           <strong>Not sure yet?</strong>
-          <span>Start with the general review option. A Vaultara representative can help identify whether funding preparation, credit readiness, business formation, or another support lane is the better starting point.</span>
+          <span>Start with the general review option or visit the Learning Center first. Vaultara can help you understand whether funding preparation, credit readiness, business formation, or another support lane is the better starting point.</span>
         </aside>
       </div>
     </section>
@@ -97,58 +90,20 @@
       <div class="shell">
         <div class="section-heading centered">
           <p class="eyebrow"><span></span> Service paths</p>
-          <h2>Start with the option that makes sense today.</h2>
-          <p>These options are designed to route visitors clearly. Vaultara provides education and guidance and does not guarantee approval, financing, credit improvement, limits, rates, or timing.</p>
+          <h2>Each option now opens its own page.</h2>
+          <p>Vaultara provides education and guidance and does not guarantee approval, financing, credit improvement, limits, rates, or timing.</p>
         </div>
 
         <div class="options-grid">
-          <article class="option-card featured">
-            <p class="option-kicker">Funding</p>
-            <h2>Business funding guidance</h2>
-            <p>Prepare for working capital, equipment, inventory, operations, or expansion with a clearer review of your readiness.</p>
-            <ul><li>Funding purpose review</li><li>Document preparation guidance</li><li>Readiness next steps</li></ul>
-            <a class="button button-light" href="funding.html">Explore funding <span aria-hidden="true">→</span></a>
-          </article>
-
-          <article class="option-card">
-            <p class="option-kicker">Credit</p>
-            <h2>Credit readiness</h2>
-            <p>Understand personal or business credit readiness, current challenges, and practical priorities before making your next move.</p>
-            <ul><li>Business credit path</li><li>Personal credit path</li><li>Goal-based review</li></ul>
-            <a class="button" href="credit.html">Explore credit <span aria-hidden="true">→</span></a>
-          </article>
-
-          <article class="option-card">
-            <p class="option-kicker">Formation</p>
-            <h2>Business formation</h2>
-            <p>Get guidance on building a cleaner foundation for a new venture or a company that needs a more organized setup.</p>
-            <ul><li>Entity setup guidance</li><li>Business checklist</li><li>Next-step planning</li></ul>
-            <a class="button" href="formation.html">Explore formation <span aria-hidden="true">→</span></a>
-          </article>
-
-          <article class="option-card">
-            <p class="option-kicker">Business credit</p>
-            <h2>Business credit setup</h2>
-            <p>Review where your business credit profile stands and what information may need to be organized before applying for credit.</p>
-            <ul><li>Profile review</li><li>Vendor and account guidance</li><li>Preparation plan</li></ul>
-            <a class="button" href="credit.html#credit-intake">Start business credit review <span aria-hidden="true">→</span></a>
-          </article>
-
-          <article class="option-card">
-            <p class="option-kicker">Startup</p>
-            <h2>Startup funding readiness</h2>
-            <p>Clarify what a newer business may need before seeking funding, including structure, documents, credit, and planning.</p>
-            <ul><li>Early-stage review</li><li>Readiness checklist</li><li>Funding preparation</li></ul>
-            <a class="button" href="funding.html">Review startup readiness <span aria-hidden="true">→</span></a>
-          </article>
-
-          <article class="option-card">
-            <p class="option-kicker">General review</p>
-            <h2>Not sure what to choose?</h2>
-            <p>Use the general intake when you need help understanding which service path is the best starting point.</p>
-            <ul><li>Private intake</li><li>Goal review</li><li>Clearer direction</li></ul>
-            <a class="button" href="index.html#apply">Start general intake <span aria-hidden="true">→</span></a>
-          </article>
+          <article class="option-card featured"><p class="option-kicker">Funding</p><h2>Business funding guidance</h2><p>Prepare for working capital, equipment, inventory, operations, or expansion with a clearer review of your readiness.</p><ul><li>Funding purpose review</li><li>Document preparation guidance</li><li>Readiness next steps</li></ul><a class="button button-light" href="funding.html">Explore funding <span aria-hidden="true">→</span></a></article>
+          <article class="option-card"><p class="option-kicker">Existing business</p><h2>Existing business funding</h2><p>For operating businesses that need to organize cash flow, documents, revenue activity, and funding purpose.</p><ul><li>Business records</li><li>Capital purpose</li><li>Readiness signals</li></ul><a class="button" href="existing-business-funding.html">Open existing business page <span aria-hidden="true">→</span></a></article>
+          <article class="option-card"><p class="option-kicker">Startup</p><h2>Startup funding readiness</h2><p>For newer businesses that need structure, banking, records, credit awareness, and a realistic funding preparation path.</p><ul><li>Early-stage review</li><li>Startup checklist</li><li>Funding preparation</li></ul><a class="button" href="startup-funding.html">Open startup page <span aria-hidden="true">→</span></a></article>
+          <article class="option-card"><p class="option-kicker">Credit</p><h2>Credit readiness</h2><p>Understand personal or business credit readiness, current challenges, and practical priorities before making your next move.</p><ul><li>Business credit path</li><li>Personal credit path</li><li>Goal-based review</li></ul><a class="button" href="credit.html">Explore credit <span aria-hidden="true">→</span></a></article>
+          <article class="option-card"><p class="option-kicker">Business credit</p><h2>Business credit setup</h2><p>Review where your business credit profile stands and what information may need to be organized before applying.</p><ul><li>Company profile</li><li>Vendor/account readiness</li><li>Preparation plan</li></ul><a class="button" href="business-credit.html">Open business credit page <span aria-hidden="true">→</span></a></article>
+          <article class="option-card"><p class="option-kicker">Personal credit</p><h2>Personal credit guidance</h2><p>Understand your personal credit picture before seeking funding, personal loans, vehicle financing, or other goals.</p><ul><li>Profile review</li><li>Goal alignment</li><li>Next-step plan</li></ul><a class="button" href="personal-credit.html">Open personal credit page <span aria-hidden="true">→</span></a></article>
+          <article class="option-card"><p class="option-kicker">Personal loan</p><h2>Personal loan guidance</h2><p>Organize loan purpose, credit readiness, debt picture, and basic preparation before making a request.</p><ul><li>Purpose review</li><li>Credit and debt picture</li><li>Preparation guidance</li></ul><a class="button" href="personal-loan.html">Open loan guidance page <span aria-hidden="true">→</span></a></article>
+          <article class="option-card"><p class="option-kicker">Formation</p><h2>Business formation</h2><p>Get guidance on building a cleaner foundation for a new venture or a company that needs a more organized setup.</p><ul><li>Entity setup guidance</li><li>Business checklist</li><li>Next-step planning</li></ul><a class="button" href="formation.html">Explore formation <span aria-hidden="true">→</span></a></article>
+          <article class="option-card"><p class="option-kicker">Programs</p><h2>Government program guidance</h2><p>Organize information before researching government-backed programs, grants, or local business support opportunities.</p><ul><li>Eligibility questions</li><li>Document readiness</li><li>Research direction</li></ul><a class="button" href="government-programs.html">Open program guidance <span aria-hidden="true">→</span></a></article>
         </div>
       </div>
     </section>
@@ -159,6 +114,7 @@
           <p class="eyebrow"><span></span> Learn before you apply</p>
           <h2>Helpful business and credit education.</h2>
           <p>Visitors should not only see a form. They should understand what credit, funding readiness, and business structure mean before they ask for help.</p>
+          <a class="button" href="learning-center.html">Open Learning Center <span aria-hidden="true">→</span></a>
         </div>
         <ul class="education-list">
           <li><strong>What credit means</strong><span>Credit is a record of how borrowing and payment responsibilities are handled. It can affect funding options, interest rates, limits, and business readiness.</span></li>
@@ -170,29 +126,12 @@
 
     <section class="direct-review">
       <div class="shell direct-card">
-        <div>
-          <h2>Ready for a clearer next step?</h2>
-          <p>Choose a service path above or start with the general review if you are unsure. Vaultara can help organize the first conversation.</p>
-        </div>
+        <div><h2>Ready for a clearer next step?</h2><p>Choose a service path above or start with the general review if you are unsure. Vaultara can help organize the first conversation.</p></div>
         <a class="button button-light" href="index.html#apply">Start general review <span aria-hidden="true">→</span></a>
       </div>
     </section>
   </main>
 
-  <footer class="site-footer">
-    <div class="shell footer-grid">
-      <div class="footer-brand">
-        <a class="wordmark wordmark-footer" href="index.html"><span class="wordmark-mark">VC</span><span><strong>Vaultara Capital</strong></span></a>
-        <p>Helping people and businesses move forward with clarity, preparation, and a stronger foundation.</p>
-      </div>
-      <div class="footer-links"><strong>Services</strong><a href="funding.html">Funding guidance</a><a href="credit.html">Credit readiness</a><a href="formation.html">Business formation</a></div>
-      <div class="footer-links"><strong>Company</strong><a href="index.html#process">How it works</a><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms of use</a></div>
-      <div class="footer-cta"><strong>Ready for a clearer next step?</strong><a class="button button-light" href="index.html#apply">Start general review</a></div>
-    </div>
-    <div class="shell legal-row">
-      <p>© <span id="year">2026</span> Vaultara Capital. All rights reserved.</p>
-      <p>Vaultara Capital provides education and guidance. We do not guarantee credit improvement, approval, or funding.</p>
-    </div>
-  </footer>
+  <footer class="site-footer"><div class="shell footer-grid"><div class="footer-brand"><a class="wordmark wordmark-footer" href="index.html"><span class="wordmark-mark">VC</span><span><strong>Vaultara Capital</strong></span></a><p>Helping people and businesses move forward with clarity, preparation, and a stronger foundation.</p></div><div class="footer-links"><strong>Services</strong><a href="funding.html">Funding guidance</a><a href="credit.html">Credit readiness</a><a href="formation.html">Business formation</a></div><div class="footer-links"><strong>Company</strong><a href="learning-center.html">Learning center</a><a href="privacy.html">Privacy policy</a><a href="terms.html">Terms of use</a></div><div class="footer-cta"><strong>Ready for a clearer next step?</strong><a class="button button-light" href="index.html#apply">Start general review</a></div></div><div class="shell legal-row"><p>© <span id="year">2026</span> Vaultara Capital. All rights reserved.</p><p>Vaultara Capital provides education and guidance. We do not guarantee credit improvement, approval, or funding.</p></div></footer>
 </body>
 </html>
