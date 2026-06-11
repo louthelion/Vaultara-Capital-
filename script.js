@@ -69,5 +69,62 @@ document.querySelectorAll('[data-intake-root]').forEach((root) => {
   });
 });
 
+function polishVaultaraBranding() {
+  document.querySelectorAll('.wordmark-mark').forEach((mark) => {
+    mark.textContent = 'VC';
+    mark.style.fontSize = mark.closest('.wordmark-footer') ? '22px' : '21px';
+    mark.style.letterSpacing = '-1px';
+  });
+
+  document.querySelectorAll('.wordmark').forEach((wordmark) => {
+    const textWrap = wordmark.querySelector('span:last-child');
+    const strong = textWrap?.querySelector('strong');
+    const small = textWrap?.querySelector('small');
+    if (strong) strong.textContent = 'Vaultara Capital';
+    if (small) small.remove();
+    if (textWrap) {
+      textWrap.style.display = 'block';
+      textWrap.style.lineHeight = '1.05';
+    }
+  });
+}
+
+function addVaultaraSocialLinks() {
+  if (document.querySelector('.footer-social')) return;
+  const footerBrand = document.querySelector('.site-footer .footer-brand');
+  if (!footerBrand) return;
+
+  const social = document.createElement('div');
+  social.className = 'footer-social';
+  social.setAttribute('aria-label', 'Vaultara Capital social media links');
+  social.innerHTML = `
+    <a href="https://www.facebook.com/vaultaracapital" target="_blank" rel="noopener" aria-label="Vaultara Capital on Facebook">f</a>
+    <a href="https://www.instagram.com/vaultaracapital" target="_blank" rel="noopener" aria-label="Vaultara Capital on Instagram">◎</a>
+    <a href="https://www.linkedin.com/company/vaultara-capital" target="_blank" rel="noopener" aria-label="Vaultara Capital on LinkedIn">in</a>
+  `;
+  footerBrand.appendChild(social);
+}
+
+function injectVaultaraStylePolish() {
+  if (document.querySelector('#vaultara-polish-style')) return;
+  const style = document.createElement('style');
+  style.id = 'vaultara-polish-style';
+  style.textContent = `
+    .wordmark strong { font-size: clamp(20px, 2vw, 26px); letter-spacing: -0.7px; }
+    .wordmark-footer strong { color: #fff; }
+    .footer-social { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
+    .footer-social a { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 15px; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.08); color: #fff; font-weight: 900; font-size: 18px; transition: transform .2s, background .2s; }
+    .footer-social a:hover, .footer-social a:focus-visible { transform: translateY(-2px); background: rgba(189,244,231,.18); color: var(--mint); }
+    .learning-list { display: grid; gap: 12px; margin: 20px 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 14px; line-height: 1.7; }
+    .learning-list li::before { content: '✓'; margin-right: 10px; color: var(--mint-dark); font-weight: 900; }
+    @media (max-width: 620px) { .wordmark strong { font-size: 18px; } .footer-social a { width: 44px; height: 44px; } }
+  `;
+  document.head.appendChild(style);
+}
+
+injectVaultaraStylePolish();
+polishVaultaraBranding();
+addVaultaraSocialLinks();
+
 const year = document.querySelector('#year');
 if (year) year.textContent = new Date().getFullYear();
