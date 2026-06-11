@@ -6,9 +6,16 @@
   <meta http-equiv="refresh" content="0; url=https://vaultaracapital.com/" />
   <link rel="canonical" href="https://vaultaracapital.com/" />
   <title>Vaultara Capital</title>
-  <script>window.location.replace("https://vaultaracapital.com/");</script>
+  <script>
+    const officialVaultaraUrl = "https://vaultaracapital.com/";
+    if (window.top && window.top !== window.self) {
+      window.top.location = officialVaultaraUrl;
+    } else {
+      window.location.replace(officialVaultaraUrl);
+    }
+  </script>
 </head>
 <body>
-  <p>Vaultara Capital has moved to its <a href="https://vaultaracapital.com/">new website</a>.</p>
+  <p>Vaultara Capital has moved to its <a href="https://vaultaracapital.com/" target="_top">new website</a>.</p>
 </body>
 </html>
