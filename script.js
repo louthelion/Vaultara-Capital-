@@ -105,6 +105,15 @@ function addVaultaraSocialLinks() {
   footerBrand.appendChild(social);
 }
 
+function connectOptionLinks() {
+  document.querySelectorAll('a').forEach((link) => {
+    const label = (link.textContent || '').trim().toLowerCase();
+    if (label.includes('see my options') || label.includes('explore your options')) {
+      link.setAttribute('href', 'options.html');
+    }
+  });
+}
+
 function injectVaultaraStylePolish() {
   if (document.querySelector('#vaultara-polish-style')) return;
   const style = document.createElement('style');
@@ -126,6 +135,7 @@ function injectVaultaraStylePolish() {
 injectVaultaraStylePolish();
 polishVaultaraBranding();
 addVaultaraSocialLinks();
+connectOptionLinks();
 
 const year = document.querySelector('#year');
 if (year) year.textContent = new Date().getFullYear();
