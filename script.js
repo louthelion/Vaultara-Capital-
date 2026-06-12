@@ -89,6 +89,23 @@ function polishVaultaraBranding() {
   });
 }
 
+function ensureFooterStructure() {
+  const footer = document.querySelector('.site-footer');
+  if (!footer || footer.querySelector('.footer-grid')) return;
+  const grid = document.createElement('div');
+  grid.className = 'shell footer-grid';
+  grid.innerHTML = `
+    <div class="footer-brand">
+      <a class="wordmark wordmark-footer" href="index.html"><span class="wordmark-mark">VC</span><span><strong>Vaultara Capital</strong></span></a>
+      <p>Helping people and businesses move forward with clarity, preparation, and a stronger foundation.</p>
+    </div>
+    <div class="footer-links"><strong>Education</strong><a href="learning-center.html">Learning Center</a><a href="articles.html">Articles</a><a href="blog.html">Blog</a></div>
+    <div class="footer-links"><strong>Company</strong><a href="options.html">See my options</a><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a><a href="feedback.html">Feedback</a></div>
+    <div class="footer-cta"><strong>Ready for a clearer next step?</strong><a class="button button-light" href="options.html">See my options</a></div>
+  `;
+  footer.prepend(grid);
+}
+
 function addVaultaraSocialLinks() {
   if (document.querySelector('.footer-social')) return;
   const footerBrand = document.querySelector('.site-footer .footer-brand');
@@ -111,6 +128,17 @@ function connectOptionLinks() {
     if (label.includes('see my options') || label.includes('explore your options')) {
       link.setAttribute('href', 'options.html');
     }
+  });
+}
+
+function ensureFooterUtilityLinks() {
+  document.querySelectorAll('.site-footer .footer-links').forEach((group) => {
+    const heading = group.querySelector('strong')?.textContent.trim().toLowerCase();
+    if (heading !== 'company' || group.querySelector('a[href="feedback.html"]')) return;
+    const link = document.createElement('a');
+    link.href = 'feedback.html';
+    link.textContent = 'Feedback';
+    group.appendChild(link);
   });
 }
 
@@ -170,8 +198,10 @@ function injectVaultaraStylePolish() {
 setDailyVaultaraImage();
 loadGlobalVaultaraBackgrounds();
 injectVaultaraStylePolish();
+ensureFooterStructure();
 polishVaultaraBranding();
 addVaultaraSocialLinks();
+ensureFooterUtilityLinks();
 connectOptionLinks();
 
 const year = document.querySelector('#year');
