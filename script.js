@@ -105,15 +105,6 @@ function addVaultaraSocialLinks() {
   footerBrand.appendChild(social);
 }
 
-function connectOptionLinks() {
-  document.querySelectorAll('a').forEach((link) => {
-    const label = (link.textContent || '').trim().toLowerCase();
-    if (label.includes('see my options') || label.includes('explore your options')) {
-      link.setAttribute('href', 'options.html');
-    }
-  });
-}
-
 function setDailyVaultaraImage() {
   const images = [
     'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=2200&q=82',
@@ -237,7 +228,6 @@ standardizeVaultaraFooter();
 injectVaultaraStylePolish();
 polishVaultaraBranding();
 addVaultaraSocialLinks();
-connectOptionLinks();
 
 const year = document.querySelector('#year');
 if (year) year.textContent = new Date().getFullYear();
