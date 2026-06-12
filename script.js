@@ -116,16 +116,32 @@ function connectOptionLinks() {
 
 function setDailyVaultaraImage() {
   const images = [
-    'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=1800&q=80',
-    'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1800&q=80',
-    'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=1800&q=80',
-    'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=1800&q=80',
-    'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=1800&q=80',
-    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1800&q=80',
-    'https://images.unsplash.com/photo-1554224154-26032fced8bd?auto=format&fit=crop&w=1800&q=80'
+    'https://images.unsplash.com/photo-1554224155-6726b3ff858f?auto=format&fit=crop&w=2200&q=82',
+    'https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=2200&q=82',
+    'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=2200&q=82',
+    'https://images.unsplash.com/photo-1556761175-b413da4baf72?auto=format&fit=crop&w=2200&q=82',
+    'https://images.unsplash.com/photo-1507679799987-c73779587ccf?auto=format&fit=crop&w=2200&q=82',
+    'https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=2200&q=82',
+    'https://images.unsplash.com/photo-1554224154-26032fced8bd?auto=format&fit=crop&w=2200&q=82'
   ];
   const dayIndex = Math.floor(Date.now() / 86400000) % images.length;
   document.documentElement.style.setProperty('--vaultara-daily-image', `url("${images[dayIndex]}")`);
+  document.body.classList.add('vaultara-picture-system');
+}
+
+function loadGlobalVaultaraBackgrounds() {
+  if (!document.querySelector('link[href="vaultara-backgrounds.css"]')) {
+    const link = document.createElement('link');
+    link.rel = 'stylesheet';
+    link.href = 'vaultara-backgrounds.css';
+    document.head.appendChild(link);
+  }
+  if (!document.querySelector('.vaultara-page-bg')) {
+    const bg = document.createElement('div');
+    bg.className = 'vaultara-page-bg';
+    bg.setAttribute('aria-hidden', 'true');
+    document.body.prepend(bg);
+  }
 }
 
 function injectVaultaraStylePolish() {
@@ -139,10 +155,6 @@ function injectVaultaraStylePolish() {
     .footer-social { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
     .footer-social a { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 15px; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.08); color: #fff; font-weight: 900; font-size: 18px; transition: transform .2s, background .2s; }
     .footer-social a:hover, .footer-social a:focus-visible { transform: translateY(-2px); background: rgba(189,244,231,.18); color: var(--mint); }
-    .hero, .options-hero, .service-hero { isolation: isolate; }
-    .hero::after, .options-hero::after, .service-hero::after { content: ''; position: absolute; inset: 0; z-index: 0; background-image: linear-gradient(115deg, rgba(3,17,39,.88), rgba(6,26,58,.72), rgba(10,104,232,.35)), var(--vaultara-daily-image); background-size: cover; background-position: center; opacity: .72; }
-    .hero-grid, .options-hero-grid, .service-hero-grid { position: relative; z-index: 2; }
-    .section-soft, .options-section { background-image: linear-gradient(180deg, rgba(241,245,250,.96), rgba(255,255,255,.92)), var(--vaultara-daily-image); background-size: cover; background-position: center; background-attachment: fixed; }
     .solution-card, .option-card, .purpose-card { position: relative; overflow: hidden; }
     .solution-card::before, .option-card::before, .purpose-card::before { content: ''; display: block; height: 8px; margin: -34px -34px 26px; background: linear-gradient(90deg, var(--blue), var(--mint-dark)); }
     .option-card::before { margin: -30px -30px 24px; }
@@ -150,12 +162,13 @@ function injectVaultaraStylePolish() {
     .featured-card::before, .option-card.featured::before { background: linear-gradient(90deg, var(--mint), var(--gold)); }
     .learning-list { display: grid; gap: 12px; margin: 20px 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 14px; line-height: 1.7; }
     .learning-list li::before { content: '✓'; margin-right: 10px; color: var(--mint-dark); font-weight: 900; }
-    @media (max-width: 620px) { .wordmark strong { font-size: 18px; } .footer-social a { width: 44px; height: 44px; } .section-soft, .options-section { background-attachment: scroll; } }
+    @media (max-width: 620px) { .wordmark strong { font-size: 18px; } .footer-social a { width: 44px; height: 44px; } }
   `;
   document.head.appendChild(style);
 }
 
 setDailyVaultaraImage();
+loadGlobalVaultaraBackgrounds();
 injectVaultaraStylePolish();
 polishVaultaraBranding();
 addVaultaraSocialLinks();
