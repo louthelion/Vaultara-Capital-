@@ -1,0 +1,179 @@
+/* Vaultara Capital global picture system.
+   This file makes every page feel like a picture-backed website instead of a plain page.
+   script.js chooses the daily image and sets --vaultara-daily-image. */
+
+body.vaultara-picture-system {
+  background: #061a3a !important;
+}
+
+.vaultara-page-bg {
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
+  background-image:
+    linear-gradient(115deg, rgba(3,17,39,.92), rgba(6,26,58,.78), rgba(10,104,232,.34)),
+    var(--vaultara-daily-image);
+  background-size: cover;
+  background-position: center;
+  background-attachment: fixed;
+}
+
+.vaultara-page-bg::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 10% 12%, rgba(189,244,231,.22), transparent 28%),
+    radial-gradient(circle at 86% 34%, rgba(52,113,233,.26), transparent 32%);
+}
+
+main {
+  position: relative;
+  z-index: 1;
+}
+
+.site-header,
+.site-footer {
+  position: relative;
+  z-index: 3;
+}
+
+.hero,
+.options-hero,
+.service-hero,
+.page-hero,
+.article-hero,
+.content-hero,
+.blog-hero {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+}
+
+.hero::after,
+.options-hero::after,
+.service-hero::after,
+.page-hero::after,
+.article-hero::after,
+.content-hero::after,
+.blog-hero::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(115deg, rgba(3,17,39,.9), rgba(6,26,58,.72), rgba(10,104,232,.36)),
+    var(--vaultara-daily-image);
+  background-size: cover;
+  background-position: center;
+  opacity: .82;
+}
+
+.hero > *,
+.options-hero > *,
+.service-hero > *,
+.page-hero > *,
+.article-hero > *,
+.content-hero > *,
+.blog-hero > * {
+  position: relative;
+  z-index: 2;
+}
+
+.hero-grid,
+.options-hero-grid,
+.service-hero-grid,
+.page-hero-grid,
+.page-grid,
+.grid {
+  position: relative;
+  z-index: 2;
+}
+
+.section-soft,
+.options-section,
+.library-section,
+.blog-section,
+.content-band,
+.section-clean,
+.learn-section,
+.article-wrap,
+.wrap,
+.post,
+.education-section,
+.direct-review,
+.cta,
+.cta-band,
+.apply-section {
+  background-image:
+    linear-gradient(180deg, rgba(241,245,250,.94), rgba(255,255,255,.9)),
+    var(--vaultara-daily-image) !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-attachment: fixed !important;
+}
+
+.section,
+.use-section,
+.process-section {
+  background-image:
+    linear-gradient(120deg, rgba(6,26,58,.86), rgba(10,104,232,.42)),
+    var(--vaultara-daily-image) !important;
+  background-size: cover !important;
+  background-position: center !important;
+  background-attachment: fixed !important;
+}
+
+.site-footer {
+  background-image:
+    linear-gradient(135deg, rgba(3,17,39,.96), rgba(6,26,58,.9)),
+    var(--vaultara-daily-image) !important;
+  background-size: cover !important;
+  background-position: center !important;
+}
+
+.solution-card,
+.option-card,
+.purpose-card,
+.article-card,
+.blog-card,
+.learn-card,
+.info-card,
+.card,
+.contact-card,
+.intake-form,
+.requirements-copy,
+.requirements-cards,
+.hero-panel,
+.panel,
+.options-note {
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+}
+
+@media (max-width: 620px) {
+  .vaultara-page-bg,
+  .section-soft,
+  .options-section,
+  .library-section,
+  .blog-section,
+  .content-band,
+  .section-clean,
+  .learn-section,
+  .article-wrap,
+  .wrap,
+  .post,
+  .education-section,
+  .direct-review,
+  .cta,
+  .cta-band,
+  .apply-section,
+  .section,
+  .use-section,
+  .process-section {
+    background-attachment: scroll !important;
+  }
+}
