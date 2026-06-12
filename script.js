@@ -144,6 +144,60 @@ function loadGlobalVaultaraBackgrounds() {
   }
 }
 
+function standardizeVaultaraFooter() {
+  const footer = document.querySelector('.site-footer');
+  if (!footer) return;
+
+  footer.innerHTML = `
+    <div class="shell footer-grid vaultara-standard-footer">
+      <div class="footer-brand">
+        <a class="wordmark wordmark-footer" href="index.html" aria-label="Vaultara Capital home">
+          <span class="wordmark-mark">VC</span>
+          <span><strong>Vaultara Capital</strong></span>
+        </a>
+        <p>Helping people and businesses move forward with clarity, preparation, and a stronger foundation.</p>
+        <div class="footer-social" aria-label="Vaultara Capital social media links">
+          <a href="https://www.facebook.com/vaultaracapital" target="_blank" rel="noopener" aria-label="Vaultara Capital on Facebook">f</a>
+          <a href="https://www.instagram.com/vaultaracapital" target="_blank" rel="noopener" aria-label="Vaultara Capital on Instagram">◎</a>
+          <a href="https://www.linkedin.com/company/vaultara-capital" target="_blank" rel="noopener" aria-label="Vaultara Capital on LinkedIn">in</a>
+        </div>
+      </div>
+
+      <div class="footer-links">
+        <strong>Services</strong>
+        <a href="funding.html">Funding guidance</a>
+        <a href="credit.html">Credit readiness</a>
+        <a href="formation.html">Business formation</a>
+        <a href="options.html">See my options</a>
+      </div>
+
+      <div class="footer-links">
+        <strong>Education</strong>
+        <a href="learning-center.html">Learning Center</a>
+        <a href="articles.html">Articles</a>
+        <a href="blog.html">Blog</a>
+      </div>
+
+      <div class="footer-links">
+        <strong>Company</strong>
+        <a href="index.html#process">How it works</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="index.html#contact">Feedback</a>
+      </div>
+
+      <div class="footer-cta vaultara-footer-cta">
+        <strong>Ready for a clearer next step?</strong>
+        <a class="button button-light" href="options.html">See my options</a>
+      </div>
+    </div>
+    <div class="shell legal-row">
+      <p>© <span id="year">2026</span> Vaultara Capital. All rights reserved.</p>
+      <p>Vaultara Capital provides education and guidance. We do not guarantee credit improvement, approval, or funding.</p>
+    </div>
+  `;
+}
+
 function injectVaultaraStylePolish() {
   if (document.querySelector('#vaultara-polish-style')) return;
   const style = document.createElement('style');
@@ -155,6 +209,10 @@ function injectVaultaraStylePolish() {
     .footer-social { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
     .footer-social a { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 15px; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.08); color: #fff; font-weight: 900; font-size: 18px; transition: transform .2s, background .2s; }
     .footer-social a:hover, .footer-social a:focus-visible { transform: translateY(-2px); background: rgba(189,244,231,.18); color: var(--mint); }
+    .vaultara-standard-footer { align-items: start; }
+    .vaultara-standard-footer .footer-links a { display: block; margin-top: 14px; }
+    .vaultara-footer-cta { grid-column: 1 / -1; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.14); }
+    .vaultara-footer-cta .button { max-width: 420px; }
     .solution-card, .option-card, .purpose-card { position: relative; overflow: hidden; }
     .solution-card::before, .option-card::before, .purpose-card::before { content: ''; display: block; height: 8px; margin: -34px -34px 26px; background: linear-gradient(90deg, var(--blue), var(--mint-dark)); }
     .option-card::before { margin: -30px -30px 24px; }
@@ -162,13 +220,20 @@ function injectVaultaraStylePolish() {
     .featured-card::before, .option-card.featured::before { background: linear-gradient(90deg, var(--mint), var(--gold)); }
     .learning-list { display: grid; gap: 12px; margin: 20px 0 0; padding: 0; list-style: none; color: var(--muted); font-size: 14px; line-height: 1.7; }
     .learning-list li::before { content: '✓'; margin-right: 10px; color: var(--mint-dark); font-weight: 900; }
-    @media (max-width: 620px) { .wordmark strong { font-size: 18px; } .footer-social a { width: 44px; height: 44px; } }
+    @media (max-width: 760px) {
+      .wordmark strong { font-size: 18px; }
+      .footer-social a { width: 44px; height: 44px; }
+      .vaultara-standard-footer { grid-template-columns: 1fr 1fr !important; gap: 34px 28px !important; }
+      .vaultara-standard-footer .footer-brand, .vaultara-standard-footer .vaultara-footer-cta { grid-column: 1 / -1; }
+      .vaultara-footer-cta .button { max-width: none; width: 100%; }
+    }
   `;
   document.head.appendChild(style);
 }
 
 setDailyVaultaraImage();
 loadGlobalVaultaraBackgrounds();
+standardizeVaultaraFooter();
 injectVaultaraStylePolish();
 polishVaultaraBranding();
 addVaultaraSocialLinks();
