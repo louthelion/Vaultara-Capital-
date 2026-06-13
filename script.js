@@ -132,6 +132,62 @@ function loadGlobalVaultaraBackgrounds() {
   }
 }
 
+function getDateKeyInTimeZone(date, timeZone) {
+  const parts = new Intl.DateTimeFormat('en-US', {
+    timeZone,
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  }).formatToParts(date);
+  const values = Object.fromEntries(parts.map(({ type, value }) => [type, value]));
+  return `${values.year}-${values.month}-${values.day}`;
+}
+
+function formatBlogDate(dateKey) {
+  const [year, month, day] = dateKey.split('-').map(Number);
+  return new Intl.DateTimeFormat('en-US', {
+    timeZone: 'UTC',
+    month: 'long',
+    day: 'numeric',
+    year: 'numeric'
+  }).format(new Date(Date.UTC(year, month - 1, day)));
+}
+
+function showLatestPublishedBlogPost() {
+  const section = document.querySelector('[data-latest-blog-post]');
+  const schedule = section?.querySelector('[data-blog-schedule]');
+  if (!section || !schedule) return;
+
+  let posts;
+  try {
+    posts = JSON.parse(schedule.textContent);
+  } catch {
+    return;
+  }
+
+  const localDate = getDateKeyInTimeZone(new Date(), 'America/New_York');
+  const publishedPosts = posts
+    .filter((post) => post.date <= localDate)
+    .sort((first, second) => second.date.localeCompare(first.date));
+  const latestPost = publishedPosts[0];
+  if (!latestPost) {
+    section.hidden = true;
+    return;
+  }
+
+  const meta = section.querySelector('[data-blog-meta]');
+  const title = section.querySelector('[data-blog-title]');
+  const description = section.querySelector('[data-blog-description]');
+  const link = section.querySelector('[data-blog-link]');
+  const image = section.querySelector('.home-article-image');
+
+  if (meta) meta.textContent = `${latestPost.label} · ${formatBlogDate(latestPost.date)}`;
+  if (title) title.textContent = latestPost.title;
+  if (description) description.textContent = latestPost.description;
+  if (link) link.href = latestPost.href;
+  if (image) image.setAttribute('aria-label', latestPost.imageLabel);
+}
+
 function injectVaultaraStylePolish() {
   if (document.querySelector('#vaultara-polish-style')) return;
   const style = document.createElement('style');
@@ -158,6 +214,7 @@ loadGlobalVaultaraBackgrounds();
 injectVaultaraStylePolish();
 polishVaultaraBranding();
 addVaultaraSocialLinks();
+showLatestPublishedBlogPost();
 
 const year = document.querySelector('#year');
 if (year) year.textContent = new Date().getFullYear();
