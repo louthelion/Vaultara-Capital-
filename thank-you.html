@@ -7,9 +7,10 @@
   <meta name="robots" content="noindex" />
   <title>Thank You | Vaultara Capital</title>
   <link rel="stylesheet" href="style.css" />
+  <script src="script.js" defer></script>
   <style>
-    body { min-height: 100vh; display: grid; place-items: center; padding: 24px; color: white; background: radial-gradient(circle at 80% 20%, #0a68e8, transparent 32%), #061a3a; }
-    .thanks { width: min(620px, 100%); padding: clamp(32px, 7vw, 64px); border: 1px solid rgba(255,255,255,.2); border-radius: 28px; background: rgba(3,17,39,.78); text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,.3); }
+    body { min-height: 100vh; color: white; background: radial-gradient(circle at 80% 20%, #0a68e8, transparent 32%), #061a3a; }
+    .thanks { width: min(620px, calc(100% - 48px)); margin: 64px auto; padding: clamp(32px, 7vw, 64px); border: 1px solid rgba(255,255,255,.2); border-radius: 28px; background: rgba(3,17,39,.78); text-align: center; box-shadow: 0 30px 80px rgba(0,0,0,.3); }
     .thanks .wordmark { justify-content: center; color: white; margin-bottom: 40px; }
     .thanks-icon { display: grid; place-items: center; width: 78px; height: 78px; margin: 0 auto 24px; border-radius: 50%; background: #bdf4e7; color: #061a3a; font-size: 34px; font-weight: 900; }
     .thanks h1 { margin: 0; font: 900 clamp(42px, 9vw, 64px)/1 Georgia, serif; letter-spacing: -2px; }
@@ -24,5 +25,45 @@
     <p>Your request has been received. Vaultara Capital will review it internally and send the recommended next step, package guidance, or service information by email.</p>
     <a class="button button-light" href="/">Return to the homepage</a>
   </main>
+  <footer class="site-footer">
+    <div class="shell footer-grid vaultara-standard-footer">
+      <div class="footer-brand">
+        <a class="wordmark wordmark-footer" href="index.html" aria-label="Vaultara Capital home"><span class="wordmark-mark">VC</span><span><strong>Vaultara Capital</strong></span></a>
+        <p>Helping people and businesses move forward with clarity, preparation, and a stronger foundation.</p>
+        <div class="footer-social" aria-label="Vaultara Capital social media links">
+          <a href="https://www.facebook.com/vaultaracapital" target="_blank" rel="noopener" aria-label="Vaultara Capital on Facebook">f</a>
+          <a href="https://www.instagram.com/vaultaracapital" target="_blank" rel="noopener" aria-label="Vaultara Capital on Instagram">◎</a>
+          <a href="https://www.linkedin.com/company/vaultara-capital" target="_blank" rel="noopener" aria-label="Vaultara Capital on LinkedIn">in</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <strong>Services</strong>
+        <a href="funding.html">Funding guidance</a>
+        <a href="credit.html">Credit readiness</a>
+        <a href="formation.html">Business formation</a>
+      </div>
+      <div class="footer-links">
+        <strong>Education</strong>
+        <a href="learning-center.html">Learning Center</a>
+        <a href="articles.html">Articles</a>
+        <a href="blog.html">Blog</a>
+      </div>
+      <div class="footer-links">
+        <strong>Company</strong>
+        <a href="index.html#process">How it works</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="index.html#contact">Feedback</a>
+      </div>
+      <div class="footer-cta vaultara-footer-cta">
+        <strong>Ready for a clearer next step?</strong>
+        <a class="button button-light" href="options.html">See my options</a>
+      </div>
+    </div>
+    <div class="shell legal-row">
+      <p>© <span id="year">2026</span> Vaultara Capital. All rights reserved.</p>
+      <p>Vaultara Capital provides education and guidance. We do not guarantee credit improvement, approval, or funding.</p>
+    </div>
+  </footer>
 </body>
 </html>

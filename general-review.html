@@ -65,8 +65,8 @@
         <div class="service-hero-copy">
           <a class="service-breadcrumb" href="index.html">← Back to Vaultara Capital</a>
           <p class="eyebrow light"><span></span> General review</p>
-          <h1>Start Your <em>General Review</em></h1>
-          <p>Not sure whether you need funding guidance, credit readiness, business credit setup, personal credit guidance, business formation support, or program guidance? Start here. Vaultara Capital will review your intake and send the recommended next step by email.</p>
+          <h1>Start Your General Review</h1>
+          <p>Not sure which Vaultara Capital service fits your situation? Start here. Vaultara Capital will review your intake and send the recommended next step by email.</p>
         </div>
       </div>
     </section>
@@ -76,7 +76,7 @@
         <div class="section-heading">
           <p class="eyebrow"><span></span> Find the right starting point</p>
           <h2 id="guidance-title">You do not need to know the exact service yet.</h2>
-          <p>Vaultara Capital uses an email-first review process. After you submit your information, we review the request internally and send the next step, package recommendation, or service direction by email. Please do not submit Social Security numbers, bank account numbers, passwords, or full credit report uploads through this form.</p>
+          <p>Vaultara Capital uses an email-first review process. After you submit your intake, we review the information internally and send next steps, package guidance, or service direction by email.</p>
         </div>
 
         <div class="general-guidance-grid">
@@ -100,7 +100,7 @@
         </div>
 
         <div class="funding-form-card">
-          <p class="privacy-note"><strong>Protect your private information.</strong>Do not provide Social Security numbers, bank account numbers, passwords, or full credit report uploads on this page.</p>
+          <p class="privacy-note"><strong>Protect your private information.</strong> Do not submit Social Security numbers, bank account numbers, passwords, or full credit report uploads through this form.</p>
 
           <form class="funding-form" name="Vaultara-General-Review" method="POST" data-netlify="true" netlify-honeypot="bot-field" action="/thank-you.html">
             <input type="hidden" name="form-name" value="Vaultara-General-Review" />
@@ -109,7 +109,7 @@
               <label>First name *<input type="text" name="first-name" autocomplete="given-name" required /></label>
               <label>Last name *<input type="text" name="last-name" autocomplete="family-name" required /></label>
               <label>Email address *<input type="email" name="email" autocomplete="email" required /></label>
-              <label>Optional phone number for records only<input type="tel" name="phone" autocomplete="tel" /></label>
+              <label>Phone number *<input type="tel" name="phone" autocomplete="tel" required /></label>
               <label>Are you asking as a person or a business? *
                 <select name="requester-type" required>
                   <option value="" selected disabled>Select one</option>
@@ -133,13 +133,6 @@
               </label>
             </div>
             <label>Tell us what you are trying to do *<textarea name="goal-details" required placeholder="Describe your goal, timing, current situation, and the next step you are trying to understand."></textarea></label>
-            <label>Preferred communication method *
-              <select name="preferred-communication" required>
-                <option value="" selected disabled>Select one</option>
-                <option value="Email">Email</option>
-                <option value="Email only">Email only</option>
-              </select>
-            </label>
             <label class="funding-consent"><input type="checkbox" name="consent" required /><span>I agree that Vaultara Capital may review my request and respond by email with next steps, package guidance, or service information.</span></label>
             <button class="button" type="submit">Submit general review <span aria-hidden="true">→</span></button>
           </form>
@@ -150,6 +143,45 @@
     </section>
   </main>
 
-  <footer class="site-footer"></footer>
+  <footer class="site-footer">
+    <div class="shell footer-grid vaultara-standard-footer">
+      <div class="footer-brand">
+        <a class="wordmark wordmark-footer" href="index.html" aria-label="Vaultara Capital home"><span class="wordmark-mark">VC</span><span><strong>Vaultara Capital</strong></span></a>
+        <p>Helping people and businesses move forward with clarity, preparation, and a stronger foundation.</p>
+        <div class="footer-social" aria-label="Vaultara Capital social media links">
+          <a href="https://www.facebook.com/vaultaracapital" target="_blank" rel="noopener" aria-label="Vaultara Capital on Facebook">f</a>
+          <a href="https://www.instagram.com/vaultaracapital" target="_blank" rel="noopener" aria-label="Vaultara Capital on Instagram">◎</a>
+          <a href="https://www.linkedin.com/company/vaultara-capital" target="_blank" rel="noopener" aria-label="Vaultara Capital on LinkedIn">in</a>
+        </div>
+      </div>
+      <div class="footer-links">
+        <strong>Services</strong>
+        <a href="funding.html">Funding guidance</a>
+        <a href="credit.html">Credit readiness</a>
+        <a href="formation.html">Business formation</a>
+      </div>
+      <div class="footer-links">
+        <strong>Education</strong>
+        <a href="learning-center.html">Learning Center</a>
+        <a href="articles.html">Articles</a>
+        <a href="blog.html">Blog</a>
+      </div>
+      <div class="footer-links">
+        <strong>Company</strong>
+        <a href="index.html#process">How it works</a>
+        <a href="privacy.html">Privacy Policy</a>
+        <a href="terms.html">Terms of Use</a>
+        <a href="index.html#contact">Feedback</a>
+      </div>
+      <div class="footer-cta vaultara-footer-cta">
+        <strong>Ready for a clearer next step?</strong>
+        <a class="button button-light" href="options.html">See my options</a>
+      </div>
+    </div>
+    <div class="shell legal-row">
+      <p>© <span id="year">2026</span> Vaultara Capital. All rights reserved.</p>
+      <p>Vaultara Capital provides education and guidance. We do not guarantee credit improvement, approval, or funding.</p>
+    </div>
+  </footer>
 </body>
 </html>
