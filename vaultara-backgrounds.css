@@ -380,3 +380,63 @@ main {
     grid-template-columns: 1fr;
   }
 }
+
+/* Keep homepage copy legible when the shared picture system makes these sections dark. */
+#solutions,
+#requirements,
+#apply {
+  background-image:
+    linear-gradient(115deg, rgba(3,17,39,.92), rgba(6,26,58,.82), rgba(10,104,232,.45)),
+    var(--vaultara-daily-image) !important;
+}
+
+#solutions .section-heading,
+.requirements-copy,
+.apply-copy {
+  color: #fff;
+}
+
+#solutions .section-heading h2,
+.requirements-copy h2,
+.apply-copy h2 {
+  color: #fff;
+  text-shadow: 0 8px 28px rgba(0,0,0,.45);
+}
+
+#solutions .section-heading > p:last-child,
+.requirements-copy > p,
+.apply-copy > p {
+  color: rgba(255,255,255,.84);
+}
+
+#solutions .section-heading .eyebrow,
+.requirements-copy .eyebrow,
+.apply-copy .eyebrow {
+  color: #bdf4e7;
+}
+
+.contact-card {
+  padding: 24px;
+  border: 1px solid rgba(255,255,255,.18);
+  border-radius: 24px;
+  background: rgba(3,17,39,.74);
+  backdrop-filter: blur(12px);
+}
+
+.contact-card small {
+  color: #bdf4e7;
+}
+
+.contact-card a,
+.contact-card span {
+  color: #fff;
+}
+
+.requirements-note {
+  background: rgba(255,255,255,.92);
+  color: #061a3a;
+}
+
+.requirements-note p {
+  color: #061a3a;
+}
