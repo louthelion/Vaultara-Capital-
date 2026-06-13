@@ -30,7 +30,6 @@ function encodeForm(form) {
 document.querySelectorAll('[data-intake-root]').forEach((root) => {
   const selector = root.querySelector('[data-intake-selector]');
   const blocks = root.querySelectorAll('[data-intake-block]');
-  const success = root.querySelector('[data-intake-success]');
 
   if (selector) {
     selector.addEventListener('change', () => {
@@ -57,9 +56,7 @@ document.querySelectorAll('[data-intake-root]').forEach((root) => {
           body: encodeForm(form)
         });
         if (!response.ok) throw new Error(`Submission failed with ${response.status}`);
-        root.querySelectorAll('[data-intake-hide]').forEach((element) => element.classList.add('hidden'));
-        success?.classList.remove('hidden');
-        success?.focus();
+        window.location.href = 'thank-you.html';
       } catch (error) {
         status.textContent = 'We could not submit your intake. Please try again or contact us directly.';
         button.disabled = false;
