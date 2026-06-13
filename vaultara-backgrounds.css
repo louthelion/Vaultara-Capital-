@@ -440,3 +440,96 @@ main {
 .requirements-note p {
   color: #061a3a;
 }
+
+/* Keep the shared service-page process readable over the daily picture. */
+.service-process {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  color: #fff;
+}
+
+.service-process::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+  background: linear-gradient(
+    135deg,
+    rgba(5,18,45,.78),
+    rgba(8,32,78,.68),
+    rgba(20,80,160,.45)
+  );
+}
+
+.service-process > * {
+  position: relative;
+  z-index: 1;
+}
+
+.service-process .section-heading {
+  margin-bottom: 50px;
+}
+
+.service-process .section-heading h2 {
+  color: #fff;
+  text-shadow: 0 8px 24px rgba(0,0,0,.3);
+}
+
+.service-process .section-heading > p:not(.eyebrow) {
+  color: rgba(255,255,255,.86);
+}
+
+.service-process .section-heading .eyebrow,
+.service-process .service-steps li::before {
+  color: #7dc8ff;
+}
+
+.service-process .service-steps {
+  gap: 24px;
+}
+
+.service-process .service-steps li {
+  padding: 36px 30px 32px;
+  border-color: rgba(255,255,255,.52);
+  background: rgba(8,20,45,.62);
+  box-shadow: 0 14px 34px rgba(0,0,0,.18);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+}
+
+.service-process .service-steps h3 {
+  color: #fff;
+}
+
+.service-process .service-steps p {
+  color: rgba(255,255,255,.86);
+}
+
+@media (max-width: 680px) {
+  .service-process::before {
+    background: linear-gradient(
+      155deg,
+      rgba(5,18,45,.82),
+      rgba(8,32,78,.72),
+      rgba(20,80,160,.48)
+    );
+  }
+
+  .service-process .section-heading {
+    margin-bottom: 38px;
+  }
+
+  .service-process .service-steps {
+    gap: 16px;
+  }
+
+  .service-process .service-steps li {
+    padding: 28px 24px 26px;
+  }
+
+  .service-process .service-steps li::before {
+    margin-bottom: 24px;
+  }
+}
