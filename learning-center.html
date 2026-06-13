@@ -17,6 +17,21 @@
     .learning-disclaimer{padding:76px 0;background:var(--soft)}.disclaimer-card{display:grid;grid-template-columns:auto 1fr;gap:23px;align-items:start;padding:32px;border:1px solid var(--line);border-radius:25px;background:white;box-shadow:0 16px 44px rgba(6,26,58,.07)}.disclaimer-icon{display:grid;place-items:center;width:52px;height:52px;border-radius:15px;background:var(--pale-blue);color:var(--blue-dark);font-family:Georgia,serif;font-size:28px;font-weight:900}.disclaimer-card h2{font-size:34px}.disclaimer-card p{max-width:950px;margin:11px 0 0;color:var(--muted);line-height:1.75}.library-cta{padding:76px 0;background:white}.library-cta-card{display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center;padding:34px;border-radius:30px;background:var(--navy);color:white;box-shadow:0 22px 60px rgba(6,26,58,.18)}.library-cta-card h2{margin:0;font-family:Georgia,serif;font-size:clamp(32px,4vw,48px)}.library-cta-card p{max-width:700px;margin:10px 0 0;color:rgba(255,255,255,.74);line-height:1.7}
     @media(max-width:1080px){.learning-card-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.path-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.path-card:last-child{grid-column:1/-1;min-height:190px}.library-heading,.paths-heading{align-items:start;flex-direction:column}.library-heading p,.paths-heading>p{max-width:760px}}
     @media(max-width:700px){.page-hero{padding:70px 0 66px}.page-hero h1{font-size:clamp(43px,13vw,62px);letter-spacing:-1.8px}.learning-search-section{padding:50px 0 30px}.learning-search-panel{border-radius:24px}.learning-search-form{grid-template-columns:1fr 1fr}.search-field{grid-column:1/-1}.search-action{width:100%;padding:0 16px}.topic-filters{gap:8px}.topic-filter{flex:1 1 auto}.learning-library{padding:35px 0 68px}.learning-card-grid,.path-grid{grid-template-columns:1fr}.path-card:last-child{grid-column:auto}.learning-topic-card{padding:23px}.learning-paths{padding:68px 0}.path-card{min-height:210px}.disclaimer-card{grid-template-columns:1fr}.library-cta-card{grid-template-columns:1fr}.library-cta-card .button{width:100%}}
+
+    .learning-filter-btn.active {
+      background: #061a3a;
+      color: #ffffff;
+      border-color: #061a3a;
+    }
+
+    #learningNoResults {
+      margin-top: 20px;
+      padding: 18px;
+      border-radius: 18px;
+      background: rgba(6, 26, 58, 0.08);
+      color: #061a3a;
+      font-weight: 700;
+    }
   </style>
 </head>
 <body>
@@ -25,7 +40,7 @@
 <main id="main-content">
   <section class="page-hero"><div class="shell"><p class="eyebrow light"><span></span> Learning center</p><h1>Build knowledge before you <em>make the next move.</em></h1><p>Explore clear, practical lessons about credit, funding readiness, business credit, formation, and documents. Search the library or choose a guided path so you can prepare before you apply.</p><div class="hero-actions"><a class="button button-light" href="#learning-search">Search the learning library <span aria-hidden="true">↓</span></a><a class="hero-library-link" href="#learning-paths">Choose a learning path →</a></div></div></section>
 
-  <section class="learning-search-section" id="learning-search"><div class="shell"><div class="learning-search-panel"><p class="section-kicker">Searchable education library</p><h2>Find what you need to learn</h2><p>Search by a question or topic, or use a category to narrow the library. Every lesson is designed to help you understand preparation—not promise an outcome.</p><form class="learning-search-form" id="learning-search-form" role="search"><div class="search-field"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><label class="sr-only" for="learning-search-input">Search learning topics</label><input id="learning-search-input" type="search" placeholder="Search credit, funding, business credit, formation, documents, or readiness…" autocomplete="off" /></div><button class="search-action" type="submit">Search</button><button class="search-action search-clear" id="learning-search-clear" type="button">Clear</button></form><div class="topic-filters" role="group" aria-label="Filter learning topics"><button class="topic-filter is-active" type="button" data-category="All" aria-pressed="true">All</button><button class="topic-filter" type="button" data-category="Credit Basics" aria-pressed="false">Credit Basics</button><button class="topic-filter" type="button" data-category="Personal Credit" aria-pressed="false">Personal Credit</button><button class="topic-filter" type="button" data-category="Business Credit" aria-pressed="false">Business Credit</button><button class="topic-filter" type="button" data-category="Funding Readiness" aria-pressed="false">Funding Readiness</button><button class="topic-filter" type="button" data-category="Business Formation" aria-pressed="false">Business Formation</button><button class="topic-filter" type="button" data-category="Documents" aria-pressed="false">Documents</button><button class="topic-filter" type="button" data-category="Mistakes to Avoid" aria-pressed="false">Mistakes to Avoid</button><button class="topic-filter" type="button" data-category="Packages &amp; Next Steps" aria-pressed="false">Packages &amp; Next Steps</button></div><p class="search-summary" id="learning-results-summary" aria-live="polite">Showing 18 learning topics.</p></div></div></section>
+  <section class="learning-search-section" id="learning-search"><div class="shell"><div class="learning-search-panel"><p class="section-kicker">Searchable education library</p><h2>Find what you need to learn</h2><p>Search by a question or topic, or use a category to narrow the library. Every lesson is designed to help you understand preparation—not promise an outcome.</p><form class="learning-search-form" id="learning-search-form" role="search"><div class="search-field"><svg aria-hidden="true" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="7"></circle><path d="m20 20-4-4"></path></svg><label class="sr-only" for="learningSearchInput">Search learning topics</label><input id="learningSearchInput" type="search" placeholder="Search credit, funding, business credit, formation, documents, or readiness…" autocomplete="off" /></div><button class="search-action" id="learningSearchButton" type="button">Search</button><button class="search-action search-clear" id="learningClearButton" type="button">Clear</button></form><div class="topic-filters" role="group" aria-label="Filter learning topics"><button class="topic-filter learning-filter-btn active" type="button" data-filter="All" aria-pressed="true">All</button><button class="topic-filter learning-filter-btn" type="button" data-filter="Credit Basics" aria-pressed="false">Credit Basics</button><button class="topic-filter learning-filter-btn" type="button" data-filter="Personal Credit" aria-pressed="false">Personal Credit</button><button class="topic-filter learning-filter-btn" type="button" data-filter="Business Credit" aria-pressed="false">Business Credit</button><button class="topic-filter learning-filter-btn" type="button" data-filter="Funding Readiness" aria-pressed="false">Funding Readiness</button><button class="topic-filter learning-filter-btn" type="button" data-filter="Business Formation" aria-pressed="false">Business Formation</button><button class="topic-filter learning-filter-btn" type="button" data-filter="Documents" aria-pressed="false">Documents</button><button class="topic-filter learning-filter-btn" type="button" data-filter="Mistakes to Avoid" aria-pressed="false">Mistakes to Avoid</button><button class="topic-filter learning-filter-btn" type="button" data-filter="Packages &amp; Next Steps" aria-pressed="false">Packages &amp; Next Steps</button></div><p class="search-summary" id="learningCount" aria-live="polite">Showing 18 learning topics.</p></div></div></section>
 
   <section class="learning-library" id="learning-library"><div class="shell"><div class="library-heading"><div><p class="section-kicker">Learning topics</p><h2>Learn at your own pace.</h2></div><p>Start with the foundation, then move into the topics that match your current personal or business goal.</p></div><div class="learning-card-grid" id="learning-card-grid">
     <article class="learning-topic-card" id="what-credit-is" data-keywords="credit definition credit report score payment history balances utilization limits inquiries borrowing responsibility readiness" data-category="Credit Basics"><span class="topic-label">Credit Basics</span><h3>What Credit Is</h3><p>Credit is a record of how a person or business borrows and manages obligations. That record can include payment behavior, balances, limits, account history, inquiries, and signs of financial responsibility.</p><div class="remember-box"><strong>What to remember</strong><ul><li>Credit reflects patterns over time, not one isolated number.</li><li>Reports may contain different accounts and information.</li><li>Understanding the record should come before applying.</li></ul></div><a class="related-link" href="credit.html">Related next step: Credit readiness →</a></article>
@@ -46,7 +61,7 @@
     <article class="learning-topic-card" id="common-credit-mistakes" data-keywords="credit mistakes high balances missed payments applications reports personal business score habits" data-category="Mistakes to Avoid"><span class="topic-label">Mistakes to Avoid</span><h3>Common Credit Mistakes</h3><p>High balances, missed payments, repeated applications, ignored reports, and mixed personal and business activity can make it harder to understand the profile or prepare responsibly.</p><div class="remember-box"><strong>What to remember</strong><ul><li>Review information instead of guessing.</li><li>Build consistent payment and recordkeeping habits.</li><li>Do not open accounts only to chase a score.</li></ul></div><a class="related-link" href="credit.html">Related next step: Review credit readiness →</a></article>
     <article class="learning-topic-card" id="before-package" data-keywords="packages next steps intake review guidance payment email credit funding results" data-category="Packages &amp; Next Steps"><span class="topic-label">Packages &amp; Next Steps</span><h3>Before You Choose a Package</h3><p>Complete the appropriate intake first so Vaultara can understand your goal and current situation. After internal review, Vaultara may send package guidance and payment information by email.</p><div class="remember-box"><strong>What to remember</strong><ul><li>Start with accurate, non-sensitive intake information.</li><li>Guidance depends on the details you provide.</li><li>A package is not a promise of credit or funding results.</li></ul></div><a class="related-link" href="general-review.html">Related next step: Start a general review →</a></article>
     <article class="learning-topic-card" id="after-intake" data-keywords="packages next steps intake email review guidance payment instructions client dashboard workflow" data-category="Packages &amp; Next Steps"><span class="topic-label">Packages &amp; Next Steps</span><h3>What Happens After Intake</h3><p>Vaultara uses an email-first workflow: submit intake, receive internal review, get next-step or package guidance by email, choose a package, receive payment instructions, and continue through email or the client dashboard.</p><div class="remember-box"><strong>What to remember</strong><ul><li>Submission comes before package selection.</li><li>Watch the email address used on the intake.</li><li>Review guidance, scope, and payment instructions carefully.</li></ul></div><a class="related-link" href="options.html">Related next step: Choose an intake path →</a></article>
-  </div><p class="no-results" id="learning-no-results" hidden>No matching learning topic found. Try another keyword or choose All.</p></div></section>
+  </div><p class="no-results" id="learningNoResults" hidden>No matching learning topic found. Try another keyword or choose All.</p></div></section>
 
   <section class="learning-paths" id="learning-paths"><div class="shell"><div class="paths-heading"><div><p class="section-kicker">Guided starting points</p><h2>Choose a learning path</h2></div><p>Not sure where to begin? Pick the goal that sounds most like your situation, then explore the matching lessons.</p></div><div class="path-grid">
     <article class="path-card"><span class="path-number">01</span><h3>I want to understand credit</h3><p>Start with credit fundamentals, then learn how payment history, utilization, and inquiries can affect readiness.</p><a href="#learning-library" data-path-category="Credit Basics,Personal Credit">View credit lessons →</a></article>
@@ -101,90 +116,90 @@
     </div>
   </footer>
 <script>
-  (() => {
-    const searchForm = document.getElementById('learning-search-form');
-    const searchInput = document.getElementById('learning-search-input');
-    const clearButton = document.getElementById('learning-search-clear');
-    const filterButtons = [...document.querySelectorAll('.topic-filter')];
-    const cards = [...document.querySelectorAll('.learning-topic-card')];
-    const noResults = document.getElementById('learning-no-results');
-    const summary = document.getElementById('learning-results-summary');
-    let activeCategories = ['All'];
-    let searchQuery = '';
-
-    const normalize = value => String(value || '').toLowerCase().replace(/&amp;/g, '&').replace(/\s+/g, ' ').trim();
-
-    const cardSearchText = card => normalize([
-      card.querySelector('h3')?.textContent,
-      card.dataset.category,
-      card.querySelector(':scope > p')?.textContent,
-      ...[...card.querySelectorAll('.remember-box li')].map(item => item.textContent),
-      card.querySelector('.related-link')?.textContent,
-      card.dataset.keywords
-    ].join(' '));
-
-    const updateLibrary = () => {
-      let visibleCount = 0;
-
-      cards.forEach(card => {
-        const categoryMatch = activeCategories.includes('All') || activeCategories.includes(card.dataset.category);
-        const searchMatch = !searchQuery || cardSearchText(card).includes(searchQuery);
-        const isVisible = categoryMatch && searchMatch;
-        card.hidden = !isVisible;
-        if (isVisible) visibleCount += 1;
-      });
-
+document.addEventListener("DOMContentLoaded", function () {
+  const searchInput = document.getElementById("learningSearchInput");
+  const searchButton = document.getElementById("learningSearchButton");
+  const clearButton = document.getElementById("learningClearButton");
+  const filterButtons = Array.from(document.querySelectorAll(".learning-filter-btn"));
+  const cards = Array.from(document.querySelectorAll(".learning-topic-card"));
+  const countText = document.getElementById("learningCount");
+  const noResults = document.getElementById("learningNoResults");
+  if (!searchInput || !searchButton || !clearButton || cards.length === 0) {
+    console.warn("Vaultara Learning Search: missing required elements.");
+    return;
+  }
+  let activeFilter = "All";
+  function normalize(text) {
+    return String(text || "").toLowerCase().trim();
+  }
+  function getCardSearchText(card) {
+    const title = card.querySelector("h2, h3")?.textContent || "";
+    const category = card.dataset.category || "";
+    const keywords = card.dataset.keywords || "";
+    const body = card.textContent || "";
+    return normalize(title + " " + category + " " + keywords + " " + body);
+  }
+  function updateActiveButton() {
+    filterButtons.forEach(function (button) {
+      const isActive = button.dataset.filter === activeFilter;
+      button.classList.toggle("active", isActive);
+      button.setAttribute("aria-pressed", isActive ? "true" : "false");
+    });
+  }
+  function runLearningSearch() {
+    const searchTerm = normalize(searchInput.value);
+    let visibleCount = 0;
+    cards.forEach(function (card) {
+      const cardCategory = card.dataset.category || "";
+      const matchesCategory = activeFilter === "All" || cardCategory === activeFilter;
+      const cardText = getCardSearchText(card);
+      const matchesSearch = searchTerm === "" || cardText.includes(searchTerm);
+      const shouldShow = matchesCategory && matchesSearch;
+      card.hidden = !shouldShow;
+      if (shouldShow) visibleCount++;
+    });
+    if (countText) {
+      if (visibleCount === 0) {
+        countText.textContent = "No matching learning topic found.";
+      } else if (visibleCount === 1) {
+        countText.textContent = "Showing 1 learning topic.";
+      } else {
+        countText.textContent = "Showing " + visibleCount + " learning topics.";
+      }
+    }
+    if (noResults) {
       noResults.hidden = visibleCount !== 0;
-      summary.textContent = visibleCount === 0
-        ? 'No matching learning topic found.'
-        : `Showing ${visibleCount} learning ${visibleCount === 1 ? 'topic' : 'topics'}.`;
-    };
-
-    const setButtonState = category => {
-      filterButtons.forEach(button => {
-        const isActive = button.dataset.category === category;
-        button.classList.toggle('is-active', isActive);
-        button.setAttribute('aria-pressed', String(isActive));
-      });
-    };
-
-    searchForm.addEventListener('submit', event => {
+    }
+    updateActiveButton();
+  }
+  searchButton.addEventListener("click", function () {
+    runLearningSearch();
+  });
+  searchInput.addEventListener("keydown", function (event) {
+    if (event.key === "Enter") {
       event.preventDefault();
-      searchQuery = normalize(searchInput.value);
-      updateLibrary();
+      runLearningSearch();
+    }
+  });
+  searchInput.addEventListener("input", function () {
+    if (searchInput.value.trim() === "") {
+      runLearningSearch();
+    }
+  });
+  clearButton.addEventListener("click", function () {
+    searchInput.value = "";
+    activeFilter = "All";
+    runLearningSearch();
+    searchInput.focus();
+  });
+  filterButtons.forEach(function (button) {
+    button.addEventListener("click", function () {
+      activeFilter = button.dataset.filter || "All";
+      runLearningSearch();
     });
-
-    clearButton.addEventListener('click', () => {
-      searchInput.value = '';
-      searchQuery = '';
-      activeCategories = ['All'];
-      setButtonState('All');
-      updateLibrary();
-      searchInput.focus();
-    });
-
-    filterButtons.forEach(button => button.addEventListener('click', () => {
-      activeCategories = [button.dataset.category];
-      setButtonState(button.dataset.category);
-      updateLibrary();
-    }));
-
-    document.querySelectorAll('[data-path-category]').forEach(link => link.addEventListener('click', event => {
-      event.preventDefault();
-      activeCategories = link.dataset.pathCategory.split(',');
-      searchInput.value = '';
-      searchQuery = '';
-      filterButtons.forEach(button => {
-        const isActive = activeCategories.length === 1 && button.dataset.category === activeCategories[0];
-        button.classList.toggle('is-active', isActive);
-        button.setAttribute('aria-pressed', String(isActive));
-      });
-      updateLibrary();
-      document.getElementById('learning-library').scrollIntoView({behavior:'smooth',block:'start'});
-    }));
-
-    updateLibrary();
-  })();
+  });
+  runLearningSearch();
+});
 </script>
 </body>
 </html>
