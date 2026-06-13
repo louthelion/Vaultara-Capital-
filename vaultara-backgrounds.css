@@ -375,6 +375,17 @@ main {
   .home-article-content {
     padding: 28px;
   }
+  .home-article-card h2 {
+    font-size: clamp(38px, 11vw, 48px);
+    letter-spacing: -1.4px;
+  }
+  .home-article-content .eyebrow {
+    align-items: flex-start;
+    line-height: 1.5;
+  }
+  .home-article-actions .button {
+    width: 100%;
+  }
   .learning-topic-grid,
   .learning-detail-grid {
     grid-template-columns: 1fr;

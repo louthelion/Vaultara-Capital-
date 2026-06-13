@@ -62,7 +62,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .hero::before { content: ""; position: absolute; inset: 0; opacity: .17; background-image: linear-gradient(rgba(255,255,255,.08) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.08) 1px, transparent 1px); background-size: 64px 64px; mask-image: linear-gradient(to right, black, transparent 85%); }
 .hero-grid { position: relative; z-index: 1; display: grid; grid-template-columns: 1.02fr .98fr; align-items: center; gap: 70px; }
 .eyebrow { display: flex; align-items: center; gap: 10px; margin: 0 0 18px; color: var(--blue); font-size: 12px; font-weight: 900; letter-spacing: 2.4px; text-transform: uppercase; }
-.eyebrow span { width: 26px; height: 2px; background: currentColor; }
+.eyebrow > span:first-child { width: 26px; height: 2px; flex: 0 0 26px; background: currentColor; }
 .eyebrow.light { color: var(--mint); }
 .hero h1, .section-heading h2, .process-intro h2, .requirements-copy h2, .apply-copy h2 { margin: 0; font-family: Georgia, "Times New Roman", serif; letter-spacing: -2.8px; line-height: .98; }
 .hero h1 { max-width: 680px; font-size: clamp(58px, 6.2vw, 92px); }
