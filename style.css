@@ -402,3 +402,20 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .legal-document { border-radius: 22px; }
   .legal-document .eyebrow { margin-top: 32px; }
 }
+
+/* Shared footer structure is present in the HTML so it remains consistent without JavaScript. */
+.footer-social { display: flex; gap: 12px; margin-top: 18px; flex-wrap: wrap; }
+.footer-social a { display: grid; place-items: center; width: 46px; height: 46px; border-radius: 15px; border: 1px solid rgba(255,255,255,.18); background: rgba(255,255,255,.08); color: #fff; font-weight: 900; font-size: 18px; transition: transform .2s, background .2s; }
+.footer-social a:hover, .footer-social a:focus-visible { transform: translateY(-2px); background: rgba(189,244,231,.18); color: var(--mint); }
+.vaultara-standard-footer { align-items: start; }
+.vaultara-standard-footer .footer-links a { display: block; margin-top: 14px; }
+.vaultara-footer-cta { grid-column: 1 / -1; padding-top: 28px; border-top: 1px solid rgba(255,255,255,.14); }
+.vaultara-footer-cta .button { width: min(100%, 420px); }
+
+@media (max-width: 760px) {
+  .footer-social a { width: 44px; height: 44px; }
+  .vaultara-standard-footer { grid-template-columns: 1fr 1fr; gap: 34px 28px; }
+  .vaultara-standard-footer .footer-brand,
+  .vaultara-standard-footer .vaultara-footer-cta { grid-column: 1 / -1; }
+  .vaultara-footer-cta .button { width: 100%; max-width: none; }
+}
