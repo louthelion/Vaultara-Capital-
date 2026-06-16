@@ -615,3 +615,53 @@ main {
       var(--vaultara-daily-image) !important;
   }
 }
+
+/* Improve contrast on picture-backed About page feature sections. */
+#services,
+#who-we-help {
+  background-image:
+    linear-gradient(155deg, rgba(3,17,39,.96), rgba(6,26,58,.9), rgba(10,62,130,.66)),
+    var(--vaultara-daily-image) !important;
+}
+
+#services .section-heading,
+#who-we-help .section-heading {
+  color: #fff;
+}
+
+#services .section-heading h2,
+#who-we-help .section-heading h2 {
+  color: #fff;
+  text-shadow: 0 10px 30px rgba(0,0,0,.5);
+}
+
+#services .section-heading > p:last-child,
+#who-we-help .section-heading > p:last-child {
+  color: rgba(255,255,255,.9);
+  text-shadow: 0 6px 20px rgba(0,0,0,.38);
+}
+
+#services .section-heading .eyebrow,
+#who-we-help .section-heading .eyebrow {
+  color: #bdf4e7;
+}
+
+#services .section-heading .eyebrow span,
+#who-we-help .section-heading .eyebrow span {
+  background: #bdf4e7;
+}
+
+@media (max-width: 620px) {
+  #services,
+  #who-we-help {
+    background-image:
+      linear-gradient(180deg, rgba(3,17,39,.98), rgba(6,26,58,.94), rgba(8,44,96,.82)),
+      var(--vaultara-daily-image) !important;
+  }
+
+  #services .section-heading h2,
+  #who-we-help .section-heading h2 {
+    font-size: clamp(38px, 11vw, 52px);
+    letter-spacing: -1.6px;
+  }
+}
