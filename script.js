@@ -218,3 +218,26 @@ showLatestPublishedBlogPost();
 
 const year = document.querySelector('#year');
 if (year) year.textContent = new Date().getFullYear();
+
+function addVaultaraHelpGuide() {
+  const host=document.createElement('section');
+  host.setAttribute('aria-label','Vaultara website help');
+  Object.assign(host.style,{position:'fixed',bottom:'18px',right:'18px',zIndex:'1000',maxWidth:'min(350px, calc(100vw - 36px))'});
+  const toggle=document.createElement('button');toggle.type='button';toggle.textContent='Website help';
+  Object.assign(toggle.style,{background:'#1458ce',color:'#fff',border:'0',borderRadius:'12px',padding:'14px 20px',fontWeight:'700',cursor:'pointer'});
+  const box=document.createElement('div');box.hidden=true;
+  Object.assign(box.style,{background:'#fff',color:'#172b4d',border:'1px solid #cfd9e8',borderRadius:'14px',padding:'20px',marginBottom:'10px',boxShadow:'0 12px 40px #172b4d22'});
+  const title=document.createElement('h2');title.textContent='How can we help?';title.style.fontSize='20px';box.append(title);
+  const note=document.createElement('p');note.textContent='Choose a topic. This guide uses published information; live AI assistance is not activated.';box.append(note);
+  const answers=[
+    ['Funding information','We help organize funding readiness questions and documents. An inquiry is not a loan application or approval.','funding.html'],
+    ['Credit information','Learn about credit readiness. Paid credit improvement services require compliance verification; no score increase is guaranteed.','credit.html'],
+    ['Business setup','Explore administrative formation checklists. Legal and tax decisions require appropriate professional advice.','formation.html'],
+    ['News and education','Read our published blog and learning articles. These pages are not yet connected to automatic live research.','learning-center.html'],
+    ['Send an inquiry','Use the website inquiry form. Do not submit Social Security numbers, passwords, banking credentials, or credit reports.','index.html#contact']
+  ];
+  const response=document.createElement('p');response.setAttribute('role','status');
+  answers.forEach(([label,text,url])=>{const b=document.createElement('button');b.type='button';b.textContent=label;Object.assign(b.style,{display:'block',width:'100%',textAlign:'left',padding:'10px',margin:'6px 0',background:'#eef3ff',color:'#1458ce',border:'0',borderRadius:'8px',cursor:'pointer'});b.onclick=()=>{response.replaceChildren(document.createTextNode(text+' '));const link=document.createElement('a');link.href=url;link.textContent='Open page';response.append(link)};box.append(b)});
+  box.append(response);toggle.setAttribute('aria-expanded','false');toggle.onclick=()=>{box.hidden=!box.hidden;toggle.setAttribute('aria-expanded',String(!box.hidden));toggle.textContent=box.hidden?'Website help':'Close help'};host.append(box,toggle);document.body.append(host);
+}
+addVaultaraHelpGuide();
