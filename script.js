@@ -241,3 +241,23 @@ function addVaultaraHelpGuide() {
   box.append(response);toggle.setAttribute('aria-expanded','false');toggle.onclick=()=>{box.hidden=!box.hidden;toggle.setAttribute('aria-expanded',String(!box.hidden));toggle.textContent=box.hidden?'Website help':'Close help'};host.append(box,toggle);document.body.append(host);
 }
 addVaultaraHelpGuide();
+
+function setupContentArchive(){
+ const cards=[...document.querySelectorAll('.archive-card')].filter(c=>c.querySelector('time[datetime]'));
+ if(!cards.length)return;
+ const panel=document.createElement('section');panel.setAttribute('aria-label','Filter archive');
+ panel.style.cssText='display:flex;flex-wrap:wrap;gap:12px;margin:0 0 24px;padding:18px;background:#fff;border-radius:14px;color:#061a3a';
+ const search=document.createElement('input');search.type='search';search.placeholder='Search past posts';search.setAttribute('aria-label','Search archive');
+ const day=document.createElement('input');day.type='date';day.setAttribute('aria-label','Publication day');
+ const month=document.createElement('select');month.setAttribute('aria-label','Publication month');
+ const year=document.createElement('select');year.setAttribute('aria-label','Publication year');
+ const option=(v,t)=>{const o=document.createElement('option');o.value=v;o.textContent=t;return o};
+ month.append(option('','All months'));for(let n=1;n<=12;n++)month.append(option(String(n).padStart(2,'0'),new Intl.DateTimeFormat('en',{month:'long',timeZone:'UTC'}).format(new Date(Date.UTC(2026,n-1,1)))));
+ year.append(option('','All years'));[...new Set(cards.map(c=>c.querySelector('time').dateTime.slice(0,4)))].sort().reverse().forEach(y=>year.append(option(y,y)));
+ const reset=document.createElement('button');reset.type='button';reset.textContent='Clear filters';reset.className='button';
+ const result=document.createElement('p');result.setAttribute('role','status');
+ panel.append(search,day,month,year,reset);cards[0].parentElement.before(panel);panel.after(result);
+ const filter=()=>{let count=0;cards.forEach(c=>{const d=c.querySelector('time').dateTime;const match=(!day.value||d===day.value)&&(!month.value||d.slice(5,7)===month.value)&&(!year.value||d.slice(0,4)===year.value)&&c.textContent.toLowerCase().includes(search.value.toLowerCase());c.hidden=!match;if(match)count++});result.textContent=count+' matching posts';};
+ [search,day,month,year].forEach(el=>el.addEventListener('input',filter));reset.onclick=()=>{search.value=day.value=month.value=year.value='';filter()};filter();
+}
+setupContentArchive();
