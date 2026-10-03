@@ -245,6 +245,7 @@ addVaultaraHelpGuide();
 function setupContentArchive(){
  const cards=[...document.querySelectorAll('.archive-card')].filter(c=>c.querySelector('time[datetime]'));
  if(!cards.length)return;
+ const style=document.createElement('style');style.textContent='.archive-card[hidden]{display:none!important}.archive-filter-field{display:grid;gap:6px;font-size:13px;font-weight:700}.archive-filter-field input,.archive-filter-field select{min-height:42px;padding:8px;border:1px solid #cfd9e8;border-radius:8px;max-width:100%}';document.head.append(style);
  const panel=document.createElement('section');panel.setAttribute('aria-label','Filter archive');
  panel.style.cssText='display:flex;flex-wrap:wrap;gap:12px;margin:0 0 24px;padding:18px;background:#fff;border-radius:14px;color:#061a3a';
  const search=document.createElement('input');search.type='search';search.placeholder='Search past posts';search.setAttribute('aria-label','Search archive');
@@ -256,7 +257,8 @@ function setupContentArchive(){
  year.append(option('','All years'));[...new Set(cards.map(c=>c.querySelector('time').dateTime.slice(0,4)))].sort().reverse().forEach(y=>year.append(option(y,y)));
  const reset=document.createElement('button');reset.type='button';reset.textContent='Clear filters';reset.className='button';
  const result=document.createElement('p');result.setAttribute('role','status');
- panel.append(search,day,month,year,reset);cards[0].parentElement.before(panel);panel.after(result);
+ const field=(label,input)=>{const wrap=document.createElement('label');wrap.className='archive-filter-field';wrap.append(document.createTextNode(label),input);return wrap};
+ panel.append(field('Search',search),field('Publication day',day),field('Month',month),field('Year',year),reset);const library=document.querySelector('.archive-library .shell');if(library)library.prepend(panel);else cards[0].parentElement.before(panel);panel.after(result);
  const filter=()=>{let count=0;cards.forEach(c=>{const d=c.querySelector('time').dateTime;const match=(!day.value||d===day.value)&&(!month.value||d.slice(5,7)===month.value)&&(!year.value||d.slice(0,4)===year.value)&&c.textContent.toLowerCase().includes(search.value.toLowerCase());c.hidden=!match;if(match)count++});result.textContent=count+' matching posts';};
  [search,day,month,year].forEach(el=>el.addEventListener('input',filter));reset.onclick=()=>{search.value=day.value=month.value=year.value='';filter()};filter();
 }
