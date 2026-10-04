@@ -1,5 +1,6 @@
 [build]
-  publish = "."
+  publish = "dist"
+  command = "npm run build"
 
 [[redirects]]
   from = "/Vaultara.html"
@@ -114,3 +115,18 @@
   [headers.values]
     X-Content-Type-Options = "nosniff"
     Referrer-Policy = "strict-origin-when-cross-origin"
+
+[functions]
+  directory = "netlify/functions"
+
+[[redirects]]
+  from = "/api/marketing/feed"
+  to = "https://vaultara-capital-dashboard.netlify.app/public/marketing"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/marketing-content"
+  to = "https://vaultara-capital-dashboard.netlify.app/public/marketing"
+  status = 200
+  force = true
