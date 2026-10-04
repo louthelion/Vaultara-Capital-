@@ -218,3 +218,37 @@ showLatestPublishedBlogPost();
 
 const year = document.querySelector('#year');
 if (year) year.textContent = new Date().getFullYear();
+
+async function connectMarketingContent(){
+  try{
+    const response=await fetch('/api/marketing/feed',{cache:'no-cache'});
+    if(!response.ok)return;
+    const feed=await response.json();
+    const posts=Array.isArray(feed.items)?feed.items:[];
+    const latest=posts.filter(p=>p.type==='blog')[0];
+    const feature=document.querySelector('[data-latest-blog-post]');
+    if(feature&&latest){
+      const set=(selector,text)=>{const el=feature.querySelector(selector);if(el)el.textContent=text;};
+      set('[data-blog-meta]','Latest Blog Post · '+new Date(latest.publishAt).toLocaleDateString('en-US',{timeZone:'America/New_York'}));
+      set('[data-blog-title]',latest.title);set('[data-blog-description]',latest.summary);
+      const link=feature.querySelector('[data-blog-link]');if(link)link.href='/marketing-content?id='+encodeURIComponent(latest.id);
+    }
+    const main=document.querySelector('main');if(!main)return;
+    const path=location.pathname.replace(/\.html$/,'');
+    if(!['/','/index','/articles','/blog'].includes(path))return;
+    const type=path==='/articles'?'article':path==='/blog'?'blog':null;
+    const chosen=posts.filter(p=>!type||p.type===type).slice(0,type?30:4);
+    const section=document.createElement('section');section.className='section-light';section.id='marketing-updates';
+    const shell=document.createElement('div');shell.className='shell';
+    const heading=document.createElement('h2');heading.textContent=type==='article'?'New articles':type==='blog'?'Latest blog posts':'Latest from Vaultara';
+    const grid=document.createElement('div');grid.className='home-articles-grid';
+    for(const p of chosen){const card=document.createElement('article');card.className='solution-card';const meta=document.createElement('p');meta.className='eyebrow';meta.textContent=p.type+' · '+new Date(p.publishAt).toLocaleDateString('en-US',{timeZone:'America/New_York'});const h=document.createElement('h3');h.textContent=p.title;const summary=document.createElement('p');summary.textContent=p.summary;const a=document.createElement('a');a.textContent='Read '+p.type;a.href='/marketing-content?id='+encodeURIComponent(p.id);card.append(meta,h,summary,a);grid.append(card);}
+    if(chosen.length){shell.append(heading,grid);section.append(shell);main.append(section);}
+    if(!type&&Array.isArray(feed.news)&&feed.news.length){
+      const news=document.createElement('section');news.className='section-light';news.id='marketing-news';const wrap=document.createElement('div');wrap.className='shell';const title=document.createElement('h2');title.textContent='News from the Consumer Financial Protection Bureau';const note=document.createElement('p');note.textContent='Official source links. Publication dates are shown by the source; these are external news updates.';
+      const list=document.createElement('ul');for(const n of feed.news.slice(0,6)){try{const u=new URL(n.sourceUrl);if(u.protocol!=='https:'||u.hostname!=='www.consumerfinance.gov')continue;const li=document.createElement('li');const a=document.createElement('a');a.href=u.href;a.textContent=n.title;a.target='_blank';a.rel='noopener';li.append(a);if(n.publishAt){const date=document.createElement('span');date.textContent=' · '+new Date(n.publishAt).toLocaleDateString('en-US');li.append(date);}list.append(li);}catch{}}
+      wrap.append(title,note,list);news.append(wrap);main.append(news);
+    }
+  }catch{/* Existing pages remain usable during a temporary content connection failure. */}
+}
+connectMarketingContent();
