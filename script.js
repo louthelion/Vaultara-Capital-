@@ -221,7 +221,8 @@ if (year) year.textContent = new Date().getFullYear();
 
 
 const marketingPath=location.pathname.replace(/\.html$/,'').replace(/\/$/,'')||'/';
-const marketingPages=['/','/index','/articles','/blog','/article-archive','/blog-archive'];
+const isMarketingArchive=marketingPath.endsWith('-archive');
+const marketingPages=['/','/index','/articles','/blog','/article-archive','/blog-archive','/news-archive'];
 function marketingSection(id,title){
   let section=document.getElementById(id);
   if(section)return section;
@@ -232,7 +233,7 @@ function marketingSection(id,title){
   const grid=document.createElement('div');grid.className='marketing-grid';
   wrap.append(heading,status,grid);section.append(wrap);
   const main=document.querySelector('main');
-  const anchor=main.querySelector('.home-articles-preview,.blog-section,.library-section');
+  const anchor=main.querySelector('.home-articles-preview,.blog-section,.library-section,.archive-library');
   if(anchor)main.insertBefore(section,anchor);else main.insertBefore(section,main.children[1]||null);
   return section;
 }
@@ -244,31 +245,102 @@ function setupMarketing(){
     .marketing-status{color:#52637c;line-height:1.7;margin:0 0 24px;font-size:14px}
     .marketing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
     .marketing-card{background:#fff;border:1px solid #dce4ee;border-top:4px solid #0a68e8;border-radius:18px;padding:26px;min-width:0;box-shadow:0 8px 24px rgba(6,26,58,.04)}
-    .marketing-card h3{font-size:23px;line-height:1.3;margin:10px 0;color:#061a3a}
+    .marketing-archive-links{line-height:2}.marketing-archive-links a{color:#0758bf;font-weight:700}.archive-filters{display:flex;gap:20px;flex-wrap:wrap;margin:20px 0}.archive-filters select{padding:10px;border:1px solid #b7c5d8;border-radius:8px;background:white;color:#061a3a}.archive-groups{display:block}.archive-groups>section{margin-bottom:36px}.marketing-card h4{font-size:23px;line-height:1.3;margin:10px 0;color:#061a3a}.marketing-card h3{font-size:23px;line-height:1.3;margin:10px 0;color:#061a3a}
     .marketing-card p{color:#52637c;line-height:1.65}
     .marketing-card .marketing-meta{font-size:12px;font-weight:700;color:#3265a3;margin:0}
     .marketing-card a{display:inline-block;color:#0758bf;font-weight:700;line-height:1.5;overflow-wrap:anywhere}
     @media(max-width:640px){.marketing-grid{grid-template-columns:1fr}.marketing-section{padding:34px 0}.marketing-card{padding:22px}}
   `;document.head.append(style);
-  marketingSection('marketing-updates',marketingPath.includes('article')?'Latest articles':marketingPath.includes('blog')?'Latest blog posts':'Latest from Vaultara');
-  marketingSection('marketing-news','News · official source updates');
+  marketingSection('marketing-updates',isMarketingArchive?'Browse by year and month':marketingPath.includes('article')?'Today’s articles':marketingPath.includes('blog')?'Today’s blog posts':'Today from Vaultara');
+  if(!isMarketingArchive)marketingSection('marketing-news','News · official source updates');
+  const archives=document.createElement('p');archives.className='marketing-archive-links';
+  for(const [label,url] of [['Blog Archive','/blog-archive'],['Article Archive','/article-archive'],['News Archive','/news-archive']]){const a=document.createElement('a');a.href=url;a.textContent=label;archives.append(a,document.createTextNode(' · '));}
+  document.querySelector('#marketing-updates .shell').insertBefore(archives,document.querySelector('#marketing-updates .marketing-status'));
+  if(isMarketingArchive)setupArchiveFilters();
   for(const nav of document.querySelectorAll('.desktop-nav,.mobile-nav')){
-    const link=document.createElement('a');link.href='#marketing-news';link.textContent='News';link.addEventListener('click',closeMenu);nav.append(link);
+    const link=document.createElement('a');link.href=isMarketingArchive?'/news-archive':'#marketing-news';link.textContent='News';link.addEventListener('click',closeMenu);nav.append(link);
   }
   document.querySelector('#marketing-updates .marketing-status').textContent='Loading published content…';
-  document.querySelector('#marketing-news .marketing-status').textContent='Loading official news…';
+  const newsStatus=document.querySelector('#marketing-news .marketing-status');if(newsStatus)newsStatus.textContent='Loading official news…';
+}
+
+const legacyArchiveItems=[...document.querySelectorAll('.archive-library .archive-card')].map(card=>({
+ title:card.querySelector('h2,h3')?.textContent,
+ summary:card.querySelector('.card-copy>p:not(.archive-kicker)')?.textContent||card.querySelector('p:not(.archive-kicker)')?.textContent||'',
+ publishAt:card.querySelector('time')?.getAttribute('datetime')+'T12:00:00Z',
+ href:card.querySelector('a')?.getAttribute('href'),
+ type:marketingPath.includes('article')?'article':'blog'
+}));
+let archiveRecords=[];
+function setupArchiveFilters(){
+ const wrap=document.createElement('div');wrap.className='archive-filters';
+ for(const [name,label] of [['year','Year'],['month','Month']]){
+  const control=document.createElement('label');control.textContent=label+' ';
+  const select=document.createElement('select');select.id='archive-'+name;select.setAttribute('aria-label','Archive '+name);select.addEventListener('change',drawArchive);
+  control.append(select);wrap.append(control);
+ }
+ document.querySelector('#marketing-updates .shell').insertBefore(wrap,document.querySelector('#marketing-updates .marketing-grid'));
+}
+function renderDatedArchive(feed){
+ const type=marketingPath.includes('news')?'news':marketingPath.includes('article')?'article':'blog';
+ const today=getDateKeyInTimeZone(new Date(),'America/New_York');
+ const source=type==='news'?(feed.news||[]):(feed.items||[]).filter(x=>x.type===type);
+ const seen=new Set();archiveRecords=[];
+ for(const item of [...source,...(type==='news'?[]:legacyArchiveItems)]){
+  const date=new Date(item.publishAt||item.firstSeenAt);if(!Number.isFinite(date.getTime()))continue;
+  const dateKey=getDateKeyInTimeZone(date,'America/New_York');if(dateKey>=today)continue;
+  let href=item.href||'/marketing-content?id='+encodeURIComponent(item.id);
+  if(type==='news'){try{const u=new URL(item.sourceUrl);if(u.protocol!=='https:'||u.hostname!=='www.consumerfinance.gov')continue;href=u.href;}catch{continue;}}
+  const key=item.id||href;if(seen.has(key))continue;seen.add(key);
+  archiveRecords.push({...item,href,dateKey,type});
+ }
+ archiveRecords.sort((a,b)=>b.dateKey.localeCompare(a.dateKey));
+ const years=[...new Set(archiveRecords.map(x=>x.dateKey.slice(0,4)))];
+ const y=document.getElementById('archive-year'),m=document.getElementById('archive-month');const selected=y.value;
+ y.replaceChildren(new Option('All years',''),...years.map(x=>new Option(x,x)));if(years.includes(selected))y.value=selected;
+ if(!m.options.length)m.replaceChildren(new Option('All months',''),...Array.from({length:12},(_,i)=>new Option(new Date(2020,i,1).toLocaleString('en-US',{month:'long'}),String(i+1).padStart(2,'0'))));
+ for(const legacy of document.querySelectorAll('.archive-library'))legacy.hidden=true;
+ drawArchive();
+}
+function drawArchive(){
+ const y=document.getElementById('archive-year').value,m=document.getElementById('archive-month').value;
+ const items=archiveRecords.filter(x=>(!y||x.dateKey.startsWith(y))&&(!m||x.dateKey.slice(5,7)===m));
+ const grid=document.querySelector('#marketing-updates .marketing-grid');grid.classList.add('archive-groups');
+ const groups=new Map();for(const item of items){const month=item.dateKey.slice(0,7);if(!groups.has(month))groups.set(month,[]);groups.get(month).push(item);}
+ const nodes=[];
+ for(const [month,records] of groups){
+  const group=document.createElement('section');const h=document.createElement('h3');
+  h.textContent=new Date(month+'-15T12:00:00Z').toLocaleDateString('en-US',{month:'long',year:'numeric',timeZone:'America/New_York'});group.append(h);
+  const cards=document.createElement('div');cards.className='marketing-grid';
+  for(const item of records){
+   const card=document.createElement('article');card.className='marketing-card';
+   const time=document.createElement('time');time.className='marketing-meta';time.dateTime=item.dateKey;time.textContent=formatBlogDate(item.dateKey);
+   const title=document.createElement('h4');title.textContent=item.title;
+   const summary=document.createElement('p');summary.textContent=item.summary||'';
+   const link=document.createElement('a');link.href=item.href;link.textContent=item.type==='news'?'Read official source ↗':'Read '+item.type+' →';
+   if(item.type==='news'){link.target='_blank';link.rel='noopener';}
+   card.append(time,title,summary,link);cards.append(card);
+  }
+  group.append(cards);nodes.push(group);
+ }
+ grid.replaceChildren(...nodes);
+ document.querySelector('#marketing-updates .marketing-status').textContent=items.length?items.length+' earlier publication'+(items.length===1?'':'s')+' · Original dates and links preserved.':'No earlier publications match this year and month.';
 }
 let marketingLoading=false;
 async function connectMarketingContent(){
   if(!marketingPages.includes(marketingPath)||marketingLoading)return;
   marketingLoading=true;
   try{
-    const response=await fetch('/api/marketing/feed',{cache:'no-store'});
+    const response=await fetch('/api/marketing/feed'+(isMarketingArchive?'?archive=1':''),{cache:'no-store'});
     if(!response.ok)throw Error('Content connection unavailable');
     const feed=await response.json();
     const posts=(Array.isArray(feed.items)?feed.items:[]).filter(p=>['blog','article'].includes(p.type)&&Date.parse(p.publishAt)<=Date.now()).sort((a,b)=>Date.parse(b.publishAt)-Date.parse(a.publishAt));
-    const latest=posts.find(p=>p.type==='blog');
+    const today=getDateKeyInTimeZone(new Date(),'America/New_York');
+    if(isMarketingArchive){renderDatedArchive(feed);return;}
+    const current=posts.filter(p=>getDateKeyInTimeZone(new Date(p.publishAt),'America/New_York')===today);
+    const latest=current.find(p=>p.type==='blog');
     const feature=document.querySelector('[data-latest-blog-post]');
+    if(feature)feature.hidden=!latest;
     if(feature&&latest){
       const set=(selector,text)=>{const el=feature.querySelector(selector);if(el)el.textContent=text;};
       set('[data-blog-meta]','Latest Blog Post · '+new Date(latest.publishAt).toLocaleDateString('en-US',{timeZone:'America/New_York'}));
@@ -276,7 +348,7 @@ async function connectMarketingContent(){
       feature.querySelector('[data-blog-link]').href='/marketing-content?id='+encodeURIComponent(latest.id);
     }
     const type=marketingPath.includes('article')?'article':marketingPath.includes('blog')?'blog':null;
-    const chosen=posts.filter(p=>!type||p.type===type).slice(0,type?30:4);
+    const chosen=current.filter(p=>!type||p.type===type).slice(0,type?30:4);
     const section=document.getElementById('marketing-updates');const grid=section.querySelector('.marketing-grid');
     const cards=[];
     for(const p of chosen){
@@ -288,11 +360,12 @@ async function connectMarketingContent(){
       card.append(meta,h,summary,a);cards.push(card);
     }
     grid.replaceChildren(...cards);
-    section.querySelector('.marketing-status').textContent=chosen.length?'Published content, newest first. New posts appear on their scheduled publication date.':'No new '+(type||'post')+' has been published yet. Earlier guides remain available below; new posts appear on their scheduled date.';
+    section.querySelector('.marketing-status').textContent=chosen.length?'Today’s published content. Earlier dates are available in the archives.':'No '+(type||'post')+' is dated today. Browse the archives for previous publications.';
+    for(const older of document.querySelectorAll('.home-articles-preview,.blog-section,.library-section'))older.hidden=true;
     const news=document.getElementById('marketing-news');const newsCards=[];
     for(const n of (Array.isArray(feed.news)?feed.news:[]).slice(0,8)){
       try{
-        const u=new URL(n.sourceUrl);if(u.protocol!=='https:'||u.hostname!=='www.consumerfinance.gov')continue;
+        const u=new URL(n.sourceUrl);if(u.protocol!=='https:'||u.hostname!=='www.consumerfinance.gov'||!n.publishAt||getDateKeyInTimeZone(new Date(n.publishAt),'America/New_York')!==today)continue;
         const card=document.createElement('article');card.className='marketing-card';
         const meta=document.createElement('p');meta.className='marketing-meta';meta.textContent='CFPB'+(n.publishAt?' · '+new Date(n.publishAt).toLocaleDateString('en-US',{timeZone:'America/New_York'}):'');
         const h=document.createElement('h3');h.textContent=n.title;
@@ -301,8 +374,10 @@ async function connectMarketingContent(){
       }catch{}
     }
     news.querySelector('.marketing-grid').replaceChildren(...newsCards);
+    const historyLink=document.createElement('a');historyLink.href='/news-archive';historyLink.textContent='Browse News Archive →';news.querySelector('.shell').append(historyLink);
+    for(const oldLink of [...news.querySelectorAll('a[href="/news-archive"]')].slice(0,-1))oldLink.remove();
     const refreshed=feed.newsUpdatedAt?new Date(feed.newsUpdatedAt).toLocaleString('en-US',{timeZone:'America/New_York'}):null;
-    news.querySelector('.marketing-status').textContent=newsCards.length?'Consumer Financial Protection Bureau headlines. Checked hourly'+(refreshed?' · Last successful check: '+refreshed+' Eastern.':'.')+' Source dates are shown on each story.':'Official news is temporarily unavailable. Please check again shortly.';
+    news.querySelector('.marketing-status').textContent=newsCards.length?'Consumer Financial Protection Bureau headlines. Checked hourly'+(refreshed?' · Last successful check: '+refreshed+' Eastern.':'.')+' Source dates are shown on each story.':'No official headline is dated today. Previous headlines are available in the News Archive. Checked hourly'+(refreshed?' · Last check: '+refreshed+' Eastern.':'.');
   }catch{
     for(const id of ['marketing-updates','marketing-news']){
       const section=document.getElementById(id);if(section)section.querySelector('.marketing-status').textContent='Updates could not be refreshed. Any previously loaded content remains visible. Please try again shortly.';
