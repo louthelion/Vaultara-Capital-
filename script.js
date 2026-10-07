@@ -244,15 +244,16 @@ function setupMarketing(){
     .marketing-section h2{font-family:Georgia,serif;font-size:clamp(30px,4vw,44px);line-height:1.15;margin:0 0 14px;color:#061a3a}
     .marketing-status{color:#52637c;line-height:1.7;margin:0 0 24px;font-size:14px}
     .marketing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
-    .marketing-card{background:#fff;border:1px solid #dce4ee;border-top:4px solid #0a68e8;border-radius:18px;padding:26px;min-width:0;box-shadow:0 8px 24px rgba(6,26,58,.04)}
+    .marketing-card{display:flex;flex-direction:column;background:#fff;border:1px solid #dce4ee;border-top:4px solid #0a68e8;border-radius:18px;padding:26px;min-width:0;box-shadow:0 8px 24px rgba(6,26,58,.04)}
     .marketing-archive-links{line-height:2}.marketing-archive-links a{color:#0758bf;font-weight:700}.archive-filters{display:flex;gap:20px;flex-wrap:wrap;margin:20px 0}.archive-filters select{padding:10px;border:1px solid #b7c5d8;border-radius:8px;background:white;color:#061a3a}.archive-groups{display:block}.archive-groups>section{margin-bottom:36px}.marketing-card h4{font-size:23px;line-height:1.3;margin:10px 0;color:#061a3a}.marketing-card h3{font-size:23px;line-height:1.3;margin:10px 0;color:#061a3a}
     .marketing-card p{color:#52637c;line-height:1.65}
     .marketing-card .marketing-meta{font-size:12px;font-weight:700;color:#3265a3;margin:0}
-    .marketing-card a{display:inline-block;color:#0758bf;font-weight:700;line-height:1.5;overflow-wrap:anywhere}
+    .marketing-card a{display:inline-block;margin-top:auto;padding:12px 18px;border-radius:10px;background:#edf4ff;align-self:flex-start;color:#0758bf;font-weight:700;line-height:1.5;overflow-wrap:anywhere}
+    .marketing-card:first-child{grid-column:1/-1}.marketing-refresh{border:1px solid #b7c5d8;border-radius:10px;padding:12px 18px;background:white;color:#0758bf;font-weight:700;cursor:pointer;margin:0 0 20px}.marketing-refresh:disabled{opacity:.6;cursor:wait}
     @media(max-width:640px){.marketing-grid{grid-template-columns:1fr}.marketing-section{padding:34px 0}.marketing-card{padding:22px}}
   `;document.head.append(style);
   marketingSection('marketing-updates',isMarketingArchive?'Browse by year and month':marketingPath.includes('article')?'Latest articles':marketingPath.includes('blog')?'Latest blog posts':'Latest from Vaultara');
-  if(!isMarketingArchive)marketingSection('marketing-news','News · official source updates');
+  if(!isMarketingArchive){const newsSection=marketingSection('marketing-news','News · official source updates');const button=document.createElement('button');button.type='button';button.className='marketing-refresh';button.textContent='Refresh news';button.addEventListener('click',()=>connectMarketingContent(true));newsSection.querySelector('.shell').insertBefore(button,newsSection.querySelector('.marketing-status'));}
   const archives=document.createElement('p');archives.className='marketing-archive-links';
   for(const [label,url] of [['Blog Archive','/blog-archive'],['Article Archive','/article-archive'],['News Archive','/news-archive']]){const a=document.createElement('a');a.href=url;a.textContent=label;archives.append(a,document.createTextNode(' · '));}
   document.querySelector('#marketing-updates .shell').insertBefore(archives,document.querySelector('#marketing-updates .marketing-status'));
@@ -290,7 +291,7 @@ function renderDatedArchive(feed){
   const date=new Date(item.publishAt||item.firstSeenAt);if(!Number.isFinite(date.getTime()))continue;
   const dateKey=getDateKeyInTimeZone(date,'America/New_York');if(dateKey>=today)continue;
   let href=item.href||'/marketing-content?id='+encodeURIComponent(item.id);
-  if(type==='news'){try{const u=new URL(item.sourceUrl);if(u.protocol!=='https:'||u.hostname!=='www.consumerfinance.gov')continue;href=u.href;}catch{continue;}}
+  if(type==='news'){try{const u=new URL(item.sourceUrl);if(u.protocol!=='https:'||u.hostname!=='www.consumerfinance.gov')continue;if(!item.id)continue;href='/marketing-content?news='+encodeURIComponent(item.id);}catch{continue;}}
   const key=item.id||href;if(seen.has(key))continue;seen.add(key);
   archiveRecords.push({...item,href,dateKey,type});
  }
@@ -317,8 +318,8 @@ function drawArchive(){
    const time=document.createElement('time');time.className='marketing-meta';time.dateTime=item.dateKey;time.textContent=formatBlogDate(item.dateKey);
    const title=document.createElement('h4');title.textContent=item.title;
    const summary=document.createElement('p');summary.textContent=item.summary||'';
-   const link=document.createElement('a');link.href=item.href;link.textContent=item.type==='news'?'Read official source ↗':'Read '+item.type+' →';
-   if(item.type==='news'){link.target='_blank';link.rel='noopener';}
+   const link=document.createElement('a');link.href=item.href;link.textContent='Read more →';
+   if(item.type==='news'&&!item.id){link.target='_blank';link.rel='noopener';}
    card.append(time,title,summary,link);cards.append(card);
   }
   group.append(cards);nodes.push(group);
@@ -327,11 +328,13 @@ function drawArchive(){
  document.querySelector('#marketing-updates .marketing-status').textContent=items.length?items.length+' earlier publication'+(items.length===1?'':'s')+' · Original dates and links preserved.':'No earlier publications match this year and month.';
 }
 let marketingLoading=false;
-async function connectMarketingContent(){
+async function connectMarketingContent(force=false){
   if(!marketingPages.includes(marketingPath)||marketingLoading)return;
   marketingLoading=true;
+  const refreshButton=document.querySelector('.marketing-refresh');if(refreshButton){refreshButton.disabled=true;refreshButton.textContent='Refreshing…';}
   try{
-    const response=await fetch('/api/marketing/feed'+(isMarketingArchive?'?archive=1':''),{cache:'no-store'});
+    const query=new URLSearchParams();if(isMarketingArchive)query.set('archive','1');if(force)query.set('refresh',String(Date.now()));
+    const response=await fetch('/api/marketing/feed'+(query.size?'?'+query.toString():''),{cache:'no-store'});
     if(!response.ok)throw Error('Content connection unavailable');
     const feed=await response.json();
     const posts=(Array.isArray(feed.items)?feed.items:[]).filter(p=>['blog','article'].includes(p.type)&&Date.parse(p.publishAt)<=Date.now()).sort((a,b)=>Date.parse(b.publishAt)-Date.parse(a.publishAt));
@@ -356,7 +359,7 @@ async function connectMarketingContent(){
       const meta=document.createElement('p');meta.className='marketing-meta';meta.textContent=p.type.toUpperCase()+' · '+new Date(p.publishAt).toLocaleDateString('en-US',{timeZone:'America/New_York'});
       const h=document.createElement('h3');h.textContent=p.title;
       const summary=document.createElement('p');summary.textContent=p.summary;
-      const a=document.createElement('a');a.textContent='Read '+p.type+' →';a.href='/marketing-content?id='+encodeURIComponent(p.id);
+      const a=document.createElement('a');a.textContent='Read more →';a.href='/marketing-content?id='+encodeURIComponent(p.id);
       card.append(meta,h,summary,a);cards.push(card);
     }
     grid.replaceChildren(...cards);
@@ -369,8 +372,9 @@ async function connectMarketingContent(){
         const card=document.createElement('article');card.className='marketing-card';
         const meta=document.createElement('p');meta.className='marketing-meta';meta.textContent='CFPB'+(n.publishAt?' · '+new Date(n.publishAt).toLocaleDateString('en-US',{timeZone:'America/New_York'}):'');
         const h=document.createElement('h3');h.textContent=n.title;
-        const a=document.createElement('a');a.href=u.href;a.textContent='Read official source ↗';a.target='_blank';a.rel='noopener';
-        card.append(meta,h,a);newsCards.push(card);
+        const summary=document.createElement('p');summary.textContent=n.summary||'Read the complete announcement on Vaultara Capital.';
+        const a=document.createElement('a');if(!n.id)continue;a.href='/marketing-content?news='+encodeURIComponent(n.id);a.textContent='Read more →';
+        card.append(meta,h,summary,a);newsCards.push(card);
       }catch{}
     }
     news.querySelector('.marketing-grid').replaceChildren(...newsCards);
@@ -382,7 +386,7 @@ async function connectMarketingContent(){
     for(const id of ['marketing-updates','marketing-news']){
       const section=document.getElementById(id);if(section)section.querySelector('.marketing-status').textContent='Updates could not be refreshed. Any previously loaded content remains visible. Please try again shortly.';
     }
-  }finally{marketingLoading=false;}
+  }finally{marketingLoading=false;if(refreshButton){refreshButton.disabled=false;refreshButton.textContent='Refresh news';}}
 }
 setupMarketing();
 connectMarketingContent();
