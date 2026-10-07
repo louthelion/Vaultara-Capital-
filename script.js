@@ -251,7 +251,7 @@ function setupMarketing(){
     .marketing-card a{display:inline-block;color:#0758bf;font-weight:700;line-height:1.5;overflow-wrap:anywhere}
     @media(max-width:640px){.marketing-grid{grid-template-columns:1fr}.marketing-section{padding:34px 0}.marketing-card{padding:22px}}
   `;document.head.append(style);
-  marketingSection('marketing-updates',isMarketingArchive?'Browse by year and month':marketingPath.includes('article')?'Today’s articles':marketingPath.includes('blog')?'Today’s blog posts':'Today from Vaultara');
+  marketingSection('marketing-updates',isMarketingArchive?'Browse by year and month':marketingPath.includes('article')?'Latest articles':marketingPath.includes('blog')?'Latest blog posts':'Latest from Vaultara');
   if(!isMarketingArchive)marketingSection('marketing-news','News · official source updates');
   const archives=document.createElement('p');archives.className='marketing-archive-links';
   for(const [label,url] of [['Blog Archive','/blog-archive'],['Article Archive','/article-archive'],['News Archive','/news-archive']]){const a=document.createElement('a');a.href=url;a.textContent=label;archives.append(a,document.createTextNode(' · '));}
@@ -337,7 +337,7 @@ async function connectMarketingContent(){
     const posts=(Array.isArray(feed.items)?feed.items:[]).filter(p=>['blog','article'].includes(p.type)&&Date.parse(p.publishAt)<=Date.now()).sort((a,b)=>Date.parse(b.publishAt)-Date.parse(a.publishAt));
     const today=getDateKeyInTimeZone(new Date(),'America/New_York');
     if(isMarketingArchive){renderDatedArchive(feed);return;}
-    const current=posts.filter(p=>getDateKeyInTimeZone(new Date(p.publishAt),'America/New_York')===today);
+    const current=posts;
     const latest=current.find(p=>p.type==='blog');
     const feature=document.querySelector('[data-latest-blog-post]');
     if(feature)feature.hidden=!latest;
@@ -360,12 +360,12 @@ async function connectMarketingContent(){
       card.append(meta,h,summary,a);cards.push(card);
     }
     grid.replaceChildren(...cards);
-    section.querySelector('.marketing-status').textContent=chosen.length?'Today’s published content. Earlier dates are available in the archives.':'No '+(type||'post')+' is dated today. Browse the archives for previous publications.';
+    section.querySelector('.marketing-status').textContent=chosen.length?'Publication schedule: blogs Tuesday and Friday; articles Thursday, at 8 AM Eastern. Latest publications stay visible; browse older dates in the archives.':'No published '+(type||'post')+' is available yet. Blogs publish Tuesday and Friday; articles Thursday, at 8 AM Eastern. Earlier publications remain in the archives.';
     for(const older of document.querySelectorAll('.home-articles-preview,.blog-section,.library-section'))older.hidden=true;
     const news=document.getElementById('marketing-news');const newsCards=[];
     for(const n of (Array.isArray(feed.news)?feed.news:[]).slice(0,8)){
       try{
-        const u=new URL(n.sourceUrl);if(u.protocol!=='https:'||u.hostname!=='www.consumerfinance.gov'||!n.publishAt||getDateKeyInTimeZone(new Date(n.publishAt),'America/New_York')!==today)continue;
+        const u=new URL(n.sourceUrl);if(u.protocol!=='https:'||u.hostname!=='www.consumerfinance.gov')continue;
         const card=document.createElement('article');card.className='marketing-card';
         const meta=document.createElement('p');meta.className='marketing-meta';meta.textContent='CFPB'+(n.publishAt?' · '+new Date(n.publishAt).toLocaleDateString('en-US',{timeZone:'America/New_York'}):'');
         const h=document.createElement('h3');h.textContent=n.title;
@@ -377,7 +377,7 @@ async function connectMarketingContent(){
     const historyLink=document.createElement('a');historyLink.href='/news-archive';historyLink.textContent='Browse News Archive →';news.querySelector('.shell').append(historyLink);
     for(const oldLink of [...news.querySelectorAll('a[href="/news-archive"]')].slice(0,-1))oldLink.remove();
     const refreshed=feed.newsUpdatedAt?new Date(feed.newsUpdatedAt).toLocaleString('en-US',{timeZone:'America/New_York'}):null;
-    news.querySelector('.marketing-status').textContent=newsCards.length?'Consumer Financial Protection Bureau headlines. Checked hourly'+(refreshed?' · Last successful check: '+refreshed+' Eastern.':'.')+' Source dates are shown on each story.':'No official headline is dated today. Previous headlines are available in the News Archive. Checked hourly'+(refreshed?' · Last check: '+refreshed+' Eastern.':'.');
+    news.querySelector('.marketing-status').textContent=newsCards.length?'Latest official CFPB news. Checked every day, hourly'+(refreshed?' · Last successful check: '+refreshed+' Eastern.':'.')+' New headlines appear when the source publishes them. Original source dates are shown on each story.':'News is temporarily unavailable. Previous headlines remain in the News Archive. Checked every day, hourly'+(refreshed?' · Last check: '+refreshed+' Eastern.':'.');
   }catch{
     for(const id of ['marketing-updates','marketing-news']){
       const section=document.getElementById(id);if(section)section.querySelector('.marketing-status').textContent='Updates could not be refreshed. Any previously loaded content remains visible. Please try again shortly.';
