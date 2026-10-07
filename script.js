@@ -219,36 +219,99 @@ showLatestPublishedBlogPost();
 const year = document.querySelector('#year');
 if (year) year.textContent = new Date().getFullYear();
 
+
+const marketingPath=location.pathname.replace(/\.html$/,'').replace(/\/$/,'')||'/';
+const marketingPages=['/','/index','/articles','/blog','/article-archive','/blog-archive'];
+function marketingSection(id,title){
+  let section=document.getElementById(id);
+  if(section)return section;
+  section=document.createElement('section');section.id=id;section.className='marketing-section';
+  const wrap=document.createElement('div');wrap.className='shell';
+  const heading=document.createElement('h2');heading.textContent=title;
+  const status=document.createElement('p');status.className='marketing-status';status.setAttribute('role','status');
+  const grid=document.createElement('div');grid.className='marketing-grid';
+  wrap.append(heading,status,grid);section.append(wrap);
+  const main=document.querySelector('main');
+  const anchor=main.querySelector('.home-articles-preview,.blog-section,.library-section');
+  if(anchor)main.insertBefore(section,anchor);else main.insertBefore(section,main.children[1]||null);
+  return section;
+}
+function setupMarketing(){
+  if(!marketingPages.includes(marketingPath)||!document.querySelector('main'))return;
+  const style=document.createElement('style');style.textContent=`
+    .marketing-section{padding:48px 0;background:#f4f7fc;color:#061a3a;scroll-margin-top:100px}
+    .marketing-section h2{font-family:Georgia,serif;font-size:clamp(30px,4vw,44px);line-height:1.15;margin:0 0 14px;color:#061a3a}
+    .marketing-status{color:#52637c;line-height:1.7;margin:0 0 24px;font-size:14px}
+    .marketing-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+    .marketing-card{background:#fff;border:1px solid #dce4ee;border-top:4px solid #0a68e8;border-radius:18px;padding:26px;min-width:0;box-shadow:0 8px 24px rgba(6,26,58,.04)}
+    .marketing-card h3{font-size:23px;line-height:1.3;margin:10px 0;color:#061a3a}
+    .marketing-card p{color:#52637c;line-height:1.65}
+    .marketing-card .marketing-meta{font-size:12px;font-weight:700;color:#3265a3;margin:0}
+    .marketing-card a{display:inline-block;color:#0758bf;font-weight:700;line-height:1.5;overflow-wrap:anywhere}
+    @media(max-width:640px){.marketing-grid{grid-template-columns:1fr}.marketing-section{padding:34px 0}.marketing-card{padding:22px}}
+  `;document.head.append(style);
+  marketingSection('marketing-updates',marketingPath.includes('article')?'Latest articles':marketingPath.includes('blog')?'Latest blog posts':'Latest from Vaultara');
+  marketingSection('marketing-news','News · official source updates');
+  for(const nav of document.querySelectorAll('.desktop-nav,.mobile-nav')){
+    const link=document.createElement('a');link.href='#marketing-news';link.textContent='News';link.addEventListener('click',closeMenu);nav.append(link);
+  }
+  document.querySelector('#marketing-updates .marketing-status').textContent='Loading published content…';
+  document.querySelector('#marketing-news .marketing-status').textContent='Loading official news…';
+}
+let marketingLoading=false;
 async function connectMarketingContent(){
+  if(!marketingPages.includes(marketingPath)||marketingLoading)return;
+  marketingLoading=true;
   try{
-    const response=await fetch('/api/marketing/feed',{cache:'no-cache'});
-    if(!response.ok)return;
+    const response=await fetch('/api/marketing/feed',{cache:'no-store'});
+    if(!response.ok)throw Error('Content connection unavailable');
     const feed=await response.json();
-    const posts=Array.isArray(feed.items)?feed.items:[];
-    const latest=posts.filter(p=>p.type==='blog')[0];
+    const posts=(Array.isArray(feed.items)?feed.items:[]).filter(p=>['blog','article'].includes(p.type)&&Date.parse(p.publishAt)<=Date.now()).sort((a,b)=>Date.parse(b.publishAt)-Date.parse(a.publishAt));
+    const latest=posts.find(p=>p.type==='blog');
     const feature=document.querySelector('[data-latest-blog-post]');
     if(feature&&latest){
       const set=(selector,text)=>{const el=feature.querySelector(selector);if(el)el.textContent=text;};
       set('[data-blog-meta]','Latest Blog Post · '+new Date(latest.publishAt).toLocaleDateString('en-US',{timeZone:'America/New_York'}));
       set('[data-blog-title]',latest.title);set('[data-blog-description]',latest.summary);
-      const link=feature.querySelector('[data-blog-link]');if(link)link.href='/marketing-content?id='+encodeURIComponent(latest.id);
+      feature.querySelector('[data-blog-link]').href='/marketing-content?id='+encodeURIComponent(latest.id);
     }
-    const main=document.querySelector('main');if(!main)return;
-    const path=location.pathname.replace(/\.html$/,'');
-    if(!['/','/index','/articles','/blog'].includes(path))return;
-    const type=path==='/articles'?'article':path==='/blog'?'blog':null;
+    const type=marketingPath.includes('article')?'article':marketingPath.includes('blog')?'blog':null;
     const chosen=posts.filter(p=>!type||p.type===type).slice(0,type?30:4);
-    const section=document.createElement('section');section.className='section-light';section.id='marketing-updates';
-    const shell=document.createElement('div');shell.className='shell';
-    const heading=document.createElement('h2');heading.textContent=type==='article'?'New articles':type==='blog'?'Latest blog posts':'Latest from Vaultara';
-    const grid=document.createElement('div');grid.className='home-articles-grid';
-    for(const p of chosen){const card=document.createElement('article');card.className='solution-card';const meta=document.createElement('p');meta.className='eyebrow';meta.textContent=p.type+' · '+new Date(p.publishAt).toLocaleDateString('en-US',{timeZone:'America/New_York'});const h=document.createElement('h3');h.textContent=p.title;const summary=document.createElement('p');summary.textContent=p.summary;const a=document.createElement('a');a.textContent='Read '+p.type;a.href='/marketing-content?id='+encodeURIComponent(p.id);card.append(meta,h,summary,a);grid.append(card);}
-    if(chosen.length){shell.append(heading,grid);section.append(shell);main.append(section);}
-    if(!type&&Array.isArray(feed.news)&&feed.news.length){
-      const news=document.createElement('section');news.className='section-light';news.id='marketing-news';const wrap=document.createElement('div');wrap.className='shell';const title=document.createElement('h2');title.textContent='News from the Consumer Financial Protection Bureau';const note=document.createElement('p');note.textContent='Official source links. Publication dates are shown by the source; these are external news updates.';
-      const list=document.createElement('ul');for(const n of feed.news.slice(0,6)){try{const u=new URL(n.sourceUrl);if(u.protocol!=='https:'||u.hostname!=='www.consumerfinance.gov')continue;const li=document.createElement('li');const a=document.createElement('a');a.href=u.href;a.textContent=n.title;a.target='_blank';a.rel='noopener';li.append(a);if(n.publishAt){const date=document.createElement('span');date.textContent=' · '+new Date(n.publishAt).toLocaleDateString('en-US',{timeZone:'America/New_York'});li.append(date);}list.append(li);}catch{}}
-      wrap.append(title,note,list);news.append(wrap);main.append(news);
+    const section=document.getElementById('marketing-updates');const grid=section.querySelector('.marketing-grid');
+    const cards=[];
+    for(const p of chosen){
+      const card=document.createElement('article');card.className='marketing-card';
+      const meta=document.createElement('p');meta.className='marketing-meta';meta.textContent=p.type.toUpperCase()+' · '+new Date(p.publishAt).toLocaleDateString('en-US',{timeZone:'America/New_York'});
+      const h=document.createElement('h3');h.textContent=p.title;
+      const summary=document.createElement('p');summary.textContent=p.summary;
+      const a=document.createElement('a');a.textContent='Read '+p.type+' →';a.href='/marketing-content?id='+encodeURIComponent(p.id);
+      card.append(meta,h,summary,a);cards.push(card);
     }
-  }catch{/* Existing pages remain usable during a temporary content connection failure. */}
+    grid.replaceChildren(...cards);
+    section.querySelector('.marketing-status').textContent=chosen.length?'Published content, newest first. New posts appear on their scheduled publication date.':'No new '+(type||'post')+' has been published yet. Earlier guides remain available below; new posts appear on their scheduled date.';
+    const news=document.getElementById('marketing-news');const newsCards=[];
+    for(const n of (Array.isArray(feed.news)?feed.news:[]).slice(0,8)){
+      try{
+        const u=new URL(n.sourceUrl);if(u.protocol!=='https:'||u.hostname!=='www.consumerfinance.gov')continue;
+        const card=document.createElement('article');card.className='marketing-card';
+        const meta=document.createElement('p');meta.className='marketing-meta';meta.textContent='CFPB'+(n.publishAt?' · '+new Date(n.publishAt).toLocaleDateString('en-US',{timeZone:'America/New_York'}):'');
+        const h=document.createElement('h3');h.textContent=n.title;
+        const a=document.createElement('a');a.href=u.href;a.textContent='Read official source ↗';a.target='_blank';a.rel='noopener';
+        card.append(meta,h,a);newsCards.push(card);
+      }catch{}
+    }
+    news.querySelector('.marketing-grid').replaceChildren(...newsCards);
+    const refreshed=feed.newsUpdatedAt?new Date(feed.newsUpdatedAt).toLocaleString('en-US',{timeZone:'America/New_York'}):null;
+    news.querySelector('.marketing-status').textContent=newsCards.length?'Consumer Financial Protection Bureau headlines. Checked hourly'+(refreshed?' · Last successful check: '+refreshed+' Eastern.':'.')+' Source dates are shown on each story.':'Official news is temporarily unavailable. Please check again shortly.';
+  }catch{
+    for(const id of ['marketing-updates','marketing-news']){
+      const section=document.getElementById(id);if(section)section.querySelector('.marketing-status').textContent='Updates could not be refreshed. Any previously loaded content remains visible. Please try again shortly.';
+    }
+  }finally{marketingLoading=false;}
 }
+setupMarketing();
 connectMarketingContent();
+if(marketingPages.includes(marketingPath)){
+  setInterval(()=>{if(!document.hidden)connectMarketingContent();},600000);
+  document.addEventListener('visibilitychange',()=>{if(!document.hidden)connectMarketingContent();});
+}
