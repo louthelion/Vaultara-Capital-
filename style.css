@@ -478,3 +478,14 @@ button, a { -webkit-tap-highlight-color: transparent; }
   .help-grid div { min-height: 128px; }
   .package-note, .disclosure-note { padding: 28px 22px; }
 }
+
+/* Vaultara's dedicated business line. Responsive tap-to-call navigation. */
+.header-phone-link{display:inline-flex;align-items:center;justify-content:center;white-space:nowrap;color:inherit;font-size:.85rem;font-weight:700;text-decoration:underline;text-underline-offset:3px}
+.footer-phone{padding:1rem 0;color:#fff;font-weight:600}
+.footer-phone a{color:inherit;text-decoration:underline}
+.mobile-call-button{display:none}
+@media(max-width:800px){
+ .header-phone-link{font-size:.72rem}
+ .mobile-call-button{display:block;position:fixed;bottom:calc(12px + env(safe-area-inset-bottom));left:12px;right:12px;z-index:9999;padding:13px 16px;text-align:center;background:#073c6d;color:#fff;border-radius:12px;box-shadow:0 5px 20px #0005;text-decoration:none;font-weight:700}
+ body{padding-bottom:80px}
+}
