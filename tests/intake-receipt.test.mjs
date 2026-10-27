@@ -30,5 +30,5 @@ test('retry continues after an individual delivery failure',()=>{
  assert.match(source,/catch\{console\.error\('Vaultara queued intake delivery failed; item retained for retry'\);continue;\}/);
  assert.match(source,/paginate:true/);
  assert.match(source,/examined>=100/);
- assert.match(source,/if\(sent>=3\)break/);
+ assert.match(source,/if\(sent>=3\|\|examined>=100\)return sent/);
 });
