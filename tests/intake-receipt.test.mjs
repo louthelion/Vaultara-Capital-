@@ -1,13 +1,23 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
+import {validateIntakeReceipt} from '../netlify/functions/_shared/intake-receipt.mjs';
 const source=readFileSync(new URL('../netlify/functions/_shared/deliver.mts',import.meta.url),'utf8');
-test('website intake delivery must validate structured acknowledgment',()=>{
+const id='test-12345678';
+test('accepts only a matching persisted inquiry and task acknowledgment',()=>{
+ assert.equal(validateIntakeReceipt({saved:true,inquiryId:id,taskId:'intake-'+id},id),true);
+ for(const invalid of [null,{},[],{saved:false,inquiryId:id,taskId:'intake-'+id},
+ {saved:true,inquiryId:'other-12345678',taskId:'intake-'+id},
+ {saved:true,inquiryId:id,taskId:'intake-other-12345678'},
+ {saved:'true',inquiryId:id,taskId:'intake-'+id}]){
+  assert.equal(validateIntakeReceipt(invalid,id),false);
+ }
+ assert.equal(validateIntakeReceipt({saved:true,inquiryId:id,taskId:'intake-'+id},'bad/id'),false);
+});
+test('delivery rejects a missing or invalid receipt',()=>{
  assert.match(source,/await r\.json\(\)/);
- assert.match(source,/receipt\?\.saved!==true/);
- assert.match(source,/receipt\?\.inquiryId!==String\(record\.id\)/);
- assert.match(source,/receipt\?\.taskId!=='intake-'\+String\(record\.id\)/);
- assert.match(source,/throw Error\('Platform delivery receipt does not match submission'\)/);
+ assert.match(source,/validateIntakeReceipt\(receipt,record\.id\)/);
+ assert.match(source,/Platform delivery receipt does not match submission/);
 });
 test('retry removes pending only after deliver returns',()=>{
  const deliverPosition=source.indexOf('await deliver(record.submission)');
