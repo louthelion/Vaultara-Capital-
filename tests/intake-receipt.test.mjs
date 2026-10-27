@@ -25,3 +25,9 @@ test('retry removes pending only after deliver returns',()=>{
  const deletePosition=source.indexOf('await store.delete(b.key)');
  assert.ok(deliverPosition>=0&&receiptPosition>deliverPosition&&deletePosition>receiptPosition);
 });
+
+test('retry continues after an individual delivery failure',()=>{
+ assert.match(source,/catch\{console\.error\('Vaultara queued intake delivery failed; item retained for retry'\);continue;\}/);
+ assert.match(source,/for\(const b of blobs\.slice\(0,100\)\)/);
+ assert.match(source,/if\(sent>=3\)break/);
+});
