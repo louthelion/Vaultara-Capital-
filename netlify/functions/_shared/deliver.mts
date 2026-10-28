@@ -2,7 +2,7 @@ import {getStore} from '@netlify/blobs';
 import {signSync} from './sync.mjs';
 import {validateIntakeReceipt} from './intake-receipt.mjs';
 import {resolveIntakeEndpoint} from './intake-endpoint.mjs';
-export async function deliver(record:any){if(Netlify.env.get('CONTEXT')!=='production')throw Error('Preview intake delivery disabled pending isolation');const key=Netlify.env.get('VAULTARA_INTAKE_SYNC_KEY');if(!key)throw Error('Intake connection is not configured');const body=JSON.stringify(record);const timestamp=String(Date.now());const r=await fetch(resolveIntakeEndpoint(Netlify.env.get('CONTEXT'),Netlify.env.get('VAULTARA_TEST_INTAKE_URL')),{method:'POST',headers:{'Content-Type':'application/json','x-vaultara-time':timestamp,'x-vaultara-signature':signSync(body,timestamp,key)},body,signal:AbortSignal.timeout(8000)});if(!r.ok)throw Error('Platform delivery not confirmed');
+export async function deliver(record:any){if(Netlify.env.get('CONTEXT')!=='production')throw Error('Preview intake delivery disabled pending isolation');const key=Netlify.env.get('VAULTARA_INTAKE_SYNC_KEY');if(!key)throw Error('Intake connection is not configured');const body=JSON.stringify(record);const timestamp=String(Date.now());const r=await fetch(resolveIntakeEndpoint(Netlify.env.get('CONTEXT'),Netlify.env.get('VAULTARA_TEST_INTAKE_URL'),Netlify.env.get('VAULTARA_APPROVED_TEST_HOST')),{method:'POST',headers:{'Content-Type':'application/json','x-vaultara-time':timestamp,'x-vaultara-signature':signSync(body,timestamp,key)},body,signal:AbortSignal.timeout(8000)});if(!r.ok)throw Error('Platform delivery not confirmed');
 let receipt:any;
 try{receipt=await r.json();}catch{throw Error('Platform delivery receipt missing');}
 if(!validateIntakeReceipt(receipt,record.id)){
