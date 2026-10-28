@@ -11,7 +11,7 @@ test('nonproduction website submissions return before shared outbox access',()=>
 test('nonproduction delivery cannot contact production dashboard',()=>{
  const code=read('netlify/functions/_shared/deliver.mts');
  const guard=code.indexOf("if(Netlify.env.get('CONTEXT')!=='production')throw Error(");
- const network=code.indexOf("await fetch('https://vaultara-capital-dashboard.netlify.app");
+ const network=code.indexOf('await fetch(resolveIntakeEndpoint(');
  assert.ok(guard>=0&&network>guard);
 });
 test('nonproduction retry returns before shared queue access',()=>{
