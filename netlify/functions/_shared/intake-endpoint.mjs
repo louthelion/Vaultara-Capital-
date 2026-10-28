@@ -6,7 +6,7 @@ export function resolveIntakeEndpoint(context,configuredUrl){
   try{url=new URL(configuredUrl);}catch{throw Error('Invalid isolated test dashboard URL');}
   if(url.protocol!=='https:'||url.username||url.password||url.search||url.hash||
      url.port||url.pathname!=='/api/intake-sync'||
-     !/^[a-z0-9-]+\\.netlify\\.app$/.test(url.hostname)||
+     !/^[a-z0-9-]+\.netlify\.app$/.test(url.hostname)||
      url.hostname==='vaultara-capital-dashboard.netlify.app')
     throw Error('Isolated test dashboard URL is not allowed');
   return url.toString();
