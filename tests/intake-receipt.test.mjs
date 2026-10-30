@@ -22,7 +22,7 @@ test('delivery rejects a missing or invalid receipt',()=>{
 test('retry removes pending only after deliver returns',()=>{
  const deliverPosition=source.indexOf('await deliver(record.submission)');
  const receiptPosition=source.indexOf("await store.setJSON('receipts/'");
- const deletePosition=source.indexOf('await store.delete(b.key)');
+ const deletePosition=source.indexOf('await store.delete(b.key)',receiptPosition);
  assert.ok(deliverPosition>=0&&receiptPosition>deliverPosition&&deletePosition>receiptPosition);
 });
 
