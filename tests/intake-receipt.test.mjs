@@ -27,7 +27,7 @@ test('retry removes pending only after deliver returns',()=>{
 });
 
 test('retry continues after an individual delivery failure',()=>{
- assert.match(source,/catch\{console\.error\('Vaultara queued intake delivery failed; item retained for retry'\);continue;\}/);
+ assert.match(source,/markRetryFailure\(store,b\.key\)/);
  assert.match(source,/paginate:true/);
  assert.match(source,/examined>=100/);
  assert.match(source,/if\(sent>=3\|\|examined>=100\)return sent/);
