@@ -5,10 +5,12 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#061a3a">
   <title>News Archive | Vaultara Capital</title>
-  <meta name="description" content="Browse saved official news headlines by date, month, and year.">
+  <meta name="description" content="Vaultara Capital Local news archive: dated Florida small-business, credit, and funding stories, summarized in full and read on this page.">
   <link rel="canonical" href="https://vaultaracapital.com/news-archive">
   <link rel="stylesheet" href="style.css">
   <script src="script.js?v=archive20261007" defer></script>
+  <script src="news-data.js" defer></script>
+  <script src="news-archive.js" defer></script>
   <style>
     .archive-hero{position:relative;isolation:isolate;padding:88px 0 76px;overflow:hidden;color:#fff;background:var(--navy)}.archive-hero::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(115deg,rgba(3,17,39,.92),rgba(6,26,58,.78),rgba(10,104,232,.36)),url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1800&q=80');background-size:cover;background-position:center}.archive-hero h1{margin:0;font-family:Georgia,serif;font-size:clamp(50px,6vw,82px);line-height:1;letter-spacing:-2.4px}.archive-hero p:not(.eyebrow){max-width:760px;color:rgba(255,255,255,.78);font-size:18px;line-height:1.75}.archive-library{padding:82px 0;background:var(--soft)}.month-heading{margin:0 0 30px;color:var(--navy);font-family:Georgia,serif;font-size:clamp(38px,5vw,60px)}.date-group{display:grid;gap:18px;padding:30px;border:1px solid var(--line);border-radius:28px;background:#fff}.archive-card{display:grid;grid-template-columns:160px 1fr auto;gap:22px;align-items:center;padding:18px;border:1px solid var(--line);border-radius:24px;background:#fff;box-shadow:0 12px 34px rgba(6,26,58,.06)}.thumb{height:120px;border-radius:18px;background-size:cover;background-position:center}.archive-kicker{margin:0 0 6px;color:var(--blue);font-size:11px;font-weight:900;letter-spacing:1.6px;text-transform:uppercase}.archive-card h2{margin:0 0 7px;color:var(--navy);font-family:Georgia,serif;font-size:25px}.archive-card time{color:var(--muted);font-size:13px;font-weight:700}.archive-card .card-copy>p:not(.archive-kicker){margin:8px 0 0;color:var(--muted);line-height:1.6}@media(max-width:880px){.archive-card{grid-template-columns:1fr}.thumb{height:190px}.archive-card .button{width:100%}.date-group{padding:20px}}
   </style>
@@ -17,7 +19,27 @@
 <a class="skip-link" href="#main-content">Skip to content</a>
 <header class="site-header" id="top"><div class="header-inner shell"><button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation"><span></span><span></span><span></span></button><a class="wordmark" href="index.html"><span class="wordmark-mark">VC</span><span><strong>Vaultara Capital</strong></span></a><nav class="desktop-nav"><a href="options.html">Options</a><a href="learning-center.html">Learning</a><a href="articles.html">Articles</a><a href="blog.html">Blog</a></nav><a class="button button-small" href="options.html">See My Options</a></div><nav class="mobile-nav" id="mobile-nav" hidden><a href="options.html">Options</a><a href="learning-center.html">Learning</a><a href="articles.html">Articles</a><a href="blog.html">Blog</a></nav></header>
 <main id="main-content">
-  <section class="archive-hero"><div class="shell"><p class="eyebrow light"><span></span> News</p><h1>News Archive</h1><p>Previously collected official news headlines, organized by date, month, and year. Original source links remain available.</p></div></section>
+  <section class="archive-hero"><div class="shell"><p class="eyebrow light"><span></span> Local news</p><h1>News Archive</h1><p>Every Local news story Vaultara Capital has published, newest first. Each story is summarized in full and read entirely on this page — the summary is the read. Sources are credited in plain text; stories never link out to another site.</p></div></section>
+  <section class="local-news-section archive-news"><div class="shell"><div class="local-news-list" data-local-news-list>
+          <article class="local-news-card">
+            <time class="local-news-date" datetime="2026-11-11">November 11, 2026</time>
+            <h3>Bizcap opens a $175 million credit facility to lend more to small and midsize businesses</h3>
+            <p>Bizcap, a direct lender and lending marketplace with a Miami base, has put a new $175 million credit facility in place to expand how much it can lend to small and midsize businesses. A facility like this is the lender's own funding supply: it does not approve any single business by itself, but it does mean more lending capacity is being aimed at companies of this size. For Florida owners, the practical lesson is preparation. A lender with fresh capacity still reviews purpose, records, and repayment, so organized financials and a clear use of funds are what turn general capacity into a real conversation.</p>
+            <p class="local-news-credit">Source: Bizcap announcement — November 11, 2026</p>
+          </article>
+          <article class="local-news-card">
+            <time class="local-news-date" datetime="2026-11-06">November 6, 2026</time>
+            <h3>Florida funding doors: SSBCI money is moving, and SBA 504 loans reach up to $5.5 million</h3>
+            <p>FloridaCommerce's State Small Business Credit Initiative (SSBCI) program — a $142 million first tranche — is flowing to Florida businesses through participating lenders, including the Florida Business Development Corporation. The same corporation also offers SBA 504 loans of up to $5.5 million for owner-occupied real estate and equipment, plus a Rebuild Florida revolving loan door for businesses that need another route. None of these programs is automatic, and each carries its own eligibility rules. What an owner can do now is get ready: know the purpose, keep business records organized, and be able to show how the money would be used and repaid.</p>
+            <p class="local-news-credit">Source: Florida Business Development Corporation — November 6, 2026</p>
+          </article>
+          <article class="local-news-card">
+            <time class="local-news-date" datetime="2026-10-27">October 27, 2026</time>
+            <h3>Time-sensitive: the Federal Reserve's 2026 Small Business Credit Survey closes November 13</h3>
+            <p>The Federal Reserve's 2026 Small Business Credit Survey is open through November 13, 2026, and small-business owners are invited to take part before it closes. The survey gathers owners' real experience — how their businesses are doing, whether they sought credit, and what happened when they did. Those answers shape the national picture that lenders and policymakers rely on when they judge small-business credit conditions. Taking part does not affect any application or credit decision; it simply makes sure Florida owners' experience is counted. This item expires after November 13, 2026, and will be replaced in the next refresh.</p>
+            <p class="local-news-credit">Source: Federal Reserve Small Business Credit Survey announcement via Emerald Coast lender partners — October 27, 2026</p>
+          </article>
+        </div></div></section>
   </main>
 <footer class="site-footer">
   <div class="shell footer-grid vaultara-standard-footer">
