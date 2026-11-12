@@ -3,10 +3,11 @@
  *
  * Renders the items from news-data.js (window.VAULTARA_LOCAL_NEWS) into the
  * archive list on news-archive.html. Items are rendered as plain articles:
- * date, headline, full on-page summary, and a plain-text source credit.
- * News items NEVER carry a link — there is deliberately no anchor creation
- * in this file. The static HTML in news-archive.html mirrors the same items
- * so the archive reads correctly even before this script runs.
+ * date, headline, the item's picture, every body paragraph of the full
+ * briefing, and a plain-text source credit (the source is named, never
+ * linked). News items NEVER carry a link — there is deliberately no anchor
+ * creation in this file. The static HTML in news-archive.html mirrors the
+ * same items so the archive reads correctly even before this script runs.
  */
 (function () {
   var list = document.querySelector("[data-local-news-list]");
@@ -28,15 +29,29 @@
     var headline = document.createElement("h3");
     headline.textContent = item.headline;
 
-    var summary = document.createElement("p");
-    summary.textContent = item.summary;
+    var figure = document.createElement("figure");
+    figure.className = "local-news-photo";
+    var img = document.createElement("img");
+    img.src = item.image.src;
+    img.alt = item.image.alt;
+    img.loading = "lazy";
+    var caption = document.createElement("figcaption");
+    caption.textContent = item.image.credit;
+    figure.append(img, caption);
 
     var credit = document.createElement("p");
     credit.className = "local-news-credit";
     credit.textContent =
       "Source: " + item.source + " — " + item.sourceDateLabel;
 
-    card.append(time, headline, summary, credit);
+    var children = [time, headline, figure];
+    (item.body || []).forEach(function (text) {
+      var paragraph = document.createElement("p");
+      paragraph.textContent = text;
+      children.push(paragraph);
+    });
+    children.push(credit);
+    card.append.apply(card, children);
     return card;
   });
 

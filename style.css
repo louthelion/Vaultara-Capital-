@@ -500,6 +500,9 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .local-news-card p { color: var(--muted); line-height: 1.7; }
 .local-news-date { font-size: 12px; font-weight: 800; letter-spacing: 1.4px; text-transform: uppercase; color: var(--blue-dark); }
 .local-news-credit { font-size: 13px; font-weight: 700; color: var(--navy); }
+.local-news-photo { margin: 14px 0 6px; border: 1px solid var(--line); border-radius: 14px; overflow: hidden; background: #eaf1fa; }
+.local-news-photo img { display: block; width: 100%; max-height: 300px; object-fit: cover; }
+.local-news-photo figcaption { padding: 8px 14px; font-size: 12px; font-weight: 700; color: var(--blue-dark); }
 .funding-readiness { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 20px; max-width: 880px; margin: 28px auto 0; }
 .readiness-card { background: #eaf1fa; border: 1px solid var(--line); border-radius: 18px; padding: 24px; }
 .readiness-card h3 { margin: 0 0 8px; font-size: 17px; color: var(--navy); }
@@ -516,6 +519,12 @@ button, a { -webkit-tap-highlight-color: transparent; }
 .book-doors { display: flex; gap: 12px; flex-wrap: wrap; margin-top: 14px; }
 .book-door { display: inline-block; padding: 12px 18px; border-radius: 10px; background: #dbe7f5; color: var(--blue-dark); font-weight: 700; }
 .book-door.is-disabled { opacity: .65; cursor: not-allowed; }
+.learning-path { max-width: 880px; margin: 0 auto; background: #eaf1fa; border: 1px solid var(--line); border-left: 4px solid var(--blue); border-radius: 18px; padding: 26px; }
+.learning-path h3 { margin: 0 0 8px; font-family: Georgia, "Times New Roman", serif; font-size: 24px; color: var(--navy); }
+.learning-path p, .learning-path li { color: var(--muted); line-height: 1.65; }
+.learning-path ol { margin: 10px 0 0; padding-left: 20px; }
+.books-note { max-width: 880px; margin: 0 auto 16px; color: var(--muted); line-height: 1.65; }
+.book-topic-label { margin: 0 0 6px; font-size: 12px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--blue-dark) !important; }
 .network-bar-credit { color: rgba(255, 255, 255, .68); }
 @media (max-width: 760px) {
   .funding-readiness { grid-template-columns: 1fr; }
