@@ -1,0 +1,88 @@
+/* Vaultara Capital — big-website pass (2026-11-14).
+   Loaded AFTER style.css (and after vaultara-multipage.css where present).
+   Blue + light grey only — the institutional layer: grouped navigation,
+   a fat sitemap footer, a company band, the services hub grid, the
+   learning-path band, and split resource rows. No new colors are
+   introduced; everything reuses the site's existing variables. */
+
+/* --- Grouped desktop navigation -------------------------------------
+   Top-level doors: Home / Services / Learn / Company / News / Contact.
+   Services, Learn and Company open a dropdown on hover and on keyboard
+   focus (focus-within). Pure CSS — no framework, no extra script. */
+.desktop-nav.nav-grouped { gap: 4px; }
+.nav-top { display: inline-flex; align-items: center; gap: 6px; padding: 10px 12px; border-radius: 999px; }
+.desktop-nav .nav-top[aria-current="page"] { color: var(--blue); }
+.nav-group { position: relative; }
+.nav-caret { font-size: 10px; line-height: 1; color: var(--blue); transition: transform .2s; }
+.nav-group:hover .nav-caret, .nav-group:focus-within .nav-caret { transform: rotate(180deg); }
+.nav-dropdown { position: absolute; top: calc(100% + 8px); left: 50%; z-index: 120; min-width: 258px; padding: 10px; border: 1px solid var(--line); border-radius: 18px; background: #fff; box-shadow: var(--shadow); opacity: 0; visibility: hidden; pointer-events: none; transform: translate(-50%, 8px); transition: opacity .18s, transform .18s, visibility .18s; }
+.nav-dropdown::before { content: ""; position: absolute; top: -10px; left: 0; right: 0; height: 10px; }
+.nav-group:hover .nav-dropdown, .nav-group:focus-within .nav-dropdown { opacity: 1; visibility: visible; pointer-events: auto; transform: translate(-50%, 0); }
+.nav-group-end .nav-dropdown { left: auto; right: -12px; transform: translate(0, 8px); }
+.nav-group-end:hover .nav-dropdown, .nav-group-end:focus-within .nav-dropdown { transform: translate(0, 0); }
+.nav-dropdown a { display: block; padding: 10px 12px; border-radius: 10px; color: var(--ink); font-size: 13.5px; font-weight: 600; white-space: nowrap; }
+.nav-dropdown a:hover, .nav-dropdown a:focus-visible { background: var(--soft); color: var(--blue); }
+.nav-dropdown a[aria-current="page"] { background: #edf4ff; color: var(--blue); }
+.nav-dropdown .nav-dropdown-label { display: block; padding: 8px 12px 4px; color: var(--muted); font-size: 10.5px; font-weight: 900; letter-spacing: 1.6px; text-transform: uppercase; }
+@media (max-width: 1280px) {
+  .desktop-nav.nav-grouped { gap: 0; font-size: 13px; }
+  .nav-top { padding: 9px 8px; }
+  .header-inner { gap: 20px; }
+}
+
+/* --- Grouped mobile navigation: section headings + flattened doors --- */
+.mobile-nav .mobile-nav-heading { display: block; padding: 20px 4px 2px; color: var(--blue); font-size: 11px; font-weight: 900; letter-spacing: 1.8px; text-transform: uppercase; }
+.mobile-nav a[aria-current="page"] { color: var(--blue); }
+
+/* --- Fat footer: full sitemap columns + contact block ---------------- */
+.footer-grid.footer-fat { grid-template-columns: 1.3fr .66fr .58fr .58fr .46fr .95fr; gap: 46px 34px; }
+.footer-contact { display: grid; align-content: start; gap: 12px; }
+.footer-contact strong { margin-bottom: 4px; color: var(--mint); font-size: 11px; letter-spacing: 1.6px; text-transform: uppercase; }
+.footer-contact p { margin: 0; color: rgba(255, 255, 255, .68); font-size: 13px; line-height: 1.65; }
+.footer-contact a.footer-contact-line { color: rgba(255, 255, 255, .92); font-size: 14px; font-weight: 800; }
+.footer-contact a.footer-contact-line:hover { color: #fff; }
+.footer-contact .button { justify-self: start; margin-top: 6px; }
+@media (max-width: 1120px) { .footer-grid.footer-fat { grid-template-columns: 1.3fr 1fr 1fr; } }
+@media (max-width: 640px) { .footer-grid.footer-fat { grid-template-columns: 1fr 1fr; } }
+
+/* --- Company band (home + services): split row with a scope panel ---- */
+.company-band { padding: 84px 0; background: #fff; }
+.company-band-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 56px; align-items: center; }
+.company-band h2 { margin: 0 0 18px; font-family: Georgia, serif; font-size: clamp(32px, 4vw, 46px); line-height: 1.08; color: var(--navy); }
+.company-band p { color: var(--muted); line-height: 1.75; }
+.company-band .company-band-actions { display: flex; flex-wrap: wrap; gap: 22px; align-items: center; margin-top: 26px; }
+.company-scope { padding: 32px; border-radius: 24px; background: var(--navy); color: #fff; box-shadow: var(--shadow); }
+.company-scope span { display: block; margin-bottom: 12px; color: var(--mint); font-size: 11px; font-weight: 900; letter-spacing: 1.8px; text-transform: uppercase; }
+.company-scope p { margin: 0; color: rgba(255, 255, 255, .85); line-height: 1.75; }
+@media (max-width: 900px) { .company-band-grid { grid-template-columns: 1fr; gap: 34px; } }
+
+/* --- Services hub grid (home hub, services page, about doors) -------- */
+.hub-head { display: flex; flex-wrap: wrap; gap: 20px; align-items: end; justify-content: space-between; margin-bottom: 38px; }
+.hub-head .section-heading { margin: 0; text-align: left; }
+.hub-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; }
+.hub-card { display: flex; flex-direction: column; padding: 28px; border: 1px solid var(--line); border-radius: 24px; background: #fff; box-shadow: 0 14px 38px rgba(6, 26, 58, .07); }
+.hub-card h3 { margin: 0 0 10px; font-family: Georgia, serif; font-size: 24px; line-height: 1.2; color: var(--navy); }
+.hub-card p { margin: 0 0 14px; color: var(--muted); line-height: 1.65; }
+.hub-card ul { margin: 0 0 16px; padding-left: 18px; color: var(--muted); line-height: 1.65; }
+.hub-card a { margin-top: auto; color: var(--blue); font-weight: 800; }
+.hub-card a:hover { color: var(--blue-dark); }
+@media (max-width: 1020px) { .hub-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 640px) { .hub-grid { grid-template-columns: 1fr; } }
+
+/* --- Learning-path band (home): the three steps as a dark band ------- */
+.path-band { padding: 78px 0; background: var(--navy); color: #fff; }
+.path-band h2 { margin: 0 0 12px; font-family: Georgia, serif; font-size: clamp(30px, 4vw, 42px); line-height: 1.1; }
+.path-band .path-band-intro { max-width: 780px; color: rgba(255, 255, 255, .78); line-height: 1.75; }
+.path-steps { display: grid; grid-template-columns: repeat(3, 1fr); gap: 22px; margin-top: 36px; }
+.path-step { padding: 26px; border: 1px solid rgba(255, 255, 255, .16); border-radius: 22px; background: rgba(255, 255, 255, .05); }
+.path-step strong { display: block; margin-bottom: 10px; color: var(--mint); font-size: 12px; font-weight: 900; letter-spacing: 1.4px; text-transform: uppercase; }
+.path-step p { margin: 0; color: rgba(255, 255, 255, .82); line-height: 1.7; }
+.path-step a { color: #fff; font-weight: 800; text-decoration: underline; text-underline-offset: 3px; }
+@media (max-width: 900px) { .path-steps { grid-template-columns: 1fr; } }
+
+/* --- Resource split rows (about page) -------------------------------- */
+.resource-row { display: flex; flex-wrap: wrap; gap: 14px 28px; align-items: center; justify-content: space-between; padding: 28px 0; border-top: 1px solid var(--line); }
+.resource-row:last-child { border-bottom: 1px solid var(--line); }
+.resource-row h3 { margin: 0 0 6px; font-family: Georgia, serif; font-size: 26px; color: var(--navy); }
+.resource-row p { margin: 0; max-width: 640px; color: var(--muted); line-height: 1.65; }
+.resource-row a { color: var(--blue); font-weight: 800; white-space: nowrap; }
