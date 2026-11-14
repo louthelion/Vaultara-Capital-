@@ -15,6 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="vaultara-bigsite.css" />
   <script src="script.js" defer></script>
 </head>
 <body>
@@ -31,10 +32,10 @@
     <div class="header-inner shell">
       <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Open navigation"><span></span><span></span><span></span></button>
       <a class="wordmark" href="/" aria-label="Vaultara Capital home"><span class="wordmark-mark" aria-hidden="true">V</span><span><strong>Vaultara</strong><small>Capital</small></span></a>
-      <nav class="desktop-nav" aria-label="Primary navigation"><a href="index.html">Home</a><a href="news.html">News</a><a href="personal-credit.html">Personal Credit</a><a href="business-credit.html">Business Credit</a><a href="books.html">Books &amp; Learning</a><a href="contact.html">Contact</a></nav>
+      <nav class="desktop-nav nav-grouped" aria-label="Primary navigation"><a class="nav-top" href="index.html">Home</a><div class="nav-group"><a class="nav-top" href="services.html" aria-haspopup="true">Services <span class="nav-caret" aria-hidden="true">▾</span></a><div class="nav-dropdown"><span class="nav-dropdown-label">Services</span><a href="personal-credit.html">Personal Credit</a><a href="business-credit.html">Business Credit</a><a href="funding.html">Funding Readiness</a><a href="formation.html">Business Formation</a><a href="credit.html">Credit Readiness</a><a href="startup-funding.html">Startup Funding</a><a href="existing-business-funding.html">Existing Business Funding</a><a href="personal-loan.html">Personal Loans</a><a href="government-programs.html">Government Programs</a><a href="options.html">See My Options</a></div></div><div class="nav-group"><a class="nav-top" href="learning-center.html" aria-haspopup="true">Learn <span class="nav-caret" aria-hidden="true">▾</span></a><div class="nav-dropdown"><span class="nav-dropdown-label">Learn</span><a href="learning-center.html">Learning Center</a><a href="articles.html">Articles</a><a href="blog.html">Blog</a><a href="books.html">Books &amp; Learning</a></div></div><div class="nav-group nav-group-end"><a class="nav-top" href="about.html" aria-haspopup="true">Company <span class="nav-caret" aria-hidden="true">▾</span></a><div class="nav-dropdown"><span class="nav-dropdown-label">Company</span><a href="about.html">About</a><a href="news.html">News</a><a href="contact.html">Contact</a></div></div><a class="nav-top" href="news.html">News</a><a class="nav-top" href="contact.html">Contact</a></nav>
       <a class="button button-small" href="#credit-intake">Start my review</a>
     <a class="header-phone-link" href="tel:+14079648886" aria-label="Call Vaultara Capital at 407 964 8886">Call (407) 964-8886</a></div>
-    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><a href="index.html">Home</a><a href="news.html">News</a><a href="personal-credit.html">Personal Credit</a><a href="business-credit.html">Business Credit</a><a href="books.html">Books &amp; Learning</a><a href="contact.html">Contact</a></nav>
+    <nav class="mobile-nav" id="mobile-nav" aria-label="Mobile navigation" hidden><a href="index.html">Home</a><span class="mobile-nav-heading">Services</span><a href="services.html">All Services</a><a href="personal-credit.html">Personal Credit</a><a href="business-credit.html">Business Credit</a><a href="funding.html">Funding Readiness</a><a href="formation.html">Business Formation</a><a href="credit.html">Credit Readiness</a><a href="startup-funding.html">Startup Funding</a><a href="existing-business-funding.html">Existing Business Funding</a><a href="personal-loan.html">Personal Loans</a><a href="government-programs.html">Government Programs</a><a href="options.html">See My Options</a><span class="mobile-nav-heading">Learn</span><a href="learning-center.html">Learning Center</a><a href="articles.html">Articles</a><a href="blog.html">Blog</a><a href="books.html">Books &amp; Learning</a><span class="mobile-nav-heading">Company</span><a href="about.html">About</a><a href="news.html">News</a><a href="contact.html">Contact</a></nav>
   </header>
 
   <main id="main-content">
@@ -120,7 +121,7 @@
   </main>
 
   <footer class="site-footer"><div class="shell footer-phone">Call Vaultara Capital: <a href="tel:+14079648886">(407) 964-8886</a></div>
-    <div class="shell footer-grid vaultara-standard-footer">
+    <div class="shell footer-grid vaultara-standard-footer footer-fat">
       <div class="footer-brand">
         <a class="wordmark wordmark-footer" href="index.html" aria-label="Vaultara Capital home"><span class="wordmark-mark">VC</span><span><strong>Vaultara Capital</strong></span></a>
         <p>Helping people and businesses move forward with clarity, preparation, and a stronger foundation.</p>
@@ -130,24 +131,8 @@
           <a href="https://www.linkedin.com/company/vaultara-capital" target="_blank" rel="noopener" aria-label="Vaultara Capital on LinkedIn">in</a>
         </div>
       </div>
-      <div class="footer-links">
-        <strong>Services</strong>
-        <a href="options.html">See My Options</a>
-      </div>
-      <div class="footer-links">
-        <strong>Education</strong>
-        <a href="learning-center.html">Learning Center</a>
-        <a href="articles.html">Articles</a>
-        <a href="blog.html">Blog</a>
-      </div>
-      <div class="footer-links">
-        <strong>Company</strong>
-        <a href="privacy.html">Privacy Policy</a>
-        <a href="terms.html">Terms of Use</a>
-        <a href="contact.html">Feedback</a>
-      </div>
-    </div>
-    <div class="shell legal-row">
+      <div class="footer-links"><strong>Services</strong><a href="services.html">All Services</a><a href="personal-credit.html">Personal Credit</a><a href="business-credit.html">Business Credit</a><a href="funding.html">Funding Readiness</a><a href="formation.html">Business Formation</a><a href="credit.html">Credit Readiness</a></div><div class="footer-links"><strong>Learn</strong><a href="learning-center.html">Learning Center</a><a href="articles.html">Articles</a><a href="blog.html">Blog</a><a href="books.html">Books &amp; Learning</a></div><div class="footer-links"><strong>Company</strong><a href="about.html">About</a><a href="news.html">News</a><a href="contact.html">Contact</a><a href="options.html">See My Options</a></div><div class="footer-links"><strong>Legal</strong><a href="privacy.html">Privacy Policy</a><a href="terms.html">Terms of Use</a></div><div class="footer-contact"><strong>Contact</strong><p>Ready to organize your next step?</p><a class="footer-contact-line" href="tel:+14079648886">(407) 964-8886</a><a class="footer-contact-line" href="mailto:contact@vaultaracapital.com">contact@vaultaracapital.com</a><a class="button" href="general-review.html">Start General Review</a></div>
+    </div><div class="shell legal-row">
       <p>© <span id="year">2026</span> Vaultara Capital. All rights reserved.</p>
       <p>Vaultara Capital provides education and guidance. We do not guarantee credit improvement, approval, or funding.</p><p>Vaultara Capital charges no advance fees, and a review is not a promise of approval.</p>
     </div>
