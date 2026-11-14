@@ -1,0 +1,44 @@
+/* Vaultara Capital — multi-page structure additions (2026-11-13 rebuild).
+   Loaded AFTER style.css on the rebuilt pages. Blue + light grey only.
+   Reuses the site's existing variables and card classes; this file only
+   adds the pieces the one-page homepage used to fake with stacking:
+   news list cards, article pages, home teasers, and door cards. */
+
+/* Brand guard: the formation card's legacy "gold" icon goes mint on
+   rebuilt pages — no gold/yellow in the Vaultara palette. */
+.card-icon.gold { background: var(--mint); color: var(--navy); }
+
+/* --- News list (news.html + news-archive.html) --- */
+.news-list { display: grid; gap: 22px; }
+.news-list-card { display: grid; grid-template-columns: 300px 1fr; gap: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 24px; background: #fff; box-shadow: 0 14px 38px rgba(6, 26, 58, .07); }
+.news-list-card .news-thumb { min-height: 210px; background-size: cover; background-position: center; }
+.news-list-body { padding: 26px 28px; }
+.news-list-body .local-news-date { display: block; margin-bottom: 8px; }
+.news-list-body h3 { margin: 0 0 10px; font-family: Georgia, serif; font-size: 27px; line-height: 1.25; color: var(--navy); }
+.news-list-body h3 a { color: inherit; text-decoration: none; }
+.news-list-body h3 a:hover { color: var(--blue); }
+.news-list-body p { margin: 0 0 14px; color: var(--muted); line-height: 1.65; }
+@media (max-width: 880px) { .news-list-card { grid-template-columns: 1fr; } .news-list-card .news-thumb { min-height: 180px; } }
+
+/* --- Article pages --- */
+.news-article { padding: 84px 0; background: var(--soft); }
+.news-article .local-news-card { max-width: 860px; margin: 0 auto; }
+.news-article-nav { max-width: 860px; margin: 26px auto 0; display: flex; flex-wrap: wrap; gap: 12px; justify-content: space-between; }
+.news-more { max-width: 860px; margin: 34px auto 0; }
+.news-more h2 { font-family: Georgia, serif; color: var(--navy); font-size: 28px; margin: 0 0 16px; }
+.news-more .news-list { gap: 16px; }
+
+/* --- Home teasers (news + doors) --- */
+.home-news-teasers { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+@media (max-width: 880px) { .home-news-teasers { grid-template-columns: 1fr; } }
+.doors-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 22px; }
+@media (max-width: 880px) { .doors-grid { grid-template-columns: 1fr; } }
+.door-card { padding: 30px; border: 1px solid var(--line); border-radius: 24px; background: #fff; box-shadow: 0 14px 38px rgba(6, 26, 58, .07); }
+.door-card h3 { margin: 0 0 10px; font-family: Georgia, serif; font-size: 28px; color: var(--navy); }
+.door-card p { color: var(--muted); line-height: 1.7; margin: 0 0 16px; }
+
+/* --- Page hero band reused by news/books/contact --- */
+.mp-hero { position: relative; isolation: isolate; padding: 88px 0 76px; overflow: hidden; color: #fff; background: var(--navy); }
+.mp-hero::before { content: ""; position: absolute; inset: 0; z-index: -1; background: linear-gradient(115deg, rgba(3,17,39,.92), rgba(6,26,58,.78), rgba(10,104,232,.36)); }
+.mp-hero h1 { margin: 0; font-family: Georgia, serif; font-size: clamp(46px, 6vw, 76px); line-height: 1.02; letter-spacing: -2px; }
+.mp-hero p:not(.eyebrow) { max-width: 760px; color: rgba(255,255,255,.78); font-size: 18px; line-height: 1.75; }

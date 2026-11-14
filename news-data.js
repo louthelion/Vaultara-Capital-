@@ -1,10 +1,13 @@
 /*
  * Vaultara Capital — Local news data file.
  *
- * This is the single source for the "Local news" feed on index.html and
- * news-archive.html. The static HTML in those pages mirrors the items below
- * (news-archive.js also renders this list on the archive page), so a refresh
- * updates this file AND the two mirrors in the same change.
+ * This is the single source for the "Local news" stories. Since the
+ * 2026-11-13 multi-page rebuild, each story lives on its OWN article page
+ * (the "slug" field); news.html and news-archive.html carry list cards
+ * (headline, picture, date, standfirst) that link to the article pages,
+ * whose static HTML mirrors the full briefing below. news-archive.js also
+ * renders the list on the archive page. A refresh updates this file AND
+ * the mirrors (list cards + article page) in the same change.
  *
  * SHARPENED STANDARD (2026-11-11): news is ALL the information, read fully
  * on the page. Every item is a FULL briefing — headline, date, a real
@@ -25,6 +28,8 @@ window.VAULTARA_LOCAL_NEWS = [
 
   {
     dateISO: "2026-11-11",
+    slug: "news-bizcap-credit-facility.html",
+    standfirst: "A Miami lending marketplace lined up $175 million of new capacity for small and midsize business loans — and the preparation lesson it holds for Florida owners.",
     dateLabel: "November 11, 2026",
     headline: "Bizcap opens a $175 million credit facility to lend more to small and midsize businesses",
     body: [
@@ -42,6 +47,8 @@ window.VAULTARA_LOCAL_NEWS = [
   },
   {
     dateISO: "2026-11-06",
+    slug: "news-florida-funding-doors.html",
+    standfirst: "State-backed SSBCI money is moving through Florida lenders, SBA 504 loans reach up to $5.5 million, and the Rebuild Florida Business Loan Fund revolves to the next business in line.",
     dateLabel: "November 6, 2026",
     headline: "Florida funding doors: SSBCI money is moving, and SBA 504 loans reach up to $5.5 million",
     body: [
@@ -59,6 +66,8 @@ window.VAULTARA_LOCAL_NEWS = [
   },
   {
     dateISO: "2026-10-27",
+    slug: "news-federal-reserve-credit-survey.html",
+    standfirst: "Florida owners were invited to share their real experience of business credit in the Federal Reserve's 2026 Small Business Credit Survey, open through November 13, 2026.",
     dateLabel: "October 27, 2026",
     headline: "Time-sensitive: the Federal Reserve's 2026 Small Business Credit Survey closes November 13",
     body: [

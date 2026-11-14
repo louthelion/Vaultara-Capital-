@@ -20,6 +20,19 @@ function section(html, startMarker, endMarker) {
   return html.slice(a, b);
 }
 
+// ---------------------------------------------------------------------------
+// 2026-11-13 multi-page rebuild (Luders' direct order: no more
+// everything-on-one-page scrolling). The retention invariants below are the
+// SAME honesty standard as the one-page suite, re-homed to the new page map:
+//   homepage        -> slim doors + the two latest stories as TEASERS only
+//   news.html       -> the News page: every story as a list card
+//   <item.slug>     -> one article page per story: the FULL briefing on-page
+//   news-archive    -> a LIST of cards linking inward (no second full stack)
+//   books.html      -> the bookshop + learning path, moved whole
+//   contact.html    -> the intake form, moved whole
+// Every assertion that moved is mapped in TEST-UPDATE.md; none was dropped.
+// ---------------------------------------------------------------------------
+
 test("news data: dated, newest first, FULL briefings, pictures, plain-text credits, no link fields", () => {
   const items = loadNewsData();
   assert.ok(Array.isArray(items) && items.length >= 3);
@@ -46,36 +59,103 @@ test("news data: dated, newest first, FULL briefings, pictures, plain-text credi
   assert.equal(survey.expiresAfter, "2026-11-13", "time-sensitive survey item is flagged for replacement");
 });
 
-test("homepage Local news renders on-page: all full briefings + pictures, zero links inside news items", () => {
+test("homepage: slim doors + news TEASERS only — no full briefing lives on the homepage anymore", () => {
   const html = read("index.html");
-  const news = section(html, 'id="local-news"', 'id="books"');
   const items = loadNewsData();
-  for (const item of items) {
-    assert.ok(news.includes(item.headline), `homepage renders headline: ${item.headline}`);
-    for (const paragraph of item.body) assert.ok(news.includes(paragraph), "homepage renders every briefing paragraph in full");
-    assert.ok(news.includes(item.image.src), "homepage renders the item picture");
-    assert.ok(news.includes(item.image.alt), "picture alt text renders");
-    assert.ok(news.includes(item.image.credit), "picture credit renders as plain text");
-    assert.ok(news.includes(`Source: ${item.source} — ${item.sourceDateLabel}`), "plain-text credit renders");
-    assert.ok(news.includes(`datetime="${item.dateISO}"`), "item is dated");
+  // The homepage is a set of doors: every main page is one click away.
+  for (const page of ["news.html", "personal-credit.html", "business-credit.html", "books.html", "contact.html"]) {
+    assert.ok(html.includes(`href="${page}"`), `homepage links to its own page: ${page}`);
   }
-  const cards = news.slice(news.indexOf("local-news-list"), news.indexOf("funding-readiness"));
-  assert.ok(!/<a\s/i.test(cards), "ZERO hrefs/links inside news items");
-  assert.ok(!/href=/i.test(cards), "ZERO href attributes inside news items");
+  // The bookshop and the intake form moved OFF the homepage to their own pages.
+  assert.ok(!html.includes('id="books"'), "bookshop no longer stacked on the homepage");
+  assert.ok(!html.includes("book-topic-slot"), "no book topic slots on the homepage");
+  assert.ok(!html.includes("Vaultara-General-Intake"), "intake form no longer stacked on the homepage");
+  // News on the homepage is teasers: the two latest stories, headline +
+  // standfirst + picture + date, each linking INWARD to its article page.
+  const news = section(html, "local-news-section", 'id="process"');
+  for (const item of items.slice(0, 2)) {
+    assert.ok(news.includes(item.headline), `homepage teases headline: ${item.headline}`);
+    assert.ok(news.includes(item.standfirst), "homepage teases the story's one-line standfirst");
+    assert.ok(news.includes(item.image.src), "homepage teaser carries the item picture");
+    assert.ok(news.includes(`datetime="${item.dateISO}"`), "teaser is dated");
+    assert.ok(news.includes(`href="${item.slug}"`), "teaser links inward to the story's own page");
+  }
+  for (const item of items.slice(2)) {
+    assert.ok(!news.includes(item.headline), "older stories are not teased on the homepage — they live on the News page");
+  }
+  assert.ok(news.includes('href="news.html"'), "homepage doors onward to the News page");
+  // THE multi-page pin: no briefing body text on the homepage at all. A
+  // distinctive mid-briefing paragraph from every story is ABSENT here
+  // (it is asserted PRESENT on its article page in the article test).
+  for (const item of items) {
+    assert.ok(!html.includes(item.body[1]), `mid-briefing paragraph must not live on the homepage: ${item.headline}`);
+    for (const paragraph of item.body) assert.ok(!html.includes(paragraph), "no briefing paragraph renders on the homepage");
+  }
   assert.ok(!/read more/i.test(news), "no read-more bounce language");
   assert.ok(!/read at the source/i.test(news), "no read-at-the-source bounce language");
-  // Removed feature links are replaced with on-page funding-readiness value.
-  for (const phrase of ["clear purpose", "records organized", "Separate personal and business credit"]) {
-    assert.ok(news.toLowerCase().includes(phrase.toLowerCase()), `readiness guidance present: ${phrase}`);
-  }
   assert.ok(news.includes("charges no advance fees"), "no-advance-fee posture stated");
   assert.ok(news.includes("not a promise of approval"), "no funding promise");
 });
 
+test("news page: every story listed with headline, date, picture and standfirst, linking to its own article page", () => {
+  const html = read("news.html");
+  const list = section(html, "local-news-section", "</main>");
+  const items = loadNewsData();
+  assert.equal((list.match(/news-list-card/g) || []).length, items.length, "one list card per story");
+  for (const item of items) {
+    assert.ok(list.includes(item.headline), `news page lists headline: ${item.headline}`);
+    assert.ok(list.includes(item.standfirst), "news page lists the standfirst");
+    assert.ok(list.includes(item.image.src), "news page card carries the item picture");
+    assert.ok(list.includes(`datetime="${item.dateISO}"`), "news page card is dated");
+    assert.ok(list.includes(`href="${item.slug}"`), "news page card links to the story's own page");
+    // A list is not a second full stack: no briefing body on the News page.
+    for (const paragraph of item.body) assert.ok(!html.includes(paragraph), "no briefing paragraph renders on the News page");
+  }
+  assert.ok(list.includes('href="news-archive.html"'), "news page doors onward to the archive");
+  assert.ok(html.includes("charges no advance fees"), "no-advance-fee posture stated");
+  assert.ok(html.includes("not a promise of approval"), "no funding promise");
+});
+
+test("article pages: the FULL briefing lives on the story's own page — every paragraph, picture, plain-text credits, zero outbound links in the story", () => {
+  const items = loadNewsData();
+  for (const item of items) {
+    const page = read(item.slug);
+    assert.ok(page.includes(item.headline), `article page carries headline: ${item.headline}`);
+    for (const paragraph of item.body) assert.ok(page.includes(paragraph), "article page renders every briefing paragraph in full");
+    assert.ok(page.includes(item.image.src), "article page renders the item picture");
+    assert.ok(page.includes(`alt="${item.image.alt}"`), "picture alt text renders");
+    assert.ok(page.includes(item.image.credit), "picture credit renders as plain text");
+    assert.ok(page.includes(`Source: ${item.source} — ${item.sourceDateLabel}`), "plain-text source credit renders at the end");
+    assert.ok(page.includes(`datetime="${item.dateISO}"`), "article is dated");
+    // The story itself carries NO links at all — the source is a plain-text
+    // credit, never a door out (the one-page suite's core invariant).
+    const article = section(page, "<article", "</article>");
+    assert.ok(!/<a\s/i.test(article), "ZERO links inside the news story");
+    assert.ok(!/href=/i.test(article), "ZERO href attributes inside the news story");
+    // Page-wide, the only external anchors allowed are Vaultara's OWN
+    // social footer profiles and same-site canonicals — the same allowlist
+    // the homepage test below enforces. No source sites, no tool doors.
+    const external = [...page.matchAll(/href="(https?:\/\/[^"]+)"/g)].map((m) => m[1]);
+    for (const url of external) {
+      assert.ok(
+        /facebook\.com\/vaultaracapital|instagram\.com\/vaultaracapital|linkedin\.com\/company\/vaultara-capital|vaultaracapital\.com/.test(url),
+        `unexpected outbound href on article page ${item.slug}: ${url}`
+      );
+    }
+    // The other stories are one click away, inward.
+    for (const other of items) {
+      if (other !== item) assert.ok(page.includes(`href="${other.slug}"`), `article page cross-links inward to: ${other.slug}`);
+    }
+    assert.ok(page.includes("charges no advance fees"), "no-advance-fee posture stated");
+    assert.ok(page.includes("not a promise of approval"), "no funding promise");
+  }
+});
+
 test("bookshop: distinct from news, honest My Books structure, placeholder-only doors, no invented prices", () => {
-  const html = read("index.html");
-  const books = section(html, 'id="books"', 'id="process"');
-  assert.ok(html.indexOf('id="books"') > html.indexOf('id="local-news"'), "books sit below/separate from news");
+  const page = read("books.html");
+  const books = section(page, 'id="books"', '<section class="section section-soft"');
+  // The bookshop is its own page now, distinct from news — it says so.
+  assert.ok(books.includes("This shelf is not news"), "bookshop states it is distinct from news");
   // My Books slots
   for (const slot of ["book-cover-slot", "book-title-slot", "book-summary-slot", "book-price-slot"]) {
     assert.ok(books.includes(slot), `slot present: ${slot}`);
@@ -97,8 +177,8 @@ test("bookshop: distinct from news, honest My Books structure, placeholder-only 
 });
 
 test("bookshop topic slots + learning path: two TOPIC slots (Credit + Opening a Business), generic coming-soon copy replaced by the path", () => {
-  const html = read("index.html");
-  const books = section(html, 'id="books"', 'id="process"');
+  const page = read("books.html");
+  const books = section(page, 'id="books"', '<section class="section section-soft"');
   // (a) Both book topic slots are present in the books section, labelled as topics, NOT titles.
   assert.equal((books.match(/book-topic-slot/g) || []).length, 2, "exactly two topic-slot cards");
   assert.ok(books.includes('data-book-topic="credit"'), "Credit topic slot present");
@@ -125,35 +205,59 @@ test("bookshop topic slots + learning path: two TOPIC slots (Credit + Opening a 
   assert.ok(books.includes("Step 3 — Work with Vaultara:"), "Step 3 present");
   const pathStart = books.indexOf("Vaultara's learning path");
   const path = books.slice(pathStart, books.indexOf("My Books", pathStart));
-  assert.ok(path.includes("Local news"), "Step 1 points at the on-page credit/business news");
-  assert.ok(path.includes("funding-readiness guidance"), "Step 1 points at the on-page funding-readiness value");
+  assert.ok(path.includes('href="news.html"'), "Step 1 points at the News page");
+  assert.ok(path.includes("credit and business news"), "Step 1 points at the credit/business news");
+  assert.ok(path.includes("funding-readiness guidance"), "Step 1 points at the funding-readiness value");
   assert.ok(path.includes("Credit, and Opening a Business"), "Step 2 names both book topics");
-  assert.ok(path.includes('href="#contact"'), "Step 3 uses the intake/contact door that already exists on this page");
+  assert.ok(path.includes('href="contact.html"'), "Step 3 uses the intake/contact door on the Contact page");
   assert.ok(path.includes("so much valuable information"), "the retention point of the path is stated");
+  // Step 1's funding-readiness guidance moved with the path onto this page
+  // (it sat inside the homepage news section in the one-page build).
+  const readiness = books.slice(books.indexOf("funding-readiness"), books.indexOf("My Books"));
+  for (const phrase of ["clear purpose", "records organized", "Separate personal and business credit"]) {
+    assert.ok(readiness.toLowerCase().includes(phrase.toLowerCase()), `readiness guidance present: ${phrase}`);
+  }
 });
 
-test("news archive: on-page full briefings + pictures, no source-link pattern left", () => {
+test("news archive: a LIST of cards linking inward — no second full-text stack, no source-link pattern left", () => {
   const html = read("news-archive.html");
   assert.ok(!html.includes("Original source links remain available"));
   assert.ok(html.includes("data-local-news-list"));
   const items = loadNewsData();
-  for (const item of items) {
-    assert.ok(html.includes(item.headline), "archive mirrors every item headline");
-    for (const paragraph of item.body) assert.ok(html.includes(paragraph), "archive mirrors every briefing paragraph");
-    assert.ok(html.includes(item.image.src), "archive mirrors the item picture");
-  }
   const list = section(html, "data-local-news-list", "</section>");
-  assert.ok(!/<a\s/i.test(list), "archive news items carry no links");
-  assert.ok(!/href=/i.test(list), "archive news items carry no href attributes");
+  assert.equal((list.match(/news-list-card/g) || []).length, items.length, "one list card per story");
+  for (const item of items) {
+    assert.ok(list.includes(item.headline), "archive lists every item headline");
+    assert.ok(list.includes(item.standfirst), "archive lists the standfirst");
+    assert.ok(list.includes(item.image.src), "archive card carries the item picture");
+    assert.ok(list.includes(`datetime="${item.dateISO}"`), "archive card is dated");
+    assert.ok(list.includes(`href="${item.slug}"`), "archive card links inward to the story's own page");
+    for (const paragraph of item.body) assert.ok(!list.includes(paragraph), "archive carries NO briefing paragraphs — the full text lives on the article page");
+  }
+  // Every link in the archive list points INWARD at a story's own page.
+  const hrefs = [...list.matchAll(/href="([^"]+)"/g)].map((m) => m[1]);
+  assert.ok(hrefs.length > 0, "archive list links exist");
+  for (const href of hrefs) {
+    assert.ok(items.some((i) => i.slug === href), `archive link must point at a story page, found: ${href}`);
+  }
 });
 
-test("news-archive.js renders full briefings as link-free articles from the data file", () => {
+test("news-archive.js renders list cards from the data file — picture, date, headline, standfirst, inward links only", () => {
   const created = [];
   const listNode = { children: null, replaceChildren(...nodes) { this.children = nodes; } };
   const documentStub = {
     querySelector: () => listNode,
     createElement: (tag) => {
-      const el = { tag, children: [], append(...kids) { this.children.push(...kids); } };
+      const el = {
+        tag,
+        className: "",
+        children: [],
+        style: {},
+        attributes: {},
+        append(...kids) { this.children.push(...kids); },
+        appendChild(kid) { this.children.push(kid); return kid; },
+        setAttribute(name, value) { this.attributes[name] = value; },
+      };
       created.push(el);
       return el;
     },
@@ -161,31 +265,65 @@ test("news-archive.js renders full briefings as link-free articles from the data
   const sandbox = { window: { VAULTARA_LOCAL_NEWS: loadNewsData() }, document: documentStub };
   vm.createContext(sandbox);
   vm.runInContext(read("news-archive.js"), sandbox);
-  assert.equal(listNode.children.length, 3);
-  for (const card of listNode.children) {
+  const items = loadNewsData();
+  const sorted = [...items].sort((a, b) => b.dateISO.localeCompare(a.dateISO));
+  assert.equal(listNode.children.length, items.length, "one card per item");
+  listNode.children.forEach((card, n) => {
+    const item = sorted[n];
     assert.equal(card.tag, "article");
-    assert.ok(!created.some((el) => el.tag === "a"), "renderer never creates an anchor");
-    assert.ok(card.children.some((c) => c.className === "local-news-credit"), "credit renders");
-    assert.ok(card.children.some((c) => c.className === "local-news-photo"), "picture figure renders inside the item");
-    const paragraphs = card.children.filter((c) => c.tag === "p" && c.className !== "local-news-credit");
-    assert.ok(paragraphs.length >= 3, "every body paragraph renders");
+    assert.equal(card.className, "news-list-card", "card is a list card");
+    const thumb = card.children.find((c) => c.className === "news-thumb");
+    assert.ok(thumb && thumb.tag === "a", "picture thumb renders as a link");
+    assert.equal(thumb.href, item.slug, "thumb links inward to the story's own page");
+    assert.ok(thumb.style.backgroundImage.includes(item.image.src), "thumb carries the item's library picture");
+    assert.equal(thumb.attributes["aria-label"], item.headline, "thumb is labelled with the headline");
+    const body = card.children.find((c) => c.className === "news-list-body");
+    const time = body.children.find((c) => c.tag === "time");
+    assert.equal(time.dateTime, item.dateISO, "card is dated");
+    assert.ok(item.dateLabel && time.textContent === item.dateLabel, "date label renders");
+    const headlineLink = body.children.find((c) => c.tag === "h3").children[0];
+    assert.equal(headlineLink.textContent, item.headline, "headline renders");
+    assert.equal(headlineLink.href, item.slug, "headline links inward");
+    const standfirst = body.children.find((c) => c.tag === "p");
+    assert.equal(standfirst.textContent, item.standfirst, "standfirst renders — a list line, never the briefing");
+    const read = body.children.find((c) => c.className === "home-article-read-link");
+    assert.equal(read.href, item.slug, "read link points inward");
+  });
+  // Every anchor the renderer creates points INWARD (a story slug) — never out.
+  const anchors = created.filter((el) => el.tag === "a");
+  assert.ok(anchors.length >= items.length * 3, "thumb + headline + read link per card");
+  for (const a of anchors) {
+    assert.ok(!/https?:/.test(a.href), `renderer link must stay on-site, found: ${a.href}`);
+    assert.ok(items.some((i) => i.slug === a.href), `renderer link must be a story page, found: ${a.href}`);
   }
-  const imgs = created.filter((el) => el.tag === "img");
-  assert.equal(imgs.length, 3, "one picture per item");
-  for (const img of imgs) assert.match(img.src, /^https:\/\/images\.unsplash\.com\//, "rendered picture is the library photo");
+  // No rendered node carries briefing body text — the full story is the
+  // article page's job now (the one-page renderer test pinned full text
+  // HERE; that invariant's new home is the article-pages test above).
+  for (const el of created) {
+    for (const item of items) {
+      for (const paragraph of item.body) assert.notEqual(el.textContent, paragraph, "list renderer never renders briefing paragraphs");
+    }
+  }
 });
 
 test("sharpened standard: no banned bounce strings in any news surface; legacy link-out paths stay gone", () => {
+  const items = loadNewsData();
   const newsSurfaces = {
     "news-data.js": read("news-data.js"),
     "news-archive.js": read("news-archive.js"),
-    "index.html news section": section(read("index.html"), 'id="local-news"', 'id="books"'),
+    "news.html": read("news.html"),
+    "index.html news teasers": section(read("index.html"), "local-news-section", 'id="process"'),
     "news-archive.html list": section(read("news-archive.html"), "data-local-news-list", "</section>"),
   };
+  for (const item of items) newsSurfaces[`article page ${item.slug}`] = read(item.slug);
   for (const [name, text] of Object.entries(newsSurfaces)) {
     for (const banned of ["Read at the source", "Read more", "sourceUrl", "marketing-content?news="]) {
       assert.ok(!text.includes(banned), `${name} must not contain: ${banned}`);
     }
+    assert.ok(!/read more/i.test(text), `${name} must not contain read-more bounce language`);
+    assert.ok(!/read at the source/i.test(text), `${name} must not contain read-at-the-source bounce language`);
+    assert.ok(!/chatgpt/i.test(text), `${name} must not carry a ChatGPT door`);
+    assert.ok(!/perplexity/i.test(text), `${name} must not carry a Perplexity door`);
   }
   const js = read("script.js");
   for (const banned of ["sourceUrl", "marketing-content?news=", "feed.news", "Refresh news"]) {
