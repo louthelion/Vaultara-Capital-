@@ -1,13 +1,13 @@
 /*
- * Vaultara Capital — Local news archive renderer.
+ * Vaultara Capital — Local news archive renderer (multi-page edition).
  *
  * Renders the items from news-data.js (window.VAULTARA_LOCAL_NEWS) into the
- * archive list on news-archive.html. Items are rendered as plain articles:
- * date, headline, the item's picture, every body paragraph of the full
- * briefing, and a plain-text source credit (the source is named, never
- * linked). News items NEVER carry a link — there is deliberately no anchor
- * creation in this file. The static HTML in news-archive.html mirrors the
- * same items so the archive reads correctly even before this script runs.
+ * list on news-archive.html. Since the 2026-11-13 multi-page rebuild, each
+ * story lives on its own article page (the item's "slug"), so the archive
+ * renders LIST CARDS — picture, date, headline, one-line standfirst — that
+ * link to the story's own page, where the full briefing is read. The static
+ * HTML in news-archive.html mirrors the same list cards so the archive
+ * reads correctly even before this script runs.
  */
 (function () {
   var list = document.querySelector("[data-local-news-list]");
@@ -18,8 +18,20 @@
   });
 
   var nodes = items.map(function (item) {
+    var href = item.slug || "news.html";
+
     var card = document.createElement("article");
-    card.className = "local-news-card";
+    card.className = "news-list-card";
+
+    var thumb = document.createElement("a");
+    thumb.className = "news-thumb";
+    thumb.href = href;
+    thumb.style.backgroundImage = "url('" + item.image.src + "')";
+    thumb.setAttribute("role", "img");
+    thumb.setAttribute("aria-label", item.headline);
+
+    var body = document.createElement("div");
+    body.className = "news-list-body";
 
     var time = document.createElement("time");
     time.className = "local-news-date";
@@ -27,31 +39,21 @@
     time.textContent = item.dateLabel;
 
     var headline = document.createElement("h3");
-    headline.textContent = item.headline;
+    var headlineLink = document.createElement("a");
+    headlineLink.href = href;
+    headlineLink.textContent = item.headline;
+    headline.appendChild(headlineLink);
 
-    var figure = document.createElement("figure");
-    figure.className = "local-news-photo";
-    var img = document.createElement("img");
-    img.src = item.image.src;
-    img.alt = item.image.alt;
-    img.loading = "lazy";
-    var caption = document.createElement("figcaption");
-    caption.textContent = item.image.credit;
-    figure.append(img, caption);
+    var standfirst = document.createElement("p");
+    standfirst.textContent = item.standfirst || "";
 
-    var credit = document.createElement("p");
-    credit.className = "local-news-credit";
-    credit.textContent =
-      "Source: " + item.source + " — " + item.sourceDateLabel;
+    var read = document.createElement("a");
+    read.className = "home-article-read-link";
+    read.href = href;
+    read.textContent = "Read the full story →";
 
-    var children = [time, headline, figure];
-    (item.body || []).forEach(function (text) {
-      var paragraph = document.createElement("p");
-      paragraph.textContent = text;
-      children.push(paragraph);
-    });
-    children.push(credit);
-    card.append.apply(card, children);
+    body.append(time, headline, standfirst, read);
+    card.append(thumb, body);
     return card;
   });
 
