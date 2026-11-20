@@ -18,6 +18,10 @@
  * the image src is the ONLY URL an item may carry, and it is never a
  * source-article image.
  *
+ * Each item also carries a "lane" — "Florida & Local" or
+ * "National & World" — which the news index groups by and each
+ * story page shows above its date line.
+ *
  * Refresh mechanics (owner rule, 2026-11-11): a morning-cadence editor/agent
  * pass replaces the dated items here — newest first, every item dated.
  * There is NO live scraping and NO feed fetch. An item with an
@@ -27,8 +31,70 @@
 window.VAULTARA_LOCAL_NEWS = [
 
   {
+    dateISO: "2026-11-20",
+    slug: "news-florida-emergency-bridge-loans.html",
+    lane: "Florida & Local",
+    standfirst: "FloridaCommerce has $10 million in short-term, zero-interest bridge loans open for small businesses hurt by Hurricane Isaias in 30 Florida counties \u2014 applications close November 25, 2026, or when the money runs out.",
+    dateLabel: "November 20, 2026",
+    headline: "Time-sensitive: Florida\u2019s zero-interest emergency bridge loans for storm-hit businesses close November 25",
+    body: [
+      "FloridaCommerce has activated the Florida Small Business Emergency Bridge Loan Program, making $10 million available to small businesses impacted by Hurricane Isaias. The loans are open to businesses in 30 designated counties, including Escambia, Santa Rosa, Hillsborough, Pinellas and Pasco. A bridge loan is exactly what its name says: short-term money that carries a business across the gap between a disaster and the longer-term recovery funding \u2014 an insurance payout, a federal disaster loan, or a commercial loan \u2014 that takes longer to arrive.",
+      "The terms are as plain as state lending gets. Eligible small businesses, including sole proprietors, can apply for up to $100,000, and agriculture and aquaculture businesses can apply for up to $150,000. The loans are zero-interest and short-term, and they are loans, not grants: every dollar must be repaid. FloridaCommerce runs the program with Florida First Capital Finance Corporation as its fiscal administrator. The deadline is the sharp edge of this story: applications are open through November 25, 2026, or until all funds are exhausted, whichever comes first.",
+      "For a Florida owner whose business took storm damage, the useful lesson is that bridge money rewards the prepared. The businesses that move first are the ones that can already show what the storm cost them \u2014 damage records, revenue interruption, and organized financials \u2014 rather than starting that paperwork while the window is closing. If your business was hurt by Hurricane Isaias and sits in one of the designated counties, the calendar matters more than the brochure: five days remain from the date of this briefing. Applications run through FloridaCommerce\u2019s Disaster Recovery program pages at FloridaJobs.org. This news is information only: Vaultara Capital charges no advance fees, and a review is not a promise of financing or approval."
+    ],
+    image: {
+      src: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&w=1200&q=80",
+      alt: "The storefront of a small retail business on a main street",
+      credit: "Photo via Unsplash \u2014 free-license library photo",
+    },
+    source: "FloridaCommerce",
+    sourceDateLabel: "October 2026",
+  },
+  {
+    dateISO: "2026-11-20",
+    slug: "news-sba-100-billion-fy26.html",
+    lane: "National & World",
+    standfirst: "The SBA guaranteed 62,205 7(a) and 504 loans worth $39.5 billion in fiscal 2026 \u2014 the third-highest volume in agency history \u2014 despite a 43-day shutdown that froze lending for nearly two months.",
+    dateLabel: "November 20, 2026",
+    headline: "SBA closes fiscal 2026 with $100 billion delivered and its third-highest loan volume ever",
+    body: [
+      "On November 2, 2026, the U.S. Small Business Administration announced that it closed fiscal year 2026 \u2014 the year that ended September 30 \u2014 with $100 billion in capital and related assistance delivered through its flagship programs. The core of that total is guaranteed lending: the SBA backed 62,205 loans under its 7(a) and 504 programs, totaling $39.5 billion. The agency calls that the third-highest lending volume in its history, building on a record-setting fiscal 2025.",
+      "The split shows where the money went. The 7(a) program, the SBA\u2019s general-purpose loan guarantee used for working capital, equipment and acquisitions, approved 56,130 loans totaling $32.4 billion. The 504 program, aimed at owner-occupied real estate and heavy equipment, approved 6,075 loans totaling $7.1 billion \u2014 together, about 1,350 small-business loans a week. Beyond the two loan programs, the Small Business Investment Company (SBIC) program closed the year with a record $60 billion in combined private capital and SBA leverage, the SBA supported more than 9,700 startups with $6.5 billion in financing, and it disbursed $192 million in disaster loans.",
+      "The number deserves one piece of context before any owner reads it as a forecast. The year included a 43-day federal shutdown that halted SBA lending; the agency estimates it could not guarantee roughly $170 million in loans each business day of that freeze, about $5 billion in financing that otherwise could have been approved. For a Florida business owner, the practical reading is narrower and more useful: the country\u2019s main small-business lending door is open, busy, and processing at near-record pace \u2014 which means the applications that move are the prepared ones, with a clear purpose for the money, organized records, and a repayment story a lender can follow. This news is information only: Vaultara Capital charges no advance fees, and a review is not a promise of financing or approval."
+    ],
+    image: {
+      src: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&w=1200&q=80",
+      alt: "A glass office building facade seen from below against the sky",
+      credit: "Photo via Unsplash \u2014 free-license library photo",
+    },
+    source: "U.S. Small Business Administration",
+    sourceDateLabel: "November 2, 2026",
+  },
+  {
+    dateISO: "2026-11-20",
+    slug: "news-sba-tighter-credit-box-fy27.html",
+    lane: "National & World",
+    standfirst: "A second round of SBA underwriting rules took effect October 1, 2026: CPA earnings reports for bigger acquisitions, stricter debt-service tests, a cap on non-cash equity, and approvals judged on trailing earnings, not projections.",
+    dateLabel: "November 20, 2026",
+    headline: "SBA loans enter fiscal 2027 under a tighter credit box: four rules that got stricter on October 1",
+    body: [
+      "The U.S. Small Business Administration opened fiscal year 2027 on October 1, 2026 with a second round of tighter underwriting rules for its 7(a) and 504 loan programs, as American Banker reported on October 9, 2026. A \u201ccredit box\u201d is the set of standards lenders use to decide which applications qualify \u2014 the box this story describes is the one every SBA application now has to fit inside. The new rules land on top of an earlier revision from June 2025, which reinstated a 10% equity injection for startup and change-of-ownership financing and tightened personal-guarantee and small-dollar loan rules.",
+      "Four things got harder for borrowers. First, anyone seeking more than $3 million for a business acquisition must obtain a CPA-prepared quality-of-earnings report \u2014 an independent review of whether the target company\u2019s reported profits are real and repeatable. Second, lenders must apply stricter debt-service requirements, meaning the business\u2019s cash flow must cover its loan payments by a wider margin. Third, non-cash sources such as a seller note can cover no more than half of the required 10% equity injection: on a $1 million purchase, the injection is $100,000, and at most $50,000 of it can be non-cash. Fourth, underwriting decisions must rest on trailing earnings \u2014 the business\u2019s actual historical results \u2014 rather than on forward-looking projections.",
+      "The agency\u2019s stated aim is restoring prudent lending standards after a looser period, and the effect is already visible in the numbers: American Banker reported that fiscal 2026 lending fell across both flagship programs, with 7(a) dollar volume down by a double-digit percentage. For a Florida owner, the preparation lesson is concrete. Clean up the trailing financials before applying, because history is now the application. Document where the cash part of your equity injection comes from. Run the debt-service math on past earnings, not on the growth you plan \u2014 if the deal only works on projections, it does not work under these rules. This news is information only: Vaultara Capital charges no advance fees, and a review is not a promise of financing or approval."
+    ],
+    image: {
+      src: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=1200&q=80",
+      alt: "A pen resting on a signed business agreement on a desk",
+      credit: "Photo via Unsplash \u2014 free-license library photo",
+    },
+    source: "American Banker, reported by Novo",
+    sourceDateLabel: "October 9, 2026",
+  },
+
+  {
     dateISO: "2026-11-11",
     slug: "news-bizcap-credit-facility.html",
+    lane: "National & World",
     standfirst: "A Miami lending marketplace lined up $175 million of new capacity for small and midsize business loans — and the preparation lesson it holds for Florida owners.",
     dateLabel: "November 11, 2026",
     headline: "Bizcap opens a $175 million credit facility to lend more to small and midsize businesses",
@@ -48,6 +114,7 @@ window.VAULTARA_LOCAL_NEWS = [
   {
     dateISO: "2026-11-06",
     slug: "news-florida-funding-doors.html",
+    lane: "Florida & Local",
     standfirst: "State-backed SSBCI money is moving through Florida lenders, SBA 504 loans reach up to $5.5 million, and the Rebuild Florida Business Loan Fund revolves to the next business in line.",
     dateLabel: "November 6, 2026",
     headline: "Florida funding doors: SSBCI money is moving, and SBA 504 loans reach up to $5.5 million",
@@ -63,25 +130,5 @@ window.VAULTARA_LOCAL_NEWS = [
     },
     source: "Florida Business Development Corporation",
     sourceDateLabel: "November 6, 2026",
-  },
-  {
-    dateISO: "2026-10-27",
-    slug: "news-federal-reserve-credit-survey.html",
-    standfirst: "Florida owners were invited to share their real experience of business credit in the Federal Reserve's 2026 Small Business Credit Survey, open through November 13, 2026.",
-    dateLabel: "October 27, 2026",
-    headline: "Time-sensitive: the Federal Reserve's 2026 Small Business Credit Survey closes November 13",
-    body: [
-      "On October 27, 2026, word went out with Florida partners, in an announcement carried by the ELC of the Emerald Coast, that the Federal Reserve's 2026 Small Business Credit Survey was open and inviting Florida owners to take part. The survey is run by all 12 Federal Reserve Banks, and it asks owners about their real experience of business financing: how the business is doing, whether it looked for credit, and what happened when it did.",
-      "The details are simple. The survey is for for-profit businesses with fewer than 500 employees, it takes about 12 minutes to complete, and answers are confidential. It stays open through November 13, 2026, and then it closes. There is no cost to take part, and taking part does not affect any loan application or credit decision an owner has made or will make. What the answers do is build the national picture of small-business credit that lenders and policymakers rely on when they judge how well credit is working.",
-      "For a Florida business owner, this is a short way to be counted. If getting credit has been easy, that experience matters; if it has been hard, that experience matters just as much, because decision-makers cannot fix a gap they cannot see. Owners who want their experience included need to complete the survey before it closes on November 13, 2026. A dated note for readers after that day: this item describes the survey as it stood when announced, it expires after November 13, 2026, and the next morning refresh replaces it with current news.",
-    ],
-    image: {
-      src: "https://images.unsplash.com/photo-1486312338219-ce68d2c6f44d?auto=format&fit=crop&w=1200&q=80",
-      alt: "Hands typing on a laptop keyboard while completing an online form",
-      credit: "Photo via Unsplash — free-license library photo",
-    },
-    source: "Federal Reserve Small Business Credit Survey announcement via Emerald Coast lender partners",
-    sourceDateLabel: "October 27, 2026",
-    expiresAfter: "2026-11-13",
   },
 ];
