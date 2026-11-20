@@ -41,7 +41,7 @@
 }
 
 .article-summary {
-  max-width: 790px;
+  max-width: 860px;
   margin: 24px 0 0;
   color: rgba(255, 255, 255, .84);
   font-size: 19px;
@@ -55,10 +55,10 @@
 
 .article-grid-layout {
   display: grid;
-  grid-template-columns: minmax(0, 760px) 250px;
+  grid-template-columns: minmax(0, 860px) 250px;
   justify-content: center;
   align-items: start;
-  gap: 72px;
+  gap: 70px;
 }
 
 .article-content { min-width: 0; }
@@ -191,7 +191,7 @@
 .article-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 42px; }
 
 @media (max-width: 980px) {
-  .article-grid-layout { grid-template-columns: minmax(0, 780px); }
+  .article-grid-layout { grid-template-columns: minmax(0, 860px); }
   .article-toc { position: static; grid-row: 1; }
   .article-toc nav { columns: 2; column-gap: 30px; }
 }
